@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://wrbbmtaxerlqzaqfctqn.supabase.co wss://wrbbmtaxerlqzaqfctqn.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; manifest-src 'none'; worker-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://wrbbmtaxerlqzaqfctqn.supabase.co; connect-src https://wrbbmtaxerlqzaqfctqn.supabase.co wss://wrbbmtaxerlqzaqfctqn.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; manifest-src 'none'; worker-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex, nofollow">
 <title>Evolução do time comercial | LC Sistemas</title>
@@ -218,6 +218,9 @@ input[type=file]{width:100%;font-size:.95rem}
   .chart-box{height:250px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.avatar{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid var(--ring-2);flex:0 0 auto}
+.avatar-prev{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
+.avatar-prev[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -263,7 +266,7 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
 const S = {
   session: null, me: null, owner: false, ready: false, loading: false, error: null,
   people: new Map(), certs: new Map(), aval: new Map(), melh: new Map(), ones: new Map(),
-  audit: null, view: "painel", selected: null, tab: "geral", showArchived: false, authMode: "entrar",
+  audit: null, photos: {}, view: "painel", selected: null, tab: "geral", showArchived: false, authMode: "entrar",
 };
 
 /* ---------- DOM ---------- */
@@ -367,6 +370,23 @@ async function load() {
     S.people = new Map([[uid, me]]);
     S.certs = groupBy(c.data);
   }
+  await loadPhotos();
+}
+async function loadPhotos() {
+  const entries = [...S.people.values()].filter(p => p.foto_path).map(p => [p.user_id, p.foto_path]);
+  S.photos = {};
+  if (!entries.length) return;
+  const { data, error } = await sb.storage.from(BUCKET).createSignedUrls(entries.map(e => e[1]), 21600);
+  if (error || !data) return;
+  data.forEach((d, i) => { if (d.signedUrl) S.photos[entries[i][0]] = d.signedUrl; });
+}
+async function squareJpeg(file, max) {
+  if (file.size > 15 * 1024 * 1024) throw new Error("grande");
+  const bmp = await createImageBitmap(file);
+  const side = Math.min(bmp.width, bmp.height), out = Math.min(max, side);
+  const cv = document.createElement("canvas"); cv.width = cv.height = out;
+  cv.getContext("2d").drawImage(bmp, (bmp.width - side) / 2, (bmp.height - side) / 2, side, side, 0, 0, out, out);
+  return await new Promise((res, rej) => cv.toBlob(b => b ? res(b) : rej(new Error("blob")), "image/jpeg", 0.86));
 }
 async function loadAudit() {
   const { data, error } = await sb.from("evo_auditoria").select("*").order("id", { ascending: false }).limit(150);
@@ -504,9 +524,11 @@ function hoursTrailChart(uid, cls) {
 }
 
 /* ---------- anéis ---------- */
-function rings(list, size, name) {
+let clipSeq = 0;
+function rings(list, size, name, uid) {
+  const url = uid ? S.photos[uid] : null;
   const shown = [...list].sort(byDateAsc("concluido_em")).slice(-12);
-  const c = size / 2, rMin = size * 0.2, rMax = size * 0.47;
+  const c = size / 2, rMin = size * (url ? 0.3 : 0.2), rMax = size * 0.47;
   const svg = s("svg", { viewBox: `0 0 ${size} ${size}`, width: size, height: size, role: "img", "aria-label": `${name}: ${plural(list.length, "curso concluído", "cursos concluídos")}` });
   svg.append(s("circle", { cx: c, cy: c, r: rMax, class: "ring-bg" }));
   if (!shown.length) svg.append(s("circle", { cx: c, cy: c, r: (rMin + rMax) / 2 + 1, class: "ring-empty" }));
@@ -517,7 +539,13 @@ function rings(list, size, name) {
     svg.append(s("circle", { cx: c, cy: c, r: rMin + step * (i + 0.5), class: "ring r" + (idx % 3 + 1), "stroke-width": sw }, s("title", {}, cert.titulo || "Curso")));
   });
   svg.append(s("circle", { cx: c, cy: c, r: rMin * 0.92, class: "core" }));
-  svg.append(s("text", { x: c, y: c, "text-anchor": "middle", "dominant-baseline": "central", class: "core-t", "font-size": size * 0.15 }, initials(name)));
+  if (url) {
+    const id = "foto" + (++clipSeq), r = rMin * 0.92;
+    svg.append(s("defs", {}, s("clipPath", { id }, s("circle", { cx: c, cy: c, r }))));
+    svg.append(s("image", { href: url, x: c - r, y: c - r, width: 2 * r, height: 2 * r, "clip-path": `url(#${id})`, preserveAspectRatio: "xMidYMid slice" }));
+  } else {
+    svg.append(s("text", { x: c, y: c, "text-anchor": "middle", "dominant-baseline": "central", class: "core-t", "font-size": size * 0.15 }, initials(name)));
+  }
   return svg;
 }
 
@@ -580,9 +608,15 @@ function readRep(form, name, keys) {
 
 function formCurriculo(uid) {
   const m = S.people.get(uid) || {};
+  const prevUrl = S.photos[uid] || null;
+  const preview = h("img", { class: "avatar-prev", src: prevUrl, alt: "", hidden: !prevUrl });
+  const fileIn = h("input", { type: "file", name: "foto", accept: "image/png,image/jpeg,image/webp" });
+  fileIn.addEventListener("change", () => { const f = fileIn.files[0]; if (f) { preview.src = URL.createObjectURL(f); preview.hidden = false; } });
   openModal({
     title: "Editar currículo", submitLabel: "Salvar currículo",
     body: [
+      field("Foto de perfil", h("div", { class: "row" }, preview, fileIn), "JPG, PNG ou WEBP. A foto é recortada em quadrado e reduzida automaticamente."),
+      m.foto_path && h("label", { class: "row small" }, h("input", { type: "checkbox", name: "remover_foto" }), "Remover a foto atual"),
       h("div", { class: "two" }, field("Nome completo", inp("nome", m.nome, "text", { maxlength: 120 })), field("Cargo", inp("cargo", m.cargo, "text", { maxlength: 80, placeholder: "Ex.: SDR" }))),
       h("div", { class: "two" }, field("Na LC Sistemas desde", inp("admissao", m.admissao, "date")), field("Telefone", inp("telefone", m.telefone, "tel", { maxlength: 40 }))),
       field("Resumo profissional", ta("resumo", m.resumo, 4)),
@@ -592,13 +626,27 @@ function formCurriculo(uid) {
       h("h3", {}, "Formação"),
       repeater("form", m.formacao, [["curso", "Curso"], ["instituicao", "Instituição"], ["ano", "Conclusão"]], "Adicionar formação"),
     ],
-    onSubmit: form => run(sb.from("evo_pessoas").update({
+    onSubmit: async form => {
+      let foto_path = m.foto_path || null;
+      if (form.elements.namedItem("remover_foto")?.checked) foto_path = null;
+      const f = form.elements.namedItem("foto")?.files?.[0];
+      if (f) {
+        let blob;
+        try { blob = await squareJpeg(f, 480); } catch (e) { toast("Não foi possível ler a imagem. Use JPG ou PNG de até 15 MB.", true); return false; }
+        const path = `${uid}/perfil-${crypto.randomUUID()}.jpg`;
+        const up = await sb.storage.from(BUCKET).upload(path, blob, { contentType: "image/jpeg", upsert: false });
+        if (up.error) { toast(sbErr(up.error), true); return false; }
+        foto_path = path;
+      }
+      return run(sb.from("evo_pessoas").update({
+      foto_path,
       nome: nz(val(form, "nome")), cargo: nz(val(form, "cargo")), admissao: nz(val(form, "admissao")),
       telefone: nz(val(form, "telefone")), resumo: nz(val(form, "resumo")),
       habilidades: val(form, "habilidades").split(",").map(x => x.trim().slice(0, 60)).filter(Boolean).slice(0, 40),
       experiencias: readRep(form, "exp", ["cargo", "empresa", "periodo", "descricao"]),
       formacao: readRep(form, "form", ["curso", "instituicao", "ano"]),
-    }).eq("user_id", uid), "Currículo salvo."),
+    }).eq("user_id", uid), "Currículo salvo.");
+    },
   });
 }
 function guessType(file) {
@@ -798,7 +846,9 @@ function curriculum(uid, canEdit) {
   const forms = Array.isArray(m.formacao) ? m.formacao : [];
   return h("article", { class: "cv panel" },
     h("div", { class: "panel-head" },
-      h("div", {}, h("h2", {}, nameOf(uid)), h("p", {}, facts.length ? facts.join(", ") : "Cargo ainda não informado.")),
+      h("div", { class: "row", style: "gap:14px;flex-wrap:nowrap" },
+        S.photos[uid] && h("img", { class: "avatar", src: S.photos[uid], alt: `Foto de ${nameOf(uid)}` }),
+        h("div", {}, h("h2", {}, nameOf(uid)), h("p", { class: "muted" }, facts.length ? facts.join(", ") : "Cargo ainda não informado."))),
       canEdit && h("div", { class: "row" },
         h("button", { class: "btn ghost small", onclick: () => formCurriculo(uid) }, "Editar currículo"),
         h("button", { class: "btn small", onclick: () => formCertificado(uid) }, "Adicionar certificado"))),
@@ -903,7 +953,7 @@ function teamTable(ids) {
     h("tbody", {}, ids.map(id => {
       const st = personStats(id);
       return h("tr", { tabindex: 0, onclick: () => openPerson(id), onkeydown: e => { if (e.key === "Enter") openPerson(id); } },
-        h("td", {}, h("div", { class: "person" }, rings(certsOf(id), 40, nameOf(id)), h("div", {}, h("b", {}, nameOf(id)), h("span", {}, S.people.get(id)?.cargo || "Cargo não informado")))),
+        h("td", {}, h("div", { class: "person" }, rings(certsOf(id), 40, nameOf(id), id), h("div", {}, h("b", {}, nameOf(id)), h("span", {}, S.people.get(id)?.cargo || "Cargo não informado")))),
         h("td", { class: "num" }, st.certs),
         h("td", { class: "num" }, fmtH(st.hours)),
         h("td", { class: "num" }, fmt1(st.last), deltaEl(st.delta)),
@@ -921,7 +971,7 @@ function viewPessoas() {
     ids.length ? h("div", { class: "cards" }, ids.map(id => {
       const st = personStats(id), p = S.people.get(id);
       return h("div", { class: "pcard" + (p.arquivado ? " archived" : ""), tabindex: 0, role: "button", onclick: () => openPerson(id), onkeydown: e => { if (e.key === "Enter") openPerson(id); } },
-        rings(certsOf(id), 96, nameOf(id)),
+        rings(certsOf(id), 96, nameOf(id), id),
         h("div", {}, h("h3", {}, nameOf(id)), h("p", { class: "meta" }, p.arquivado ? "Arquivado" : (p.cargo || "Cargo não informado"))),
         h("p", { class: "meta" }, `${plural(st.certs, "curso", "cursos")}, ${fmtH(st.hours)}, média ${fmt1(st.last)}`));
     })) : h("div", { class: "panel" }, h("p", { class: "muted" }, "Nenhuma pessoa ativa ainda.")),
@@ -937,7 +987,7 @@ function viewPessoa() {
     h("button", { class: "back", onclick: () => go("painel") }, "Voltar ao painel"),
     h("div", { class: "stack" },
       h("div", { class: "person-head" },
-        rings(certsOf(uid), 96, nameOf(uid)),
+        rings(certsOf(uid), 96, nameOf(uid), uid),
         h("div", { class: "info" }, h("h1", {}, nameOf(uid)),
           h("p", { class: "muted" }, [p.cargo || "Cargo não informado", p.admissao && `na LC Sistemas desde ${fmtDate(p.admissao)}`, p.email].filter(Boolean).join(", ")),
           h("p", { class: "muted small" }, p.atualizado_em ? `Currículo atualizado em ${fmtDate(p.atualizado_em)}` : "Currículo ainda não preenchido")),
@@ -1070,7 +1120,7 @@ function viewMeu() {
       !S.me.atualizado_em && h("p", { class: "notice" }, "Comece clicando em Editar currículo e preencha cargo, experiência e formação."),
       h("div", { class: "grid3" },
         h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Minha trilha de formação"), h("p", {}, `${plural(certs.length, "curso", "cursos")}, ${fmtH(hoursOf(certs))}`)), hoursTrailChart(uid, "short")),
-        h("div", { class: "panel", style: "display:grid;place-items:center;gap:8px;text-align:center" }, rings(certs, 140, nameOf(uid)), h("p", { class: "muted small" }, "Cada anel é um curso concluído."))),
+        h("div", { class: "panel", style: "display:grid;place-items:center;gap:8px;text-align:center" }, rings(certs, 140, nameOf(uid), uid), h("p", { class: "muted small" }, "Cada anel é um curso concluído."))),
       curriculum(uid, true)),
   ];
 }
