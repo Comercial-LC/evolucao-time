@@ -289,6 +289,7 @@ const NS = "http://www.w3.org/2000/svg";
 function build(el, props, kids) {
   let pendingValue;
   if (props) for (const [k, v] of Object.entries(props)) {
+    if (k.startsWith("aria-") && typeof v === "boolean") { el.setAttribute(k, String(v)); continue; }
     if (v == null || v === false) continue;
     if (k.startsWith("on") && typeof v === "function") el.addEventListener(k.slice(2), v);
     else if (k === "value" && el.namespaceURI !== NS) pendingValue = v;
