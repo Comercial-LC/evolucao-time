@@ -227,6 +227,15 @@ input[type=file]{width:100%;font-size:.95rem}
 .auto-status[hidden],.ocr-text[hidden]{display:none}
 .ocr-text summary{cursor:pointer;color:var(--muted);font-size:.9rem}
 .ocr-text pre{white-space:pre-wrap;font-size:.82rem;max-height:200px;overflow:auto;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0 0}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.swatch{display:grid;gap:8px;justify-items:start;border:2px solid var(--line);background:var(--surface-2);border-radius:14px;padding:12px;cursor:pointer;text-align:left}
+.swatch:hover{border-color:var(--muted)}
+.swatch[aria-pressed="true"]{border-color:var(--moss);box-shadow:0 0 0 3px var(--moss-soft)}
+.sw-row{display:flex}
+.sw-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--surface);margin-right:-6px}
+.sw-name{font-weight:600;font-size:.92rem}
+.seg-tabs.three{grid-template-columns:repeat(3,1fr)}
+.side,.btn,.kpi,.panel,.swatch,.nav button{transition:background-color .2s,border-color .2s,color .2s}
 </style>
 </head>
 <body>
@@ -321,6 +330,93 @@ const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(
 function colorOf(uid) { const ids = [...S.people.keys()].sort(); return PALETA[Math.max(0, ids.indexOf(uid)) % PALETA.length]; }
 const isActive = p => p && p.status === "ativo" && !p.arquivado;
 
+
+/* ---------- aparência: paletas e modo claro/escuro ---------- */
+const NEUTROS = {
+  claro:  { surface: "#FFFFFF", ink: "#16231C", muted: "#56665D", "side-ink": "#E4ECE7", "side-muted": "#9DB0A4",
+            amber: "#9A6209", "amber-soft": "#F6E8CF", rose: "#A8423A", "rose-soft": "#F6DFDC", blue: "#1E5FA8", focus: "#1E5FA8", scheme: "light" },
+  escuro: { surface: null, ink: "#E7EEEA", muted: "#9DAEA5", "side-ink": "#DCE6E0", "side-muted": "#7F9187",
+            amber: "#E3AA4E", "amber-soft": "#382C15", rose: "#E88C82", "rose-soft": "#3A1F1C", blue: "#80B4F0", focus: "#80B4F0", scheme: "dark" },
+};
+const PALETAS = {
+  verde: { nome: "Verde LC",
+    claro:  { moss: "#2F6B45", "moss-soft": "#DCEBDF", "on-moss": "#FFFFFF", "ring-1": "#2F6B45", "ring-2": "#6FA57C", "ring-3": "#B5D3BA", "ring-bg": "#E3EAE4", side: "#14261C", "side-active": "#21402E", bg: "#EEF2EF", "surface-2": "#F5F8F5", line: "#D4DCD6" },
+    escuro: { moss: "#7CC08F", "moss-soft": "#1E3526", "on-moss": "#0C1810", "ring-1": "#7CC08F", "ring-2": "#4E8A5F", "ring-3": "#2E5639", "ring-bg": "#1F2C24", side: "#0A110D", "side-active": "#1B3324", bg: "#0E1511", surface: "#16201A", "surface-2": "#1C2822", line: "#2A3830" } },
+  azul: { nome: "Azul corporativo",
+    claro:  { moss: "#1F5FAE", "moss-soft": "#DCE8F7", "on-moss": "#FFFFFF", "ring-1": "#1F5FAE", "ring-2": "#5D93D6", "ring-3": "#AECBEF", "ring-bg": "#E2E9F2", side: "#12233D", "side-active": "#1D3860", bg: "#EEF2F7", "surface-2": "#F5F8FC", line: "#D3DCE8" },
+    escuro: { moss: "#7DB2F2", "moss-soft": "#1A2E4A", "on-moss": "#0A1526", "ring-1": "#7DB2F2", "ring-2": "#3F73B5", "ring-3": "#24456F", "ring-bg": "#1C2738", side: "#0A1220", "side-active": "#18294A", bg: "#0D131D", surface: "#151D2A", "surface-2": "#1B2534", line: "#29364A" } },
+  petroleo: { nome: "Petróleo",
+    claro:  { moss: "#126E73", "moss-soft": "#D6ECEC", "on-moss": "#FFFFFF", "ring-1": "#126E73", "ring-2": "#4FA3A6", "ring-3": "#A6D3D4", "ring-bg": "#E0EAEA", side: "#0F2526", "side-active": "#1A3D3F", bg: "#EDF3F3", "surface-2": "#F4F9F9", line: "#D1DFDF" },
+    escuro: { moss: "#6CCBCF", "moss-soft": "#163536", "on-moss": "#062021", "ring-1": "#6CCBCF", "ring-2": "#2F8E92", "ring-3": "#1E5658", "ring-bg": "#1B2B2C", side: "#081314", "side-active": "#143132", bg: "#0C1516", surface: "#142021", "surface-2": "#1A2829", line: "#283B3C" } },
+  ametista: { nome: "Ametista",
+    claro:  { moss: "#5B3FA8", "moss-soft": "#E7E0F6", "on-moss": "#FFFFFF", "ring-1": "#5B3FA8", "ring-2": "#8F76CF", "ring-3": "#CBBEEB", "ring-bg": "#E8E4F0", side: "#1F1838", "side-active": "#33285A", bg: "#F1EFF6", "surface-2": "#F7F5FB", line: "#DAD5E6" },
+    escuro: { moss: "#B39DF2", "moss-soft": "#2A2245", "on-moss": "#140E26", "ring-1": "#B39DF2", "ring-2": "#7559C2", "ring-3": "#44357A", "ring-bg": "#242033", side: "#100C1D", "side-active": "#2A2148", bg: "#110F18", surface: "#1A1724", "surface-2": "#211D2D", line: "#332D45" } },
+  terracota: { nome: "Terracota",
+    claro:  { moss: "#A9481F", "moss-soft": "#F6E2D8", "on-moss": "#FFFFFF", "ring-1": "#A9481F", "ring-2": "#D9845F", "ring-3": "#EFC3AE", "ring-bg": "#EFE6E1", side: "#2B1A12", "side-active": "#4A2C1E", bg: "#F5F0EC", "surface-2": "#FAF6F3", line: "#E3D8D1" },
+    escuro: { moss: "#F0A07A", "moss-soft": "#3D2418", "on-moss": "#241208", "ring-1": "#F0A07A", "ring-2": "#B86440", "ring-3": "#6E3B25", "ring-bg": "#2B211C", side: "#150D09", "side-active": "#3A2418", bg: "#16110E", surface: "#201814", "surface-2": "#281F1A", line: "#3D3029" } },
+  vinho: { nome: "Vinho",
+    claro:  { moss: "#8E2C48", "moss-soft": "#F3DDE3", "on-moss": "#FFFFFF", "ring-1": "#8E2C48", "ring-2": "#C06480", "ring-3": "#E5B5C3", "ring-bg": "#EFE3E7", side: "#2A1119", "side-active": "#47202C", bg: "#F5EEF0", "surface-2": "#FAF5F7", line: "#E3D5DA" },
+    escuro: { moss: "#EC8FA9", "moss-soft": "#3B1A25", "on-moss": "#22080F", "ring-1": "#EC8FA9", "ring-2": "#A84A66", "ring-3": "#632A3B", "ring-bg": "#2A1D22", side: "#14080C", "side-active": "#36161F", bg: "#150E11", surface: "#1F161A", "surface-2": "#271C21", line: "#3C2C33" } },
+  grafite: { nome: "Grafite",
+    claro:  { moss: "#3A4350", "moss-soft": "#E2E5EA", "on-moss": "#FFFFFF", "ring-1": "#3A4350", "ring-2": "#7A8494", "ring-3": "#C3C9D2", "ring-bg": "#E6E8EC", side: "#191D23", "side-active": "#2B313B", bg: "#F0F1F3", "surface-2": "#F7F8F9", line: "#D8DBE0" },
+    escuro: { moss: "#C3CBD8", "moss-soft": "#2A303A", "on-moss": "#111418", "ring-1": "#C3CBD8", "ring-2": "#7B8596", "ring-3": "#454D5A", "ring-bg": "#22262D", side: "#0C0E11", "side-active": "#262B33", bg: "#111317", surface: "#191C21", "surface-2": "#1F2329", line: "#30353E" } },
+};
+const MODOS = { auto: "Automático", claro: "Claro", escuro: "Escuro" };
+const darkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+function parseTema(v) { const [p, m] = String(v || "").split(":"); return { paleta: PALETAS[p] ? p : "verde", modo: MODOS[m] ? m : "auto" }; }
+function localTema() { try { return localStorage.getItem("evo-tema"); } catch (e) { return null; } }
+let TEMA = parseTema(localTema());
+function applyTheme(t) {
+  const modo = t.modo === "auto" ? (darkMQ.matches ? "escuro" : "claro") : t.modo;
+  const pal = PALETAS[t.paleta][modo], neu = NEUTROS[modo], root = document.documentElement;
+  for (const [k, v] of Object.entries({ ...neu, ...pal })) { if (k !== "scheme" && v) root.style.setProperty("--" + k, v); }
+  root.style.setProperty("color-scheme", neu.scheme);
+  root.setAttribute("data-theme", neu.scheme);
+}
+function setTema(t, save) {
+  TEMA = t; applyTheme(t);
+  if (save) { try { localStorage.setItem("evo-tema", `${t.paleta}:${t.modo}`); } catch (e) {} }
+}
+applyTheme(TEMA);
+darkMQ.addEventListener("change", () => { if (TEMA.modo === "auto") { applyTheme(TEMA); if (S.session) render(); } });
+function swatch(key, selected, onPick) {
+  const p = PALETAS[key];
+  const dot = c => h("span", { class: "sw-dot", style: `background:${c}` });
+  return h("button", { type: "button", class: "swatch", "aria-pressed": selected, onclick: () => onPick(key) },
+    h("span", { class: "sw-row" }, dot(p.claro.side), dot(p.claro.moss), dot(p.claro["ring-2"]), dot(p.claro["ring-3"])),
+    h("span", { class: "sw-name" }, p.nome));
+}
+function themeModal() {
+  const original = { ...TEMA };
+  let draft = { ...TEMA }, saved = false;
+  const grid = h("div", { class: "swatches" });
+  const modes = h("div", { class: "seg-tabs three", role: "radiogroup", "aria-label": "Modo" });
+  const draw = () => {
+    grid.replaceChildren(...Object.keys(PALETAS).map(k => swatch(k, draft.paleta === k, key => { draft.paleta = key; setTema(draft, false); render(); draw(); })));
+    modes.replaceChildren(...Object.entries(MODOS).map(([k, l]) => h("button", { type: "button", role: "radio", "aria-selected": draft.modo === k, "aria-checked": draft.modo === k,
+      onclick: () => { draft.modo = k; setTema(draft, false); render(); draw(); } }, l)));
+  };
+  draw();
+  openModal({
+    title: "Aparência", submitLabel: "Salvar aparência",
+    body: [
+      h("p", { class: "muted small" }, "A mudança aparece na hora, para você conferir. Fica salva na sua conta e vale em qualquer computador ou celular."),
+      h("div", { class: "field" }, h("span", { class: "lbl" }, "Modo"), modes, h("span", { class: "hint" }, "Automático segue o modo claro ou escuro do seu aparelho.")),
+      h("div", { class: "field" }, h("span", { class: "lbl" }, "Paleta de cores"), grid),
+    ],
+    onReady: () => { document.getElementById("modal").addEventListener("close", () => { if (!saved) { setTema(original, false); render(); } }, { once: true }); },
+    onSubmit: async () => {
+      saved = true; setTema(draft, true);
+      if (S.me && isActive(S.me)) {
+        const { error } = await sb.from("evo_pessoas").update({ tema: `${draft.paleta}:${draft.modo}` }).eq("user_id", S.me.user_id);
+        if (error) { toast("Aparência salva só neste aparelho: " + sbErr(error), true); render(); return true; }
+        S.me.tema = `${draft.paleta}:${draft.modo}`;
+      }
+      render(); toast("Aparência salva."); return true;
+    },
+  });
+}
+
 /* ---------- avisos ---------- */
 let toastTimer;
 function toast(msg, err) {
@@ -357,6 +453,7 @@ async function load() {
   if (error) throw error;
   S.me = me;
   S.owner = !!me && me.papel === "gestor" && isActive(me);
+  if (me?.tema && me.tema !== `${TEMA.paleta}:${TEMA.modo}`) setTema(parseTema(me.tema), true);
   if (!isActive(me)) return;
   if (S.owner) {
     const [p, c, a, m, o] = await Promise.all([
@@ -1301,6 +1398,7 @@ function shell(content) {
         h("button", { "aria-current": current === k ? "page" : null, onclick: () => go(k) }, h("span", {}, l), n ? h("span", { class: "badge" }, n) : null))),
       h("div", { class: "side-foot" },
         h("span", { class: "who" }, S.me?.nome || S.session?.user?.email || ""),
+        h("button", { onclick: themeModal }, "Aparência"),
         h("button", { onclick: passwordModal }, "Alterar senha"),
         h("button", { onclick: () => sb.auth.signOut() }, "Sair"))),
     h("main", { class: "main" }, S.error && h("p", { class: "notice", style: "margin-bottom:16px" }, S.error), content));
@@ -1366,7 +1464,6 @@ function render() {
   app.replaceChildren(...[content].flat().filter(Boolean));
   if (window.Chart) chartJobs.forEach(job => { try { job(); } catch (e) { console.error(e); } });
 }
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => S.session && render());
 
 /* ---------- início ---------- */
 let lastUser = null;
