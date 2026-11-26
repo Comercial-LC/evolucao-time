@@ -3,16 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://wrbbmtaxerlqzaqfctqn.supabase.co wss://wrbbmtaxerlqzaqfctqn.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; manifest-src 'none'; worker-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
 <title>Evolução do time comercial | LC Sistemas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#EDF1EE; --surface:#FFFFFF; --surface-2:#F5F8F5; --ink:#17241D; --muted:#56665D; --line:#D2DBD4;
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>:root{
+  --bg:#EEF2EF; --surface:#FFFFFF; --surface-2:#F5F8F5; --ink:#16231C; --muted:#56665D; --line:#D4DCD6;
+  --side:#14261C; --side-ink:#DCE8DF; --side-muted:#8FA597; --side-active:#21402E;
   --moss:#2F6B45; --moss-soft:#DCEBDF; --on-moss:#FFFFFF;
-  --amber:#9A6209; --amber-soft:#F6E8CF; --rose:#A8423A; --rose-soft:#F6DFDC;
+  --amber:#9A6209; --amber-soft:#F6E8CF; --rose:#A8423A; --rose-soft:#F6DFDC; --blue:#1E5FA8;
   --ring-1:#2F6B45; --ring-2:#6FA57C; --ring-3:#B5D3BA; --ring-bg:#E3EAE4; --focus:#1E5FA8;
   color-scheme:light;
   box-sizing:border-box;
@@ -21,17 +23,19 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0F1612; --surface:#17211B; --surface-2:#1D2923; --ink:#E5EEE8; --muted:#9BAFA3; --line:#2B3A31;
+    --bg:#0E1511; --surface:#16201A; --surface-2:#1C2822; --ink:#E5EEE8; --muted:#9AAEA2; --line:#2A3830;
+    --side:#0A110D; --side-ink:#DCE8DF; --side-muted:#7F9587; --side-active:#1B3324;
     --moss:#7CC08F; --moss-soft:#1E3526; --on-moss:#0C1810;
-    --amber:#E3AA4E; --amber-soft:#382C15; --rose:#E88C82; --rose-soft:#3A1F1C;
+    --amber:#E3AA4E; --amber-soft:#382C15; --rose:#E88C82; --rose-soft:#3A1F1C; --blue:#80B4F0;
     --ring-1:#7CC08F; --ring-2:#4E8A5F; --ring-3:#2E5639; --ring-bg:#1F2C24; --focus:#80B4F0;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0F1612; --surface:#17211B; --surface-2:#1D2923; --ink:#E5EEE8; --muted:#9BAFA3; --line:#2B3A31;
+  --bg:#0E1511; --surface:#16201A; --surface-2:#1C2822; --ink:#E5EEE8; --muted:#9AAEA2; --line:#2A3830;
+  --side:#0A110D; --side-ink:#DCE8DF; --side-muted:#7F9587; --side-active:#1B3324;
   --moss:#7CC08F; --moss-soft:#1E3526; --on-moss:#0C1810;
-  --amber:#E3AA4E; --amber-soft:#382C15; --rose:#E88C82; --rose-soft:#3A1F1C;
+  --amber:#E3AA4E; --amber-soft:#382C15; --rose:#E88C82; --rose-soft:#3A1F1C; --blue:#80B4F0;
   --ring-1:#7CC08F; --ring-2:#4E8A5F; --ring-3:#2E5639; --ring-bg:#1F2C24; --focus:#80B4F0;
   color-scheme:dark;
 }
@@ -39,125 +43,150 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;font-weight:700;line-height:1.15;margin:0;letter-spacing:-0.01em}
-h1{font-size:clamp(1.8rem,4vw,2.6rem)}
-h2{font-size:1.5rem}
-h3{font-size:1.1rem;font-weight:500}
+h1{font-size:clamp(1.6rem,3vw,2.2rem)}
+h2{font-size:1.35rem}
+h3{font-size:1.05rem;font-weight:600}
 p{margin:0}
-img{max-width:100%}
 button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
-.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
-.muted{color:var(--muted)}
-.small{font-size:.9rem}
+.muted{color:var(--muted)} .small{font-size:.9rem}
 
-/* hero */
-.hero{display:grid;gap:18px;margin-bottom:28px}
-.hero-top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
-.hero-sub{max-width:62ch;color:var(--muted);margin-top:6px}
-.figures{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--muted);font-size:.95rem}
-.figures b{color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-size:1.15rem;margin-right:4px}
-.grove{display:flex;gap:6px;overflow-x:auto;padding:6px 2px 10px;scrollbar-width:thin}
-.tree{flex:0 0 auto;display:grid;justify-items:center;gap:4px;width:118px;padding:10px 6px 12px;border:0;background:transparent;border-radius:14px;cursor:pointer;text-align:center}
-.tree:hover{background:var(--surface-2)}
-.tree[aria-pressed="true"]{background:var(--surface);box-shadow:inset 0 -3px 0 var(--moss)}
-.tree .nm{font-weight:600;line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tree .ct{font-size:.85rem;color:var(--muted)}
-.tree.archived{opacity:.55}
+/* estrutura */
+.shell{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100dvh}
+.side{background:var(--side);color:var(--side-ink);display:flex;flex-direction:column;gap:22px;padding:24px 14px;position:sticky;top:0;height:100dvh;overflow:auto}
+.brand{display:flex;gap:10px;align-items:center;padding:0 8px}
+.brand b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.05rem;line-height:1.15;display:block}
+.brand span{color:var(--side-muted);font-size:.85rem}
+.nav{display:grid;gap:2px}
+.nav button{display:flex;justify-content:space-between;align-items:center;gap:8px;border:0;background:none;color:var(--side-ink);padding:10px 12px;border-radius:10px;text-align:left;cursor:pointer;font-weight:600}
+.nav button:hover{background:var(--side-active)}
+.nav button[aria-current="page"]{background:var(--side-active);box-shadow:inset 3px 0 0 var(--ring-2)}
+.badge{background:var(--amber);color:#1b1306;border-radius:999px;font-size:.78rem;padding:1px 8px;font-weight:700}
+.side-foot{margin-top:auto;display:grid;gap:6px;padding:12px 8px 0;border-top:1px solid var(--side-active)}
+.side-foot .who{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.side-foot button{border:0;background:none;color:var(--side-muted);text-align:left;padding:4px 0;cursor:pointer}
+.side-foot button:hover{color:var(--side-ink)}
+.main{padding:30px clamp(16px,3vw,44px) 90px;max-width:1240px;width:100%}
+.page-head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+.page-head p{color:var(--muted);margin-top:6px;max-width:64ch}
+@media (max-width:899px){
+  .shell{grid-template-columns:1fr}
+  .side{position:static;height:auto;padding:14px;gap:12px}
+  .nav{display:flex;overflow-x:auto;gap:4px}
+  .nav button{white-space:nowrap}
+  .side-foot{flex-direction:row;display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:0;padding-top:10px}
+  .main{padding-top:20px}
+}
 
-/* rings */
-.ring-bg{fill:var(--ring-bg)}
-.ring{fill:none}
-.ring.r1{stroke:var(--ring-1)} .ring.r2{stroke:var(--ring-2)} .ring.r3{stroke:var(--ring-3)}
-.ring-empty{fill:none;stroke:var(--line);stroke-dasharray:3 4;stroke-width:1.5}
-.core{fill:var(--surface)}
-.core-t{fill:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:700}
-
-/* buttons */
-.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;background:var(--moss);color:var(--on-moss);padding:9px 16px;border-radius:999px;font-weight:600;cursor:pointer;line-height:1.2}
+/* componentes */
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;background:var(--moss);color:var(--on-moss);padding:9px 16px;border-radius:999px;font-weight:600;cursor:pointer;line-height:1.2;text-decoration:none}
 .btn:hover{filter:brightness(1.07)}
 .btn[disabled]{opacity:.55;cursor:default}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost:hover{background:var(--surface-2)}
 .btn.small{padding:6px 12px;font-size:.9rem}
-.btn.danger{background:transparent;color:var(--rose);border-color:var(--rose-soft)}
+.btn.danger{background:transparent;color:var(--rose);border-color:var(--rose)}
 .linkish{border:0;background:none;padding:0;color:var(--moss);font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.linkish.red{color:var(--rose)}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.panel-head{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+.panel-head p{color:var(--muted);font-size:.9rem}
+.stack{display:grid;gap:18px}
+.grid2{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.grid3{display:grid;gap:18px;grid-template-columns:2fr 1fr}
+@media (max-width:1050px){.grid3{grid-template-columns:1fr}}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi .v{font-family:"Bricolage Grotesque",sans-serif;font-size:1.7rem;font-weight:700;line-height:1.1}
+.kpi .l{color:var(--muted);font-size:.9rem}
+.kpi.warn{border-color:var(--amber);background:var(--amber-soft)}
+.delta-up{color:var(--moss);font-weight:700}
+.delta-down{color:var(--rose);font-weight:700}
+.chart-box{position:relative;height:290px}
+.chart-box.tall{height:340px}
+.chart-box.short{height:220px}
+.empty-chart{height:100%;display:grid;place-items:center;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;padding:16px}
 
-/* panels */
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
-.detail{display:grid;gap:18px}
-.detail-head{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
-.detail-head .who{flex:1 1 240px}
-.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line)}
+/* tabela */
+.tbl-wrap{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.95rem}
+.tbl th{text-align:left;font-weight:600;color:var(--muted);font-size:.85rem;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.tbl td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr{cursor:pointer}
+.tbl tbody tr:hover{background:var(--surface-2)}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.person{display:flex;gap:10px;align-items:center;min-width:180px}
+.person b{display:block;font-weight:600}
+.person span{color:var(--muted);font-size:.85rem}
+
+/* cards de pessoa */
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.pcard{display:grid;gap:10px;justify-items:center;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 14px;cursor:pointer}
+.pcard:hover{border-color:var(--moss)}
+.pcard.archived{opacity:.6}
+.pcard .meta{font-size:.88rem}
+
+/* anéis */
+.ring-bg{fill:var(--ring-bg)} .ring{fill:none}
+.ring.r1{stroke:var(--ring-1)} .ring.r2{stroke:var(--ring-2)} .ring.r3{stroke:var(--ring-3)}
+.ring-empty{fill:none;stroke:var(--line);stroke-dasharray:3 4;stroke-width:1.5}
+.core{fill:var(--surface)} .core-t{fill:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:700}
+
+/* pessoa */
+.person-head{display:flex;flex-wrap:wrap;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.person-head .info{flex:1 1 260px}
+.back{border:0;background:none;color:var(--muted);cursor:pointer;padding:0;margin-bottom:10px;font-weight:600}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);margin:4px 0 2px}
 .tab{border:0;background:none;padding:10px 14px;cursor:pointer;color:var(--muted);font-weight:600;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-1px}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--moss)}
-.grid2{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.stat{background:var(--surface);padding:14px 16px}
-.stat .v{font-family:"Bricolage Grotesque",sans-serif;font-size:1.6rem;font-weight:700;line-height:1.1}
-.stat .l{color:var(--muted);font-size:.9rem}
-.delta-up{color:var(--moss);font-weight:600}
-.delta-down{color:var(--rose);font-weight:600}
-.sec-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
 
-/* lists */
+/* listas */
 .list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
 .item{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--surface-2);display:grid;gap:6px}
 .item-top{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
-.item h3{font-size:1.05rem}
+.item h3{font-size:1.02rem}
 .meta{color:var(--muted);font-size:.9rem}
-.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.82rem;font-weight:600}
-.pill.aberto{background:var(--amber-soft);color:var(--amber)}
-.pill.andamento{background:var(--moss-soft);color:var(--moss)}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.8rem;font-weight:700}
+.pill.aberto,.pill.pendente{background:var(--amber-soft);color:var(--amber)}
+.pill.andamento,.pill.ativo{background:var(--moss-soft);color:var(--moss)}
 .pill.concluido{background:var(--surface);color:var(--muted);border:1px solid var(--line)}
-.pill.late{background:var(--rose-soft);color:var(--rose)}
+.pill.late,.pill.recusado{background:var(--rose-soft);color:var(--rose)}
 .prose{white-space:pre-wrap}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{background:var(--moss-soft);color:var(--ink);padding:3px 12px;border-radius:999px;font-size:.92rem}
-.thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:var(--surface)}
+.chip{background:var(--moss-soft);padding:3px 12px;border-radius:999px;font-size:.92rem}
 .cert{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
-.doc-ico{width:64px;height:64px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;background:var(--surface);color:var(--muted);font-weight:700;font-size:.85rem}
-
-/* curriculum */
-.cv{display:grid;gap:22px}
-.cv-head{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
-.cv section{display:grid;gap:10px;padding-top:18px;border-top:1px solid var(--line)}
+.doc-ico{width:56px;height:56px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;background:var(--surface);color:var(--muted);font-weight:700;font-size:.8rem;text-align:center}
+.cv{display:grid;gap:20px}
+.cv section{display:grid;gap:10px;padding-top:16px;border-top:1px solid var(--line)}
 .exp{display:grid;gap:2px}
-.exp b{font-weight:600}
 
-/* bars */
-.bars{display:grid;gap:10px}
-.bar-row{display:grid;grid-template-columns:minmax(120px,190px) 1fr auto;gap:10px;align-items:center;font-size:.95rem}
-.bar{height:10px;background:var(--ring-bg);border-radius:999px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--moss);border-radius:999px}
-.mini-bars{display:flex;gap:3px;align-items:flex-end;height:26px}
-.mini-bars i{width:8px;background:var(--ring-2);border-radius:2px 2px 0 0}
-
-/* chart */
-.chart{width:100%;height:auto;display:block}
-.chart .grid{stroke:var(--line);stroke-width:1}
-.chart .axis{fill:var(--muted);font-size:11px;font-family:"Source Sans 3",sans-serif}
-.chart .line{fill:none;stroke:var(--moss);stroke-width:2.5;stroke-linejoin:round}
-.chart .dot{fill:var(--surface);stroke:var(--moss);stroke-width:2.5}
-.chart .val{fill:var(--ink);font-size:12px;font-weight:600;font-family:"Source Sans 3",sans-serif}
-
-/* timeline */
-.tl{list-style:none;margin:0;padding:0;display:grid;gap:0}
-.tl li{display:grid;grid-template-columns:86px 16px 1fr;gap:10px;padding-bottom:14px;position:relative}
-.tl .d{color:var(--muted);font-size:.88rem;text-align:right;padding-top:1px}
+/* linha do tempo */
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:84px 16px 1fr;gap:10px;padding-bottom:14px;position:relative}
+.tl .d{color:var(--muted);font-size:.86rem;text-align:right;padding-top:1px}
 .tl .k{width:12px;height:12px;border-radius:50%;margin-top:6px;background:var(--moss);position:relative;z-index:1}
-.tl li::before{content:"";position:absolute;left:101px;top:12px;bottom:0;width:2px;background:var(--line)}
+.tl li::before{content:"";position:absolute;left:99px;top:12px;bottom:0;width:2px;background:var(--line)}
 .tl li:last-child::before{display:none}
-.tl .k.aval{background:var(--focus)} .tl .k.one{background:var(--ring-2)} .tl .k.melh{background:var(--amber)} .tl .k.ok{background:var(--surface);border:2px solid var(--moss)}
+.tl .k.aval{background:var(--blue)} .tl .k.one{background:var(--ring-2)} .tl .k.melh{background:var(--amber)} .tl .k.ok{background:var(--surface);border:2px solid var(--moss)}
 
-/* empty / notices */
-.empty{display:grid;gap:12px;justify-items:start;padding:26px}
+/* avisos e telas cheias */
+.notice{padding:12px 16px;border-radius:12px;background:var(--amber-soft);border:1px solid var(--line)}
+.center{min-height:calc(100dvh - 60px);display:grid;place-items:center;padding:20px}
+.card{width:min(440px,100%);background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;display:grid;gap:14px}
+.card h1{font-size:1.6rem;text-align:center}
+.card > p{text-align:center}
+.card svg{justify-self:center}
+.seg-tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg-tabs button{border:0;background:none;padding:8px;border-radius:999px;font-weight:600;color:var(--muted);cursor:pointer}
+.seg-tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.form-err{color:var(--rose);font-size:.93rem;min-height:1.2em;text-align:center}
 .steps{margin:0;padding-left:20px;display:grid;gap:6px}
-.notice{padding:12px 16px;border-radius:12px;background:var(--amber-soft);color:var(--ink);border:1px solid var(--line)}
 
-/* dialog + form */
-dialog{border:0;border-radius:18px;padding:0;width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 32px);background:var(--surface);color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.25)}
-dialog::backdrop{background:rgba(10,20,14,.45)}
+/* diálogo e formulário */
+dialog{border:0;border-radius:18px;padding:0;width:min(660px,calc(100vw - 24px));max-height:calc(100dvh - 32px);background:var(--surface);color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(8,18,12,.5)}
 .dlg{display:grid;grid-template-rows:auto 1fr auto;max-height:calc(100dvh - 32px)}
 .dlg-head{padding:20px 22px 8px}
 .dlg-body{padding:8px 22px 16px;overflow:auto;display:grid;gap:14px}
@@ -165,7 +194,7 @@ dialog::backdrop{background:rgba(10,20,14,.45)}
 .field{display:grid;gap:5px}
 .field .lbl{font-weight:600;font-size:.93rem}
 .field .hint{color:var(--muted);font-size:.85rem}
-input[type=text],input[type=date],input[type=number],input[type=search],input[type=tel],select,textarea{width:100%;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:9px 11px}
+input[type=text],input[type=email],input[type=password],input[type=date],input[type=number],input[type=tel],select,textarea{width:100%;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:9px 11px}
 textarea{resize:vertical;min-height:64px}
 input[type=file]{width:100%;font-size:.95rem}
 .two{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
@@ -179,72 +208,62 @@ input[type=file]{width:100%;font-size:.95rem}
 .seg span{display:block;padding:5px 12px;font-weight:600;color:var(--muted)}
 .seg input:checked+span{background:var(--moss);color:var(--on-moss)}
 .seg input:focus-visible+span{outline:2px solid var(--focus);outline-offset:-2px}
-.results{display:grid;gap:4px}
-.person-hit{display:flex;gap:10px;align-items:center;border:0;background:var(--surface-2);padding:8px 10px;border-radius:10px;cursor:pointer;text-align:left}
-.person-hit:hover{background:var(--moss-soft)}
-.person-hit img{border-radius:50%}
-
 .toast{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;pointer-events:none;padding:0 16px calc(18px + env(safe-area-inset-bottom,0px));z-index:50}
 .toast div{background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;max-width:520px;box-shadow:0 8px 24px rgba(0,0,0,.2);pointer-events:auto}
 .toast div.err{background:var(--rose);color:#fff}
 @media (max-width:560px){
-  .wrap{padding:20px 14px 80px}
   .panel{padding:16px}
   .tl li{grid-template-columns:70px 16px 1fr}
   .tl li::before{left:85px}
-  .bar-row{grid-template-columns:1fr auto;}
-  .bar-row .bar{grid-column:1 / -1;order:3}
+  .chart-box{height:250px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-
-.topbar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin-bottom:22px;color:var(--muted);font-size:.93rem}
-.topbar .brand{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:var(--ink);font-size:1rem}
-.login{min-height:calc(100dvh - 140px);display:grid;place-items:center}
-.login-card{width:min(420px,100%);background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;display:grid;gap:16px;justify-items:stretch}
-.login-card svg{justify-self:center}
-.login-card h1{font-size:1.7rem;text-align:center}
-.login-card p{text-align:center}
-.form-err{color:var(--rose);font-size:.93rem;min-height:1.2em;text-align:center}
-input[type=email],input[type=password]{width:100%;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:9px 11px}
 </style>
 </head>
 <body>
-<main id="app" class="wrap" aria-live="polite"><p>Carregando…</p></main>
+<div id="app"><p style="padding:24px">Carregando…</p></div>
 <dialog id="modal"></dialog>
 <dialog id="confirm"></dialog>
 <div class="toast" role="status" aria-live="polite"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" integrity="sha384-0w2KAL2YHP6wKOkUDzkCDGgVvfmHnj02DHeQ6XcHOgTfFsGyonKOpShMH1x6nk9o" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js" integrity="sha384-dug+JxfBvklEQdJ4AYuBBAIScUz0bVN73xpy273gcAwHjb3qI0fXmuYNaNfdyYJG" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
 <script>
+if (top !== self) { document.body.textContent = "Esta página não pode ser aberta dentro de outro site."; throw new Error("frame"); }
 "use strict";
 /* =========================================================
-   CONFIGURAÇÃO — cole aqui a anon key do projeto Contratos Comerciais
+   CONFIGURAÇÃO
    ========================================================= */
 const SUPABASE_URL = "https://wrbbmtaxerlqzaqfctqn.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyYmJtdGF4ZXJscXphcWZjdHFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTU2OTU1ODEsImV4cCI6MjExMTI3MTU4MX0.OwyQ-iqqvZEaAxF67DmqECR7J7fSUo9QtSxzXQ4D138";
 const BUCKET = "evo-certificados";
+const INATIVIDADE_MIN = 30; // encerra a sessão após 30 minutos sem uso
 
 const COMPETENCIAS = [
-  ["sistema", "Conhecimento do sistema"],
-  ["comunicacao", "Comunicação"],
-  ["atendimento", "Atendimento ao cliente"],
-  ["organizacao", "Organização e uso do CRM"],
-  ["proatividade", "Proatividade"],
-  ["equipe", "Trabalho em equipe"],
-  ["resultados", "Resultados e metas"],
+  ["sistema", "Conhecimento do sistema", "Sistema"],
+  ["comunicacao", "Comunicação", "Comunicação"],
+  ["atendimento", "Atendimento ao cliente", "Atendimento"],
+  ["organizacao", "Organização e uso do CRM", "CRM"],
+  ["proatividade", "Proatividade", "Proatividade"],
+  ["equipe", "Trabalho em equipe", "Equipe"],
+  ["resultados", "Resultados e metas", "Resultados"],
 ];
 const CATEGORIAS = ["Vendas e negociação", "Produto e sistema", "Atendimento ao cliente", "Gestão e liderança", "Tecnologia", "Outro"];
 const STATUS = { aberto: "Aberto", andamento: "Em andamento", concluido: "Concluído" };
+const ACESSO = { pendente: "Aguardando aprovação", ativo: "Ativo", recusado: "Recusado" };
+const PALETA = ["#2F6B45", "#1E5FA8", "#C27C0E", "#8A3FA0", "#B8473D", "#2A8C8C", "#6E7A1F", "#5B5BD6"];
+const TABELAS = { evo_pessoas: "Pessoa", evo_certificados: "Certificado", evo_avaliacoes: "Avaliação", evo_melhorias: "Ponto de melhoria", evo_oneaone: "Reunião 1:1" };
+const RESTAURAVEIS = ["evo_certificados", "evo_avaliacoes", "evo_melhorias", "evo_oneaone"];
 
-// storageKey próprio: o login daqui não se mistura com o login do Portal
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-  auth: { storageKey: "evo-time-auth", persistSession: true, autoRefreshToken: true },
+  auth: { storageKey: "evo-time-auth", persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
 });
 
 /* ---------- estado ---------- */
 const S = {
   session: null, me: null, owner: false, ready: false, loading: false, error: null,
-  members: new Map(), certs: new Map(), aval: new Map(), melh: new Map(), ones: new Map(),
-  selected: null, tab: "geral", showArchived: false,
+  people: new Map(), certs: new Map(), aval: new Map(), melh: new Map(), ones: new Map(),
+  audit: null, view: "painel", selected: null, tab: "geral", showArchived: false, authMode: "entrar",
 };
 
 /* ---------- DOM ---------- */
@@ -271,21 +290,27 @@ const s = (tag, props, ...kids) => build(document.createElementNS(NS, tag), prop
 /* ---------- utilitários ---------- */
 const pad = n => String(n).padStart(2, "0");
 function today() { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
-function dateOnly(v) { return typeof v === "string" ? v.slice(0, 10) : ""; }
+const dateOnly = v => (typeof v === "string" ? v.slice(0, 10) : "");
 function fmtDate(v) { const d = dateOnly(v); if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return "sem data"; const [y, m, dd] = d.split("-"); return `${dd}/${m}/${y}`; }
-function daysSince(v) { const d = dateOnly(v); if (!d) return null; const [y, m, dd] = d.split("-").map(Number); return Math.floor((Date.now() - new Date(y, m - 1, dd)) / 86400000); }
+function fmtDateTime(v) { const d = new Date(v); return isNaN(d) ? "" : d.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }); }
+function toTime(v) { const d = dateOnly(v); if (!d) return null; const [y, m, dd] = d.split("-").map(Number); return new Date(y, m - 1, dd).getTime(); }
+function daysSince(v) { const t = toTime(v); return t == null ? null : Math.floor((Date.now() - t) / 86400000); }
 const byDateAsc = k => (a, b) => (dateOnly(a[k]) || "").localeCompare(dateOnly(b[k]) || "");
 const byDateDesc = k => (a, b) => (dateOnly(b[k]) || "").localeCompare(dateOnly(a[k]) || "");
 const num = v => { const n = Number(v); return isFinite(n) ? n : 0; };
 const nz = v => (v === "" || v == null ? null : v);
 function avgOf(a) { const v = Object.values(a?.notas || {}).map(Number).filter(n => n >= 1 && n <= 5); return v.length ? v.reduce((x, y) => x + y, 0) / v.length : null; }
 const fmt1 = n => n == null ? "sem nota" : n.toFixed(1).replace(".", ",");
+const fmtH = n => `${num(n).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} h`;
 function initials(name) { const p = String(name || "?").trim().split(/\s+/).filter(Boolean); return ((p[0]?.[0] || "?") + (p.length > 1 ? p[p.length - 1][0] : "")).toUpperCase(); }
-function plural(n, one, many) { return `${n} ${n === 1 ? one : many}`; }
-const displayName = uid => S.members.get(uid)?.nome || "Pessoa sem nome";
+const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+const nameOf = uid => S.people.get(uid)?.nome || S.people.get(uid)?.email || (uid === S.me?.user_id ? S.me?.nome : null) || "Pessoa sem nome";
 const certsOf = uid => S.certs.get(uid) || [];
 const hoursOf = list => list.reduce((t, c) => t + num(c.carga_horas), 0);
 function groupBy(rows) { const m = new Map(); for (const r of rows || []) { if (!m.has(r.user_id)) m.set(r.user_id, []); m.get(r.user_id).push(r); } return m; }
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function colorOf(uid) { const ids = [...S.people.keys()].sort(); return PALETA[Math.max(0, ids.indexOf(uid)) % PALETA.length]; }
+const isActive = p => p && p.status === "ativo" && !p.arquivado;
 
 /* ---------- avisos ---------- */
 let toastTimer;
@@ -298,10 +323,14 @@ function toast(msg, err) {
 function sbErr(e) {
   const msg = String(e?.message || "");
   if (/row-level security|permission denied/i.test(msg)) return "Sem permissão para essa ação.";
+  if (/violates check constraint/i.test(msg)) return "Algum campo passou do tamanho permitido.";
   if (/JWT|session/i.test(msg)) return "Sua sessão expirou. Entre de novo.";
-  if (/Failed to fetch|NetworkError/i.test(msg)) return "Sem conexão. Verifique a internet e tente de novo.";
-  if (/exceeded the maximum allowed size|Payload too large/i.test(msg)) return "O arquivo passa de 20 MB.";
+  if (/Failed to fetch|NetworkError|Load failed/i.test(msg)) return "Sem conexão. Verifique a internet e tente de novo.";
+  if (/maximum allowed size|Payload too large/i.test(msg)) return "O arquivo passa de 20 MB.";
   if (/mime type/i.test(msg)) return "Formato não aceito. Envie PDF, PNG, JPG ou WEBP.";
+  if (/already registered|already been registered/i.test(msg)) return "Esse e-mail já tem cadastro. Use Entrar.";
+  if (/Password should|password.*characters/i.test(msg)) return "A senha não atende aos requisitos mínimos.";
+  if (/rate limit|too many/i.test(msg)) return "Muitas tentativas. Aguarde alguns minutos.";
   return msg || "Não foi possível concluir. Tente de novo.";
 }
 async function run(query, okMsg) {
@@ -318,8 +347,8 @@ async function load() {
   const { data: me, error } = await sb.from("evo_pessoas").select("*").eq("user_id", uid).maybeSingle();
   if (error) throw error;
   S.me = me;
-  S.owner = !!me && me.papel === "gestor" && !me.arquivado;
-  if (!me) return;
+  S.owner = !!me && me.papel === "gestor" && isActive(me);
+  if (!isActive(me)) return;
   if (S.owner) {
     const [p, c, a, m, o] = await Promise.all([
       sb.from("evo_pessoas").select("*").eq("papel", "membro"),
@@ -329,48 +358,170 @@ async function load() {
       sb.from("evo_oneaone").select("*"),
     ]);
     for (const r of [p, c, a, m, o]) if (r.error) throw r.error;
-    S.members = new Map(p.data.map(r => [r.user_id, r]));
+    S.people = new Map(p.data.map(r => [r.user_id, r]));
     S.certs = groupBy(c.data); S.aval = groupBy(a.data); S.melh = groupBy(m.data); S.ones = groupBy(o.data);
-    const ids = activeIds();
-    if (!S.selected || !S.members.has(S.selected)) S.selected = ids[0] || null;
+    if (S.view === "historico") await loadAudit();
   } else {
     const c = await sb.from("evo_certificados").select("*").eq("user_id", uid);
     if (c.error) throw c.error;
-    S.members = new Map([[uid, me]]);
+    S.people = new Map([[uid, me]]);
     S.certs = groupBy(c.data);
   }
+}
+async function loadAudit() {
+  const { data, error } = await sb.from("evo_auditoria").select("*").order("id", { ascending: false }).limit(150);
+  if (error) throw error;
+  S.audit = data;
 }
 async function refresh() {
   try { S.error = null; await load(); }
   catch (e) { S.error = sbErr(e); }
   render();
 }
-function activeIds() {
-  return [...S.members.keys()].filter(id => S.showArchived || !S.members.get(id)?.arquivado)
-    .sort((a, b) => displayName(a).localeCompare(displayName(b), "pt-BR"));
+function teamIds(includeArchived) {
+  return [...S.people.values()].filter(p => p.status === "ativo" && (includeArchived || !p.arquivado))
+    .map(p => p.user_id).sort((a, b) => nameOf(a).localeCompare(nameOf(b), "pt-BR"));
+}
+const pending = () => [...S.people.values()].filter(p => p.status === "pendente");
+
+/* ---------- inatividade ---------- */
+let idleTimer, lastBump = 0;
+function bumpIdle() {
+  const now = Date.now();
+  if (now - lastBump < 15000) return;
+  lastBump = now;
+  clearTimeout(idleTimer);
+  if (!S.session) return;
+  idleTimer = setTimeout(async () => {
+    await sb.auth.signOut();
+    toast("Sessão encerrada por inatividade. Entre de novo.");
+  }, INATIVIDADE_MIN * 60000);
+}
+["click", "keydown", "pointermove", "scroll", "touchstart"].forEach(ev => window.addEventListener(ev, bumpIdle, { passive: true }));
+
+/* ---------- gráficos ---------- */
+let charts = [], chartJobs = [];
+function chartBox(cls, build) {
+  const canvas = h("canvas", { role: "img", "aria-label": "Gráfico" });
+  const box = h("div", { class: "chart-box " + (cls || "") }, canvas);
+  chartJobs.push(() => { const cfg = build(); if (cfg) charts.push(new Chart(canvas, cfg)); });
+  return box;
+}
+const emptyChart = (msg, cls) => h("div", { class: "chart-box " + (cls || "") }, h("div", { class: "empty-chart" }, msg));
+function chartDefaults() {
+  if (!window.Chart) return;
+  Chart.defaults.color = cssVar("--muted");
+  Chart.defaults.borderColor = cssVar("--line");
+  Chart.defaults.font.family = '"Source Sans 3", "Segoe UI", system-ui, sans-serif';
+  Chart.defaults.font.size = 12;
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.boxWidth = 8;
+  Chart.defaults.maintainAspectRatio = false;
+  Chart.defaults.animation = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? false : { duration: 500 };
+}
+const monthKey = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}`;
+const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+function lastMonths(n) { const out = []; const d = new Date(); d.setDate(1); for (let i = n - 1; i >= 0; i--) { const x = new Date(d.getFullYear(), d.getMonth() - i, 1); out.push({ key: monthKey(x), label: `${MESES[x.getMonth()]}/${String(x.getFullYear()).slice(2)}` }); } return out; }
+const dateTick = v => { const d = new Date(v); return `${MESES[d.getMonth()]}/${String(d.getFullYear()).slice(2)}`; };
+
+function teamEvolutionChart(ids) {
+  const hasData = ids.some(id => (S.aval.get(id) || []).some(a => avgOf(a) != null));
+  if (!hasData) return emptyChart("A evolução aparece quando houver avaliações registradas.", "tall");
+  return chartBox("tall", () => ({
+    type: "line",
+    data: { datasets: ids.map(id => ({
+      label: nameOf(id).split(" ")[0], borderColor: colorOf(id), backgroundColor: colorOf(id),
+      tension: .3, pointRadius: 4, pointHoverRadius: 6, borderWidth: 2.5,
+      data: [...(S.aval.get(id) || [])].sort(byDateAsc("data")).map(a => ({ x: toTime(a.data), y: avgOf(a), d: a.data })).filter(p => p.y != null && p.x != null),
+    })).filter(d => d.data.length) },
+    options: {
+      parsing: false, interaction: { mode: "nearest", intersect: false },
+      scales: {
+        x: { type: "linear", ticks: { callback: dateTick, maxTicksLimit: 8 }, grid: { display: false } },
+        y: { min: 1, max: 5, ticks: { stepSize: 1 }, title: { display: true, text: "Média da avaliação" } },
+      },
+      plugins: { tooltip: { callbacks: { title: it => fmtDate(it[0].raw.d), label: it => `${it.dataset.label}: ${fmt1(it.raw.y)}` } } },
+    },
+  }));
+}
+function teamHoursChart(ids) {
+  const months = lastMonths(12);
+  const any = ids.some(id => certsOf(id).length);
+  if (!any) return emptyChart("As horas de formação aparecem quando o time registrar cursos.");
+  return chartBox("", () => ({
+    type: "bar",
+    data: { labels: months.map(m => m.label), datasets: ids.map(id => {
+      const per = Object.fromEntries(months.map(m => [m.key, 0]));
+      for (const c of certsOf(id)) { const k = dateOnly(c.concluido_em).slice(0, 7); if (k in per) per[k] += num(c.carga_horas); }
+      return { label: nameOf(id).split(" ")[0], backgroundColor: colorOf(id), borderRadius: 4, data: months.map(m => per[m.key]) };
+    }) },
+    options: {
+      scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true, title: { display: true, text: "Horas" } } },
+      plugins: { tooltip: { callbacks: { label: it => `${it.dataset.label}: ${fmtH(it.raw)}` } } },
+    },
+  }));
+}
+function radarChart(uid) {
+  const av = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
+  if (!av.length) return emptyChart("Registre a primeira avaliação para ver o mapa de competências.");
+  const ds = (a, label, color, dash) => ({
+    label, data: COMPETENCIAS.map(([k]) => Number(a.notas?.[k]) || null), borderColor: color,
+    backgroundColor: color + "33", pointBackgroundColor: color, borderWidth: 2, borderDash: dash || [], spanGaps: true,
+  });
+  return chartBox("", () => ({
+    type: "radar",
+    data: { labels: COMPETENCIAS.map(c => c[2]), datasets: [
+      ds(av[0], `Última (${fmtDate(av[0].data)})`, cssVar("--moss")),
+      av[1] && ds(av[1], `Anterior (${fmtDate(av[1].data)})`, cssVar("--muted"), [5, 4]),
+    ].filter(Boolean) },
+    options: { scales: { r: { min: 0, max: 5, ticks: { stepSize: 1, backdropColor: "transparent" }, pointLabels: { font: { size: 12, weight: "600" } } } } },
+  }));
+}
+function personEvolutionChart(uid) {
+  const av = [...(S.aval.get(uid) || [])].sort(byDateAsc("data"));
+  if (av.length < 2) return emptyChart(av.length ? "A linha de evolução aparece a partir da segunda avaliação." : "Nenhuma avaliação registrada ainda.");
+  return chartBox("", () => ({
+    type: "line",
+    data: { labels: av.map(a => fmtDate(a.data)), datasets: [
+      { label: "Média geral", data: av.map(avgOf), borderColor: cssVar("--moss"), backgroundColor: cssVar("--moss"), borderWidth: 3, tension: .3, pointRadius: 5 },
+      ...COMPETENCIAS.map(([k, , short], i) => ({ label: short, data: av.map(a => Number(a.notas?.[k]) || null), borderColor: PALETA[(i + 1) % PALETA.length], backgroundColor: PALETA[(i + 1) % PALETA.length], borderWidth: 1.5, tension: .3, pointRadius: 3, hidden: true, spanGaps: true })),
+    ] },
+    options: { scales: { y: { min: 1, max: 5, ticks: { stepSize: 1 } }, x: { grid: { display: false } } },
+      plugins: { tooltip: { callbacks: { label: it => `${it.dataset.label}: ${fmt1(it.raw)}` } } } },
+  }));
+}
+function hoursTrailChart(uid, cls) {
+  const list = [...certsOf(uid)].filter(c => toTime(c.concluido_em) != null).sort(byDateAsc("concluido_em"));
+  if (!list.length) return emptyChart("Cada curso registrado aparece aqui como um degrau na trilha de formação.", cls);
+  let acc = 0;
+  const pts = list.map(c => ({ x: toTime(c.concluido_em), y: (acc += num(c.carga_horas)), t: c.titulo, d: c.concluido_em }));
+  return chartBox(cls, () => ({
+    type: "line",
+    data: { datasets: [{ label: "Horas acumuladas", data: pts, stepped: true, fill: true, borderColor: cssVar("--moss"), backgroundColor: cssVar("--moss") + "22", pointRadius: 4, borderWidth: 2.5 }] },
+    options: { parsing: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: it => fmtDate(it[0].raw.d), label: it => `${it.raw.t}: ${fmtH(it.raw.y)} no total` } } },
+      scales: { x: { type: "linear", ticks: { callback: dateTick, maxTicksLimit: 6 }, grid: { display: false } }, y: { beginAtZero: true, title: { display: true, text: "Horas" } } } },
+  }));
 }
 
 /* ---------- anéis ---------- */
 function rings(list, size, name) {
   const shown = [...list].sort(byDateAsc("concluido_em")).slice(-12);
   const c = size / 2, rMin = size * 0.2, rMax = size * 0.47;
-  const svg = s("svg", { viewBox: `0 0 ${size} ${size}`, width: size, height: size, role: "img",
-    "aria-label": `${name}: ${plural(list.length, "curso concluído", "cursos concluídos")}` });
+  const svg = s("svg", { viewBox: `0 0 ${size} ${size}`, width: size, height: size, role: "img", "aria-label": `${name}: ${plural(list.length, "curso concluído", "cursos concluídos")}` });
   svg.append(s("circle", { cx: c, cy: c, r: rMax, class: "ring-bg" }));
-  if (!shown.length) svg.append(s("circle", { cx: c, cy: c, r: (rMin + rMax) / 2 + 2, class: "ring-empty" }));
+  if (!shown.length) svg.append(s("circle", { cx: c, cy: c, r: (rMin + rMax) / 2 + 1, class: "ring-empty" }));
   const step = (rMax - rMin) / Math.max(shown.length, 1);
   shown.forEach((cert, i) => {
     const idx = Math.max(0, CATEGORIAS.indexOf(cert.categoria));
-    const sw = Math.max(1.4, Math.min(step * 0.78, 1.4 + num(cert.carga_horas) / 8));
-    svg.append(s("circle", { cx: c, cy: c, r: rMin + step * (i + 0.5), class: "ring r" + (idx % 3 + 1), "stroke-width": sw },
-      s("title", {}, `${cert.titulo || "Curso"}${cert.carga_horas ? `, ${cert.carga_horas} h` : ""}`)));
+    const sw = Math.max(1.2, Math.min(step * 0.78, 1.2 + num(cert.carga_horas) / 8));
+    svg.append(s("circle", { cx: c, cy: c, r: rMin + step * (i + 0.5), class: "ring r" + (idx % 3 + 1), "stroke-width": sw }, s("title", {}, cert.titulo || "Curso")));
   });
   svg.append(s("circle", { cx: c, cy: c, r: rMin * 0.92, class: "core" }));
   svg.append(s("text", { x: c, y: c, "text-anchor": "middle", "dominant-baseline": "central", class: "core-t", "font-size": size * 0.15 }, initials(name)));
   return svg;
 }
 
-/* ---------- formulários e diálogos ---------- */
+/* ---------- diálogos e formulários ---------- */
 const field = (label, input, hint) => h("label", { class: "field" }, h("span", { class: "lbl" }, label), input, hint && h("span", { class: "hint" }, hint));
 const inp = (name, val, type = "text", extra = {}) => h("input", { name, type, value: val ?? "", ...extra });
 const ta = (name, val, rows = 3) => h("textarea", { name, rows, value: val ?? "" });
@@ -383,8 +534,7 @@ function openModal({ title, body, submitLabel, onSubmit }) {
   const form = h("form", { class: "dlg", novalidate: true },
     h("div", { class: "dlg-head" }, h("h2", {}, title)),
     h("div", { class: "dlg-body" }, body),
-    h("div", { class: "dlg-foot" },
-      h("button", { type: "button", class: "btn ghost", onclick: () => dlg.close() }, submitLabel ? "Cancelar" : "Fechar"), btn));
+    h("div", { class: "dlg-foot" }, h("button", { type: "button", class: "btn ghost", onclick: () => dlg.close() }, submitLabel ? "Cancelar" : "Fechar"), btn));
   form.addEventListener("submit", async e => {
     e.preventDefault();
     if (!onSubmit) return;
@@ -395,9 +545,8 @@ function openModal({ title, body, submitLabel, onSubmit }) {
   });
   dlg.replaceChildren(form);
   dlg.showModal();
-  return form;
 }
-function confirmBox(message, label) {
+function confirmBox(message, label, danger) {
   return new Promise(resolve => {
     const dlg = document.getElementById("confirm");
     const done = v => { dlg.close(); resolve(v); };
@@ -406,7 +555,7 @@ function confirmBox(message, label) {
       h("div", { class: "dlg-body" }, h("p", {}, message)),
       h("div", { class: "dlg-foot" },
         h("button", { type: "button", class: "btn ghost", onclick: () => done(false) }, "Cancelar"),
-        h("button", { type: "button", class: "btn", onclick: () => done(true) }, label))));
+        h("button", { type: "button", class: danger ? "btn danger" : "btn", onclick: () => done(true) }, label))));
     dlg.addEventListener("cancel", () => resolve(false), { once: true });
     dlg.showModal();
   });
@@ -415,7 +564,7 @@ function repeater(name, items, fields, addLabel) {
   const list = h("div", { class: "rep" });
   const addRow = (it = {}) => {
     const row = h("div", { class: "rep-row", "data-rep": name },
-      h("div", { class: "two" }, fields.filter(f => f[2] !== "textarea").map(([k, l]) => field(l, inp(`${name}_${k}`, it[k])))),
+      h("div", { class: "two" }, fields.filter(f => f[2] !== "textarea").map(([k, l]) => field(l, inp(`${name}_${k}`, it[k], "text", { maxlength: 160 })))),
       fields.filter(f => f[2] === "textarea").map(([k, l]) => field(l, ta(`${name}_${k}`, it[k], 2))),
       h("div", {}, h("button", { type: "button", class: "btn ghost small", onclick: () => row.remove() }, "Remover")));
     list.append(row);
@@ -426,20 +575,16 @@ function repeater(name, items, fields, addLabel) {
 function readRep(form, name, keys) {
   return [...form.querySelectorAll(`[data-rep="${name}"]`)].map(r =>
     Object.fromEntries(keys.map(k => [k, (r.querySelector(`[name="${name}_${k}"]`)?.value || "").trim()])))
-    .filter(o => keys.some(k => o[k]));
+    .filter(o => keys.some(k => o[k])).slice(0, 30);
 }
 
 function formCurriculo(uid) {
-  const m = S.members.get(uid) || {};
+  const m = S.people.get(uid) || {};
   openModal({
     title: "Editar currículo", submitLabel: "Salvar currículo",
     body: [
-      h("div", { class: "two" },
-        field("Nome completo", inp("nome", m.nome)),
-        field("Cargo", inp("cargo", m.cargo, "text", { placeholder: "Ex.: SDR, Pós-venda" }))),
-      h("div", { class: "two" },
-        field("Na LC Sistemas desde", inp("admissao", m.admissao, "date")),
-        field("Telefone", inp("telefone", m.telefone, "tel"))),
+      h("div", { class: "two" }, field("Nome completo", inp("nome", m.nome, "text", { maxlength: 120 })), field("Cargo", inp("cargo", m.cargo, "text", { maxlength: 80, placeholder: "Ex.: SDR" }))),
+      h("div", { class: "two" }, field("Na LC Sistemas desde", inp("admissao", m.admissao, "date")), field("Telefone", inp("telefone", m.telefone, "tel", { maxlength: 40 }))),
       field("Resumo profissional", ta("resumo", m.resumo, 4)),
       field("Habilidades", inp("habilidades", (m.habilidades || []).join(", ")), "Separe por vírgula."),
       h("h3", {}, "Experiência"),
@@ -450,7 +595,7 @@ function formCurriculo(uid) {
     onSubmit: form => run(sb.from("evo_pessoas").update({
       nome: nz(val(form, "nome")), cargo: nz(val(form, "cargo")), admissao: nz(val(form, "admissao")),
       telefone: nz(val(form, "telefone")), resumo: nz(val(form, "resumo")),
-      habilidades: val(form, "habilidades").split(",").map(x => x.trim()).filter(Boolean).slice(0, 40),
+      habilidades: val(form, "habilidades").split(",").map(x => x.trim().slice(0, 60)).filter(Boolean).slice(0, 40),
       experiencias: readRep(form, "exp", ["cargo", "empresa", "periodo", "descricao"]),
       formacao: readRep(form, "form", ["curso", "instituicao", "ano"]),
     }).eq("user_id", uid), "Currículo salvo."),
@@ -465,29 +610,21 @@ function guessType(file) {
 function formCertificado(uid, existing) {
   const c = existing || {};
   openModal({
-    title: existing ? "Editar certificado" : "Adicionar certificado",
-    submitLabel: existing ? "Salvar alterações" : "Adicionar ao currículo",
+    title: existing ? "Editar certificado" : "Adicionar certificado", submitLabel: existing ? "Salvar alterações" : "Adicionar ao currículo",
     body: [
-      field("Nome do curso", inp("titulo", c.titulo)),
+      field("Nome do curso", inp("titulo", c.titulo, "text", { maxlength: 200 })),
+      h("div", { class: "two" }, field("Instituição", inp("instituicao", c.instituicao, "text", { maxlength: 160 })), field("Área", sel("categoria", CATEGORIAS.map(x => [x, x]), c.categoria || CATEGORIAS[0]))),
       h("div", { class: "two" },
-        field("Instituição", inp("instituicao", c.instituicao)),
-        field("Área", sel("categoria", CATEGORIAS.map(x => [x, x]), c.categoria || CATEGORIAS[0]))),
-      h("div", { class: "two" },
-        field("Carga horária (horas)", inp("carga_horas", c.carga_horas ?? "", "number", { min: 0, step: "0.5", inputmode: "decimal" })),
-        field("Concluído em", inp("concluido_em", c.concluido_em || today(), "date"))),
-      field(c.arquivo_path ? "Trocar arquivo do certificado" : "Arquivo do certificado",
-        h("input", { type: "file", name: "arquivo", accept: ".pdf,.png,.jpg,.jpeg,.webp" }), "PDF ou imagem, até 20 MB."),
+        field("Carga horária (horas)", inp("carga_horas", c.carga_horas ?? "", "number", { min: 0, max: 5000, step: "0.5", inputmode: "decimal" })),
+        field("Concluído em", inp("concluido_em", c.concluido_em || today(), "date", { max: today() }))),
+      field(c.arquivo_path ? "Trocar arquivo do certificado" : "Arquivo do certificado", h("input", { type: "file", name: "arquivo", accept: ".pdf,.png,.jpg,.jpeg,.webp" }), "PDF ou imagem, até 20 MB."),
     ],
     onSubmit: async form => {
       const titulo = val(form, "titulo");
       if (!titulo) { toast("Informe o nome do curso.", true); return false; }
-      const row = {
-        user_id: uid, titulo, instituicao: nz(val(form, "instituicao")), categoria: val(form, "categoria"),
-        carga_horas: Math.max(0, Number(val(form, "carga_horas").replace(",", ".")) || 0),
-        concluido_em: val(form, "concluido_em") || today(),
-      };
+      const row = { user_id: uid, titulo, instituicao: nz(val(form, "instituicao")), categoria: val(form, "categoria"),
+        carga_horas: Math.min(5000, Math.max(0, Number(val(form, "carga_horas").replace(",", ".")) || 0)), concluido_em: val(form, "concluido_em") || today() };
       const file = form.elements.namedItem("arquivo")?.files?.[0];
-      let oldPath = null;
       if (file) {
         const type = guessType(file);
         if (!type) { toast("Formato não aceito. Envie PDF, PNG, JPG ou WEBP.", true); return false; }
@@ -496,27 +633,22 @@ function formCertificado(uid, existing) {
         const path = `${uid}/${crypto.randomUUID()}.${ext}`;
         const up = await sb.storage.from(BUCKET).upload(path, file, { contentType: type, upsert: false });
         if (up.error) { toast(sbErr(up.error), true); return false; }
-        oldPath = c.arquivo_path || null;
         Object.assign(row, { arquivo_path: path, arquivo_nome: file.name.slice(0, 160), arquivo_tipo: type });
       }
-      const q = existing ? sb.from("evo_certificados").update(row).eq("id", existing.id) : sb.from("evo_certificados").insert(row);
-      const ok = await run(q, existing ? "Certificado atualizado." : "Certificado adicionado ao currículo.");
-      if (ok && oldPath) await sb.storage.from(BUCKET).remove([oldPath]);
-      if (!ok && row.arquivo_path) await sb.storage.from(BUCKET).remove([row.arquivo_path]);
-      return ok;
+      return run(existing ? sb.from("evo_certificados").update(row).eq("id", existing.id) : sb.from("evo_certificados").insert(row),
+        existing ? "Certificado atualizado." : "Certificado adicionado ao currículo.");
     },
   });
 }
 async function openCert(c) {
   const win = window.open("", "_blank");
-  const { data, error } = await sb.storage.from(BUCKET).createSignedUrl(c.arquivo_path, 600);
+  const { data, error } = await sb.storage.from(BUCKET).createSignedUrl(c.arquivo_path, 300);
   if (error || !data?.signedUrl) { if (win) win.close(); toast("Não foi possível abrir o arquivo.", true); return; }
-  if (win) win.location.href = data.signedUrl; else window.location.href = data.signedUrl;
+  if (win) { win.opener = null; win.location.href = data.signedUrl; } else window.location.href = data.signedUrl;
 }
 async function removeCert(c) {
-  if (!(await confirmBox(`Remover “${c.titulo || "este curso"}” do currículo?`, "Remover"))) return;
-  const ok = await run(sb.from("evo_certificados").delete().eq("id", c.id), "Certificado removido.");
-  if (ok && c.arquivo_path) await sb.storage.from(BUCKET).remove([c.arquivo_path]);
+  if (!(await confirmBox(`Remover “${c.titulo || "este curso"}” do currículo?`, "Remover", true))) return;
+  run(sb.from("evo_certificados").delete().eq("id", c.id), "Certificado removido.");
 }
 function formAvaliacao(uid, existing) {
   const a = existing || {};
@@ -527,9 +659,7 @@ function formAvaliacao(uid, existing) {
   openModal({
     title: existing ? "Editar avaliação" : "Nova avaliação", submitLabel: "Salvar avaliação",
     body: [
-      h("div", { class: "two" },
-        field("Data", inp("data", a.data || today(), "date")),
-        field("Período avaliado", inp("periodo", a.periodo, "text", { placeholder: "Ex.: 4º trimestre de 2026" }))),
+      h("div", { class: "two" }, field("Data", inp("data", a.data || today(), "date")), field("Período avaliado", inp("periodo", a.periodo, "text", { maxlength: 80, placeholder: "Ex.: 4º trimestre de 2026" }))),
       h("p", { class: "muted small" }, "1 = precisa de muita atenção, 5 = referência para o time."),
       scale,
       field("Pontos fortes", ta("fortes", a.fortes, 3)),
@@ -549,18 +679,15 @@ function formMelhoria(uid, existing) {
   openModal({
     title: existing ? "Editar ponto de melhoria" : "Novo ponto de melhoria", submitLabel: "Salvar",
     body: [
-      field("O que precisa melhorar", inp("titulo", m.titulo, "text", { placeholder: "Ex.: Registrar todas as interações no CRM" })),
+      field("O que precisa melhorar", inp("titulo", m.titulo, "text", { maxlength: 200, placeholder: "Ex.: Registrar todas as interações no CRM" })),
       field("Detalhes e como vamos trabalhar", ta("descricao", m.descricao, 4)),
-      h("div", { class: "two" },
-        field("Prazo", inp("prazo", m.prazo, "date")),
-        field("Situação", sel("status", Object.entries(STATUS), m.status || "aberto"))),
+      h("div", { class: "two" }, field("Prazo", inp("prazo", m.prazo, "date")), field("Situação", sel("status", Object.entries(STATUS), m.status || "aberto"))),
     ],
     onSubmit: form => {
       const titulo = val(form, "titulo");
       if (!titulo) { toast("Descreva o ponto de melhoria.", true); return false; }
       const status = val(form, "status");
-      const row = { user_id: uid, titulo, descricao: nz(val(form, "descricao")), prazo: nz(val(form, "prazo")), status,
-        concluido_em: status === "concluido" ? (m.concluido_em || today()) : null };
+      const row = { user_id: uid, titulo, descricao: nz(val(form, "descricao")), prazo: nz(val(form, "prazo")), status, concluido_em: status === "concluido" ? (m.concluido_em || today()) : null };
       return run(existing ? sb.from("evo_melhorias").update(row).eq("id", existing.id) : sb.from("evo_melhorias").insert(row), "Ponto de melhoria salvo.");
     },
   });
@@ -570,9 +697,7 @@ function formOne(uid, existing) {
   openModal({
     title: existing ? "Editar reunião 1:1" : "Registrar reunião 1:1", submitLabel: "Salvar reunião",
     body: [
-      h("div", { class: "two" },
-        field("Data", inp("data", o.data || today(), "date")),
-        field("Próxima 1:1", inp("proxima", o.proxima, "date"))),
+      h("div", { class: "two" }, field("Data", inp("data", o.data || today(), "date")), field("Próxima 1:1", inp("proxima", o.proxima, "date"))),
       field("Pauta", ta("pauta", o.pauta, 3)),
       field("Anotações da conversa", ta("anotacoes", o.anotacoes, 6)),
       field("Combinados e próximos passos", ta("combinados", o.combinados, 4)),
@@ -585,44 +710,30 @@ function formOne(uid, existing) {
   });
 }
 async function removeRecord(table, id, what) {
-  if (!(await confirmBox(`Apagar ${what}? Não dá para desfazer.`, "Apagar"))) return;
-  run(sb.from(table).delete().eq("id", id), "Registro apagado.");
+  if (!(await confirmBox(`Apagar ${what}? Fica registrado no histórico e pode ser restaurado.`, "Apagar", true))) return;
+  run(sb.from(table).delete().eq("id", id), "Registro apagado. Dá para restaurar em Segurança e backup.");
 }
-function addPersonModal() {
-  openModal({
-    title: "Adicionar pessoa ao time", submitLabel: "Adicionar",
-    body: [
-      h("p", { class: "muted" }, "A pessoa precisa ter um usuário criado no Supabase (Authentication, Users). Informe o mesmo e-mail."),
-      field("E-mail de login", inp("email", "", "email", { autocomplete: "off" })),
-      h("div", { class: "two" }, field("Nome", inp("nome", "")), field("Cargo", inp("cargo", "", "text", { placeholder: "Ex.: SDR" }))),
-    ],
-    onSubmit: async form => {
-      const email = val(form, "email");
-      if (!email) { toast("Informe o e-mail.", true); return false; }
-      const { data, error } = await sb.rpc("evo_adicionar_pessoa", { p_email: email, p_nome: val(form, "nome"), p_cargo: val(form, "cargo") });
-      if (error) { toast(sbErr(error), true); return false; }
-      S.selected = data; S.tab = "geral";
-      await refresh(); toast("Pessoa adicionada.");
-      return true;
-    },
-  });
+async function setAccess(uid, status) {
+  const p = S.people.get(uid);
+  if (status === "recusado" && !(await confirmBox(`Recusar o acesso de ${p?.nome || p?.email}? A pessoa não verá nada.`, "Recusar", true))) return;
+  run(sb.from("evo_pessoas").update({ status }).eq("user_id", uid), status === "ativo" ? "Acesso aprovado." : "Acesso recusado.");
 }
 async function toggleArchive(uid) {
-  const m = S.members.get(uid) || {};
-  const arch = !m.arquivado;
-  if (arch && !(await confirmBox(`Arquivar ${displayName(uid)}? O histórico fica guardado e pode ser reativado.`, "Arquivar"))) return;
+  const p = S.people.get(uid) || {};
+  const arch = !p.arquivado;
+  if (arch && !(await confirmBox(`Arquivar ${nameOf(uid)}? O acesso é bloqueado e o histórico fica guardado.`, "Arquivar"))) return;
   run(sb.from("evo_pessoas").update({ arquivado: arch }).eq("user_id", uid), arch ? "Pessoa arquivada." : "Pessoa reativada.");
 }
 function passwordModal() {
   openModal({
     title: "Alterar minha senha", submitLabel: "Salvar senha",
     body: [
-      field("Nova senha", inp("s1", "", "password", { autocomplete: "new-password" }), "Pelo menos 8 caracteres."),
+      field("Nova senha", inp("s1", "", "password", { autocomplete: "new-password" }), "Pelo menos 10 caracteres, com letras e números."),
       field("Repita a nova senha", inp("s2", "", "password", { autocomplete: "new-password" })),
     ],
     onSubmit: async form => {
       const a = form.elements.namedItem("s1").value, b = form.elements.namedItem("s2").value;
-      if (a.length < 8) { toast("A senha precisa ter pelo menos 8 caracteres.", true); return false; }
+      if (!strongEnough(a)) { toast("Use pelo menos 10 caracteres, com letras e números.", true); return false; }
       if (a !== b) { toast("As senhas não conferem.", true); return false; }
       const { error } = await sb.auth.updateUser({ password: a });
       if (error) { toast(sbErr(error), true); return false; }
@@ -630,17 +741,64 @@ function passwordModal() {
     },
   });
 }
+const strongEnough = p => p.length >= 10 && /[A-Za-z]/.test(p) && /\d/.test(p);
+
+/* ---------- backup ---------- */
+async function fetchAll(t) {
+  let out = [], from = 0;
+  for (;;) {
+    const { data, error } = await sb.from(t).select("*").range(from, from + 999);
+    if (error) throw error;
+    out = out.concat(data);
+    if (data.length < 1000) return out;
+    from += 1000;
+  }
+}
+async function downloadBackup(btn) {
+  if (!window.JSZip) { toast("Não foi possível carregar o gerador de backup. Recarregue a página.", true); return; }
+  btn.disabled = true; const old = btn.textContent;
+  try {
+    const zip = new JSZip();
+    const dados = { gerado_em: new Date().toISOString(), projeto: SUPABASE_URL };
+    for (const t of ["evo_pessoas", "evo_certificados", "evo_avaliacoes", "evo_melhorias", "evo_oneaone", "evo_auditoria"]) {
+      btn.textContent = `Copiando ${TABELAS[t] || "histórico"}…`;
+      dados[t] = await fetchAll(t);
+    }
+    zip.file("dados.json", JSON.stringify(dados, null, 2));
+    let n = 0;
+    for (const p of dados.evo_pessoas) {
+      const { data: files, error } = await sb.storage.from(BUCKET).list(p.user_id, { limit: 1000 });
+      if (error) throw error;
+      for (const f of files || []) {
+        if (!f.id) continue;
+        btn.textContent = `Copiando arquivos (${++n})…`;
+        const dl = await sb.storage.from(BUCKET).download(`${p.user_id}/${f.name}`);
+        if (dl.error) throw dl.error;
+        zip.file(`certificados/${p.user_id}/${f.name}`, dl.data);
+      }
+    }
+    btn.textContent = "Compactando…";
+    const blob = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
+    const url = URL.createObjectURL(blob);
+    const a = h("a", { href: url, download: `backup-evolucao-time-${today()}.zip` });
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+    toast(`Backup gerado com ${plural(n, "arquivo", "arquivos")} de certificado.`);
+  } catch (e) { toast("O backup falhou: " + sbErr(e), true); }
+  finally { btn.disabled = false; btn.textContent = old; }
+}
 
 /* ---------- blocos ---------- */
+const kpi = (v, l, warn) => h("div", { class: "kpi" + (warn ? " warn" : "") }, h("div", { class: "v" }, v), h("div", { class: "l" }, l));
 function curriculum(uid, canEdit) {
-  const m = S.members.get(uid) || {};
+  const m = S.people.get(uid) || {};
   const certs = [...certsOf(uid)].sort(byDateDesc("concluido_em"));
-  const facts = [m.cargo, m.admissao && `Na LC Sistemas desde ${fmtDate(m.admissao)}`, m.telefone].filter(Boolean);
+  const facts = [m.cargo, m.admissao && `na LC Sistemas desde ${fmtDate(m.admissao)}`, m.telefone].filter(Boolean);
   const exps = Array.isArray(m.experiencias) ? m.experiencias : [];
   const forms = Array.isArray(m.formacao) ? m.formacao : [];
   return h("article", { class: "cv panel" },
-    h("div", { class: "cv-head" },
-      h("div", {}, h("h2", {}, displayName(uid)), h("p", { class: "muted" }, facts.length ? facts.join(", ") : "Cargo ainda não informado.")),
+    h("div", { class: "panel-head" },
+      h("div", {}, h("h2", {}, nameOf(uid)), h("p", {}, facts.length ? facts.join(", ") : "Cargo ainda não informado.")),
       canEdit && h("div", { class: "row" },
         h("button", { class: "btn ghost small", onclick: () => formCurriculo(uid) }, "Editar currículo"),
         h("button", { class: "btn small", onclick: () => formCertificado(uid) }, "Adicionar certificado"))),
@@ -648,69 +806,31 @@ function curriculum(uid, canEdit) {
     h("section", {}, h("h3", {}, "Habilidades"),
       (m.habilidades || []).length ? h("div", { class: "chips" }, m.habilidades.map(x => h("span", { class: "chip" }, x))) : h("p", { class: "muted" }, "Nenhuma habilidade listada.")),
     h("section", {},
-      h("div", { class: "sec-head" }, h("h3", {}, `Cursos e certificações (${certs.length})`),
-        certs.length > 0 && h("span", { class: "muted small" }, `${hoursOf(certs).toLocaleString("pt-BR")} h de formação`)),
-      certs.length ? h("ul", { class: "list" }, certs.map(c => certItem(c, canEdit)))
-        : h("p", { class: "muted" }, canEdit ? "Cada curso registrado aparece aqui e conta na evolução." : "Nenhum curso registrado ainda.")),
+      h("div", { class: "panel-head" }, h("h3", {}, `Cursos e certificações (${certs.length})`), certs.length > 0 && h("p", {}, `${fmtH(hoursOf(certs))} de formação`)),
+      certs.length ? h("ul", { class: "list" }, certs.map(c => certItem(c, canEdit))) : h("p", { class: "muted" }, "Nenhum curso registrado ainda.")),
     h("section", {}, h("h3", {}, "Experiência"),
-      exps.length ? h("div", { class: "list" }, exps.map(e => h("div", { class: "exp" },
-        h("b", {}, [e.cargo, e.empresa].filter(Boolean).join(", ")), e.periodo && h("span", { class: "meta" }, e.periodo), e.descricao && h("p", { class: "prose" }, e.descricao))))
+      exps.length ? h("div", { class: "list" }, exps.map(e => h("div", { class: "exp" }, h("b", {}, [e.cargo, e.empresa].filter(Boolean).join(", ")), e.periodo && h("span", { class: "meta" }, e.periodo), e.descricao && h("p", { class: "prose" }, e.descricao))))
         : h("p", { class: "muted" }, "Nenhuma experiência listada.")),
     h("section", {}, h("h3", {}, "Formação"),
-      forms.length ? h("div", { class: "list" }, forms.map(f => h("div", { class: "exp" },
-        h("b", {}, f.curso || "Curso"), h("span", { class: "meta" }, [f.instituicao, f.ano].filter(Boolean).join(", ")))))
+      forms.length ? h("div", { class: "list" }, forms.map(f => h("div", { class: "exp" }, h("b", {}, f.curso || "Curso"), h("span", { class: "meta" }, [f.instituicao, f.ano].filter(Boolean).join(", ")))))
         : h("p", { class: "muted" }, "Nenhuma formação listada.")));
 }
 function certItem(c, canEdit) {
   const has = !!c.arquivo_path;
-  const kind = !has ? "sem\u00a0anexo" : String(c.arquivo_tipo || "").startsWith("image/") ? "IMG" : "PDF";
+  const kind = !has ? "sem anexo" : String(c.arquivo_tipo || "").startsWith("image/") ? "IMG" : "PDF";
   return h("li", { class: "item cert" },
     h("div", { class: "doc-ico", "aria-hidden": "true" }, kind),
     h("div", { style: "display:grid;gap:4px;min-width:0" },
       h("div", { class: "item-top" }, h("h3", {}, c.titulo || "Curso"), h("span", { class: "meta" }, fmtDate(c.concluido_em))),
-      h("p", { class: "meta" }, [c.instituicao, c.categoria, num(c.carga_horas) ? `${String(c.carga_horas).replace(".", ",")} h` : null].filter(Boolean).join(", ")),
+      h("p", { class: "meta" }, [c.instituicao, c.categoria, num(c.carga_horas) ? fmtH(c.carga_horas) : null].filter(Boolean).join(", ")),
       h("div", { class: "row" },
         has && h("button", { class: "linkish", onclick: () => openCert(c) }, "Ver certificado"),
         canEdit && h("button", { class: "linkish", onclick: () => formCertificado(c.user_id, c) }, has ? "Editar" : "Editar ou anexar"),
-        canEdit && h("button", { class: "linkish", style: "color:var(--rose)", onclick: () => removeCert(c) }, "Remover"))));
-}
-function evoChart(avals) {
-  const pts = [...avals].sort(byDateAsc("data")).map(a => ({ d: a.data, v: avgOf(a) })).filter(p => p.v != null);
-  if (pts.length < 2) return h("p", { class: "muted" }, "O gráfico de evolução aparece a partir da segunda avaliação.");
-  const W = 600, H = 210, L = 30, R = 20, T = 18, B = 30, n = pts.length;
-  const x = i => L + i * (W - L - R) / (n - 1), y = v => T + (5 - v) * (H - T - B) / 4;
-  const svg = s("svg", { class: "chart", viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `Média das avaliações de ${fmt1(pts[0].v)} para ${fmt1(pts[n - 1].v)}` });
-  for (let v = 1; v <= 5; v++) {
-    svg.append(s("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), class: "grid" }));
-    svg.append(s("text", { x: L - 10, y: y(v), class: "axis", "text-anchor": "end", "dominant-baseline": "central" }, v));
-  }
-  svg.append(s("polyline", { class: "line", points: pts.map((p, i) => `${x(i)},${y(p.v)}`).join(" ") }));
-  const every = Math.ceil(n / 6);
-  pts.forEach((p, i) => {
-    svg.append(s("circle", { cx: x(i), cy: y(p.v), r: 5, class: "dot" }, s("title", {}, `${fmtDate(p.d)}: ${fmt1(p.v)}`)));
-    if (i % every === 0 || i === n - 1) {
-      const f = fmtDate(p.d);
-      svg.append(s("text", { x: x(i), y: H - 8, class: "axis", "text-anchor": i === 0 ? "start" : i === n - 1 ? "end" : "middle" }, f.slice(0, 5) + "/" + f.slice(8)));
-      svg.append(s("text", { x: x(i), y: y(p.v) - 11, class: "val", "text-anchor": "middle" }, fmt1(p.v)));
-    }
-  });
-  return svg;
-}
-function compBars(avals) {
-  const sorted = [...avals].sort(byDateDesc("data"));
-  const last = sorted[0], prev = sorted[1];
-  if (!last) return h("p", { class: "muted" }, "Registre a primeira avaliação para ver as competências.");
-  return h("div", { class: "bars" }, COMPETENCIAS.filter(([k]) => last.notas?.[k]).map(([k, l]) => {
-    const v = Number(last.notas[k]); const p = prev?.notas?.[k] ? Number(prev.notas[k]) : null;
-    const d = p == null ? null : v - p;
-    return h("div", { class: "bar-row" }, h("span", {}, l),
-      h("div", { class: "bar", "aria-hidden": "true" }, h("i", { style: `width:${v * 20}%` })),
-      h("span", {}, h("b", {}, v), d ? h("span", { class: d > 0 ? "delta-up" : "delta-down" }, ` ${d > 0 ? "+" : "−"}${Math.abs(d)}`) : null));
-  }));
+        canEdit && h("button", { class: "linkish red", onclick: () => removeCert(c) }, "Remover"))));
 }
 function timeline(uid) {
   const ev = [];
-  for (const c of certsOf(uid)) ev.push({ d: c.concluido_em, k: "cert", t: `Concluiu ${c.titulo || "um curso"}`, s: [c.instituicao, num(c.carga_horas) ? `${c.carga_horas} h` : ""].filter(Boolean).join(", ") });
+  for (const c of certsOf(uid)) ev.push({ d: c.concluido_em, k: "cert", t: `Concluiu ${c.titulo || "um curso"}`, s: [c.instituicao, num(c.carga_horas) ? fmtH(c.carga_horas) : ""].filter(Boolean).join(", ") });
   for (const a of S.aval.get(uid) || []) ev.push({ d: a.data, k: "aval", t: `Avaliação${a.periodo ? ` de ${a.periodo}` : ""}`, s: `Média ${fmt1(avgOf(a))}` });
   for (const o of S.ones.get(uid) || []) ev.push({ d: o.data, k: "one", t: "Reunião 1:1", s: (o.pauta || o.anotacoes || "").split("\n")[0].slice(0, 110) });
   for (const m of S.melh.get(uid) || []) {
@@ -719,71 +839,165 @@ function timeline(uid) {
   }
   ev.sort(byDateDesc("d"));
   if (!ev.length) return h("p", { class: "muted" }, "Nada registrado ainda.");
-  return h("ol", { class: "tl" }, ev.slice(0, 20).map(e => h("li", {},
+  return h("ol", { class: "tl" }, ev.slice(0, 15).map(e => h("li", {},
     h("span", { class: "d" }, fmtDate(e.d)), h("span", { class: "k " + e.k, "aria-hidden": "true" }),
     h("div", {}, h("div", {}, e.t), e.s && h("div", { class: "meta" }, e.s)))));
 }
-const stat = (v, l) => h("div", { class: "stat" }, h("div", { class: "v" }, v), h("div", { class: "l" }, l));
-function overview(uid) {
-  const certs = certsOf(uid), avals = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
-  const melh = S.melh.get(uid) || [], ones = [...(S.ones.get(uid) || [])].sort(byDateDesc("data"));
-  const lastAvg = avgOf(avals[0]), prevAvg = avgOf(avals[1]);
-  const delta = lastAvg != null && prevAvg != null ? lastAvg - prevAvg : null;
-  const open = melh.filter(m => m.status !== "concluido").length;
-  const lastOne = ones[0] ? daysSince(ones[0].data) : null;
-  const nextOne = ones.find(o => o.proxima)?.proxima;
-  return h("div", { class: "detail" },
-    h("div", { class: "stats" },
-      stat(certs.length, "cursos concluídos"),
-      stat(hoursOf(certs).toLocaleString("pt-BR") + " h", "de formação"),
-      stat(h("span", {}, fmt1(lastAvg), delta ? h("span", { class: delta > 0 ? "delta-up" : "delta-down", style: "font-size:1rem" }, ` ${delta > 0 ? "+" : "−"}${fmt1(Math.abs(delta))}`) : null), "média da última avaliação"),
-      stat(open, open === 1 ? "ponto de melhoria aberto" : "pontos de melhoria abertos"),
-      stat(lastOne == null ? "nunca" : lastOne <= 0 ? "hoje" : `há ${plural(lastOne, "dia", "dias")}`, nextOne ? `última 1:1, próxima em ${fmtDate(nextOne)}` : "última 1:1")),
-    h("div", { class: "grid2" },
-      h("div", { class: "panel" }, h("div", { class: "sec-head" }, h("h3", {}, "Evolução nas avaliações")), evoChart(avals)),
-      h("div", { class: "panel" }, h("div", { class: "sec-head" }, h("h3", {}, "Competências na última avaliação")), compBars(avals))),
-    h("div", { class: "panel" }, h("div", { class: "sec-head" }, h("h3", {}, "Linha do tempo")), timeline(uid)));
+function personStats(uid) {
+  const avals = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
+  const last = avgOf(avals[0]), prev = avgOf(avals[1]);
+  const ones = [...(S.ones.get(uid) || [])].sort(byDateDesc("data"));
+  return {
+    certs: certsOf(uid).length, hours: hoursOf(certsOf(uid)), last, delta: last != null && prev != null ? last - prev : null,
+    open: (S.melh.get(uid) || []).filter(m => m.status !== "concluido").length,
+    late: (S.melh.get(uid) || []).filter(m => m.status !== "concluido" && m.prazo && m.prazo < today()).length,
+    lastOne: ones[0] ? daysSince(ones[0].data) : null, next: ones.find(o => o.proxima)?.proxima,
+  };
 }
-function avalTab(uid) {
+const deltaEl = d => d ? h("span", { class: d > 0 ? "delta-up" : "delta-down" }, ` ${d > 0 ? "+" : "−"}${fmt1(Math.abs(d))}`) : null;
+const oneLabel = d => d == null ? "nunca" : d <= 0 ? "hoje" : `há ${plural(d, "dia", "dias")}`;
+
+/* ---------- telas do gestor ---------- */
+function viewPainel() {
+  const ids = teamIds(false);
+  const year = String(new Date().getFullYear());
+  const certsYear = ids.flatMap(certsOf).filter(c => dateOnly(c.concluido_em).startsWith(year));
+  const ones30 = ids.flatMap(id => S.ones.get(id) || []).filter(o => { const d = daysSince(o.data); return d != null && d >= 0 && d <= 30; }).length;
+  const openM = ids.flatMap(id => S.melh.get(id) || []).filter(m => m.status !== "concluido").length;
+  const late1on1 = ids.filter(id => { const d = personStats(id).lastOne; return d == null || d > 30; }).length;
+  const pend = pending().length;
+  return [
+    h("div", { class: "page-head" },
+      h("div", {}, h("h1", {}, "Painel do time"), h("p", {}, "Como o time está evoluindo em avaliação, formação e acompanhamento."))),
+    h("div", { class: "stack" },
+      pend > 0 && h("div", { class: "notice row", style: "justify-content:space-between" },
+        h("span", {}, `${plural(pend, "pessoa está", "pessoas estão")} aguardando a sua aprovação.`),
+        h("button", { class: "btn small", onclick: () => go("aprovacoes") }, "Ver pedidos")),
+      h("div", { class: "kpis" },
+        kpi(ids.length, ids.length === 1 ? "pessoa ativa" : "pessoas ativas"),
+        kpi(certsYear.length, `cursos concluídos em ${year}`),
+        kpi(fmtH(hoursOf(certsYear)), `de formação em ${year}`),
+        kpi(ones30, "reuniões 1:1 nos últimos 30 dias"),
+        kpi(late1on1, late1on1 === 1 ? "pessoa sem 1:1 há mais de 30 dias" : "pessoas sem 1:1 há mais de 30 dias", late1on1 > 0),
+        kpi(openM, openM === 1 ? "ponto de melhoria em aberto" : "pontos de melhoria em aberto")),
+      ids.length ? [
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Evolução das avaliações"), h("p", {}, "Média de cada avaliação, por pessoa. Clique no nome na legenda para esconder ou mostrar.")),
+          teamEvolutionChart(ids)),
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Horas de formação por mês"), h("p", {}, "Últimos 12 meses, pela data de conclusão dos cursos.")),
+          teamHoursChart(ids)),
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Time"), h("p", {}, "Clique em uma pessoa para abrir o acompanhamento.")),
+          teamTable(ids)),
+      ] : h("div", { class: "panel" }, h("h2", {}, "Nenhuma pessoa ativa ainda"),
+        h("ol", { class: "steps", style: "margin-top:10px" },
+          h("li", {}, "Mande o link desta página para o time."),
+          h("li", {}, "Cada pessoa clica em Solicitar acesso e cria a própria senha."),
+          h("li", {}, "Você aprova em Aprovações e a pessoa já pode preencher o currículo.")))),
+  ];
+}
+function teamTable(ids) {
+  return h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+    h("thead", {}, h("tr", {}, ["Pessoa", "Cursos", "Formação", "Última avaliação", "Melhorias abertas", "Última 1:1"].map((t, i) => h("th", { class: i ? "num" : "" }, t)))),
+    h("tbody", {}, ids.map(id => {
+      const st = personStats(id);
+      return h("tr", { tabindex: 0, onclick: () => openPerson(id), onkeydown: e => { if (e.key === "Enter") openPerson(id); } },
+        h("td", {}, h("div", { class: "person" }, rings(certsOf(id), 40, nameOf(id)), h("div", {}, h("b", {}, nameOf(id)), h("span", {}, S.people.get(id)?.cargo || "Cargo não informado")))),
+        h("td", { class: "num" }, st.certs),
+        h("td", { class: "num" }, fmtH(st.hours)),
+        h("td", { class: "num" }, fmt1(st.last), deltaEl(st.delta)),
+        h("td", { class: "num" }, st.open, st.late ? h("span", { class: "delta-down" }, ` (${st.late} vencido${st.late > 1 ? "s" : ""})`) : null),
+        h("td", { class: "num" }, h("span", { class: st.lastOne == null || st.lastOne > 30 ? "delta-down" : "" }, oneLabel(st.lastOne))));
+    }))));
+}
+function viewPessoas() {
+  const ids = teamIds(S.showArchived);
+  const hasArch = [...S.people.values()].some(p => p.status === "ativo" && p.arquivado);
+  return [
+    h("div", { class: "page-head" },
+      h("div", {}, h("h1", {}, "Pessoas"), h("p", {}, "Cada anel é um curso concluído, do mais antigo no centro ao mais recente na borda.")),
+      hasArch && h("button", { class: "btn ghost small", onclick: () => { S.showArchived = !S.showArchived; render(); } }, S.showArchived ? "Esconder arquivados" : "Mostrar arquivados")),
+    ids.length ? h("div", { class: "cards" }, ids.map(id => {
+      const st = personStats(id), p = S.people.get(id);
+      return h("div", { class: "pcard" + (p.arquivado ? " archived" : ""), tabindex: 0, role: "button", onclick: () => openPerson(id), onkeydown: e => { if (e.key === "Enter") openPerson(id); } },
+        rings(certsOf(id), 96, nameOf(id)),
+        h("div", {}, h("h3", {}, nameOf(id)), h("p", { class: "meta" }, p.arquivado ? "Arquivado" : (p.cargo || "Cargo não informado"))),
+        h("p", { class: "meta" }, `${plural(st.certs, "curso", "cursos")}, ${fmtH(st.hours)}, média ${fmt1(st.last)}`));
+    })) : h("div", { class: "panel" }, h("p", { class: "muted" }, "Nenhuma pessoa ativa ainda.")),
+  ];
+}
+const TABS = [["geral", "Visão geral"], ["curriculo", "Currículo"], ["avaliacoes", "Avaliações"], ["melhorias", "Pontos de melhoria"], ["oneaone", "Reuniões 1:1"]];
+function viewPessoa() {
+  const uid = S.selected, p = S.people.get(uid);
+  if (!p) { S.view = "painel"; return viewPainel(); }
+  const st = personStats(uid);
+  const panel = { geral: tabGeral, curriculo: u => curriculum(u, true), avaliacoes: tabAval, melhorias: tabMelh, oneaone: tabOne }[S.tab] || tabGeral;
+  return [
+    h("button", { class: "back", onclick: () => go("painel") }, "Voltar ao painel"),
+    h("div", { class: "stack" },
+      h("div", { class: "person-head" },
+        rings(certsOf(uid), 96, nameOf(uid)),
+        h("div", { class: "info" }, h("h1", {}, nameOf(uid)),
+          h("p", { class: "muted" }, [p.cargo || "Cargo não informado", p.admissao && `na LC Sistemas desde ${fmtDate(p.admissao)}`, p.email].filter(Boolean).join(", ")),
+          h("p", { class: "muted small" }, p.atualizado_em ? `Currículo atualizado em ${fmtDate(p.atualizado_em)}` : "Currículo ainda não preenchido")),
+        h("button", { class: "btn ghost small", onclick: () => toggleArchive(uid) }, p.arquivado ? "Reativar" : "Arquivar")),
+      h("div", { class: "kpis" },
+        kpi(st.certs, "cursos concluídos"), kpi(fmtH(st.hours), "de formação"),
+        kpi(h("span", {}, fmt1(st.last), deltaEl(st.delta)), "média da última avaliação"),
+        kpi(st.open, st.late ? `melhorias abertas, ${st.late} com prazo vencido` : "melhorias abertas", st.late > 0),
+        kpi(oneLabel(st.lastOne), st.next ? `última 1:1, próxima em ${fmtDate(st.next)}` : "última 1:1", st.lastOne == null || st.lastOne > 30)),
+      h("div", { class: "tabs", role: "tablist" }, TABS.map(([k, l]) => h("button", { class: "tab", role: "tab", "aria-selected": S.tab === k, onclick: () => { S.tab = k; render(); } }, l))),
+      h("div", { role: "tabpanel" }, panel(uid))),
+  ];
+}
+function tabGeral(uid) {
+  return h("div", { class: "stack" },
+    h("div", { class: "grid2" },
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Mapa de competências"), h("p", {}, "Última avaliação comparada à anterior.")), radarChart(uid)),
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Evolução nas avaliações"), h("p", {}, "Clique nas competências da legenda para mostrar cada uma.")), personEvolutionChart(uid))),
+    h("div", { class: "grid3" },
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Trilha de formação"), h("p", {}, "Horas acumuladas a cada curso concluído.")), hoursTrailChart(uid)),
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Linha do tempo")), timeline(uid))));
+}
+function tabAval(uid) {
   const list = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
   return h("div", { class: "panel" },
-    h("div", { class: "sec-head" }, h("h3", {}, "Avaliações"), h("button", { class: "btn small", onclick: () => formAvaliacao(uid) }, "Nova avaliação")),
+    h("div", { class: "panel-head" }, h("h2", {}, "Avaliações"), h("button", { class: "btn small", onclick: () => formAvaliacao(uid) }, "Nova avaliação")),
     list.length ? h("ul", { class: "list" }, list.map(a => h("li", { class: "item" },
       h("div", { class: "item-top" }, h("h3", {}, `${fmtDate(a.data)}${a.periodo ? `, ${a.periodo}` : ""}`), h("span", {}, "Média ", h("b", {}, fmt1(avgOf(a))))),
-      h("div", { class: "mini-bars", "aria-hidden": "true" }, COMPETENCIAS.map(([k]) => h("i", { style: `height:${(Number(a.notas?.[k]) || 0) * 20}%` }))),
       h("p", { class: "meta" }, COMPETENCIAS.filter(([k]) => a.notas?.[k]).map(([k, l]) => `${l} ${a.notas[k]}`).join(", ")),
       a.fortes && h("p", { class: "prose" }, h("b", {}, "Pontos fortes: "), a.fortes),
       a.comentario && h("p", { class: "prose" }, a.comentario),
       h("div", { class: "row" },
         h("button", { class: "linkish", onclick: () => formAvaliacao(uid, a) }, "Editar"),
-        h("button", { class: "linkish", style: "color:var(--rose)", onclick: () => removeRecord("evo_avaliacoes", a.id, "esta avaliação") }, "Apagar")))))
+        h("button", { class: "linkish red", onclick: () => removeRecord("evo_avaliacoes", a.id, "esta avaliação") }, "Apagar")))))
       : h("p", { class: "muted" }, "Nenhuma avaliação ainda. A primeira vira a linha de base da evolução."));
 }
-function melhTab(uid) {
+function tabMelh(uid) {
   const order = { andamento: 0, aberto: 1, concluido: 2 };
   const list = [...(S.melh.get(uid) || [])].sort((a, b) => (order[a.status] ?? 1) - (order[b.status] ?? 1) || (a.prazo || "9").localeCompare(b.prazo || "9"));
   const t = today();
   return h("div", { class: "panel" },
-    h("div", { class: "sec-head" }, h("h3", {}, "Pontos de melhoria"), h("button", { class: "btn small", onclick: () => formMelhoria(uid) }, "Novo ponto de melhoria")),
+    h("div", { class: "panel-head" }, h("h2", {}, "Pontos de melhoria"), h("button", { class: "btn small", onclick: () => formMelhoria(uid) }, "Novo ponto de melhoria")),
     list.length ? h("ul", { class: "list" }, list.map(m => {
       const late = m.status !== "concluido" && m.prazo && m.prazo < t;
       return h("li", { class: "item" },
         h("div", { class: "item-top" }, h("h3", {}, m.titulo),
-          h("span", { class: "row" }, late && h("span", { class: "pill late" }, "Prazo vencido"),
-            h("span", { class: "pill " + (STATUS[m.status] ? m.status : "aberto") }, STATUS[m.status] || "Aberto"))),
+          h("span", { class: "row" }, late && h("span", { class: "pill late" }, "Prazo vencido"), h("span", { class: "pill " + (STATUS[m.status] ? m.status : "aberto") }, STATUS[m.status] || "Aberto"))),
         h("p", { class: "meta" }, [`Aberto em ${fmtDate(m.criado_em)}`, m.prazo && `prazo ${fmtDate(m.prazo)}`, m.concluido_em && `concluído em ${fmtDate(m.concluido_em)}`].filter(Boolean).join(", ")),
         m.descricao && h("p", { class: "prose" }, m.descricao),
         h("div", { class: "row" },
           m.status !== "concluido" && h("button", { class: "linkish", onclick: () => run(sb.from("evo_melhorias").update({ status: "concluido", concluido_em: today() }).eq("id", m.id), "Marcado como concluído.") }, "Marcar como concluído"),
           m.status === "aberto" && h("button", { class: "linkish", onclick: () => run(sb.from("evo_melhorias").update({ status: "andamento" }).eq("id", m.id), "Em andamento.") }, "Começar"),
           h("button", { class: "linkish", onclick: () => formMelhoria(uid, m) }, "Editar"),
-          h("button", { class: "linkish", style: "color:var(--rose)", onclick: () => removeRecord("evo_melhorias", m.id, "este ponto de melhoria") }, "Apagar")));
+          h("button", { class: "linkish red", onclick: () => removeRecord("evo_melhorias", m.id, "este ponto de melhoria") }, "Apagar")));
     })) : h("p", { class: "muted" }, "Nenhum ponto de melhoria registrado."));
 }
-function oneTab(uid) {
+function tabOne(uid) {
   const list = [...(S.ones.get(uid) || [])].sort(byDateDesc("data"));
   return h("div", { class: "panel" },
-    h("div", { class: "sec-head" }, h("h3", {}, "Reuniões 1:1"), h("button", { class: "btn small", onclick: () => formOne(uid) }, "Registrar 1:1")),
+    h("div", { class: "panel-head" }, h("h2", {}, "Reuniões 1:1"), h("button", { class: "btn small", onclick: () => formOne(uid) }, "Registrar 1:1")),
     list.length ? h("ul", { class: "list" }, list.map(o => h("li", { class: "item" },
       h("div", { class: "item-top" }, h("h3", {}, fmtDate(o.data)), o.proxima && h("span", { class: "meta" }, `Próxima: ${fmtDate(o.proxima)}`)),
       o.pauta && h("div", {}, h("b", {}, "Pauta"), h("p", { class: "prose" }, o.pauta)),
@@ -791,139 +1005,172 @@ function oneTab(uid) {
       o.combinados && h("div", {}, h("b", {}, "Combinados"), h("p", { class: "prose" }, o.combinados)),
       h("div", { class: "row" },
         h("button", { class: "linkish", onclick: () => formOne(uid, o) }, "Editar"),
-        h("button", { class: "linkish", style: "color:var(--rose)", onclick: () => removeRecord("evo_oneaone", o.id, "esta reunião") }, "Apagar")))))
+        h("button", { class: "linkish red", onclick: () => removeRecord("evo_oneaone", o.id, "esta reunião") }, "Apagar")))))
       : h("p", { class: "muted" }, "Nenhuma 1:1 registrada ainda."));
 }
-
-/* ---------- telas ---------- */
-const TABS = [["geral", "Visão geral"], ["curriculo", "Currículo"], ["avaliacoes", "Avaliações"], ["melhorias", "Pontos de melhoria"], ["oneaone", "Reuniões 1:1"]];
-function topbar() {
-  return h("div", { class: "topbar" },
-    h("span", { class: "brand" }, "LC Sistemas, time comercial"),
-    h("span", { class: "row" },
-      h("span", {}, S.me?.nome || S.session?.user?.email || ""),
-      h("button", { class: "btn ghost small", onclick: passwordModal }, "Alterar senha"),
-      h("button", { class: "btn ghost small", onclick: () => sb.auth.signOut() }, "Sair")));
-}
-function ownerView() {
-  const ids = activeIds();
-  const all = [...S.members.keys()].filter(id => !S.members.get(id)?.arquivado);
-  const allCerts = all.flatMap(certsOf);
-  const year = String(new Date().getFullYear());
-  const hoursYear = hoursOf(allCerts.filter(c => dateOnly(c.concluido_em).startsWith(year)));
-  const ones30 = all.flatMap(id => S.ones.get(id) || []).filter(o => { const d = daysSince(o.data); return d != null && d >= 0 && d <= 30; }).length;
-  const openMelh = all.flatMap(id => S.melh.get(id) || []).filter(m => m.status !== "concluido").length;
-  const hasArchived = [...S.members.values()].some(m => m.arquivado);
-  const hero = h("header", { class: "hero" },
-    h("div", { class: "hero-top" },
-      h("div", {}, h("h1", {}, "Evolução do time comercial"),
-        h("p", { class: "hero-sub" }, "Cada anel é um curso concluído, do mais antigo no centro ao mais recente na borda. Escolha uma pessoa para ver currículo, avaliações e 1:1.")),
-      h("div", { class: "row" },
-        hasArchived && h("button", { class: "btn ghost small", "aria-pressed": S.showArchived, onclick: () => { S.showArchived = !S.showArchived; render(); } }, S.showArchived ? "Esconder arquivados" : "Mostrar arquivados"),
-        h("button", { class: "btn", onclick: addPersonModal }, "Adicionar pessoa"))),
-    all.length > 0 && h("div", { class: "figures" },
-      h("span", {}, h("b", {}, allCerts.length), allCerts.length === 1 ? "curso concluído pelo time" : "cursos concluídos pelo time"),
-      h("span", {}, h("b", {}, hoursYear.toLocaleString("pt-BR") + " h"), `de formação em ${year}`),
-      h("span", {}, h("b", {}, ones30), ones30 === 1 ? "reunião 1:1 nos últimos 30 dias" : "reuniões 1:1 nos últimos 30 dias"),
-      h("span", {}, h("b", {}, openMelh), openMelh === 1 ? "ponto de melhoria em aberto" : "pontos de melhoria em aberto")),
-    ids.length > 0 && h("div", { class: "grove", role: "group", "aria-label": "Pessoas do time" }, ids.map(id => {
-      const c = certsOf(id), nm = displayName(id);
-      return h("button", { class: "tree" + (S.members.get(id)?.arquivado ? " archived" : ""), "aria-pressed": S.selected === id, onclick: () => { S.selected = id; render(); } },
-        rings(c, 84, nm), h("span", { class: "nm", title: nm }, nm.split(" ")[0]),
-        h("span", { class: "ct" }, S.members.get(id)?.cargo || plural(c.length, "curso", "cursos")));
-    })));
-  if (!S.members.size) {
-    return [hero, h("div", { class: "panel empty" },
-      h("h2", {}, "Monte o time"),
-      h("ol", { class: "steps" },
-        h("li", {}, "No Supabase, em Authentication, Users, crie um usuário (e-mail e senha) para cada pessoa."),
-        h("li", {}, "Aqui, clique em Adicionar pessoa e informe o mesmo e-mail."),
-        h("li", {}, "Mande para a pessoa o link desta página, o e-mail e a senha inicial. Ela pode trocar a senha depois.")),
-      h("p", { class: "muted" }, "Avaliações, pontos de melhoria e reuniões 1:1 ficam visíveis só para você."),
-      h("button", { class: "btn", onclick: addPersonModal }, "Adicionar pessoa"))];
-  }
-  const uid = S.selected && S.members.has(S.selected) ? S.selected : null;
-  if (!uid) return [hero];
-  const m = S.members.get(uid), nm = displayName(uid);
-  const panel = { geral: overview, curriculo: u => curriculum(u, true), avaliacoes: avalTab, melhorias: melhTab, oneaone: oneTab }[S.tab] || overview;
-  return [hero, h("section", { class: "detail", "aria-label": nm },
-    h("div", { class: "detail-head" },
-      rings(certsOf(uid), 110, nm),
-      h("div", { class: "who" }, h("h2", {}, nm),
-        h("p", { class: "muted" }, [m.cargo || "Cargo não informado", m.admissao && `na LC Sistemas desde ${fmtDate(m.admissao)}`].filter(Boolean).join(", ")),
-        m.atualizado_em ? h("p", { class: "muted small" }, `Currículo atualizado em ${fmtDate(m.atualizado_em)}`) : h("p", { class: "muted small" }, "A pessoa ainda não preencheu o currículo.")),
-      h("button", { class: "btn ghost small", onclick: () => toggleArchive(uid) }, m.arquivado ? "Reativar" : "Arquivar")),
-    h("div", { class: "tabs", role: "tablist" }, TABS.map(([k, l]) =>
-      h("button", { class: "tab", role: "tab", "aria-selected": S.tab === k, onclick: () => { S.tab = k; render(); } }, l))),
-    h("div", { role: "tabpanel" }, panel(uid)))];
-}
-function memberView() {
-  const uid = S.session.user.id, certs = certsOf(uid), nm = displayName(uid);
+function viewAprovacoes() {
+  const pend = pending().sort(byDateAsc("criado_em"));
+  const rec = [...S.people.values()].filter(p => p.status === "recusado");
+  const row = (p, actions) => h("li", { class: "item" },
+    h("div", { class: "item-top" }, h("h3", {}, p.nome || "Sem nome"), h("span", { class: "pill " + p.status }, ACESSO[p.status])),
+    h("p", { class: "meta" }, [p.email, p.cargo, `pedido em ${fmtDateTime(p.criado_em)}`].filter(Boolean).join(", ")),
+    h("div", { class: "row" }, actions));
   return [
-    h("header", { class: "hero" },
-      h("div", {}, h("h1", {}, "Meu currículo"),
-        h("p", { class: "hero-sub" }, "Cada curso que você registrar entra no seu currículo e vira um novo anel na sua trilha de evolução. Seu gestor acompanha por aqui."))),
-    h("div", { class: "detail" },
-      h("div", { class: "detail-head" }, rings(certs, 110, nm),
-        h("div", { class: "who" }, h("h2", {}, plural(certs.length, "curso concluído", "cursos concluídos")),
-          h("p", { class: "muted" }, `${hoursOf(certs).toLocaleString("pt-BR")} h de formação registradas`))),
-      !S.me?.atualizado_em && h("p", { class: "notice" }, "Comece clicando em Editar currículo e preencha cargo, experiência e formação."),
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Aprovações"),
+      h("p", {}, "Quem solicitou acesso só vê alguma coisa depois da sua aprovação. Confira se o e-mail é mesmo da pessoa antes de aprovar."))),
+    h("div", { class: "stack" },
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, `Aguardando aprovação (${pend.length})`)),
+        pend.length ? h("ul", { class: "list" }, pend.map(p => row(p, [
+          h("button", { class: "btn small", onclick: () => setAccess(p.user_id, "ativo") }, "Aprovar"),
+          h("button", { class: "btn danger small", onclick: () => setAccess(p.user_id, "recusado") }, "Recusar")]))) : h("p", { class: "muted" }, "Nenhum pedido pendente.")),
+      rec.length > 0 && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, `Recusados (${rec.length})`)),
+        h("ul", { class: "list" }, rec.map(p => row(p, [h("button", { class: "btn ghost small", onclick: () => setAccess(p.user_id, "ativo") }, "Aprovar mesmo assim")]))))),
+  ];
+}
+function auditSummary(a) {
+  const r = a.depois || a.antes || {};
+  const who = r.user_id && S.people.get(r.user_id) ? ` de ${nameOf(r.user_id)}` : "";
+  return `${r.titulo || r.nome || (r.data ? fmtDate(r.data) : "") || ""}${who}`.trim();
+}
+function viewHistorico() {
+  const OPS = { INSERT: "incluiu", UPDATE: "alterou", DELETE: "apagou" };
+  const btn = h("button", { class: "btn", onclick: e => downloadBackup(e.currentTarget) }, "Baixar backup completo");
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Segurança e backup"),
+      h("p", {}, "Toda inclusão, alteração e exclusão fica registrada. O que for apagado pode ser restaurado."))),
+    h("div", { class: "stack" },
+      h("div", { class: "panel" },
+        h("div", { class: "panel-head" }, h("h2", {}, "Backup"), btn),
+        h("p", { class: "muted" }, "Gera um arquivo .zip com todos os dados (dados.json) e todos os certificados enviados. Guarde em um lugar seguro, fora deste computador, pelo menos uma vez por mês.")),
+      h("div", { class: "panel" },
+        h("div", { class: "panel-head" }, h("h2", {}, "Histórico de alterações"), h("p", {}, "Últimos 150 registros.")),
+        S.audit == null ? h("p", { class: "muted" }, "Carregando…") :
+        S.audit.length ? h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+          h("thead", {}, h("tr", {}, ["Quando", "Quem", "O que", "Registro", ""].map(t => h("th", {}, t)))),
+          h("tbody", {}, S.audit.map(a => h("tr", { style: "cursor:default" },
+            h("td", { style: "white-space:nowrap" }, fmtDateTime(a.quando)),
+            h("td", {}, !a.usuario ? "Sistema" : a.usuario === S.me.user_id ? (S.me.nome || "Você") : nameOf(a.usuario)),
+            h("td", {}, `${OPS[a.operacao] || a.operacao} ${(TABELAS[a.tabela] || a.tabela).toLowerCase()}`),
+            h("td", {}, auditSummary(a)),
+            h("td", {}, a.operacao === "DELETE" && RESTAURAVEIS.includes(a.tabela) && h("button", { class: "linkish", onclick: async () => {
+              if (!(await confirmBox("Restaurar este registro?", "Restaurar"))) return;
+              const { error } = await sb.rpc("evo_restaurar", { p_id: a.id });
+              if (error) toast(sbErr(error), true); else { await refresh(); toast("Registro restaurado."); }
+            } }, "Restaurar"))))))) : h("p", { class: "muted" }, "Nenhuma alteração registrada ainda."))),
+  ];
+}
+
+/* ---------- telas do time ---------- */
+function viewMeu() {
+  const uid = S.me.user_id, certs = certsOf(uid);
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Meu currículo"),
+      h("p", {}, "Cada curso que você registrar entra no seu currículo e na sua trilha de evolução. Seu gestor acompanha por aqui."))),
+    h("div", { class: "stack" },
+      !S.me.atualizado_em && h("p", { class: "notice" }, "Comece clicando em Editar currículo e preencha cargo, experiência e formação."),
+      h("div", { class: "grid3" },
+        h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Minha trilha de formação"), h("p", {}, `${plural(certs.length, "curso", "cursos")}, ${fmtH(hoursOf(certs))}`)), hoursTrailChart(uid, "short")),
+        h("div", { class: "panel", style: "display:grid;place-items:center;gap:8px;text-align:center" }, rings(certs, 140, nameOf(uid)), h("p", { class: "muted small" }, "Cada anel é um curso concluído."))),
       curriculum(uid, true)),
   ];
 }
-function loginView() {
+
+/* ---------- navegação e casca ---------- */
+function go(view) { S.view = view; if (view === "historico") { S.audit = null; loadAudit().then(render, e => { S.error = sbErr(e); render(); }); } render(); window.scrollTo(0, 0); }
+function openPerson(uid) { S.selected = uid; S.tab = "geral"; S.view = "pessoa"; render(); window.scrollTo(0, 0); }
+function shell(content) {
+  const nav = S.owner ? [
+    ["painel", "Painel do time"], ["pessoas", "Pessoas"], ["aprovacoes", "Aprovações", pending().length], ["historico", "Segurança e backup"],
+  ] : [["meu", "Meu currículo"]];
+  const current = S.view === "pessoa" ? "pessoas" : S.view;
+  return h("div", { class: "shell" },
+    h("aside", { class: "side" },
+      h("div", { class: "brand" }, rings([{ concluido_em: "1" }, { concluido_em: "2", categoria: CATEGORIAS[1] }, { concluido_em: "3", categoria: CATEGORIAS[2] }], 38, "LC"),
+        h("div", {}, h("b", {}, "Evolução do time"), h("span", {}, "LC Sistemas comercial"))),
+      h("nav", { class: "nav", "aria-label": "Menu" }, nav.map(([k, l, n]) =>
+        h("button", { "aria-current": current === k ? "page" : null, onclick: () => go(k) }, h("span", {}, l), n ? h("span", { class: "badge" }, n) : null))),
+      h("div", { class: "side-foot" },
+        h("span", { class: "who" }, S.me?.nome || S.session?.user?.email || ""),
+        h("button", { onclick: passwordModal }, "Alterar senha"),
+        h("button", { onclick: () => sb.auth.signOut() }, "Sair"))),
+    h("main", { class: "main" }, S.error && h("p", { class: "notice", style: "margin-bottom:16px" }, S.error), content));
+}
+function authView() {
   const err = h("p", { class: "form-err", role: "alert" });
-  const btn = h("button", { type: "submit", class: "btn" }, "Entrar");
-  const form = h("form", { class: "login-card", novalidate: true },
-    rings([{ concluido_em: "1" }, { concluido_em: "2" }, { concluido_em: "3", categoria: CATEGORIAS[1] }, { concluido_em: "4", categoria: CATEGORIAS[2] }], 96, "LC"),
+  const isUp = S.authMode === "solicitar";
+  const btn = h("button", { type: "submit", class: "btn", style: "justify-content:center" }, isUp ? "Solicitar acesso" : "Entrar");
+  const form = h("form", { class: "card", novalidate: true },
+    rings([{ concluido_em: "1" }, { concluido_em: "2", categoria: CATEGORIAS[1] }, { concluido_em: "3", categoria: CATEGORIAS[2] }, { concluido_em: "4" }], 84, "LC"),
     h("h1", {}, "Evolução do time comercial"),
-    h("p", { class: "muted" }, "Entre com o e-mail e a senha que o seu gestor passou."),
-    field("E-mail", inp("email", "", "email", { autocomplete: "username", required: true })),
-    field("Senha", inp("senha", "", "password", { autocomplete: "current-password", required: true })),
+    h("div", { class: "seg-tabs", role: "tablist" },
+      h("button", { type: "button", role: "tab", "aria-selected": !isUp, onclick: () => { S.authMode = "entrar"; render(); } }, "Entrar"),
+      h("button", { type: "button", role: "tab", "aria-selected": isUp, onclick: () => { S.authMode = "solicitar"; render(); } }, "Solicitar acesso")),
+    isUp && h("p", { class: "muted small" }, "Crie sua senha. O acesso é liberado depois que o gestor aprovar."),
+    isUp && field("Nome completo", inp("nome", "", "text", { autocomplete: "name", maxlength: 120 })),
+    isUp && field("Cargo", inp("cargo", "", "text", { maxlength: 80, placeholder: "Ex.: SDR" })),
+    field("E-mail", inp("email", "", "email", { autocomplete: "username" })),
+    field("Senha", inp("senha", "", "password", { autocomplete: isUp ? "new-password" : "current-password" }), isUp ? "Pelo menos 10 caracteres, com letras e números." : null),
+    isUp && field("Repita a senha", inp("senha2", "", "password", { autocomplete: "new-password" })),
     err, btn,
-    h("p", { class: "muted small" }, "Esqueceu a senha? Fale com o seu gestor."));
+    !isUp && h("p", { class: "muted small" }, "Esqueceu a senha? Fale com o seu gestor."));
   form.addEventListener("submit", async e => {
     e.preventDefault();
     err.textContent = "";
     const email = val(form, "email"), senha = form.elements.namedItem("senha").value;
     if (!email || !senha) { err.textContent = "Informe e-mail e senha."; return; }
-    btn.disabled = true; btn.textContent = "Entrando…";
-    const { error } = await sb.auth.signInWithPassword({ email, password: senha });
-    btn.disabled = false; btn.textContent = "Entrar";
-    if (error) err.textContent = /invalid/i.test(error.message) ? "E-mail ou senha incorretos." : sbErr(error);
+    btn.disabled = true;
+    if (isUp) {
+      const nome = val(form, "nome"), cargo = val(form, "cargo");
+      if (!nome) { err.textContent = "Informe seu nome."; btn.disabled = false; return; }
+      if (!strongEnough(senha)) { err.textContent = "Use pelo menos 10 caracteres, com letras e números."; btn.disabled = false; return; }
+      if (senha !== form.elements.namedItem("senha2").value) { err.textContent = "As senhas não conferem."; btn.disabled = false; return; }
+      const { data, error } = await sb.auth.signUp({ email, password: senha, options: { data: { nome, cargo }, emailRedirectTo: location.origin + location.pathname } });
+      btn.disabled = false;
+      if (error) { err.textContent = sbErr(error); return; }
+      if (!data.session) { S.authMode = "confirmar"; render(); }
+    } else {
+      const { error } = await sb.auth.signInWithPassword({ email, password: senha });
+      btn.disabled = false;
+      if (error) err.textContent = /invalid/i.test(error.message) ? "E-mail ou senha incorretos." : /confirm/i.test(error.message) ? "Confirme seu e-mail antes de entrar." : sbErr(error);
+    }
   });
-  return h("div", { class: "login" }, form);
+  return h("div", { class: "center" }, form);
 }
+const centerCard = (title, text, ...extra) => h("div", { class: "center" }, h("div", { class: "card" }, h("h1", {}, title), h("p", { class: "muted" }, text), ...extra));
 function render() {
+  charts.forEach(c => c.destroy()); charts = []; chartJobs = [];
+  chartDefaults();
   const app = document.getElementById("app");
   let content;
-  if (!S.ready) content = h("p", { class: "muted" }, "Carregando…");
-  else if (!S.session) content = loginView();
-  else if (S.loading) content = [topbar(), h("p", { class: "muted" }, "Carregando dados…")];
-  else if (S.error && !S.me) content = [topbar(), h("div", { class: "panel empty" }, h("h2", {}, "Não foi possível carregar"), h("p", {}, S.error),
-    h("button", { class: "btn", onclick: refresh }, "Tentar de novo"))];
-  else if (!S.me) content = [topbar(), h("div", { class: "panel empty" }, h("h2", {}, "Acesso ainda não liberado"),
-    h("p", {}, "Sua conta existe, mas ainda não foi adicionada ao time. Peça ao seu gestor para liberar o acesso."))];
-  else content = [topbar(), S.error && h("p", { class: "notice" }, S.error), ...(S.owner ? ownerView() : memberView())];
+  if (!S.ready) content = centerCard("Carregando…", "");
+  else if (!S.session && S.authMode === "confirmar") content = centerCard("Confirme seu e-mail", "Enviamos um link de confirmação. Depois de confirmar, o gestor precisa aprovar o seu acesso.", h("button", { class: "btn ghost", onclick: () => { S.authMode = "entrar"; render(); } }, "Voltar para Entrar"));
+  else if (!S.session) content = authView();
+  else if (S.loading) content = centerCard("Carregando dados…", "");
+  else if (S.error && !S.me) content = centerCard("Não foi possível carregar", S.error, h("button", { class: "btn", onclick: refresh }, "Tentar de novo"), h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (!S.me || S.me.status === "pendente") content = centerCard("Aguardando aprovação", "Seu pedido de acesso foi registrado. Assim que o gestor aprovar, você poderá preencher o seu currículo.", h("button", { class: "btn", onclick: refresh }, "Verificar de novo"), h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (S.me.status === "recusado" || S.me.arquivado) content = centerCard("Acesso não liberado", "Seu acesso não está ativo. Fale com o seu gestor.", h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (S.owner) {
+    if (!["painel", "pessoas", "pessoa", "aprovacoes", "historico"].includes(S.view)) S.view = "painel";
+    content = shell({ painel: viewPainel, pessoas: viewPessoas, pessoa: viewPessoa, aprovacoes: viewAprovacoes, historico: viewHistorico }[S.view]());
+  } else { S.view = "meu"; content = shell(viewMeu()); }
   app.replaceChildren(...[content].flat().filter(Boolean));
+  if (window.Chart) chartJobs.forEach(job => { try { job(); } catch (e) { console.error(e); } });
 }
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => S.session && render());
 
 /* ---------- início ---------- */
 let lastUser = null;
 sb.auth.onAuthStateChange((event, session) => {
   S.session = session; S.ready = true;
   const uid = session?.user?.id || null;
-  if (!uid) { lastUser = null; S.me = null; S.members = new Map(); render(); return; }
+  if (!uid) { lastUser = null; S.me = null; S.owner = false; S.people = new Map(); S.view = "painel"; clearTimeout(idleTimer); render(); return; }
+  lastBump = 0; bumpIdle();
   if (uid !== lastUser) {
     lastUser = uid; S.loading = true; render();
-    // fora do callback para não travar o cliente do Supabase
     setTimeout(async () => { await refresh(); S.loading = false; render(); }, 0);
   }
 });
 </script>
 </body>
 </html>
-
-
-
 
