@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://wrbbmtaxerlqzaqfctqn.supabase.co; connect-src https://wrbbmtaxerlqzaqfctqn.supabase.co wss://wrbbmtaxerlqzaqfctqn.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; manifest-src 'none'; worker-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://wrbbmtaxerlqzaqfctqn.supabase.co; connect-src https://wrbbmtaxerlqzaqfctqn.supabase.co wss://wrbbmtaxerlqzaqfctqn.supabase.co https://cdn.jsdelivr.net; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; manifest-src 'none'; worker-src blob: https://cdn.jsdelivr.net">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex, nofollow">
 <title>Evolução do time comercial | LC Sistemas</title>
@@ -221,6 +221,12 @@ input[type=file]{width:100%;font-size:.95rem}
 .avatar{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid var(--ring-2);flex:0 0 auto}
 .avatar-prev{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
 .avatar-prev[hidden]{display:none}
+.auto{border-color:var(--moss)!important;background:var(--moss-soft)!important}
+.auto-status{padding:10px 12px;border-radius:10px;background:var(--moss-soft);font-size:.92rem;margin:0}
+.auto-status.warn{background:var(--amber-soft)}
+.auto-status[hidden],.ocr-text[hidden]{display:none}
+.ocr-text summary{cursor:pointer;color:var(--muted);font-size:.9rem}
+.ocr-text pre{white-space:pre-wrap;font-size:.82rem;max-height:200px;overflow:auto;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0 0}
 </style>
 </head>
 <body>
@@ -556,7 +562,7 @@ const ta = (name, val, rows = 3) => h("textarea", { name, rows, value: val ?? ""
 const sel = (name, opts, val) => h("select", { name, value: val }, opts.map(([v, l]) => h("option", { value: v }, l)));
 const val = (form, n) => (form.elements.namedItem(n)?.value || "").trim();
 
-function openModal({ title, body, submitLabel, onSubmit }) {
+function openModal({ title, body, submitLabel, onSubmit, onReady }) {
   const dlg = document.getElementById("modal");
   const btn = submitLabel ? h("button", { type: "submit", class: "btn" }, submitLabel) : null;
   const form = h("form", { class: "dlg", novalidate: true },
@@ -572,6 +578,7 @@ function openModal({ title, body, submitLabel, onSubmit }) {
     if (ok) dlg.close();
   });
   dlg.replaceChildren(form);
+  if (onReady) onReady(form);
   dlg.showModal();
 }
 function confirmBox(message, label, danger) {
@@ -657,15 +664,54 @@ function guessType(file) {
 }
 function formCertificado(uid, existing) {
   const c = existing || {};
+  const status = h("p", { class: "auto-status", hidden: true, role: "status" });
+  const pre = h("pre", {});
+  const lido = h("details", { class: "ocr-text", hidden: true }, h("summary", {}, "Ver o texto lido do certificado"), pre);
+  const fileIn = h("input", { type: "file", name: "arquivo", accept: ".pdf,.png,.jpg,.jpeg,.webp" });
+  fileIn.addEventListener("change", async () => {
+    const f = fileIn.files[0], form = fileIn.form;
+    if (!f || !form) return;
+    if (!guessType(f)) { toast("Formato não aceito. Envie PDF, PNG, JPG ou WEBP.", true); return; }
+    const btn = form.querySelector('button[type="submit"]');
+    status.hidden = false; status.className = "auto-status"; btn.disabled = true;
+    try {
+      const raw = await extractText(f, msg => { status.textContent = msg; });
+      const r = parseCert(raw);
+      let n = 0;
+      for (const [k, v] of Object.entries(r)) {
+        const el = form.elements.namedItem(k);
+        if (!el || v == null || v === "") continue;
+        if (el.value && !el.dataset.auto) continue;
+        el.value = String(v); el.dataset.auto = "1"; el.classList.add("auto"); n++;
+      }
+      status.textContent = n
+        ? `Preenchemos ${plural(n, "campo", "campos")} a partir do certificado (destacados em verde). Confira antes de salvar.`
+        : "Não conseguimos identificar os dados neste arquivo. Preencha os campos manualmente.";
+      if (!n) status.className = "auto-status warn";
+      pre.textContent = raw.trim().slice(0, 4000) || "(nenhum texto encontrado)";
+      lido.hidden = false;
+    } catch (e) {
+      console.error(e);
+      status.className = "auto-status warn";
+      status.textContent = "Não foi possível ler o arquivo automaticamente. Preencha os campos manualmente; o arquivo será anexado normalmente.";
+    } finally { btn.disabled = false; }
+  });
+  const markUser = e => { if (e.target.dataset) { delete e.target.dataset.auto; e.target.classList.remove("auto"); } };
   openModal({
     title: existing ? "Editar certificado" : "Adicionar certificado", submitLabel: existing ? "Salvar alterações" : "Adicionar ao currículo",
+    onReady: form => {
+      form.addEventListener("input", markUser);
+      if (!existing) { for (const k of ["concluido_em", "categoria"]) { const el = form.elements.namedItem(k); if (el) el.dataset.auto = "1"; } }
+    },
     body: [
       field("Nome do curso", inp("titulo", c.titulo, "text", { maxlength: 200 })),
       h("div", { class: "two" }, field("Instituição", inp("instituicao", c.instituicao, "text", { maxlength: 160 })), field("Área", sel("categoria", CATEGORIAS.map(x => [x, x]), c.categoria || CATEGORIAS[0]))),
       h("div", { class: "two" },
         field("Carga horária (horas)", inp("carga_horas", c.carga_horas ?? "", "number", { min: 0, max: 5000, step: "0.5", inputmode: "decimal" })),
         field("Concluído em", inp("concluido_em", c.concluido_em || today(), "date", { max: today() }))),
-      field(c.arquivo_path ? "Trocar arquivo do certificado" : "Arquivo do certificado", h("input", { type: "file", name: "arquivo", accept: ".pdf,.png,.jpg,.jpeg,.webp" }), "PDF ou imagem, até 20 MB."),
+      field(c.arquivo_path ? "Trocar arquivo do certificado" : "Arquivo do certificado", fileIn,
+        existing ? "PDF ou imagem, até 20 MB." : "Escolha o arquivo primeiro: os campos acima são preenchidos automaticamente. PDF ou imagem, até 20 MB."),
+      status, lido,
     ],
     onSubmit: async form => {
       const titulo = val(form, "titulo");
@@ -834,6 +880,120 @@ async function downloadBackup(btn) {
     toast(`Backup gerado com ${plural(n, "arquivo", "arquivos")} de certificado.`);
   } catch (e) { toast("O backup falhou: " + sbErr(e), true); }
   finally { btn.disabled = false; btn.textContent = old; }
+}
+
+
+/* ---------- leitura automática do certificado (no navegador, gratuita) ---------- */
+const LIBS = {
+  pdf:  { src: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js", sri: "sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" },
+  pdfw: { src: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js", sri: "sha384-SnzOobpRMLXZ52iJvZm/C0fYw0OQemTXzTjIsdsfMcrCtCEe9qgzxTd3RSklO5x2" },
+  tess: { src: "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js", sri: "sha384-GJqSu7vueQ9qN0E9yLPb3Wtpd7OrgK8KmYzC8T1IysG1bcvxvIO4qtYR/D3A991F" },
+};
+const TESS_OPTS = {
+  workerPath: "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/worker.min.js",
+  corePath: "https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1",
+  langPath: "https://cdn.jsdelivr.net/npm/@tesseract.js-data/por@1.0.0/4.0.0_best_int",
+};
+const libLoads = {};
+function loadLib(k) {
+  return libLoads[k] || (libLoads[k] = new Promise((res, rej) => {
+    const el = document.createElement("script");
+    el.src = LIBS[k].src; el.integrity = LIBS[k].sri; el.crossOrigin = "anonymous";
+    el.onload = res; el.onerror = () => { delete libLoads[k]; rej(new Error("Falha ao carregar " + k)); };
+    document.head.append(el);
+  }));
+}
+let tessWorker = null, ocrStatus = () => {};
+async function ocr(canvas, onStatus) {
+  ocrStatus = onStatus;
+  onStatus("Preparando a leitura da imagem. Na primeira vez demora um pouco mais…");
+  await loadLib("tess");
+  if (!tessWorker) tessWorker = await Tesseract.createWorker("por", 1, { ...TESS_OPTS,
+    logger: m => { if (m.status === "recognizing text") ocrStatus(`Lendo a imagem… ${Math.round(m.progress * 100)}%`); } });
+  const { data } = await tessWorker.recognize(canvas);
+  return data.text || "";
+}
+function toCanvas(src, w, h, max) {
+  const k = Math.min(1, max / Math.max(w, h));
+  const cv = document.createElement("canvas"); cv.width = Math.round(w * k); cv.height = Math.round(h * k);
+  const ctx = cv.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.drawImage(src, 0, 0, cv.width, cv.height);
+  return cv;
+}
+async function extractText(file, onStatus) {
+  if (guessType(file) === "application/pdf") {
+    onStatus("Lendo o PDF…");
+    await loadLib("pdf"); await loadLib("pdfw");
+    const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer(), isEvalSupported: false, disableFontFace: true }).promise;
+    let text = "";
+    for (let i = 1; i <= Math.min(pdf.numPages, 2); i++) {
+      const tc = await (await pdf.getPage(i)).getTextContent();
+      text += tc.items.map(it => it.str + (it.hasEOL ? "\n" : " ")).join("") + "\n";
+    }
+    if (text.replace(/\s/g, "").length >= 40) return text;
+    const pg = await pdf.getPage(1), vp = pg.getViewport({ scale: 2 });
+    const cv = document.createElement("canvas"); cv.width = vp.width; cv.height = vp.height;
+    await pg.render({ canvasContext: cv.getContext("2d"), viewport: vp }).promise;
+    return ocr(toCanvas(cv, cv.width, cv.height, 2400), onStatus);
+  }
+  const bmp = await createImageBitmap(file);
+  return ocr(toCanvas(bmp, bmp.width, bmp.height, 2400), onStatus);
+}
+const MESES_EXT = { janeiro: 1, fevereiro: 2, "março": 3, marco: 3, abril: 4, maio: 5, junho: 6, julho: 7, agosto: 8, setembro: 9, outubro: 10, novembro: 11, dezembro: 12 };
+const INSTITUICOES = ["Fundação Bradesco", "Escola Virtual", "HubSpot Academy", "LinkedIn Learning", "Rock Content", "RD Station", "Escola Conquer", "Google", "Microsoft", "Salesforce", "Trailhead", "Udemy", "Alura", "Coursera", "SEBRAE", "SENAC", "SENAI", "SESC", "FGV", "ENAP", "Conquer", "Hotmart", "Descomplica", "Insper", "Meetime", "HubSpot", "LC Sistemas", "Amazon Web Services", "AWS", "IBM", "Cisco", "Domestika", "Udacity", "edX", "FIAP", "Estácio", "Anhanguera", "Unopar", "Cruzeiro do Sul", "Mackenzie", "USP", "PUC", "Unicamp", "Harvard", "Exame"];
+function smartCase(t) {
+  if (t !== t.toUpperCase() || !/[A-ZÁÉÍÓÚÂÊÔÃÕÇ]/.test(t)) return t;
+  const small = ["de", "da", "do", "das", "dos", "e", "em", "para", "com", "a", "o", "na", "no"];
+  return t.toLowerCase().split(" ").map((w, i) => (i && small.includes(w)) ? w : w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+}
+const STOP = /\s+(?:com\s+carga|carga\s+hor|no\s+per[íi]odo|realizad[oa]|promovid[oa]|oferecid[oa]|ministrad[oa]|emitid[oa]|na\s+modalidade|nos\s+dias|no\s+dia|em\s+\d|de\s+\d{1,2}\s+de|totalizando|com\s+dura)|\s*[,;.](?:\s|$)|\s+[-–]\s+/i;
+const cleanPart = t => t.split(STOP)[0].replace(/^[\s:–\-"“”«»]+|[\s:–\-"“”«»]+$/g, "").replace(/\s{2,}/g, " ").trim();
+function parseCert(raw) {
+  const text = raw.replace(/\r/g, "").replace(/[ \t]+/g, " ").replace(/\n{2,}/g, "\n").trim();
+  const flat = text.replace(/\n/g, " ");
+  const out = {};
+  let m = flat.match(/carga\s*hor[áa]ria\s*(?:total\s*)?(?:de|:)?\s*(\d{1,4}(?:[.,]\d{1,2})?)/i)
+       || flat.match(/(\d{1,4}(?:[.,]\d{1,2})?)\s*(?:horas|hrs?\b|hs\b|h\b)(?!\w)/i);
+  if (m) { const v = Number(m[1].replace(",", ".")); if (v > 0 && v <= 2000) out.carga_horas = v; }
+  const dates = [];
+  for (const d of flat.matchAll(/\b(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{2,4})\b/g)) { let y = +d[3]; if (y < 100) y += 2000; dates.push([y, +d[2], +d[1]]); }
+  for (const d of flat.matchAll(/\b(\d{1,2})(?:º|°)?\s+de\s+([a-zà-ú]+)\s+de\s+(\d{4})/gi)) { const mo = MESES_EXT[d[2].toLowerCase()]; if (mo) dates.push([+d[3], mo, +d[1]]); }
+  for (const d of flat.matchAll(/\b([a-zà-ú]+)\s+(?:de\s+)?(\d{4})\b/gi)) { const mo = MESES_EXT[d[1].toLowerCase()]; if (mo) dates.push([+d[2], mo, 1]); }
+  const hoje = today();
+  const valid = dates.filter(([y, mo, d]) => y >= 1990 && mo >= 1 && mo <= 12 && d >= 1 && d <= 31)
+    .map(([y, mo, d]) => `${y}-${pad(mo)}-${pad(d)}`).filter(x => x <= hoje).sort();
+  if (valid.length) out.concluido_em = valid[valid.length - 1];
+  const pats = [
+    /(?:conclu[íi]u|participou|realizou|completou|cursou|finalizou|aprovad[oa])\s+(?:com\s+(?:[êe]xito|sucesso|aproveitamento)\s+)?(?:(?:d?[oa]s?|n[oa]s?)\s+)?(?:curso|treinamento|capacita[çc][ãa]o|workshop|programa|trilha|forma[çc][ãa]o|palestra|webinar|evento|m[óo]dulo|imers[ãa]o|certifica[çc][ãa]o)?\s*(?:livre\s+|online\s+|on-line\s+)?(?:de|em|:|-)?\s*(.{4,160})/i,
+    /[“"«]([^”"»]{4,140})[”"»]/,
+    /(?:curso|treinamento|capacita[çc][ãa]o|workshop|trilha|forma[çc][ãa]o)\s+(?:de|em|:|-)\s*(.{4,160})/i,
+  ];
+  for (const p of pats) {
+    const r = flat.match(p);
+    if (!r) continue;
+    const t = cleanPart(r[1]);
+    if (t.length >= 4 && t.split(" ").length <= 18 && !/^(o|a|de|em|curso)$/i.test(t)) { out.titulo = smartCase(t).slice(0, 200); break; }
+  }
+  const low = flat.toLowerCase();
+  const known = INSTITUICOES.find(n => new RegExp(`(^|[^a-zà-ú])${n.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}([^a-zà-ú]|$)`).test(low));
+  if (known) out.instituicao = known;
+  else {
+    const r = flat.match(/(?:promovid[oa]|oferecid[oa]|realizad[oa]|ministrad[oa]|emitid[oa])\s+(?:pel[oa]s?|por)\s+(.{3,90})/i)
+           || flat.match(/\b((?:Universidade|Faculdade|Instituto|Escola|Centro Universit[áa]rio|Funda[çc][ãa]o|Academia)\s+[^\n,.;]{3,60})/i);
+    if (r) { const t = cleanPart(r[1]); if (t.length >= 3) out.instituicao = smartCase(t).slice(0, 160); }
+  }
+  const base = ((out.titulo || "") + " " + flat).toLowerCase();
+  const cats = [
+    ["Vendas e negociação", /vend|sales|negocia|prospec|comercial|closer|\bsdr\b|funil|obje[çc]/],
+    ["Atendimento ao cliente", /atendimento|cliente|customer|sucesso do cliente|\bcx\b|suporte|p[óo]s-venda/],
+    ["Gestão e liderança", /lideran|gest[ãa]o|gerenc|coordena|feedback|equipe/],
+    ["Tecnologia", /excel|power bi|dados|programa[çc]|tecnologia|intelig[êe]ncia artificial|\bia\b|planilha|python|sql|digital/],
+    ["Produto e sistema", /sistema|\berp\b|produto|software|implanta/],
+  ];
+  const tt = (out.titulo || "").toLowerCase();
+  const cat = cats.find(([, re]) => re.test(tt)) || cats.find(([, re]) => re.test(base));
+  if (cat) out.categoria = cat[0];
+  return out;
 }
 
 /* ---------- blocos ---------- */
