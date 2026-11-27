@@ -138,7 +138,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .person-head{display:flex;flex-wrap:wrap;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
 .person-head .info{flex:1 1 260px}
 .back{border:0;background:none;color:var(--muted);cursor:pointer;padding:0;margin-bottom:10px;font-weight:600}
-.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);margin:4px 0 2px}
+.tabs{display:flex;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;border-bottom:1px solid var(--line);margin:4px 0 2px}
 .tab{border:0;background:none;padding:10px 14px;cursor:pointer;color:var(--muted);font-weight:600;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-1px}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--moss)}
 
@@ -301,6 +301,28 @@ input[type=file]{width:100%;font-size:.95rem}
   .pr-foot{margin-top:22px;color:#777;font-size:9pt;border-top:1px solid #ddd;padding-top:6px}
   .prose{white-space:pre-wrap}
 }
+
+/* ===== v7 ===== */
+.perfis-cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.perfil-card{display:flex;flex-direction:column;gap:8px;min-height:230px}
+.perfil-res{margin:4px 0}
+.likert-test{max-width:760px}
+.lk-item{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--surface-2)}
+.lk-item.done{border-color:var(--moss)}
+.lk-q{font-weight:600;margin-bottom:10px}
+.lk-scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.lk-opt{display:grid;gap:2px;justify-items:center;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 4px;cursor:pointer;color:var(--muted);font-size:.78rem;line-height:1.2;text-align:center}
+.lk-opt b{font-size:1.05rem;color:var(--ink)}
+.lk-opt[aria-pressed="true"]{background:var(--moss);border-color:var(--moss);color:var(--on-moss)}
+.lk-opt[aria-pressed="true"] b{color:var(--on-moss)}
+@media (max-width:560px){.lk-opt span{display:none}.lk-opt{padding:10px 0}}
+.chips-nav{display:flex;flex-wrap:wrap;gap:8px}
+.chip-btn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:600;cursor:pointer;color:var(--ink)}
+.chip-btn[aria-pressed="true"]{background:var(--moss);border-color:var(--moss);color:var(--on-moss)}
+.chip-btn[aria-pressed="true"] .muted{color:var(--on-moss);opacity:.8}
+.pir-wrap{display:grid;place-items:center;padding:8px 0}
+.piramide{width:100%;max-width:380px;height:auto}
+.pir-t{fill:#fff;font:600 12px "Source Sans 3",sans-serif;paint-order:stroke;stroke:rgba(0,0,0,.35);stroke-width:2px}
 </style>
 </head>
 <body>
@@ -337,7 +359,7 @@ const STATUS = { aberto: "Aberto", andamento: "Em andamento", concluido: "Conclu
 const ACESSO = { pendente: "Aguardando aprovação", ativo: "Ativo", recusado: "Recusado" };
 const PALETA = ["#2F6B45", "#1E5FA8", "#C27C0E", "#8A3FA0", "#B8473D", "#2A8C8C", "#6E7A1F", "#5B5BD6"];
 const TABELAS = { evo_pessoas: "Pessoa", evo_certificados: "Certificado", evo_avaliacoes: "Avaliação", evo_melhorias: "Ponto de melhoria", evo_oneaone: "Reunião 1:1",
-  evo_avaliacao_privada: "Anotação privada", evo_autoavaliacoes: "Autoavaliação", evo_disc: "Perfil DISC", evo_pdi: "Ação do PDI", evo_config: "Configuração" };
+  evo_avaliacao_privada: "Anotação privada", evo_autoavaliacoes: "Autoavaliação", evo_disc: "Perfil DISC", evo_pdi: "Ação do PDI", evo_config: "Configuração", evo_perfis: "Análise de perfil", evo_liberacoes: "Liberação para refazer" };
 const RESTAURAVEIS = ["evo_certificados", "evo_avaliacoes", "evo_melhorias", "evo_oneaone", "evo_avaliacao_privada", "evo_autoavaliacoes", "evo_pdi"];
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
@@ -348,7 +370,7 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
 const S = {
   session: null, me: null, owner: false, ready: false, loading: false, error: null,
   people: new Map(), certs: new Map(), aval: new Map(), melh: new Map(), ones: new Map(),
-  audit: null, photos: {}, auto: new Map(), disc: new Map(), pdi: new Map(), privado: new Map(), config: {}, gestores: [], discDraft: null, recovery: false, auditFilter: { uid: "", de: "", ate: "" }, view: "painel", selected: null, tab: "geral", showArchived: false, authMode: "entrar",
+  audit: null, photos: {}, auto: new Map(), disc: new Map(), pdi: new Map(), privado: new Map(), config: {}, gestores: [], discDraft: null, perfis: new Map(), liberacoes: [], perfilDraft: null, perfilAtual: null, perfilTab: "disc", recovery: false, auditFilter: { uid: "", de: "", ate: "" }, view: "painel", selected: null, tab: "geral", showArchived: false, authMode: "entrar",
 };
 
 /* ---------- DOM ---------- */
@@ -495,6 +517,7 @@ function toast(msg, err) {
 }
 function sbErr(e) {
   const msg = String(e?.message || "");
+  if (/EVO_PRAZO/.test(msg)) return msg.replace(/^.*EVO_PRAZO:\s*/, "").replace(/^e/, "E");
   if (/row-level security|permission denied/i.test(msg)) return "Sem permissão para essa ação.";
   if (/violates check constraint/i.test(msg)) return "Algum campo passou do tamanho permitido.";
   if (/JWT|session/i.test(msg)) return "Sua sessão expirou. Entre de novo.";
@@ -525,13 +548,15 @@ async function load() {
   if (!isActive(me)) return;
   const all = q => q.then(r => { if (r.error) throw r.error; return r.data || []; });
   if (S.owner) {
-    const [p, c, a, m, o, au, di, pd, pv, cf] = await Promise.all([
+    const [p, c, a, m, o, au, di, pd, pv, cf, pf, lb] = await Promise.all([
       all(sb.from("evo_pessoas").select("*")), all(sb.from("evo_certificados").select("*")),
       all(sb.from("evo_avaliacoes").select("*")), all(sb.from("evo_melhorias").select("*")),
       all(sb.from("evo_oneaone").select("*")), all(sb.from("evo_autoavaliacoes").select("*")),
       all(sb.from("evo_disc").select("*")), all(sb.from("evo_pdi").select("*")),
       all(sb.from("evo_avaliacao_privada").select("*")), all(sb.from("evo_config").select("*")),
+      all(sb.from("evo_perfis").select("*")), all(sb.from("evo_liberacoes").select("*")),
     ]);
+    S.perfis = groupBy(pf); S.liberacoes = lb;
     S.people = new Map(p.filter(r => r.papel === "membro").map(r => [r.user_id, r]));
     S.gestores = p.filter(r => r.papel === "gestor");
     S.certs = groupBy(c); S.aval = groupBy(a); S.melh = groupBy(m); S.ones = groupBy(o);
@@ -540,11 +565,13 @@ async function load() {
     S.config = Object.fromEntries(cf.map(r => [r.chave, r.valor]));
     if (S.view === "historico") await loadAudit();
   } else {
-    const [c, a, m, au, di, pd] = await Promise.all([
+    const [c, a, m, au, di, pd, pf, lb] = await Promise.all([
       all(sb.from("evo_certificados").select("*").eq("user_id", uid)), all(sb.from("evo_avaliacoes").select("*").eq("user_id", uid)),
       all(sb.from("evo_melhorias").select("*").eq("user_id", uid)), all(sb.from("evo_autoavaliacoes").select("*").eq("user_id", uid)),
       all(sb.from("evo_disc").select("*").eq("user_id", uid)), all(sb.from("evo_pdi").select("*").eq("user_id", uid)),
+      all(sb.from("evo_perfis").select("*").eq("user_id", uid)), all(sb.from("evo_liberacoes").select("*").eq("user_id", uid)),
     ]);
+    S.perfis = groupBy(pf); S.liberacoes = lb;
     S.people = new Map([[uid, me]]);
     S.certs = groupBy(c); S.aval = groupBy(a); S.melh = groupBy(m); S.auto = groupBy(au); S.disc = groupBy(di); S.pdi = groupBy(pd);
   }
@@ -1063,7 +1090,7 @@ async function downloadBackup(btn) {
   try {
     const zip = new JSZip();
     const dados = { gerado_em: new Date().toISOString(), projeto: SUPABASE_URL };
-    for (const t of ["evo_pessoas", "evo_certificados", "evo_avaliacoes", "evo_melhorias", "evo_oneaone", "evo_auditoria"]) {
+    for (const t of ["evo_pessoas", "evo_certificados", "evo_avaliacoes", "evo_avaliacao_privada", "evo_melhorias", "evo_oneaone", "evo_autoavaliacoes", "evo_disc", "evo_perfis", "evo_liberacoes", "evo_pdi", "evo_config", "evo_auditoria"]) {
       btn.textContent = `Copiando ${TABELAS[t] || "histórico"}…`;
       dados[t] = await fetchAll(t);
     }
@@ -1349,13 +1376,13 @@ function viewPessoas() {
     })) : h("div", { class: "panel" }, h("p", { class: "muted" }, "Nenhuma pessoa ativa ainda.")),
   ];
 }
-const TABS = [["geral", "Visão geral"], ["curriculo", "Currículo"], ["avaliacoes", "Avaliações"], ["melhorias", "Pontos de melhoria"], ["pdi", "PDI"], ["disc", "DISC"], ["oneaone", "Reuniões 1:1"]];
+const TABS = [["geral", "Visão geral"], ["curriculo", "Currículo"], ["avaliacoes", "Avaliações"], ["melhorias", "Pontos de melhoria"], ["pdi", "PDI"], ["perfis", "Perfis"], ["oneaone", "Reuniões 1:1"]];
 function viewPessoa() {
   const uid = S.selected, p = S.people.get(uid);
   if (!p) { S.view = "painel"; return viewPainel(); }
   const st = personStats(uid);
   if (!TABS.some(t => t[0] === S.tab)) S.tab = "geral";
-  const panel = { geral: tabGeral, curriculo: u => curriculum(u, true), avaliacoes: tabAval, melhorias: tabMelh, pdi: tabPdi, disc: tabDisc, oneaone: tabOne }[S.tab] || tabGeral;
+  const panel = { geral: tabGeral, curriculo: u => curriculum(u, true), avaliacoes: tabAval, melhorias: tabMelh, pdi: tabPdi, perfis: tabPerfis, oneaone: tabOne }[S.tab] || tabGeral;
   return [
     h("button", { class: "back", onclick: () => go("painel") }, "Voltar ao painel"),
     h("div", { class: "stack" },
@@ -1546,9 +1573,9 @@ function go(view) { document.getElementById("modal").open && document.getElement
 function openPerson(uid, tab) { S.selected = uid; S.tab = tab || "geral"; S.view = "pessoa"; render(); window.scrollTo(0, 0); }
 function shell(content) {
   const nav = S.owner ? [
-    ["painel", "Painel do time"], ["pessoas", "Pessoas"], ["aprovacoes", "Aprovações", pending().length], ["disc-time", "Perfis DISC"], ["historico", "Segurança e backup"],
-  ] : [["inicio", "Início", lembretes().filter(l => l.nivel !== "info").length], ["meu", "Meu currículo"], ["evolucao", "Minha evolução"], ["disc", "Perfil DISC"]];
-  const current = S.view === "pessoa" ? "pessoas" : S.view === "disc-teste" ? "disc" : S.view;
+    ["painel", "Painel do time"], ["pessoas", "Pessoas"], ["aprovacoes", "Aprovações", pending().length], ["disc-time", "Perfis do time"], ["historico", "Segurança e backup"],
+  ] : [["inicio", "Início", lembretes().filter(l => l.nivel !== "info").length], ["meu", "Meu currículo"], ["evolucao", "Minha evolução"], ["perfis", "Análises de perfil"]];
+  const current = S.view === "pessoa" ? "pessoas" : ["disc", "disc-teste", "perfil", "perfil-teste"].includes(S.view) ? "perfis" : S.view;
   return h("div", { class: "shell" },
     h("aside", { class: "side" },
       h("div", { class: "brand" }, rings([{ concluido_em: "1" }, { concluido_em: "2", categoria: CATEGORIAS[1] }, { concluido_em: "3", categoria: CATEGORIAS[2] }], 38, "LC"),
@@ -1667,26 +1694,31 @@ function render() {
   else if (!S.me) content = centerCard("Acesso não encontrado", "Não encontramos um cadastro ativo para esta conta. Fale com o seu gestor.", h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
   else if (S.me.status === "pendente") content = centerCard("Aguardando aprovação", "Seu pedido de acesso foi registrado. Assim que o gestor aprovar, você poderá preencher o seu currículo.", h("button", { class: "btn", onclick: refresh }, "Verificar de novo"), h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
   else if (S.me.status === "recusado" || S.me.arquivado) content = centerCard("Acesso não liberado", "Seu acesso não está ativo. Fale com o seu gestor.", h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
-  else if (!S.me.aceite_termo_em) content = termoGate();
+  else if (!S.me.aceite_termo_em || S.me.termo_versao !== TERMO_VERSAO) content = termoGate();
   else if (S.owner) {
     if (!["painel", "pessoas", "pessoa", "aprovacoes", "historico", "disc-time"].includes(S.view)) S.view = "painel";
-    content = shell({ painel: viewPainel, pessoas: viewPessoas, pessoa: viewPessoa, aprovacoes: viewAprovacoes, historico: viewHistorico, "disc-time": viewDiscTime }[S.view]());
+    content = shell({ painel: viewPainel, pessoas: viewPessoas, pessoa: viewPessoa, aprovacoes: viewAprovacoes, historico: viewHistorico, "disc-time": viewPerfisTime }[S.view]());
   } else {
-    if (S.view === "disc-teste" && !S.discDraft) S.view = "disc";
-    if (!["inicio", "meu", "evolucao", "disc", "disc-teste"].includes(S.view)) S.view = "inicio";
-    content = shell({ inicio: viewInicio, meu: viewMeu, evolucao: viewEvolucao, disc: viewDisc, "disc-teste": viewDiscTeste }[S.view]());
+    if (S.view === "disc") { S.view = "perfil"; S.perfilAtual = "disc"; }
+    if (S.view === "disc-teste" && !S.discDraft) S.view = "perfis";
+    if (S.view === "perfil-teste" && !S.perfilDraft) S.view = "perfis";
+    if (!["inicio", "meu", "evolucao", "perfis", "perfil", "disc-teste", "perfil-teste"].includes(S.view)) S.view = "inicio";
+    content = shell({ inicio: viewInicio, meu: viewMeu, evolucao: viewEvolucao, perfis: viewPerfis, perfil: viewPerfilModelo, "disc-teste": viewDiscTeste, "perfil-teste": viewPerfilTeste }[S.view]());
   }
   app.replaceChildren(...[content].flat().filter(Boolean));
   if (window.Chart) chartJobs.forEach(job => { try { job(); } catch (e) { console.error(e); } });
-  if (S.session && S.me && isActive(S.me) && S.me.aceite_termo_em && !S.loading) talvezNovidades();
+  if (S.session && S.me && isActive(S.me) && S.me.aceite_termo_em && S.me.termo_versao === TERMO_VERSAO && !S.loading) talvezNovidades();
 }
 
 
 /* =========================================================
    VERSÃO 6 — módulos novos
    ========================================================= */
-const VERSAO = "6.0";
+const VERSAO = "7.0";
 const NOVIDADES = [
+  "Novas análises de perfil: Pirâmide de Maslow, Big Five, Âncoras de carreira e Inteligência emocional, junto com o DISC.",
+  "Cada análise pode ser refeita a cada 3 meses. O gestor pode liberar antes, se precisar.",
+  "Termo de uso de dados atualizado para incluir as novas análises.",
   "Teste de perfil comportamental DISC completo, com resultado detalhado e histórico.",
   "Mapa de competências visível para cada pessoa, com autoavaliação comparada à avaliação do gestor.",
   "Avaliações ficam em rascunho até o gestor liberar. Feedback separado da anotação privada.",
@@ -1697,11 +1729,11 @@ const NOVIDADES = [
   "Termo de uso de dados (LGPD) e botão para baixar os seus dados.",
 ];
 const RECUPERACAO_SENHA = false; // ligar depois que o SMTP estiver configurado no Supabase
-const TERMO_VERSAO = "1";
+const TERMO_VERSAO = "2";
 const TERMO = [
   "Este portal é usado pela LC Sistemas para acompanhar o desenvolvimento profissional do time comercial.",
-  "Dados tratados: nome, e-mail corporativo, cargo, telefone, foto, currículo, certificados de cursos, perfil comportamental DISC, autoavaliações, avaliações do gestor, pontos de melhoria, plano de desenvolvimento e registros de reuniões 1:1.",
-  "Finalidade: apoiar o seu desenvolvimento, organizar treinamentos e conduzir conversas de acompanhamento. O perfil DISC descreve estilo de comportamento e não é usado como critério isolado para promoção, remuneração ou desligamento.",
+  "Dados tratados: nome, e-mail corporativo, cargo, telefone, foto, currículo, certificados de cursos, análises de perfil (DISC, Big Five, Pirâmide de Maslow, âncoras de carreira e inteligência emocional), autoavaliações, avaliações do gestor, pontos de melhoria, plano de desenvolvimento e registros de reuniões 1:1.",
+  "Finalidade: apoiar o seu desenvolvimento, organizar treinamentos e conduzir conversas de acompanhamento. As análises de perfil descrevem estilo, motivação e preferências e não são usadas como critério isolado para promoção, remuneração ou desligamento.",
   "Quem acessa: você e o gestor do time. Anotações privadas e registros de 1:1 são visíveis apenas ao gestor. Avaliações só ficam visíveis para você depois que o gestor as libera.",
   "Segurança: os dados ficam em banco protegido por regras de acesso, com registro de todas as alterações. Os arquivos ficam em armazenamento privado.",
   "Seus direitos: você pode baixar os seus dados a qualquer momento pelo botão “Meus dados” e pedir correção ou exclusão ao gestor. Quando você deixar a empresa, seu acesso é bloqueado e os dados podem ser apagados definitivamente.",
@@ -1851,7 +1883,7 @@ function viewDiscTeste() {
         h("button", { type: "button", class: "disc-pick l", "aria-pressed": r.l === idx, "aria-label": `${DISC_BLOCOS[bi][idx][0]}: menos combina`, onclick: () => pick("l", idx) }, "Menos"))),
       h("div", { class: "row", style: "justify-content:space-between;margin-top:16px" },
         h("button", { class: "btn ghost", disabled: bi === 0, onclick: () => { st.i--; render(); } }, "Anterior"),
-        h("button", { class: "btn ghost small", onclick: async () => { if (await confirmBox("Sair do teste? As respostas deste teste serão perdidas.", "Sair", true)) { S.discDraft = null; go("disc"); } } }, "Sair do teste"),
+        h("button", { class: "btn ghost small", onclick: async () => { if (await confirmBox("Sair do teste? As respostas deste teste serão perdidas.", "Sair", true)) { S.discDraft = null; go("perfis"); } } }, "Sair do teste"),
         bi < n - 1
           ? h("button", { class: "btn", disabled: !ok, onclick: () => { st.i++; render(); window.scrollTo(0, 0); } }, "Próximo")
           : h("button", { class: "btn", disabled: done < n, onclick: finishDisc }, "Ver meu resultado"))),
@@ -1863,7 +1895,7 @@ async function finishDisc() {
   const { pct, perfil } = discScore(resp);
   const { error } = await sb.from("evo_disc").insert({ user_id: S.me.user_id, respostas: resp, d: pct.D, i: pct.I, s: pct.S, c: pct.C, perfil });
   if (error) { toast(sbErr(error), true); return; }
-  S.discDraft = null; await refresh(); go("disc"); toast("Perfil DISC registrado.");
+  S.discDraft = null; await refresh(); abrirPerfil("disc"); toast("Perfil DISC registrado.");
 }
 function startDisc() { S.discDraft = { i: 0, resp: DISC_BLOCOS.map(() => ({ m: null, l: null })) }; S.view = "disc-teste"; render(); window.scrollTo(0, 0); }
 function discHistorico(list) {
@@ -1905,7 +1937,7 @@ function viewDiscTime() {
       com.length ? h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Pessoas"), h("p", {}, "Clique para ver o perfil completo e as dicas de liderança.")),
         h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
           h("thead", {}, h("tr", {}, ["Pessoa", "Perfil", "D", "I", "S", "C", "Respondido"].map((t, i) => h("th", { class: i > 1 ? "num" : "" }, t)))),
-          h("tbody", {}, com.map(id => { const r = lastOf(id); return h("tr", { tabindex: 0, onclick: () => openPerson(id, "disc"), onkeydown: e => { if (e.key === "Enter") openPerson(id, "disc"); } },
+          h("tbody", {}, com.map(id => { const r = lastOf(id); return h("tr", { tabindex: 0, onclick: () => { S.perfilTab = "disc"; openPerson(id, "perfis"); }, onkeydown: e => { if (e.key === "Enter") { S.perfilTab = "disc"; openPerson(id, "perfis"); } } },
             h("td", {}, h("div", { class: "person" }, rings(certsOf(id), 36, nameOf(id), id), h("b", {}, nameOf(id)))),
             h("td", {}, h("span", { class: "disc-tag", style: `background:${DISC_CORES[r.perfil[0]]}` }, r.perfil), " ", DISC_INFO[r.perfil[0]].estilo),
             ...["d", "i", "s", "c"].map(k => h("td", { class: "num" }, h("span", { class: "mini-meter" }, h("i", { style: `width:${r[k]}%;background:${DISC_CORES[k.toUpperCase()]}` })), " ", r[k])),
@@ -1992,6 +2024,9 @@ function pdiSugestoes(uid) {
   const av = latest(S.aval.get(uid), "data"), auto = latest(S.auto.get(uid), "data"), disc = latest(S.disc.get(uid), "criado_em");
   if (av) for (const [k, l] of COMPETENCIAS) { const n = Number(av.notas?.[k]); if (n && n <= 3) out.push({ txt: `${l}: nota ${n} na última avaliação`, pre: { titulo: `Desenvolver ${l.toLowerCase()}`, competencia: k, tipo: "curso" } }); }
   if (av && auto) for (const [k, l] of COMPETENCIAS) { const a = Number(auto.notas?.[k]), g = Number(av.notas?.[k]); if (a && g && a - g >= 2) out.push({ txt: `${l}: a pessoa se deu ${a} e você deu ${g} (ponto cego)`, pre: { titulo: `Alinhar expectativas sobre ${l.toLowerCase()}`, competencia: k, tipo: "acao" } }); }
+  const mas = perfisDe(uid, "maslow")[0], anc = perfisDe(uid, "ancoras")[0];
+  if (mas && mas.resultado.pct[mas.resultado.foco] < 65) { const D = MODELOS.maslow.dims[mas.resultado.foco]; out.push({ txt: `Maslow: foco em ${D.nome.toLowerCase()} (${mas.resultado.pct[mas.resultado.foco]}% atendido)`, pre: { titulo: `Conversar e agir sobre ${D.nome.toLowerCase()}`, descricao: D.apoio, tipo: "acao" } }); }
+  if (anc) { const D = MODELOS.ancoras.dims[anc.resultado.principal]; out.push({ txt: `Âncora de carreira: ${D.nome.toLowerCase()}`, pre: { titulo: `Plano de carreira alinhado a ${D.nome.toLowerCase()}`, descricao: D.dev, tipo: "acao" } }); }
   if (disc) { const info = DISC_INFO[disc.perfil[0]]; out.push({ txt: `Perfil ${disc.perfil}: ${info.atencao[0].toLowerCase()}`, pre: { titulo: `Trabalhar: ${info.atencao[0].toLowerCase()}`, tipo: "acao" } }); }
   return out;
 }
@@ -2062,14 +2097,17 @@ function lembretes() {
       if (lastAuto && (!lastAv || lastAuto.data > lastAv.data)) add("medio", nm + "respondeu a autoavaliação e aguarda a sua avaliação", () => openPerson(id, "avaliacoes"));
       prazos(id, null, nm);
       if (!S.people.get(id)?.atualizado_em) add("info", nm + "currículo ainda não preenchido", () => openPerson(id, "curriculo"));
-      if (!(S.disc.get(id) || []).length) add("info", nm + "perfil DISC ainda não respondido", () => openPerson(id, "disc"));
+      const pendPerf = ORDEM_MODELOS.filter(m => !perfisDe(id, m).length).length;
+      if (pendPerf) add("info", nm + `${pendPerf} de ${ORDEM_MODELOS.length} análises de perfil ainda não respondidas`, () => openPerson(id, "perfis"));
     }
     const ub = S.config.ultimo_backup, dias = ub ? daysSince(ub) : null;
     if (dias == null || dias > 30) add("alto", dias == null ? "Nenhum backup baixado ainda" : `Último backup há ${dias} dias`, () => go("historico"));
   } else {
     const id = S.me.user_id;
     if (!S.me.atualizado_em) add("medio", "Complete o seu currículo", () => go("meu"));
-    if (!(S.disc.get(id) || []).length) add("medio", "Responda o seu perfil DISC", () => go("disc"));
+    const pendPerf = ORDEM_MODELOS.filter(m => !perfisDe(id, m).length);
+    if (pendPerf.length) add("medio", pendPerf.length === 1 ? `Responda a análise ${MODELOS[pendPerf[0]].nome}` : `Você tem ${pendPerf.length} análises de perfil para responder`, () => go("perfis"));
+    for (const l of S.liberacoes) add("info", `O gestor liberou o ${MODELOS[l.modelo]?.nome || l.modelo} para você refazer`, () => go("perfis"));
     const lastAuto = latest(S.auto.get(id), "data");
     if (!lastAuto) add("medio", "Faça a sua autoavaliação de competências", () => formAutoavaliacao(id));
     else if (daysSince(lastAuto.data) > 90) add("info", "Sua última autoavaliação tem mais de 3 meses", () => formAutoavaliacao(id));
@@ -2168,6 +2206,7 @@ function termoGate() {
   } }, "Li e aceito");
   return h("div", { class: "center" }, h("div", { class: "card", style: "width:min(640px,100%)" },
     h("h1", {}, "Termo de uso de dados"),
+    S.me.aceite_termo_em && h("p", { class: "notice small" }, "O termo foi atualizado para incluir as novas análises de perfil. Leia e aceite para continuar."),
     h("div", { class: "termo" }, TERMO.map(p => h("p", {}, p))),
     btn, h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair")));
 }
@@ -2177,7 +2216,7 @@ async function meusDados(btn) {
   try {
     const zip = new JSZip();
     const dados = { gerado_em: new Date().toISOString(), pessoa: S.me, certificados: certsOf(uid), avaliacoes_liberadas: S.aval.get(uid) || [],
-      pontos_de_melhoria: S.melh.get(uid) || [], autoavaliacoes: S.auto.get(uid) || [], disc: S.disc.get(uid) || [], pdi: S.pdi.get(uid) || [] };
+      pontos_de_melhoria: S.melh.get(uid) || [], autoavaliacoes: S.auto.get(uid) || [], disc: S.disc.get(uid) || [], analises_de_perfil: S.perfis.get(uid) || [], pdi: S.pdi.get(uid) || [] };
     if (S.owner) dados.observacao = "Como gestor, os dados do time estão no backup completo, em Segurança e backup.";
     zip.file("meus-dados.json", JSON.stringify(dados, null, 2));
     const { data: files } = await sb.storage.from(BUCKET).list(uid, { limit: 1000 });
@@ -2258,7 +2297,7 @@ function viewInicio() {
       h("div", { class: "kpis" },
         kpi(certs.length, "cursos concluídos"), kpi(fmtH(hoursOf(certs)), "de formação"),
         kpi(fmt1(avgOf(lastLib)), "média da última avaliação"), kpi(pdiPend, "ações abertas no seu PDI"),
-        kpi(disc ? disc.perfil : "–", disc ? DISC_INFO[disc.perfil[0]].estilo : "perfil DISC")),
+        kpi(`${ORDEM_MODELOS.filter(m => perfisDe(uid, m).length).length} de ${ORDEM_MODELOS.length}`, "análises de perfil respondidas")),
       h("div", { class: "grid3" }, lembretesPanel(10),
         h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Minha trilha de formação")), hoursTrailChart(uid, "short")))),
   ];
@@ -2294,13 +2333,422 @@ function viewEvolucao() {
   ];
 }
 
+
+/* =========================================================
+   VERSÃO 7 — análises de perfil (Maslow, Big Five, Âncoras, IE)
+   ========================================================= */
+const COOLDOWN_DIAS = 90;
+const ESCALA = ["Discordo totalmente", "Discordo", "Neutro", "Concordo", "Concordo totalmente"];
+const faixa = p => p >= 65 ? "alto" : p <= 40 ? "baixo" : "medio";
+
+const MODELOS = {
+  disc: { nome: "DISC", sub: "Estilo de comportamento", tempo: "10 a 15 min", cor: "#C2413B",
+    desc: "Como você age e se comunica no trabalho: dominância, influência, estabilidade e conformidade." },
+
+  maslow: { nome: "Pirâmide de Maslow", sub: "Momento motivacional", tempo: "5 min", cor: "#8A5A2B",
+    desc: "Quais necessidades estão atendidas hoje no seu trabalho e qual nível pede mais atenção agora.",
+    instrucao: "Pense no seu momento atual de trabalho e diga o quanto concorda com cada frase.",
+    dims: {
+      basicas:    { nome: "Necessidades básicas", txt: "Condições de trabalho, descanso e carga sustentável.",
+        apoio: "Revise carga, ferramentas e rotina. Sem isso resolvido, os outros níveis não engajam.", voce: "Diga claramente o que está faltando em condições, ferramentas ou carga de trabalho." },
+      seguranca:  { nome: "Segurança", txt: "Estabilidade, clareza do que se espera e regras justas.",
+        apoio: "Dê clareza de expectativas, critérios de avaliação e previsibilidade.", voce: "Peça clareza sobre metas e critérios e alinhe as dúvidas na 1:1." },
+      social:     { nome: "Pertencimento", txt: "Fazer parte do time, ter apoio e ser ouvido.",
+        apoio: "Inclua a pessoa em decisões e rituais do time e incentive parcerias.", voce: "Aproxime-se dos colegas, ofereça e peça ajuda, participe das conversas do time." },
+      estima:     { nome: "Reconhecimento", txt: "Ter o trabalho valorizado, autonomia e orgulho do que entrega.",
+        apoio: "Reconheça entregas de forma específica e dê mais autonomia.", voce: "Compartilhe suas conquistas e peça feedback sobre o que está indo bem." },
+      realizacao: { nome: "Realização", txt: "Crescer, aprender, usar os talentos e ver propósito.",
+        apoio: "Ofereça desafios, novos aprendizados e um plano de crescimento.", voce: "Proponha projetos e cursos que te desafiem e registre no seu PDI." },
+    },
+    ordem: ["basicas", "seguranca", "social", "estima", "realizacao"],
+    itens: [
+      ["basicas", "Tenho as condições e as ferramentas de que preciso para trabalhar bem."],
+      ["basicas", "Consigo descansar o suficiente e minha carga de trabalho é sustentável."],
+      ["basicas", "Meus horários e minha rotina me permitem cuidar da saúde."],
+      ["basicas", "Minha remuneração cobre as minhas necessidades básicas."],
+      ["seguranca", "Sinto estabilidade no meu emprego."],
+      ["seguranca", "Tenho clareza do que se espera de mim e de como sou avaliado."],
+      ["seguranca", "Sinto que posso errar e aprender sem medo de punição desproporcional."],
+      ["seguranca", "As regras e os combinados do time são cumpridos de forma justa."],
+      ["social", "Sinto que faço parte do time."],
+      ["social", "Tenho bom relacionamento com os colegas."],
+      ["social", "Posso contar com alguém do time quando preciso de ajuda."],
+      ["social", "Sinto que minha opinião é ouvida nas conversas do time."],
+      ["estima", "Meu trabalho é reconhecido pelo gestor."],
+      ["estima", "Sinto orgulho dos resultados que entrego."],
+      ["estima", "Tenho autonomia para tomar decisões dentro da minha função."],
+      ["estima", "Clientes e colegas valorizam o meu trabalho."],
+      ["realizacao", "Tenho oportunidades reais de crescer e aprender."],
+      ["realizacao", "Meu trabalho usa bem os meus talentos."],
+      ["realizacao", "Vejo propósito no que faço."],
+      ["realizacao", "Consigo enxergar um futuro para mim na empresa."],
+    ] },
+
+  bigfive: { nome: "Big Five", sub: "Cinco grandes fatores de personalidade", tempo: "10 min", cor: "#2F6DB5",
+    desc: "O modelo de personalidade com mais base científica: abertura, organização, extroversão, amabilidade e estabilidade emocional.",
+    instrucao: "Descreva como você é de verdade hoje, não como gostaria de ser. Itens do IPIP (International Personality Item Pool), de domínio público.",
+    dims: {
+      abertura: { nome: "Abertura", alto: "Curioso, criativo e aberto a ideias novas. Gosta de aprender e de pensar em possibilidades.", baixo: "Prático e focado no concreto. Prefere o que já foi testado a experimentar.",
+        trabalho: "Alto: ótimo para propor melhorias e aprender o sistema a fundo. Baixo: ótimo para seguir processos com consistência." },
+      conscienciosidade: { nome: "Organização", alto: "Organizado, disciplinado e confiável. Planeja, cumpre prazos e cuida dos detalhes.", baixo: "Flexível e espontâneo, mas pode deixar tarefas e registros para depois.",
+        trabalho: "Alto: confiável em CRM, prazos e follow-ups. Baixo: ganha muito com rotinas, checklists e lembretes." },
+      extroversao: { nome: "Extroversão", alto: "Sociável e energizado pelo contato com pessoas. Fala com facilidade e gosta de estar em evidência.", baixo: "Reservado e reflexivo. Prefere conversas individuais e precisa de tempo para recarregar.",
+        trabalho: "Alto: brilha em prospecção e apresentações. Baixo: brilha em atendimento consultivo, escuta e análise." },
+      amabilidade: { nome: "Amabilidade", alto: "Cooperativo, empático e atencioso. Valoriza a harmonia e ajuda os outros.", baixo: "Direto e objetivo. Questiona mais e negocia com firmeza.",
+        trabalho: "Alto: excelente em pós-venda e relacionamento. Baixo: firme em negociações, mas precisa cuidar do tom." },
+      estabilidade: { nome: "Estabilidade emocional", alto: "Calmo, resiliente e equilibrado sob pressão.", baixo: "Sente mais o estresse e as variações do dia a dia.",
+        trabalho: "Alto: segura bem metas e clientes difíceis. Baixo: se beneficia de apoio, previsibilidade e pausas planejadas." },
+    },
+    ordem: ["abertura", "conscienciosidade", "extroversao", "amabilidade", "estabilidade"],
+    itens: [
+      ["extroversao", "Sou quem anima os encontros do time."], ["extroversao", "Fico à vontade perto de outras pessoas."],
+      ["extroversao", "Puxo conversa com facilidade."], ["extroversao", "Converso com muitas pessoas diferentes em eventos."],
+      ["extroversao", "Não me importo de ser o centro das atenções."], ["extroversao", "Não falo muito.", 1],
+      ["extroversao", "Prefiro ficar nos bastidores.", 1], ["extroversao", "Tenho pouco a dizer.", 1],
+      ["extroversao", "Não gosto de chamar atenção para mim.", 1], ["extroversao", "Fico quieto perto de desconhecidos.", 1],
+      ["amabilidade", "Tenho interesse genuíno pelas pessoas."], ["amabilidade", "Me solidarizo com o que os outros sentem."],
+      ["amabilidade", "Tenho bom coração."], ["amabilidade", "Reservo tempo para ajudar os outros."],
+      ["amabilidade", "Percebo as emoções dos outros."], ["amabilidade", "Faço as pessoas se sentirem à vontade."],
+      ["amabilidade", "Me preocupo pouco com os outros.", 1], ["amabilidade", "Às vezes ofendo as pessoas.", 1],
+      ["amabilidade", "Não me interesso pelos problemas dos outros.", 1], ["amabilidade", "Não tenho muito interesse pelos outros.", 1],
+      ["conscienciosidade", "Estou sempre preparado."], ["conscienciosidade", "Presto atenção aos detalhes."],
+      ["conscienciosidade", "Resolvo as tarefas logo."], ["conscienciosidade", "Gosto de ordem."],
+      ["conscienciosidade", "Sigo uma agenda."], ["conscienciosidade", "Sou exigente com o meu trabalho."],
+      ["conscienciosidade", "Deixo minhas coisas espalhadas.", 1], ["conscienciosidade", "Faço bagunça nas coisas.", 1],
+      ["conscienciosidade", "Esqueço de guardar as coisas no lugar.", 1], ["conscienciosidade", "Fujo das minhas obrigações.", 1],
+      ["estabilidade", "Fico relaxado na maior parte do tempo."], ["estabilidade", "Raramente me sinto para baixo."],
+      ["estabilidade", "Fico estressado com facilidade.", 1], ["estabilidade", "Me preocupo com as coisas.", 1],
+      ["estabilidade", "Me perturbo com facilidade.", 1], ["estabilidade", "Fico chateado facilmente.", 1],
+      ["estabilidade", "Mudo muito de humor.", 1], ["estabilidade", "Tenho altos e baixos de humor com frequência.", 1],
+      ["estabilidade", "Me irrito com facilidade.", 1], ["estabilidade", "Com frequência me sinto para baixo.", 1],
+      ["abertura", "Tenho um vocabulário rico."], ["abertura", "Tenho imaginação fértil."],
+      ["abertura", "Tenho ideias excelentes."], ["abertura", "Entendo as coisas rapidamente."],
+      ["abertura", "Uso palavras pouco comuns."], ["abertura", "Reservo tempo para refletir sobre as coisas."],
+      ["abertura", "Sou cheio de ideias."], ["abertura", "Tenho dificuldade de entender ideias abstratas.", 1],
+      ["abertura", "Não me interesso por ideias abstratas.", 1], ["abertura", "Não tenho muita imaginação.", 1],
+    ] },
+
+  ancoras: { nome: "Âncoras de carreira", sub: "O que você mais valoriza na carreira", tempo: "5 min", cor: "#6B4FA8",
+    desc: "Os valores que guiam as suas escolhas profissionais. Baseado no conceito de Edgar Schein.",
+    instrucao: "Responda pensando no que é importante para você na carreira, não no seu cargo atual.",
+    dims: {
+      tecnica: { nome: "Competência técnica", txt: "Ser especialista e reconhecido pelo domínio do que faz.", dev: "Trilhas de especialização, certificações e ser referência técnica no time." },
+      gestao: { nome: "Gestão", txt: "Liderar pessoas e responder por resultados de uma área.", dev: "Responsabilidades de coordenação, mentoria de colegas e formação em liderança." },
+      autonomia: { nome: "Autonomia", txt: "Liberdade para decidir como, quando e onde trabalhar.", dev: "Metas claras com liberdade no método e menos controle de processo." },
+      seguranca: { nome: "Segurança", txt: "Estabilidade, previsibilidade e benefícios.", dev: "Clareza de carreira, regras transparentes e reconhecimento da permanência." },
+      empreendedora: { nome: "Criatividade empreendedora", txt: "Criar coisas novas: produtos, processos ou negócios.", dev: "Projetos novos, pilotos de melhoria e espaço para propor soluções." },
+      servico: { nome: "Serviço e propósito", txt: "Ajudar pessoas e gerar impacto real.", dev: "Contato com o resultado para o cliente, histórias de sucesso e projetos de impacto." },
+      desafio: { nome: "Desafio", txt: "Resolver problemas difíceis e superar metas ousadas.", dev: "Metas desafiadoras, contas complexas e problemas que ninguém resolveu." },
+      estilo: { nome: "Estilo de vida", txt: "Equilibrar trabalho, família e vida pessoal.", dev: "Flexibilidade de horário, previsibilidade de agenda e respeito ao tempo pessoal." },
+    },
+    ordem: ["tecnica", "gestao", "autonomia", "seguranca", "empreendedora", "servico", "desafio", "estilo"],
+    itens: [
+      ["tecnica", "Quero ser reconhecido como especialista no que faço."], ["gestao", "Quero liderar pessoas e responder pelos resultados de uma área."],
+      ["autonomia", "Quero liberdade para definir como e quando faço o meu trabalho."], ["seguranca", "Valorizo estabilidade e previsibilidade na carreira."],
+      ["empreendedora", "Gosto de criar coisas novas: produtos, processos ou negócios."], ["servico", "Quero que o meu trabalho ajude pessoas de verdade."],
+      ["desafio", "Gosto de problemas que parecem impossíveis."], ["estilo", "Equilibrar trabalho, família e vida pessoal é prioridade para mim."],
+      ["tecnica", "Prefiro aprofundar meu conhecimento a mudar de área."], ["gestao", "Gosto de coordenar o trabalho de outras pessoas."],
+      ["autonomia", "Me incomodo com regras e controles excessivos."], ["seguranca", "Prefiro uma empresa sólida a uma oportunidade arriscada."],
+      ["empreendedora", "Sonho em construir algo que seja meu."], ["servico", "Escolho tarefas pelo impacto que elas têm nos outros."],
+      ["desafio", "Me motivo quando a meta é difícil."], ["estilo", "Eu recusaria uma promoção que prejudicasse a minha vida pessoal."],
+      ["tecnica", "Me sinto realizado quando resolvo problemas usando a minha especialidade."], ["gestao", "Ter um cargo de gestão é uma meta importante para mim."],
+      ["autonomia", "Prefiro um trabalho em que eu decida o meu próprio ritmo."], ["seguranca", "Benefícios e segurança pesam muito nas minhas decisões de carreira."],
+      ["empreendedora", "Me empolgo quando posso começar algo do zero."], ["servico", "Sinto mais satisfação quando ajudo um cliente a resolver um problema real."],
+      ["desafio", "Rotina e tarefas fáceis me desmotivam."], ["estilo", "Flexibilidade de horário e de local é muito importante para mim."],
+    ] },
+
+  ie: { nome: "Inteligência emocional", sub: "Como você lida com emoções", tempo: "7 min", cor: "#2E8B57",
+    desc: "Autoconsciência, autocontrole, automotivação, empatia e habilidade social. Baseado no modelo de Daniel Goleman.",
+    instrucao: "Pense em situações reais de trabalho, com clientes e colegas, e responda com sinceridade.",
+    dims: {
+      autoconsciencia: { nome: "Autoconsciência", alto: "Reconhece as próprias emoções e o efeito delas no trabalho.", baixo: "Às vezes só percebe o que sentiu depois de reagir.",
+        dica: "Ao fim do dia, anote um momento em que sentiu algo forte e o que o provocou." },
+      autocontrole: { nome: "Autocontrole", alto: "Mantém a calma e responde em vez de reagir.", baixo: "A pressão pode levar a respostas impulsivas.",
+        dica: "Em situações tensas, faça uma pausa curta antes de responder e peça um tempo se precisar." },
+      automotivacao: { nome: "Automotivação", alto: "Persiste diante de obstáculos e se recupera rápido de um não.", baixo: "Os obstáculos podem desanimar mais do que deveriam.",
+        dica: "Quebre metas grandes em pequenas vitórias semanais e registre o progresso." },
+      empatia: { nome: "Empatia", alto: "Percebe como os outros se sentem e se coloca no lugar do cliente.", baixo: "Pode ter dificuldade de entender reações diferentes das suas.",
+        dica: "Antes de responder um cliente, resuma o que ele disse e pergunte se entendeu certo." },
+      social: { nome: "Habilidade social", alto: "Resolve conflitos, influencia sem impor e constrói boas relações.", baixo: "Conversas difíceis tendem a ser adiadas.",
+        dica: "Escolha uma conversa difícil adiada e prepare três pontos objetivos para ela." },
+    },
+    ordem: ["autoconsciencia", "autocontrole", "automotivacao", "empatia", "social"],
+    itens: [
+      ["autoconsciencia", "Percebo com clareza o que estou sentindo."], ["autocontrole", "Mantenho a calma em situações de pressão."],
+      ["automotivacao", "Continuo me esforçando mesmo quando os resultados demoram."], ["empatia", "Percebo quando um colega não está bem, mesmo que ele não diga."],
+      ["social", "Consigo resolver conflitos de forma respeitosa."],
+      ["autoconsciencia", "Sei como as minhas emoções afetam o meu trabalho."], ["autocontrole", "Penso antes de responder quando estou chateado."],
+      ["automotivacao", "Defino metas para mim além das que me pedem."], ["empatia", "Consigo me colocar no lugar do cliente."],
+      ["social", "Comunico ideias difíceis com clareza e tato."],
+      ["autoconsciencia", "Conheço bem os meus pontos fortes e fracos."], ["autocontrole", "Consigo me recuperar rápido de um dia difícil."],
+      ["automotivacao", "Vejo os erros como oportunidade de aprender."], ["empatia", "Escuto com atenção antes de dar a minha opinião."],
+      ["social", "Construo bons relacionamentos com facilidade."],
+      ["autoconsciencia", "Recebo críticas e reconheço quando elas têm razão."], ["autocontrole", "Quando um cliente é rude, não levo para o lado pessoal."],
+      ["automotivacao", "Mantenho o otimismo depois de ouvir um não."], ["empatia", "Respeito pontos de vista diferentes do meu."],
+      ["social", "Sei influenciar sem impor."],
+      ["autoconsciencia", "Às vezes só percebo que estava irritado depois que já reagi.", 1], ["autocontrole", "Costumo falar coisas no calor do momento de que depois me arrependo.", 1],
+      ["automotivacao", "Desanimo com facilidade diante de obstáculos.", 1], ["empatia", "Tenho dificuldade de entender por que as pessoas reagem de certas formas.", 1],
+      ["social", "Evito conversas difíceis mesmo quando são necessárias.", 1],
+    ] },
+};
+const ORDEM_MODELOS = ["disc", "maslow", "bigfive", "ancoras", "ie"];
+
+function calcularPerfil(modelo, resp) {
+  const M = MODELOS[modelo], soma = {}, n = {};
+  M.itens.forEach(([dim, , rev], i) => { const v = Number(resp[i]); if (!v) return; soma[dim] = (soma[dim] || 0) + (rev ? 6 - v : v); n[dim] = (n[dim] || 0) + 1; });
+  const pct = {};
+  for (const d of M.ordem) pct[d] = n[d] ? Math.round(((soma[d] / n[d]) - 1) / 4 * 100) : 0;
+  const ord = [...M.ordem].sort((a, b) => pct[b] - pct[a]);
+  const r = { pct, principal: ord[0], secundario: ord[1], menor: ord[ord.length - 1] };
+  if (modelo === "maslow") r.foco = M.ordem.find(d => pct[d] < 65) || "realizacao";
+  return r;
+}
+const resumoPerfil = (modelo, row) => {
+  if (!row) return null;
+  if (modelo === "disc") return `${row.perfil} · ${DISC_INFO[row.perfil[0]].estilo}`;
+  const M = MODELOS[modelo], r = row.resultado || {};
+  if (modelo === "maslow") return `Foco: ${M.dims[r.foco]?.nome || "–"}`;
+  return M.dims[r.principal]?.nome || "–";
+};
+
+/* ---------- dados e prazo ---------- */
+function perfisDe(uid, modelo) {
+  if (modelo === "disc") return [...(S.disc.get(uid) || [])].sort(byDateDesc("criado_em"));
+  return [...(S.perfis.get(uid) || [])].filter(p => p.modelo === modelo).sort(byDateDesc("criado_em"));
+}
+function disponibilidade(uid, modelo) {
+  const ult = perfisDe(uid, modelo)[0];
+  const lib = S.liberacoes.find(l => l.user_id === uid && l.modelo === modelo);
+  if (!ult) return { pode: true };
+  if (lib) return { pode: true, liberado: true, ult, lib };
+  const t = toTime(ult.criado_em) + COOLDOWN_DIAS * 86400000;
+  if (Date.now() >= t) return { pode: true, ult };
+  const d = new Date(t);
+  return { pode: false, ult, prox: `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` };
+}
+async function liberarRefazer(uid, modelo, liberar) {
+  const nm = nameOf(uid), mn = MODELOS[modelo].nome;
+  if (!(await confirmBox(liberar ? `Liberar ${nm} para refazer o ${mn} agora? A liberação vale para uma vez.` : `Cancelar a liberação do ${mn} para ${nm}?`, liberar ? "Liberar" : "Cancelar liberação"))) return;
+  run(liberar ? sb.from("evo_liberacoes").upsert({ user_id: uid, modelo }) : sb.from("evo_liberacoes").delete().eq("user_id", uid).eq("modelo", modelo),
+    liberar ? "Liberado para refazer." : "Liberação cancelada.");
+}
+
+/* ---------- questionário (escala de concordância) ---------- */
+const POR_PAGINA = 6;
+function startPerfil(modelo) {
+  if (modelo === "disc") { startDisc(); return; }
+  S.perfilDraft = { modelo, pag: 0, resp: MODELOS[modelo].itens.map(() => null) };
+  S.view = "perfil-teste"; render(); window.scrollTo(0, 0);
+}
+function viewPerfilTeste() {
+  const st = S.perfilDraft, M = MODELOS[st.modelo];
+  const total = M.itens.length, pags = Math.ceil(total / POR_PAGINA);
+  const ini = st.pag * POR_PAGINA, fim = Math.min(total, ini + POR_PAGINA);
+  const feitos = st.resp.filter(Boolean).length;
+  const paginaOk = st.resp.slice(ini, fim).every(Boolean);
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, M.nome), h("p", {}, M.instrucao))),
+    h("div", { class: "panel likert-test" },
+      h("div", { class: "disc-prog" }, h("span", {}, `Parte ${st.pag + 1} de ${pags}, ${feitos} de ${total} respondidas`), h("div", { class: "bar" }, h("i", { style: `width:${(feitos / total) * 100}%` }))),
+      M.itens.slice(ini, fim).map(([, txt], k) => {
+        const i = ini + k;
+        return h("div", { class: "lk-item" + (st.resp[i] ? " done" : "") },
+          h("p", { class: "lk-q" }, `${i + 1}. ${txt}`),
+          h("div", { class: "lk-scale", role: "radiogroup", "aria-label": txt },
+            ESCALA.map((lbl, v) => h("button", { type: "button", class: "lk-opt", role: "radio", "aria-checked": st.resp[i] === v + 1, "aria-pressed": st.resp[i] === v + 1, title: lbl,
+              onclick: () => { st.resp[i] = v + 1; render(); } }, h("b", {}, v + 1), h("span", {}, lbl)))));
+      }),
+      h("div", { class: "row", style: "justify-content:space-between;margin-top:16px" },
+        h("button", { class: "btn ghost", disabled: st.pag === 0, onclick: () => { st.pag--; render(); window.scrollTo(0, 0); } }, "Anterior"),
+        h("button", { class: "btn ghost small", onclick: async () => { if (await confirmBox("Sair do questionário? As respostas serão perdidas.", "Sair", true)) { S.perfilDraft = null; go("perfis"); } } }, "Sair"),
+        st.pag < pags - 1
+          ? h("button", { class: "btn", disabled: !paginaOk, onclick: () => { st.pag++; render(); window.scrollTo(0, 0); } }, "Próximo")
+          : h("button", { class: "btn", disabled: feitos < total, onclick: finishPerfil }, "Ver meu resultado"))),
+  ];
+}
+async function finishPerfil() {
+  const st = S.perfilDraft;
+  if (st.resp.some(x => !x)) { toast("Responda todas as frases.", true); return; }
+  const resultado = calcularPerfil(st.modelo, st.resp);
+  const { error } = await sb.from("evo_perfis").insert({ user_id: S.me.user_id, modelo: st.modelo, respostas: st.resp, resultado });
+  if (error) { toast(sbErr(error), true); return; }
+  const m = st.modelo; S.perfilDraft = null; await refresh(); abrirPerfil(m); toast("Resultado registrado.");
+}
+
+/* ---------- resultados ---------- */
+function barrasPerfil(M, pct, cor) {
+  const dims = [...M.ordem].sort((a, b) => pct[b] - pct[a]);
+  return chartBox("", () => ({
+    type: "bar",
+    data: { labels: dims.map(d => M.dims[d].nome), datasets: [{ data: dims.map(d => pct[d]), backgroundColor: cor, borderRadius: 6 }] },
+    options: { indexAxis: "y", plugins: { legend: { display: false }, tooltip: { callbacks: { label: it => `${it.raw} de 100` } } },
+      scales: { x: { min: 0, max: 100, ticks: { stepSize: 25 } }, y: { grid: { display: false } } } },
+  }));
+}
+function piramide(M, r) {
+  const W = 360, H = 300, niveis = [...M.ordem].reverse(), alt = H / niveis.length;
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, class: "piramide", role: "img", "aria-label": `Pirâmide de Maslow. Foco atual: ${M.dims[r.foco].nome}` });
+  niveis.forEach((d, i) => {
+    const y = i * alt, topW = (i / niveis.length) * W, botW = ((i + 1) / niveis.length) * W;
+    const p = r.pct[d], cor = p >= 65 ? "#2E8B57" : p >= 45 ? "#D99A00" : "#C2413B";
+    svg.append(s("polygon", { points: `${(W - topW) / 2},${y} ${(W + topW) / 2},${y} ${(W + botW) / 2},${y + alt - 3} ${(W - botW) / 2},${y + alt - 3}`,
+      fill: cor, opacity: d === r.foco ? 1 : 0.55, stroke: d === r.foco ? "#111" : "none", "stroke-width": 2 }, s("title", {}, `${M.dims[d].nome}: ${p}%`)));
+    svg.append(s("text", { x: W / 2, y: y + alt / 2 + (i === 0 ? 10 : 4), "text-anchor": "middle", class: "pir-t" }, i === 0 ? `${p}%` : `${M.dims[d].nome} ${p}%`));
+  });
+  return svg;
+}
+function resultadoPerfil(modelo, row, paraGestor) {
+  const M = MODELOS[modelo], r = row.resultado, quem = paraGestor ? "a pessoa" : "você";
+  const head = h("div", { class: "panel-head" }, h("h2", {}, M.nome), h("p", {}, `Respondido em ${fmtDate(row.criado_em)}`));
+  if (modelo === "maslow") {
+    const f = M.dims[r.foco];
+    return h("div", { class: "stack" },
+      h("div", { class: "grid2" },
+        h("div", { class: "panel" }, head, h("div", { class: "pir-wrap" }, piramide(M, r)),
+          h("p", { class: "muted small" }, "Verde: necessidade atendida. Amarelo: parcialmente. Vermelho: pede atenção. O nível com contorno é o foco atual.")),
+        h("div", { class: "panel" },
+          h("h2", {}, `Foco atual: ${f.nome}`),
+          h("p", { style: "margin-top:8px" }, f.txt),
+          h("p", { class: "muted", style: "margin-top:8px" }, r.foco === "realizacao" && r.pct.realizacao >= 65
+            ? "Todos os níveis estão bem atendidos. O desafio agora é manter o crescimento."
+            : `Pela lógica de Maslow, este é o primeiro nível, de baixo para cima, que ainda não está bem atendido para ${quem}. Ele tende a pesar mais na motivação do que os níveis acima.`),
+          h("h3", { style: "margin-top:14px" }, paraGestor ? "Como apoiar" : "O que você pode fazer"),
+          h("p", {}, paraGestor ? f.apoio : f.voce),
+          h("p", { class: "notice small", style: "margin-top:14px" }, "A Pirâmide de Maslow é uma teoria de motivação, não um teste psicológico. Use o resultado como ponto de partida para conversar na 1:1."))));
+  }
+  if (modelo === "bigfive") {
+    return h("div", { class: "stack" },
+      h("div", { class: "panel" }, head, barrasPerfil(M, r.pct, M.cor)),
+      h("div", { class: "grid2" }, M.ordem.map(d => { const fx = faixa(r.pct[d]), D = M.dims[d];
+        return h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h3", {}, D.nome), h("span", { class: "pill " + (fx === "alto" ? "ativo" : fx === "baixo" ? "pendente" : "concluido") }, `${fx === "alto" ? "Alto" : fx === "baixo" ? "Baixo" : "Moderado"}, ${r.pct[d]}`)),
+          h("p", {}, fx === "baixo" ? D.baixo : fx === "alto" ? D.alto : `Equilíbrio entre os dois extremos. ${D.alto.split(".")[0]} em alguns momentos; ${D.baixo.split(".")[0].toLowerCase()} em outros.`),
+          h("p", { class: "muted small", style: "margin-top:8px" }, D.trabalho)); })),
+      h("p", { class: "notice small" }, "Nenhum resultado é melhor que outro: cada combinação de fatores tem forças próprias. Itens do IPIP, de domínio público."));
+  }
+  if (modelo === "ancoras") {
+    const top = [r.principal, r.secundario];
+    return h("div", { class: "stack" },
+      h("div", { class: "grid2" },
+        h("div", { class: "panel" }, head, barrasPerfil(M, r.pct, M.cor)),
+        h("div", { class: "panel" }, top.map((d, i) => h("div", { style: i ? "margin-top:16px" : "" },
+          h("h2", {}, `${i ? "Âncora secundária" : "Âncora principal"}: ${M.dims[d].nome}`),
+          h("p", { style: "margin-top:6px" }, M.dims[d].txt),
+          h("p", { class: "muted small", style: "margin-top:6px" }, h("b", {}, paraGestor ? "Para desenvolver e reter: " : "O que buscar: "), M.dims[d].dev))),
+          h("p", { class: "muted small", style: "margin-top:16px" }, `Menos importante para ${quem} hoje: ${M.dims[r.menor].nome.toLowerCase()}.`))));
+  }
+  if (modelo === "ie") {
+    return h("div", { class: "stack" },
+      h("div", { class: "grid2" },
+        h("div", { class: "panel" }, head, chartBox("", () => ({
+          type: "radar",
+          data: { labels: M.ordem.map(d => M.dims[d].nome), datasets: [{ label: "Autopercepção", data: M.ordem.map(d => r.pct[d]), borderColor: M.cor, backgroundColor: M.cor + "33", pointBackgroundColor: M.cor, borderWidth: 2 }] },
+          options: { plugins: { legend: { display: false } }, scales: { r: { min: 0, max: 100, ticks: { stepSize: 25, backdropColor: "transparent" } } } },
+        }))),
+        r.pct[r.principal] - r.pct[r.menor] < 10 ? h("div", { class: "panel" }, h("h2", {}, "Perfil equilibrado"),
+          h("p", { style: "margin-top:6px" }, "As cinco dimensões estão em níveis parecidos. Use as práticas sugeridas abaixo nas dimensões com nota menor para continuar evoluindo.")) :
+        h("div", { class: "panel" },
+          h("h2", {}, `Ponto mais forte: ${M.dims[r.principal].nome}`), h("p", { style: "margin-top:6px" }, M.dims[r.principal].alto),
+          h("h2", { style: "margin-top:16px" }, `Para desenvolver: ${M.dims[r.menor].nome}`), h("p", { style: "margin-top:6px" }, M.dims[r.menor].baixo),
+          h("p", { class: "muted small", style: "margin-top:6px" }, h("b", {}, "Prática sugerida: "), M.dims[r.menor].dica))),
+      h("div", { class: "grid2" }, M.ordem.map(d => { const fx = faixa(r.pct[d]);
+        return h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h3", {}, M.dims[d].nome), h("span", {}, `${r.pct[d]} de 100`)),
+          h("p", {}, fx === "baixo" ? M.dims[d].baixo : M.dims[d].alto), fx !== "alto" && h("p", { class: "muted small", style: "margin-top:6px" }, M.dims[d].dica)); })),
+      h("p", { class: "notice small" }, "Este resultado é autopercepção. Ele fica ainda mais útil quando conversado com o gestor e comparado com situações reais."));
+  }
+}
+function historicoPerfil(modelo, list) {
+  if (list.length < 2) return null;
+  const M = MODELOS[modelo];
+  return h("div", { class: "panel" }, h("h3", {}, "Histórico"),
+    h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+      h("thead", {}, h("tr", {}, ["Data", "Resultado", ...M.ordem.map(d => M.dims[d].nome)].map((t, i) => h("th", { class: i > 1 ? "num" : "" }, t)))),
+      h("tbody", {}, list.map(r => h("tr", { style: "cursor:default" }, h("td", {}, fmtDate(r.criado_em)), h("td", {}, resumoPerfil(modelo, r)),
+        ...M.ordem.map(d => h("td", { class: "num" }, r.resultado?.pct?.[d] ?? "–"))))))));
+}
+function statusPerfil(uid, modelo, gestor) {
+  const disp = disponibilidade(uid, modelo);
+  if (!disp.ult) return h("p", { class: "muted small" }, gestor ? "Ainda não respondeu." : "Ainda não respondido.");
+  if (disp.liberado) return h("p", { class: "small" }, h("span", { class: "pill ativo" }, "Liberado para refazer"),
+    gestor && h("button", { class: "linkish", style: "margin-left:8px", onclick: () => liberarRefazer(uid, modelo, false) }, "Cancelar liberação"));
+  if (disp.pode) return h("p", { class: "small muted" }, "Já pode ser refeito.");
+  return h("p", { class: "small muted" }, `Pode ser refeito a partir de ${fmtDate(disp.prox)}.`,
+    gestor && h("button", { class: "linkish", style: "margin-left:8px", onclick: () => liberarRefazer(uid, modelo, true) }, "Liberar agora"));
+}
+
+/* ---------- telas da pessoa ---------- */
+function abrirPerfil(modelo) { S.perfilAtual = modelo; S.view = "perfil"; render(); window.scrollTo(0, 0); }
+function viewPerfis() {
+  const uid = S.me.user_id;
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Análises de perfil"),
+      h("p", {}, "Ferramentas para você se conhecer melhor e conversar sobre desenvolvimento. Cada uma pode ser refeita a cada 3 meses."))),
+    h("div", { class: "cards perfis-cards" }, ORDEM_MODELOS.map(m => {
+      const M = MODELOS[m], list = perfisDe(uid, m), disp = disponibilidade(uid, m);
+      return h("div", { class: "panel perfil-card", style: `border-top:4px solid ${M.cor}` },
+        h("h2", {}, M.nome), h("p", { class: "muted small" }, `${M.sub} · ${M.tempo}`),
+        h("p", { class: "small" }, M.desc),
+        list[0] ? h("p", { class: "perfil-res" }, h("b", {}, resumoPerfil(m, list[0])), h("span", { class: "muted small" }, ` em ${fmtDate(list[0].criado_em)}`)) : null,
+        h("div", { class: "row", style: "margin-top:auto" },
+          list[0] && h("button", { class: "btn small", onclick: () => abrirPerfil(m) }, "Ver resultado"),
+          disp.pode ? h("button", { class: list[0] ? "btn ghost small" : "btn small", onclick: () => startPerfil(m) }, list[0] ? (disp.liberado ? "Refazer (liberado)" : "Refazer") : "Começar")
+                    : h("span", { class: "muted small" }, `Disponível de novo em ${fmtDate(disp.prox)}`)));
+    })),
+    h("p", { class: "notice small" }, "Estas análises descrevem estilo, motivação e preferências. Elas não medem desempenho e não são usadas como critério isolado para promoção, remuneração ou desligamento."),
+  ];
+}
+function viewPerfilModelo() {
+  const uid = S.me.user_id, m = S.perfilAtual;
+  if (!MODELOS[m]) { S.view = "perfis"; return viewPerfis(); }
+  const list = perfisDe(uid, m), disp = disponibilidade(uid, m);
+  return [
+    h("button", { class: "back", onclick: () => go("perfis") }, "Voltar às análises"),
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, MODELOS[m].nome), statusPerfil(uid, m, false)),
+      disp.pode && list[0] && h("button", { class: "btn ghost small", onclick: () => startPerfil(m) }, "Refazer")),
+    list[0] ? h("div", { class: "stack" }, m === "disc" ? discResultado(list[0], false) : resultadoPerfil(m, list[0], false),
+      m === "disc" ? discHistorico(list) : historicoPerfil(m, list))
+      : h("div", { class: "panel" }, h("p", {}, MODELOS[m].desc), h("button", { class: "btn", style: "margin-top:12px", onclick: () => startPerfil(m) }, "Começar")),
+  ];
+}
+
+/* ---------- telas do gestor ---------- */
+function tabPerfis(uid) {
+  const m = S.perfilTab || "disc";
+  const list = perfisDe(uid, m);
+  return h("div", { class: "stack" },
+    h("div", { class: "chips-nav" }, ORDEM_MODELOS.map(k => h("button", { type: "button", class: "chip-btn", "aria-pressed": k === m, onclick: () => { S.perfilTab = k; render(); } },
+      MODELOS[k].nome, perfisDe(uid, k).length ? null : h("span", { class: "muted" }, " (pendente)")))),
+    h("div", { class: "panel row", style: "justify-content:space-between" }, h("span", {}, h("b", {}, MODELOS[m].nome), ` · ${MODELOS[m].sub}`), statusPerfil(uid, m, true)),
+    list[0] ? (m === "disc" ? h("div", { class: "stack" }, discResultado(list[0], true), discHistorico(list)) : h("div", { class: "stack" }, resultadoPerfil(m, list[0], true), historicoPerfil(m, list)))
+      : h("div", { class: "panel" }, h("p", { class: "muted" }, `Esta pessoa ainda não respondeu. Ela encontra em Análises de perfil.`)));
+}
+function viewPerfisTime() {
+  const ids = teamIds(false);
+  const base = viewDiscTime();
+  const matriz = h("div", { class: "panel" },
+    h("div", { class: "panel-head" }, h("h2", {}, "Todas as análises"), h("p", {}, "Resultado mais recente de cada pessoa. Clique para ver o detalhe.")),
+    h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+      h("thead", {}, h("tr", {}, ["Pessoa", ...ORDEM_MODELOS.map(m => MODELOS[m].nome)].map(t => h("th", {}, t)))),
+      h("tbody", {}, ids.map(id => h("tr", { tabindex: 0, onclick: () => { S.perfilTab = "disc"; openPerson(id, "perfis"); } },
+        h("td", {}, h("div", { class: "person" }, rings(certsOf(id), 36, nameOf(id), id), h("b", {}, nameOf(id)))),
+        ...ORDEM_MODELOS.map(m => { const r = perfisDe(id, m)[0]; return h("td", { class: r ? "" : "muted" }, r ? resumoPerfil(m, r) : "pendente"); })))))));
+  const maslowFoco = {}; ids.forEach(id => { const r = perfisDe(id, "maslow")[0]; if (r) maslowFoco[r.resultado.foco] = (maslowFoco[r.resultado.foco] || 0) + 1; });
+  const ancoras = {}; ids.forEach(id => { const r = perfisDe(id, "ancoras")[0]; if (r) ancoras[r.resultado.principal] = (ancoras[r.resultado.principal] || 0) + 1; });
+  const resumo = h("div", { class: "grid2" },
+    h("div", { class: "panel" }, h("h3", {}, "Momento motivacional do time (Maslow)"),
+      Object.keys(maslowFoco).length ? bulletList(MODELOS.maslow.ordem.filter(d => maslowFoco[d]).map(d => `${MODELOS.maslow.dims[d].nome}: ${plural(maslowFoco[d], "pessoa", "pessoas")}`)) : h("p", { class: "muted" }, "Ninguém respondeu ainda.")),
+    h("div", { class: "panel" }, h("h3", {}, "Âncoras de carreira principais"),
+      Object.keys(ancoras).length ? bulletList(Object.entries(ancoras).sort((a, b) => b[1] - a[1]).map(([d, n]) => `${MODELOS.ancoras.dims[d].nome}: ${plural(n, "pessoa", "pessoas")}`)) : h("p", { class: "muted" }, "Ninguém respondeu ainda.")));
+  base[0] = h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Perfis do time"), h("p", {}, "DISC, motivação, personalidade, carreira e inteligência emocional de cada pessoa.")));
+  return [base[0], h("div", { class: "stack" }, matriz, resumo, h("h2", { style: "margin-top:8px" }, "DISC"), base[1])];
+}
+
 /* ---------- início ---------- */
 let lastUser = null;
 sb.auth.onAuthStateChange((event, session) => {
   S.session = session; S.ready = true;
   if (event === "PASSWORD_RECOVERY") { S.recovery = true; render(); }
   const uid = session?.user?.id || null;
-  if (!uid) { lastUser = null; S.me = null; S.owner = false; S.people = new Map(); S.auto = new Map(); S.disc = new Map(); S.pdi = new Map(); S.privado = new Map(); S.gestores = []; S.config = {}; S.discDraft = null; S.recovery = false; S.view = "painel"; clearTimeout(idleTimer); render(); return; }
+  if (!uid) { lastUser = null; S.me = null; S.owner = false; S.people = new Map(); S.auto = new Map(); S.disc = new Map(); S.pdi = new Map(); S.privado = new Map(); S.gestores = []; S.config = {}; S.discDraft = null; S.perfis = new Map(); S.liberacoes = []; S.perfilDraft = null; S.recovery = false; S.view = "painel"; clearTimeout(idleTimer); render(); return; }
   lastBump = 0; bumpIdle();
   if (uid !== lastUser) {
     lastUser = uid; S.loading = true; render();
