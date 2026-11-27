@@ -236,6 +236,71 @@ input[type=file]{width:100%;font-size:.95rem}
 .sw-name{font-weight:600;font-size:.92rem}
 .seg-tabs.three{grid-template-columns:repeat(3,1fr)}
 .side,.btn,.kpi,.panel,.swatch,.nav button{transition:background-color .2s,border-color .2s,color .2s}
+
+/* ===== v6 ===== */
+.lembretes{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.lembrete{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:9px 12px;cursor:pointer;color:var(--ink)}
+.lembrete:hover{border-color:var(--moss)}
+.lembrete .dot{width:10px;height:10px;border-radius:50%;margin-top:6px;flex:0 0 auto;background:var(--blue)}
+.lembrete.alto .dot{background:var(--rose)} .lembrete.medio .dot{background:var(--amber)}
+.blist{margin:8px 0 0;padding-left:20px;display:grid;gap:4px}
+.privado{background:var(--amber-soft);border-radius:8px;padding:6px 10px}
+.tbl tr.gap td{background:var(--amber-soft)}
+.notice.teste{background:var(--rose-soft);border-color:var(--rose);font-weight:700;margin-bottom:16px}
+.filtros select,.filtros input{width:auto}
+.filtros{gap:10px}
+.termo{display:grid;gap:10px;max-height:46vh;overflow:auto;padding-right:6px;text-align:left}
+.termo-check{align-items:flex-start;gap:8px}
+.termo-check input{margin-top:4px}
+.card > p.muted{text-align:center}
+/* DISC */
+.disc-test{max-width:640px}
+.disc-prog{display:grid;gap:6px;margin-bottom:16px;color:var(--muted);font-size:.9rem}
+.disc-prog .bar{height:8px;background:var(--ring-bg);border-radius:999px;overflow:hidden}
+.disc-prog .bar i{display:block;height:100%;background:var(--moss)}
+.disc-head,.disc-row{display:grid;grid-template-columns:1fr 92px 92px;gap:8px;align-items:center}
+.disc-head{color:var(--muted);font-size:.85rem;font-weight:600;text-align:center;padding:0 0 6px}
+.disc-row{padding:8px 10px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--surface-2)}
+.disc-row.is-m{border-color:var(--moss);background:var(--moss-soft)}
+.disc-row.is-l{border-color:var(--rose);background:var(--rose-soft)}
+.disc-word{font-weight:600;font-size:1.05rem}
+.disc-pick{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 0;font-weight:600;cursor:pointer;color:var(--muted)}
+.disc-pick.m[aria-pressed="true"]{background:var(--moss);border-color:var(--moss);color:var(--on-moss)}
+.disc-pick.l[aria-pressed="true"]{background:var(--rose);border-color:var(--rose);color:#fff}
+.disc-legend{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.disc-legend div{display:grid;gap:2px}
+.disc-tag{display:inline-block;color:#fff;font-weight:700;border-radius:6px;padding:1px 8px;font-size:.85rem}
+.mini-meter{display:inline-block;width:44px;height:6px;background:var(--ring-bg);border-radius:999px;overflow:hidden;vertical-align:middle}
+.mini-meter i{display:block;height:100%}
+@media (max-width:560px){.disc-head,.disc-row{grid-template-columns:1fr 74px 74px}}
+/* impressão */
+#print{display:none}
+@media print{
+  @page{size:A4;margin:14mm}
+  body.printing{background:#fff!important;color:#111!important}
+  body.printing #app,body.printing dialog,body.printing .toast{display:none!important}
+  body.printing #print{display:block}
+  .pr-cv{font:11pt/1.45 "Source Sans 3","Segoe UI",Arial,sans-serif;color:#111}
+  .pr-cv h1{font-size:22pt;margin:0;color:#111}
+  .pr-cv h2{font-size:12pt;margin:16px 0 6px;padding-bottom:3px;border-bottom:2px solid #2F6B45;color:#2F6B45;break-after:avoid}
+  .pr-head{display:flex;gap:16px;align-items:center;margin-bottom:6px}
+  .pr-head img{width:84px;height:84px;border-radius:50%;object-fit:cover}
+  .pr-role{font-size:13pt;color:#333;margin:2px 0}
+  .pr-contact{color:#555;font-size:10pt}
+  .pr-item{display:grid;gap:1px;margin-bottom:8px;break-inside:avoid}
+  .pr-item span{color:#555;font-size:10pt}
+  .pr-tbl{width:100%;border-collapse:collapse;font-size:10pt}
+  .pr-tbl th,.pr-tbl td{text-align:left;padding:4px 6px;border-bottom:1px solid #ddd;vertical-align:top}
+  .pr-tbl tr{break-inside:avoid}
+  .pr-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .pr-kpis div{border:1px solid #ccc;border-radius:6px;padding:8px}
+  .pr-kpis b{display:block;font-size:16pt}
+  .pr-kpis span{font-size:9.5pt;color:#555}
+  .pr-bar{height:8px;background:#e6e6e6;border-radius:4px;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pr-bar i{display:block;height:100%;background:#2F6B45}
+  .pr-foot{margin-top:22px;color:#777;font-size:9pt;border-top:1px solid #ddd;padding-top:6px}
+  .prose{white-space:pre-wrap}
+}
 </style>
 </head>
 <body>
@@ -243,6 +308,7 @@ input[type=file]{width:100%;font-size:.95rem}
 <dialog id="modal"></dialog>
 <dialog id="confirm"></dialog>
 <div class="toast" role="status" aria-live="polite"></div>
+<div id="print"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" integrity="sha384-0w2KAL2YHP6wKOkUDzkCDGgVvfmHnj02DHeQ6XcHOgTfFsGyonKOpShMH1x6nk9o" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js" integrity="sha384-dug+JxfBvklEQdJ4AYuBBAIScUz0bVN73xpy273gcAwHjb3qI0fXmuYNaNfdyYJG" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
@@ -270,8 +336,9 @@ const CATEGORIAS = ["Vendas e negociação", "Produto e sistema", "Atendimento a
 const STATUS = { aberto: "Aberto", andamento: "Em andamento", concluido: "Concluído" };
 const ACESSO = { pendente: "Aguardando aprovação", ativo: "Ativo", recusado: "Recusado" };
 const PALETA = ["#2F6B45", "#1E5FA8", "#C27C0E", "#8A3FA0", "#B8473D", "#2A8C8C", "#6E7A1F", "#5B5BD6"];
-const TABELAS = { evo_pessoas: "Pessoa", evo_certificados: "Certificado", evo_avaliacoes: "Avaliação", evo_melhorias: "Ponto de melhoria", evo_oneaone: "Reunião 1:1" };
-const RESTAURAVEIS = ["evo_certificados", "evo_avaliacoes", "evo_melhorias", "evo_oneaone"];
+const TABELAS = { evo_pessoas: "Pessoa", evo_certificados: "Certificado", evo_avaliacoes: "Avaliação", evo_melhorias: "Ponto de melhoria", evo_oneaone: "Reunião 1:1",
+  evo_avaliacao_privada: "Anotação privada", evo_autoavaliacoes: "Autoavaliação", evo_disc: "Perfil DISC", evo_pdi: "Ação do PDI", evo_config: "Configuração" };
+const RESTAURAVEIS = ["evo_certificados", "evo_avaliacoes", "evo_melhorias", "evo_oneaone", "evo_avaliacao_privada", "evo_autoavaliacoes", "evo_pdi"];
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: { storageKey: "evo-time-auth", persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
@@ -281,7 +348,7 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
 const S = {
   session: null, me: null, owner: false, ready: false, loading: false, error: null,
   people: new Map(), certs: new Map(), aval: new Map(), melh: new Map(), ones: new Map(),
-  audit: null, photos: {}, view: "painel", selected: null, tab: "geral", showArchived: false, authMode: "entrar",
+  audit: null, photos: {}, auto: new Map(), disc: new Map(), pdi: new Map(), privado: new Map(), config: {}, gestores: [], discDraft: null, recovery: false, auditFilter: { uid: "", de: "", ate: "" }, view: "painel", selected: null, tab: "geral", showArchived: false, authMode: "entrar",
 };
 
 /* ---------- DOM ---------- */
@@ -456,23 +523,30 @@ async function load() {
   S.owner = !!me && me.papel === "gestor" && isActive(me);
   if (me?.tema && me.tema !== `${TEMA.paleta}:${TEMA.modo}`) setTema(parseTema(me.tema), true);
   if (!isActive(me)) return;
+  const all = q => q.then(r => { if (r.error) throw r.error; return r.data || []; });
   if (S.owner) {
-    const [p, c, a, m, o] = await Promise.all([
-      sb.from("evo_pessoas").select("*").eq("papel", "membro"),
-      sb.from("evo_certificados").select("*"),
-      sb.from("evo_avaliacoes").select("*"),
-      sb.from("evo_melhorias").select("*"),
-      sb.from("evo_oneaone").select("*"),
+    const [p, c, a, m, o, au, di, pd, pv, cf] = await Promise.all([
+      all(sb.from("evo_pessoas").select("*")), all(sb.from("evo_certificados").select("*")),
+      all(sb.from("evo_avaliacoes").select("*")), all(sb.from("evo_melhorias").select("*")),
+      all(sb.from("evo_oneaone").select("*")), all(sb.from("evo_autoavaliacoes").select("*")),
+      all(sb.from("evo_disc").select("*")), all(sb.from("evo_pdi").select("*")),
+      all(sb.from("evo_avaliacao_privada").select("*")), all(sb.from("evo_config").select("*")),
     ]);
-    for (const r of [p, c, a, m, o]) if (r.error) throw r.error;
-    S.people = new Map(p.data.map(r => [r.user_id, r]));
-    S.certs = groupBy(c.data); S.aval = groupBy(a.data); S.melh = groupBy(m.data); S.ones = groupBy(o.data);
+    S.people = new Map(p.filter(r => r.papel === "membro").map(r => [r.user_id, r]));
+    S.gestores = p.filter(r => r.papel === "gestor");
+    S.certs = groupBy(c); S.aval = groupBy(a); S.melh = groupBy(m); S.ones = groupBy(o);
+    S.auto = groupBy(au); S.disc = groupBy(di); S.pdi = groupBy(pd);
+    S.privado = new Map(pv.map(r => [r.avaliacao_id, r.anotacao]));
+    S.config = Object.fromEntries(cf.map(r => [r.chave, r.valor]));
     if (S.view === "historico") await loadAudit();
   } else {
-    const c = await sb.from("evo_certificados").select("*").eq("user_id", uid);
-    if (c.error) throw c.error;
+    const [c, a, m, au, di, pd] = await Promise.all([
+      all(sb.from("evo_certificados").select("*").eq("user_id", uid)), all(sb.from("evo_avaliacoes").select("*").eq("user_id", uid)),
+      all(sb.from("evo_melhorias").select("*").eq("user_id", uid)), all(sb.from("evo_autoavaliacoes").select("*").eq("user_id", uid)),
+      all(sb.from("evo_disc").select("*").eq("user_id", uid)), all(sb.from("evo_pdi").select("*").eq("user_id", uid)),
+    ]);
     S.people = new Map([[uid, me]]);
-    S.certs = groupBy(c.data);
+    S.certs = groupBy(c); S.aval = groupBy(a); S.melh = groupBy(m); S.auto = groupBy(au); S.disc = groupBy(di); S.pdi = groupBy(pd);
   }
   await loadPhotos();
 }
@@ -493,7 +567,12 @@ async function squareJpeg(file, max) {
   return await new Promise((res, rej) => cv.toBlob(b => b ? res(b) : rej(new Error("blob")), "image/jpeg", 0.86));
 }
 async function loadAudit() {
-  const { data, error } = await sb.from("evo_auditoria").select("*").order("id", { ascending: false }).limit(150);
+  const f = S.auditFilter;
+  let q = sb.from("evo_auditoria").select("*").order("id", { ascending: false }).limit(300);
+  if (isUuid(f.uid)) q = q.or(`registro_id.eq.${f.uid},antes->>user_id.eq.${f.uid},depois->>user_id.eq.${f.uid}`);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(f.de)) q = q.gte("quando", f.de + "T00:00:00");
+  if (/^\d{4}-\d{2}-\d{2}$/.test(f.ate)) q = q.lte("quando", f.ate + "T23:59:59");
+  const { data, error } = await q;
   if (error) throw error;
   S.audit = data;
 }
@@ -587,16 +666,18 @@ function teamHoursChart(ids) {
 }
 function radarChart(uid) {
   const av = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
-  if (!av.length) return emptyChart("Registre a primeira avaliação para ver o mapa de competências.");
-  const ds = (a, label, color, dash) => ({
+  const auto = latest(S.auto.get(uid), "data");
+  if (!av.length && !auto) return emptyChart(S.owner ? "Registre a primeira avaliação para ver o mapa de competências." : "Faça a sua autoavaliação para começar o seu mapa de competências.");
+  const ds = (a, label, color, dash, fill) => ({
     label, data: COMPETENCIAS.map(([k]) => Number(a.notas?.[k]) || null), borderColor: color,
-    backgroundColor: color + "33", pointBackgroundColor: color, borderWidth: 2, borderDash: dash || [], spanGaps: true,
+    backgroundColor: fill ? color + "33" : "transparent", pointBackgroundColor: color, borderWidth: 2, borderDash: dash || [], spanGaps: true,
   });
   return chartBox("", () => ({
     type: "radar",
     data: { labels: COMPETENCIAS.map(c => c[2]), datasets: [
-      ds(av[0], `Última (${fmtDate(av[0].data)})`, cssVar("--moss")),
-      av[1] && ds(av[1], `Anterior (${fmtDate(av[1].data)})`, cssVar("--muted"), [5, 4]),
+      av[0] && ds(av[0], `Gestor (${fmtDate(av[0].data)})${S.owner && !av[0].liberada ? ", rascunho" : ""}`, cssVar("--moss"), null, true),
+      av[1] && S.owner && ds(av[1], `Gestor anterior (${fmtDate(av[1].data)})`, cssVar("--muted"), [5, 4]),
+      auto && ds(auto, `Autoavaliação (${fmtDate(auto.data)})`, "#D08A1E", [2, 3]),
     ].filter(Boolean) },
     options: { scales: { r: { min: 0, max: 5, ticks: { stepSize: 1, backdropColor: "transparent" }, pointLabels: { font: { size: 12, weight: "600" } } } } },
   }));
@@ -806,7 +887,8 @@ function formCertificado(uid, existing) {
       h("div", { class: "two" }, field("Instituição", inp("instituicao", c.instituicao, "text", { maxlength: 160 })), field("Área", sel("categoria", CATEGORIAS.map(x => [x, x]), c.categoria || CATEGORIAS[0]))),
       h("div", { class: "two" },
         field("Carga horária (horas)", inp("carga_horas", c.carga_horas ?? "", "number", { min: 0, max: 5000, step: "0.5", inputmode: "decimal" })),
-        field("Concluído em", inp("concluido_em", c.concluido_em || today(), "date", { max: today() }))),
+        field("Concluído em", inp("concluido_em", c.concluido_em || today(), "date"))),
+      field("Válido até (opcional)", inp("valido_ate", c.valido_ate, "date"), "Para certificações que expiram. Você recebe um lembrete 30 dias antes."),
       field(c.arquivo_path ? "Trocar arquivo do certificado" : "Arquivo do certificado", fileIn,
         existing ? "PDF ou imagem, até 20 MB." : "Escolha o arquivo primeiro: os campos acima são preenchidos automaticamente. PDF ou imagem, até 20 MB."),
       status, lido,
@@ -815,7 +897,15 @@ function formCertificado(uid, existing) {
       const titulo = val(form, "titulo");
       if (!titulo) { toast("Informe o nome do curso.", true); return false; }
       const row = { user_id: uid, titulo, instituicao: nz(val(form, "instituicao")), categoria: val(form, "categoria"),
-        carga_horas: Math.min(5000, Math.max(0, Number(val(form, "carga_horas").replace(",", ".")) || 0)), concluido_em: val(form, "concluido_em") || today() };
+        carga_horas: Math.min(5000, Math.max(0, Number(val(form, "carga_horas").replace(",", ".")) || 0)), concluido_em: val(form, "concluido_em") || today(),
+        valido_ate: nz(val(form, "valido_ate")) };
+      const avisos = [];
+      if (row.carga_horas > 120) avisos.push(`A carga horária de ${row.carga_horas} h é bem acima do comum. Confira se não é um ano ou um código.`);
+      if (!row.carga_horas) avisos.push("A carga horária está vazia ou zerada.");
+      if (row.concluido_em > today()) avisos.push("A data de conclusão está no futuro.");
+      if (row.valido_ate && row.valido_ate < row.concluido_em) avisos.push("A validade termina antes da data de conclusão.");
+      if (certsOf(uid).some(x => x.id !== c.id && String(x.titulo || "").trim().toLowerCase() === titulo.toLowerCase())) avisos.push("Já existe um curso com esse nome no currículo.");
+      if (avisos.length && !(await confirmBox("Confira antes de salvar: " + avisos.join(" "), "Salvar mesmo assim"))) return false;
       const file = form.elements.namedItem("arquivo")?.files?.[0];
       if (file) {
         const type = guessType(file);
@@ -848,23 +938,44 @@ function formAvaliacao(uid, existing) {
     h("div", { class: "scale-row" }, h("span", {}, l),
       h("div", { class: "seg", role: "radiogroup", "aria-label": l },
         [1, 2, 3, 4, 5].map(n => h("label", {}, h("input", { type: "radio", name: "c_" + k, value: n, checked: Number(a.notas?.[k]) === n, "aria-label": `${l}: ${n}` }), h("span", {}, n)))))));
+  const auto = latest(S.auto.get(uid), "data");
   openModal({
-    title: existing ? "Editar avaliação" : "Nova avaliação", submitLabel: "Salvar avaliação",
+    title: existing ? "Editar avaliação" : "Nova avaliação", submitLabel: existing?.liberada ? "Salvar" : "Salvar rascunho",
     body: [
       h("div", { class: "two" }, field("Data", inp("data", a.data || today(), "date")), field("Período avaliado", inp("periodo", a.periodo, "text", { maxlength: 80, placeholder: "Ex.: 4º trimestre de 2026" }))),
+      auto && h("p", { class: "notice small" }, `Autoavaliação de ${fmtDate(auto.data)}: ` + COMPETENCIAS.map(([k, , sh]) => `${sh} ${auto.notas?.[k] ?? "–"}`).join(", ")),
       h("p", { class: "muted small" }, "1 = precisa de muita atenção, 5 = referência para o time."),
       scale,
-      field("Pontos fortes", ta("fortes", a.fortes, 3)),
-      field("Comentário geral", ta("comentario", a.comentario, 4)),
+      field("Pontos fortes", ta("fortes", a.fortes, 3), "A pessoa vê quando a avaliação for liberada."),
+      field("Feedback para a pessoa", ta("feedback", a.feedback, 4), "A pessoa vê quando a avaliação for liberada."),
+      field("Anotação privada", ta("anotacao", existing ? (S.privado.get(a.id) || "") : "", 4), "Só gestores veem. Nunca é mostrada para a pessoa."),
+      !a.liberada && h("label", { class: "row small" }, h("input", { type: "checkbox", name: "liberar" }), "Liberar para a pessoa ao salvar"),
     ],
-    onSubmit: form => {
+    onSubmit: async form => {
       const notas = {};
       for (const [k] of COMPETENCIAS) { const v = form.querySelector(`input[name="c_${k}"]:checked`)?.value; if (v) notas[k] = Number(v); }
       if (!Object.keys(notas).length) { toast("Dê nota a pelo menos uma competência.", true); return false; }
-      const row = { user_id: uid, data: val(form, "data") || today(), periodo: nz(val(form, "periodo")), notas, fortes: nz(val(form, "fortes")), comentario: nz(val(form, "comentario")) };
-      return run(existing ? sb.from("evo_avaliacoes").update(row).eq("id", existing.id) : sb.from("evo_avaliacoes").insert(row), "Avaliação salva.");
+      const row = { user_id: uid, data: val(form, "data") || today(), periodo: nz(val(form, "periodo")), notas, fortes: nz(val(form, "fortes")), feedback: nz(val(form, "feedback")) };
+      if (form.elements.namedItem("liberar")?.checked) row.liberada = true;
+      let id = existing?.id;
+      if (existing) { const { error } = await sb.from("evo_avaliacoes").update(row).eq("id", id); if (error) { toast(sbErr(error), true); return false; } }
+      else { const { data, error } = await sb.from("evo_avaliacoes").insert(row).select("id").single(); if (error) { toast(sbErr(error), true); return false; } id = data.id; }
+      const anot = nz(val(form, "anotacao"));
+      if (anot || S.privado.has(id)) {
+        const { error } = await sb.from("evo_avaliacao_privada").upsert({ avaliacao_id: id, anotacao: anot, atualizado_em: new Date().toISOString() });
+        if (error) toast("A avaliação foi salva, mas a anotação privada não: " + sbErr(error), true);
+      }
+      await refresh();
+      toast(row.liberada || existing?.liberada ? "Avaliação salva. A pessoa já pode ver." : "Avaliação salva como rascunho. A pessoa ainda não vê.");
+      return true;
     },
   });
+}
+async function liberarAvaliacao(a, liberar) {
+  const msg = liberar ? `Liberar a avaliação de ${fmtDate(a.data)}? A pessoa passa a ver as notas, os pontos fortes e o feedback. A anotação privada continua só com você.`
+                      : "Recolher esta avaliação? A pessoa deixa de vê-la até você liberar de novo.";
+  if (!(await confirmBox(msg, liberar ? "Liberar" : "Recolher", !liberar))) return;
+  run(sb.from("evo_avaliacoes").update({ liberada: liberar }).eq("id", a.id), liberar ? "Avaliação liberada para a pessoa." : "Avaliação recolhida.");
 }
 function formMelhoria(uid, existing) {
   const m = existing || {};
@@ -975,6 +1086,8 @@ async function downloadBackup(btn) {
     const a = h("a", { href: url, download: `backup-evolucao-time-${today()}.zip` });
     document.body.append(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 10000);
+    await sb.from("evo_config").upsert({ chave: "ultimo_backup", valor: new Date().toISOString(), atualizado_em: new Date().toISOString() });
+    S.config.ultimo_backup = new Date().toISOString();
     toast(`Backup gerado com ${plural(n, "arquivo", "arquivos")} de certificado.`);
   } catch (e) { toast("O backup falhou: " + sbErr(e), true); }
   finally { btn.disabled = false; btn.textContent = old; }
@@ -1108,6 +1221,7 @@ function curriculum(uid, canEdit) {
         S.photos[uid] && h("img", { class: "avatar", src: S.photos[uid], alt: `Foto de ${nameOf(uid)}` }),
         h("div", {}, h("h2", {}, nameOf(uid)), h("p", { class: "muted" }, facts.length ? facts.join(", ") : "Cargo ainda não informado."))),
       canEdit && h("div", { class: "row" },
+        h("button", { class: "btn ghost small", onclick: () => cvPdf(uid) }, "Baixar currículo (PDF)"),
         h("button", { class: "btn ghost small", onclick: () => formCurriculo(uid) }, "Editar currículo"),
         h("button", { class: "btn small", onclick: () => formCertificado(uid) }, "Adicionar certificado"))),
     h("section", {}, h("h3", {}, "Resumo"), m.resumo ? h("p", { class: "prose" }, m.resumo) : h("p", { class: "muted" }, "Sem resumo ainda.")),
@@ -1131,6 +1245,7 @@ function certItem(c, canEdit) {
     h("div", { style: "display:grid;gap:4px;min-width:0" },
       h("div", { class: "item-top" }, h("h3", {}, c.titulo || "Curso"), h("span", { class: "meta" }, fmtDate(c.concluido_em))),
       h("p", { class: "meta" }, [c.instituicao, c.categoria, num(c.carga_horas) ? fmtH(c.carga_horas) : null].filter(Boolean).join(", ")),
+      validadeInfo(c) && h("p", {}, h("span", { class: "pill " + validadeInfo(c).cls }, validadeInfo(c).txt)),
       h("div", { class: "row" },
         has && h("button", { class: "linkish", onclick: () => openCert(c) }, "Ver certificado"),
         canEdit && h("button", { class: "linkish", onclick: () => formCertificado(c.user_id, c) }, has ? "Editar" : "Editar ou anexar"),
@@ -1176,11 +1291,10 @@ function viewPainel() {
   const pend = pending().length;
   return [
     h("div", { class: "page-head" },
-      h("div", {}, h("h1", {}, "Painel do time"), h("p", {}, "Como o time está evoluindo em avaliação, formação e acompanhamento."))),
+      h("div", {}, h("h1", {}, "Painel do time"), h("p", {}, "Como o time está evoluindo em avaliação, formação e acompanhamento.")),
+      ids.length > 0 && h("button", { class: "btn ghost", onclick: relatorioTime }, "Relatório do time (PDF)")),
     h("div", { class: "stack" },
-      pend > 0 && h("div", { class: "notice row", style: "justify-content:space-between" },
-        h("span", {}, `${plural(pend, "pessoa está", "pessoas estão")} aguardando a sua aprovação.`),
-        h("button", { class: "btn small", onclick: () => go("aprovacoes") }, "Ver pedidos")),
+      lembretesPanel(8),
       h("div", { class: "kpis" },
         kpi(ids.length, ids.length === 1 ? "pessoa ativa" : "pessoas ativas"),
         kpi(certsYear.length, `cursos concluídos em ${year}`),
@@ -1235,12 +1349,13 @@ function viewPessoas() {
     })) : h("div", { class: "panel" }, h("p", { class: "muted" }, "Nenhuma pessoa ativa ainda.")),
   ];
 }
-const TABS = [["geral", "Visão geral"], ["curriculo", "Currículo"], ["avaliacoes", "Avaliações"], ["melhorias", "Pontos de melhoria"], ["oneaone", "Reuniões 1:1"]];
+const TABS = [["geral", "Visão geral"], ["curriculo", "Currículo"], ["avaliacoes", "Avaliações"], ["melhorias", "Pontos de melhoria"], ["pdi", "PDI"], ["disc", "DISC"], ["oneaone", "Reuniões 1:1"]];
 function viewPessoa() {
   const uid = S.selected, p = S.people.get(uid);
   if (!p) { S.view = "painel"; return viewPainel(); }
   const st = personStats(uid);
-  const panel = { geral: tabGeral, curriculo: u => curriculum(u, true), avaliacoes: tabAval, melhorias: tabMelh, oneaone: tabOne }[S.tab] || tabGeral;
+  if (!TABS.some(t => t[0] === S.tab)) S.tab = "geral";
+  const panel = { geral: tabGeral, curriculo: u => curriculum(u, true), avaliacoes: tabAval, melhorias: tabMelh, pdi: tabPdi, disc: tabDisc, oneaone: tabOne }[S.tab] || tabGeral;
   return [
     h("button", { class: "back", onclick: () => go("painel") }, "Voltar ao painel"),
     h("div", { class: "stack" },
@@ -1249,7 +1364,11 @@ function viewPessoa() {
         h("div", { class: "info" }, h("h1", {}, nameOf(uid)),
           h("p", { class: "muted" }, [p.cargo || "Cargo não informado", p.admissao && `na LC Sistemas desde ${fmtDate(p.admissao)}`, p.email].filter(Boolean).join(", ")),
           h("p", { class: "muted small" }, p.atualizado_em ? `Currículo atualizado em ${fmtDate(p.atualizado_em)}` : "Currículo ainda não preenchido")),
-        h("button", { class: "btn ghost small", onclick: () => toggleArchive(uid) }, p.arquivado ? "Reativar" : "Arquivar")),
+        h("div", { class: "row" },
+          h("button", { class: "btn ghost small", onclick: () => cvPdf(uid) }, "Currículo (PDF)"),
+          h("button", { class: "btn ghost small", onclick: () => toggleArchive(uid) }, p.arquivado ? "Reativar" : "Arquivar"),
+          p.arquivado && h("button", { class: "btn danger small", onclick: () => apagarPessoaModal(uid) }, "Apagar dados"))),
+      p.arquivado && h("p", { class: "notice" }, `Arquivado${p.arquivado_em ? ` em ${fmtDate(p.arquivado_em)}` : ""}. O acesso está bloqueado. Pela LGPD, apague os dados quando não houver mais motivo para guardá-los (sugestão: até 6 meses após a saída).`),
       h("div", { class: "kpis" },
         kpi(st.certs, "cursos concluídos"), kpi(fmtH(st.hours), "de formação"),
         kpi(h("span", {}, fmt1(st.last), deltaEl(st.delta)), "média da última avaliação"),
@@ -1270,17 +1389,32 @@ function tabGeral(uid) {
 }
 function tabAval(uid) {
   const list = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
-  return h("div", { class: "panel" },
-    h("div", { class: "panel-head" }, h("h2", {}, "Avaliações"), h("button", { class: "btn small", onclick: () => formAvaliacao(uid) }, "Nova avaliação")),
-    list.length ? h("ul", { class: "list" }, list.map(a => h("li", { class: "item" },
-      h("div", { class: "item-top" }, h("h3", {}, `${fmtDate(a.data)}${a.periodo ? `, ${a.periodo}` : ""}`), h("span", {}, "Média ", h("b", {}, fmt1(avgOf(a))))),
-      h("p", { class: "meta" }, COMPETENCIAS.filter(([k]) => a.notas?.[k]).map(([k, l]) => `${l} ${a.notas[k]}`).join(", ")),
-      a.fortes && h("p", { class: "prose" }, h("b", {}, "Pontos fortes: "), a.fortes),
-      a.comentario && h("p", { class: "prose" }, a.comentario),
-      h("div", { class: "row" },
-        h("button", { class: "linkish", onclick: () => formAvaliacao(uid, a) }, "Editar"),
-        h("button", { class: "linkish red", onclick: () => removeRecord("evo_avaliacoes", a.id, "esta avaliação") }, "Apagar")))))
-      : h("p", { class: "muted" }, "Nenhuma avaliação ainda. A primeira vira a linha de base da evolução."));
+  const comp = comparacao(uid);
+  const autos = [...(S.auto.get(uid) || [])].sort(byDateDesc("data"));
+  return h("div", { class: "stack" },
+    comp && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Autoavaliação x sua avaliação")), comp),
+    !comp && autos.length > 0 && h("p", { class: "notice" }, `A pessoa respondeu a autoavaliação em ${fmtDate(autos[0].data)}. Registre a sua avaliação para comparar.`),
+    h("div", { class: "panel" },
+      h("div", { class: "panel-head" }, h("h2", {}, "Avaliações"), h("button", { class: "btn small", onclick: () => formAvaliacao(uid) }, "Nova avaliação")),
+      list.length ? h("ul", { class: "list" }, list.map(a => h("li", { class: "item" },
+        h("div", { class: "item-top" }, h("h3", {}, `${fmtDate(a.data)}${a.periodo ? `, ${a.periodo}` : ""}`),
+          h("span", { class: "row" }, h("span", { class: "pill " + (a.liberada ? "ativo" : "pendente") }, a.liberada ? `Liberada em ${fmtDate(a.liberada_em)}` : "Rascunho"), h("span", {}, "Média ", h("b", {}, fmt1(avgOf(a)))))),
+        h("p", { class: "meta" }, COMPETENCIAS.filter(([k]) => a.notas?.[k]).map(([k, l]) => `${l} ${a.notas[k]}`).join(", ")),
+        a.fortes && h("p", { class: "prose" }, h("b", {}, "Pontos fortes: "), a.fortes),
+        a.feedback && h("p", { class: "prose" }, h("b", {}, "Feedback: "), a.feedback),
+        S.privado.get(a.id) && h("p", { class: "prose privado" }, h("b", {}, "Anotação privada (só gestores): "), S.privado.get(a.id)),
+        a.comentario && h("p", { class: "prose privado" }, h("b", {}, "Comentário antigo: "), a.comentario),
+        h("div", { class: "row" },
+          a.liberada ? h("button", { class: "linkish", onclick: () => liberarAvaliacao(a, false) }, "Recolher")
+                     : h("button", { class: "btn small", onclick: () => liberarAvaliacao(a, true) }, "Liberar para a pessoa"),
+          h("button", { class: "linkish", onclick: () => formAvaliacao(uid, a) }, "Editar"),
+          h("button", { class: "linkish red", onclick: () => removeRecord("evo_avaliacoes", a.id, "esta avaliação") }, "Apagar")))))
+        : h("p", { class: "muted" }, "Nenhuma avaliação ainda. A primeira vira a linha de base da evolução.")),
+    autos.length > 0 && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Autoavaliações da pessoa")),
+      h("ul", { class: "list" }, autos.map(x => h("li", { class: "item" },
+        h("div", { class: "item-top" }, h("h3", {}, fmtDate(x.data)), h("span", {}, "Média ", h("b", {}, fmt1(avgOf(x))))),
+        h("p", { class: "meta" }, COMPETENCIAS.filter(([k]) => x.notas?.[k]).map(([k, l]) => `${l} ${x.notas[k]}`).join(", ")),
+        x.comentario && h("p", { class: "prose" }, x.comentario))))));
 }
 function tabMelh(uid) {
   const order = { andamento: 0, aberto: 1, concluido: 2 };
@@ -1343,28 +1477,53 @@ function auditSummary(a) {
 function viewHistorico() {
   const OPS = { INSERT: "incluiu", UPDATE: "alterou", DELETE: "apagou" };
   const btn = h("button", { class: "btn", onclick: e => downloadBackup(e.currentTarget) }, "Baixar backup completo");
+  const ub = S.config.ultimo_backup;
+  const dom = h("input", { type: "text", value: (Array.isArray(S.config.dominios_permitidos) ? S.config.dominios_permitidos : []).join(", "), "aria-label": "Domínios permitidos" });
+  const ativos = teamIds(false);
+  const promover = sel("promover", [["", "Escolha uma pessoa"], ...ativos.map(id => [id, nameOf(id)])], "");
+  const f = S.auditFilter;
+  const fPessoa = sel("f_pessoa", [["", "Todas as pessoas"], ...[...S.people.keys()].sort((a, b) => nameOf(a).localeCompare(nameOf(b), "pt-BR")).map(id => [id, nameOf(id)]), ...S.gestores.map(g => [g.user_id, (g.nome || g.email) + " (gestor)"])], f.uid);
+  const fDe = inp("f_de", f.de, "date"), fAte = inp("f_ate", f.ate, "date");
+  const filtrar = async () => { S.auditFilter = { uid: fPessoa.value, de: fDe.value, ate: fAte.value }; S.audit = null; render(); try { await loadAudit(); } catch (e) { S.error = sbErr(e); } render(); };
+  const quem = id => !id ? "Sistema" : id === S.me.user_id ? (S.me.nome || "Você") : (S.gestores.find(g => g.user_id === id)?.nome || nameOf(id));
   return [
     h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Segurança e backup"),
       h("p", {}, "Toda inclusão, alteração e exclusão fica registrada. O que for apagado pode ser restaurado."))),
     h("div", { class: "stack" },
       h("div", { class: "panel" },
         h("div", { class: "panel-head" }, h("h2", {}, "Backup"), btn),
-        h("p", { class: "muted" }, "Gera um arquivo .zip com todos os dados (dados.json) e todos os certificados enviados. Guarde em um lugar seguro, fora deste computador, pelo menos uma vez por mês.")),
+        h("p", { class: "muted" }, "Gera um arquivo .zip com todos os dados (dados.json) e todos os arquivos enviados. Guarde em um lugar seguro, fora deste computador, pelo menos uma vez por mês."),
+        h("p", { style: "margin-top:8px" }, ub ? `Último backup baixado em ${fmtDateTime(ub)}.` : h("span", { class: "delta-down" }, "Nenhum backup baixado ainda."))),
+      h("div", { class: "grid2" },
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Gestores"), h("p", {}, "Tenha um substituto para não perder o acesso à gestão.")),
+          h("ul", { class: "list" }, S.gestores.map(g => h("li", { class: "item row", style: "justify-content:space-between" },
+            h("span", {}, h("b", {}, g.nome || g.email), g.user_id === S.me.user_id ? " (você)" : "", h("br"), h("span", { class: "meta" }, g.email || "")),
+            g.user_id !== S.me.user_id && h("button", { class: "linkish red", onclick: () => setGestor(g.user_id, false) }, "Remover")))),
+          ativos.length > 0 && h("div", { class: "row", style: "margin-top:12px" }, promover,
+            h("button", { class: "btn ghost small", onclick: () => { if (promover.value) setGestor(promover.value, true); else toast("Escolha uma pessoa.", true); } }, "Tornar gestor"))),
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Cadastro"), h("p", {}, "Só e-mails destes domínios podem pedir acesso.")),
+          field("Domínios permitidos (separe por vírgula)", dom, "Ex.: lcsistemas.com.br"),
+          h("div", { style: "margin-top:10px" }, h("button", { class: "btn ghost small", onclick: () => salvarDominios(dom) }, "Salvar domínios")))),
       h("div", { class: "panel" },
-        h("div", { class: "panel-head" }, h("h2", {}, "Histórico de alterações"), h("p", {}, "Últimos 150 registros.")),
+        h("div", { class: "panel-head" }, h("h2", {}, "Histórico de alterações"), h("p", {}, "Até 300 registros por consulta.")),
+        h("div", { class: "row filtros" }, fPessoa, h("label", { class: "row small" }, "De", fDe), h("label", { class: "row small" }, "até", fAte),
+          h("button", { class: "btn ghost small", onclick: filtrar }, "Filtrar"),
+          (f.uid || f.de || f.ate) && h("button", { class: "linkish", onclick: () => { fPessoa.value = ""; fDe.value = ""; fAte.value = ""; filtrar(); } }, "Limpar")),
         S.audit == null ? h("p", { class: "muted" }, "Carregando…") :
-        S.audit.length ? h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+        S.audit.length ? h("div", { class: "tbl-wrap", style: "margin-top:12px" }, h("table", { class: "tbl" },
           h("thead", {}, h("tr", {}, ["Quando", "Quem", "O que", "Registro", ""].map(t => h("th", {}, t)))),
           h("tbody", {}, S.audit.map(a => h("tr", { style: "cursor:default" },
             h("td", { style: "white-space:nowrap" }, fmtDateTime(a.quando)),
-            h("td", {}, !a.usuario ? "Sistema" : a.usuario === S.me.user_id ? (S.me.nome || "Você") : nameOf(a.usuario)),
-            h("td", {}, `${OPS[a.operacao] || a.operacao} ${(TABELAS[a.tabela] || a.tabela).toLowerCase()}`),
+            h("td", {}, quem(a.usuario)),
+            h("td", {}, `${OPS[a.operacao] || a.operacao} ${(TABELAS[a.tabela] || a.tabela.replace("evo_", "")).toLowerCase()}`),
             h("td", {}, auditSummary(a)),
             h("td", {}, a.operacao === "DELETE" && RESTAURAVEIS.includes(a.tabela) && h("button", { class: "linkish", onclick: async () => {
               if (!(await confirmBox("Restaurar este registro?", "Restaurar"))) return;
               const { error } = await sb.rpc("evo_restaurar", { p_id: a.id });
               if (error) toast(sbErr(error), true); else { await refresh(); toast("Registro restaurado."); }
-            } }, "Restaurar"))))))) : h("p", { class: "muted" }, "Nenhuma alteração registrada ainda."))),
+            } }, "Restaurar"))))))) : h("p", { class: "muted", style: "margin-top:12px" }, "Nenhuma alteração encontrada."))),
   ];
 }
 
@@ -1373,24 +1532,23 @@ function viewMeu() {
   const uid = S.me.user_id, certs = certsOf(uid);
   return [
     h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Meu currículo"),
-      h("p", {}, "Cada curso que você registrar entra no seu currículo e na sua trilha de evolução. Seu gestor acompanha por aqui."))),
+      h("p", {}, "Cada curso que você registrar entra no seu currículo e na sua trilha de evolução."))),
     h("div", { class: "stack" },
       !S.me.atualizado_em && h("p", { class: "notice" }, "Comece clicando em Editar currículo e preencha cargo, experiência e formação."),
-      h("div", { class: "grid3" },
-        h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Minha trilha de formação"), h("p", {}, `${plural(certs.length, "curso", "cursos")}, ${fmtH(hoursOf(certs))}`)), hoursTrailChart(uid, "short")),
-        h("div", { class: "panel", style: "display:grid;place-items:center;gap:8px;text-align:center" }, rings(certs, 140, nameOf(uid), uid), h("p", { class: "muted small" }, "Cada anel é um curso concluído."))),
+      h("div", { class: "person-head" }, rings(certs, 96, nameOf(uid), uid),
+        h("div", { class: "info" }, h("h2", {}, plural(certs.length, "curso concluído", "cursos concluídos")), h("p", { class: "muted" }, `${fmtH(hoursOf(certs))} de formação. Cada anel é um curso.`))),
       curriculum(uid, true)),
   ];
 }
 
 /* ---------- navegação e casca ---------- */
-function go(view) { S.view = view; if (view === "historico") { S.audit = null; loadAudit().then(render, e => { S.error = sbErr(e); render(); }); } render(); window.scrollTo(0, 0); }
-function openPerson(uid) { S.selected = uid; S.tab = "geral"; S.view = "pessoa"; render(); window.scrollTo(0, 0); }
+function go(view) { document.getElementById("modal").open && document.getElementById("modal").close(); S.view = view; if (view === "historico") { S.audit = null; loadAudit().then(render, e => { S.error = sbErr(e); render(); }); } render(); window.scrollTo(0, 0); }
+function openPerson(uid, tab) { S.selected = uid; S.tab = tab || "geral"; S.view = "pessoa"; render(); window.scrollTo(0, 0); }
 function shell(content) {
   const nav = S.owner ? [
-    ["painel", "Painel do time"], ["pessoas", "Pessoas"], ["aprovacoes", "Aprovações", pending().length], ["historico", "Segurança e backup"],
-  ] : [["meu", "Meu currículo"]];
-  const current = S.view === "pessoa" ? "pessoas" : S.view;
+    ["painel", "Painel do time"], ["pessoas", "Pessoas"], ["aprovacoes", "Aprovações", pending().length], ["disc-time", "Perfis DISC"], ["historico", "Segurança e backup"],
+  ] : [["inicio", "Início", lembretes().filter(l => l.nivel !== "info").length], ["meu", "Meu currículo"], ["evolucao", "Minha evolução"], ["disc", "Perfil DISC"]];
+  const current = S.view === "pessoa" ? "pessoas" : S.view === "disc-teste" ? "disc" : S.view;
   return h("div", { class: "shell" },
     h("aside", { class: "side" },
       h("div", { class: "brand" }, rings([{ concluido_em: "1" }, { concluido_em: "2", categoria: CATEGORIAS[1] }, { concluido_em: "3", categoria: CATEGORIAS[2] }], 38, "LC"),
@@ -1400,48 +1558,96 @@ function shell(content) {
       h("div", { class: "side-foot" },
         h("span", { class: "who" }, S.me?.nome || S.session?.user?.email || ""),
         h("button", { onclick: themeModal }, "Aparência"),
+        h("button", { onclick: meusDadosModal }, "Meus dados"),
         h("button", { onclick: passwordModal }, "Alterar senha"),
+        h("button", { onclick: novidadesModal }, `Versão ${VERSAO}`),
         h("button", { onclick: () => sb.auth.signOut() }, "Sair"))),
-    h("main", { class: "main" }, S.error && h("p", { class: "notice", style: "margin-bottom:16px" }, S.error), content));
+    h("main", { class: "main" },
+      isTeste && h("p", { class: "notice teste" }, "AMBIENTE DE TESTE. Esta página usa os dados reais: o que você salvar aqui vale para todos."),
+      S.error && h("p", { class: "notice", style: "margin-bottom:16px" }, S.error), content));
+}
+let dominiosCache = null;
+async function dominiosPermitidos() {
+  if (dominiosCache) return dominiosCache;
+  const { data } = await sb.rpc("evo_dominios");
+  dominiosCache = Array.isArray(data) ? data : [];
+  return dominiosCache;
 }
 function authView() {
   const err = h("p", { class: "form-err", role: "alert" });
-  const isUp = S.authMode === "solicitar";
-  const btn = h("button", { type: "submit", class: "btn", style: "justify-content:center" }, isUp ? "Solicitar acesso" : "Entrar");
+  const isUp = S.authMode === "solicitar", isRec = S.authMode === "recuperar";
+  const btn = h("button", { type: "submit", class: "btn", style: "justify-content:center" }, isRec ? "Enviar link" : isUp ? "Solicitar acesso" : "Entrar");
   const form = h("form", { class: "card", novalidate: true },
     rings([{ concluido_em: "1" }, { concluido_em: "2", categoria: CATEGORIAS[1] }, { concluido_em: "3", categoria: CATEGORIAS[2] }, { concluido_em: "4" }], 84, "LC"),
     h("h1", {}, "Evolução do time comercial"),
-    h("div", { class: "seg-tabs", role: "tablist" },
+    !isRec && h("div", { class: "seg-tabs", role: "tablist" },
       h("button", { type: "button", role: "tab", "aria-selected": !isUp, onclick: () => { S.authMode = "entrar"; render(); } }, "Entrar"),
       h("button", { type: "button", role: "tab", "aria-selected": isUp, onclick: () => { S.authMode = "solicitar"; render(); } }, "Solicitar acesso")),
-    isUp && h("p", { class: "muted small" }, "Crie sua senha. O acesso é liberado depois que o gestor aprovar."),
+    isRec && h("p", { class: "muted small" }, "Informe o seu e-mail. Você vai receber um link para criar uma nova senha."),
+    isUp && h("p", { class: "muted small" }, "Use o seu e-mail corporativo e crie sua senha. O acesso é liberado depois que o gestor aprovar."),
     isUp && field("Nome completo", inp("nome", "", "text", { autocomplete: "name", maxlength: 120 })),
     isUp && field("Cargo", inp("cargo", "", "text", { maxlength: 80, placeholder: "Ex.: SDR" })),
     field("E-mail", inp("email", "", "email", { autocomplete: "username" })),
-    field("Senha", inp("senha", "", "password", { autocomplete: isUp ? "new-password" : "current-password" }), isUp ? "Pelo menos 10 caracteres, com letras e números." : null),
+    !isRec && field("Senha", inp("senha", "", "password", { autocomplete: isUp ? "new-password" : "current-password" }), isUp ? "Pelo menos 10 caracteres, com letras e números." : null),
     isUp && field("Repita a senha", inp("senha2", "", "password", { autocomplete: "new-password" })),
+    isUp && h("label", { class: "row small termo-check" }, h("input", { type: "checkbox", name: "aceite" }),
+      h("span", {}, "Li e aceito o ", h("button", { type: "button", class: "linkish", onclick: termoModal }, "termo de uso de dados"), ".")),
     err, btn,
-    !isUp && h("p", { class: "muted small" }, "Esqueceu a senha? Fale com o seu gestor."));
+    !isUp && !isRec && (RECUPERACAO_SENHA
+      ? h("button", { type: "button", class: "linkish", style: "justify-self:center", onclick: () => { S.authMode = "recuperar"; render(); } }, "Esqueci minha senha")
+      : h("p", { class: "muted small" }, "Esqueceu a senha? Fale com o seu gestor.")),
+    isRec && h("button", { type: "button", class: "linkish", style: "justify-self:center", onclick: () => { S.authMode = "entrar"; render(); } }, "Voltar para Entrar"));
   form.addEventListener("submit", async e => {
     e.preventDefault();
     err.textContent = "";
-    const email = val(form, "email"), senha = form.elements.namedItem("senha").value;
+    const email = val(form, "email");
+    if (isRec) {
+      if (!email) { err.textContent = "Informe o e-mail."; return; }
+      btn.disabled = true;
+      const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
+      btn.disabled = false;
+      if (error) { err.textContent = sbErr(error); return; }
+      S.authMode = "enviado"; render(); return;
+    }
+    const senha = form.elements.namedItem("senha").value;
     if (!email || !senha) { err.textContent = "Informe e-mail e senha."; return; }
     btn.disabled = true;
     if (isUp) {
       const nome = val(form, "nome"), cargo = val(form, "cargo");
-      if (!nome) { err.textContent = "Informe seu nome."; btn.disabled = false; return; }
-      if (!strongEnough(senha)) { err.textContent = "Use pelo menos 10 caracteres, com letras e números."; btn.disabled = false; return; }
-      if (senha !== form.elements.namedItem("senha2").value) { err.textContent = "As senhas não conferem."; btn.disabled = false; return; }
-      const { data, error } = await sb.auth.signUp({ email, password: senha, options: { data: { nome, cargo }, emailRedirectTo: location.origin + location.pathname } });
+      const fail = m => { err.textContent = m; btn.disabled = false; };
+      if (!nome) return fail("Informe seu nome.");
+      const doms = await dominiosPermitidos();
+      if (doms.length && !doms.some(d => email.toLowerCase().endsWith("@" + d))) return fail(`Use o seu e-mail corporativo (${doms.map(d => "@" + d).join(" ou ")}).`);
+      if (!strongEnough(senha)) return fail("Use pelo menos 10 caracteres, com letras e números.");
+      if (senha !== form.elements.namedItem("senha2").value) return fail("As senhas não conferem.");
+      if (!form.elements.namedItem("aceite").checked) return fail("Para continuar, aceite o termo de uso de dados.");
+      const { data, error } = await sb.auth.signUp({ email, password: senha, options: { data: { nome, cargo, aceite_termo: "true", termo_versao: TERMO_VERSAO }, emailRedirectTo: location.origin + location.pathname } });
       btn.disabled = false;
-      if (error) { err.textContent = sbErr(error); return; }
+      if (error) { err.textContent = /database error|EVO_DOMINIO/i.test(error.message) ? "Use o seu e-mail corporativo." : sbErr(error); return; }
       if (!data.session) { S.authMode = "confirmar"; render(); }
     } else {
       const { error } = await sb.auth.signInWithPassword({ email, password: senha });
       btn.disabled = false;
       if (error) err.textContent = /invalid/i.test(error.message) ? "E-mail ou senha incorretos." : /confirm/i.test(error.message) ? "Confirme seu e-mail antes de entrar." : sbErr(error);
     }
+  });
+  return h("div", { class: "center" }, form);
+}
+function novaSenhaView() {
+  const err = h("p", { class: "form-err", role: "alert" });
+  const form = h("form", { class: "card", novalidate: true },
+    h("h1", {}, "Criar nova senha"),
+    field("Nova senha", inp("s1", "", "password", { autocomplete: "new-password" }), "Pelo menos 10 caracteres, com letras e números."),
+    field("Repita a nova senha", inp("s2", "", "password", { autocomplete: "new-password" })),
+    err, h("button", { type: "submit", class: "btn", style: "justify-content:center" }, "Salvar nova senha"));
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const a = form.elements.namedItem("s1").value, b = form.elements.namedItem("s2").value;
+    if (!strongEnough(a)) { err.textContent = "Use pelo menos 10 caracteres, com letras e números."; return; }
+    if (a !== b) { err.textContent = "As senhas não conferem."; return; }
+    const { error } = await sb.auth.updateUser({ password: a });
+    if (error) { err.textContent = sbErr(error); return; }
+    S.recovery = false; toast("Senha alterada."); history.replaceState(null, "", location.pathname); render();
   });
   return h("div", { class: "center" }, form);
 }
@@ -1452,26 +1658,649 @@ function render() {
   const app = document.getElementById("app");
   let content;
   if (!S.ready) content = centerCard("Carregando…", "");
+  else if (S.recovery && S.session) content = novaSenhaView();
   else if (!S.session && S.authMode === "confirmar") content = centerCard("Confirme seu e-mail", "Enviamos um link de confirmação. Depois de confirmar, o gestor precisa aprovar o seu acesso.", h("button", { class: "btn ghost", onclick: () => { S.authMode = "entrar"; render(); } }, "Voltar para Entrar"));
+  else if (!S.session && S.authMode === "enviado") content = centerCard("Verifique o seu e-mail", "Se o e-mail estiver cadastrado, você vai receber um link para criar uma nova senha.", h("button", { class: "btn ghost", onclick: () => { S.authMode = "entrar"; render(); } }, "Voltar para Entrar"));
   else if (!S.session) content = authView();
   else if (S.loading) content = centerCard("Carregando dados…", "");
   else if (S.error && !S.me) content = centerCard("Não foi possível carregar", S.error, h("button", { class: "btn", onclick: refresh }, "Tentar de novo"), h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
-  else if (!S.me || S.me.status === "pendente") content = centerCard("Aguardando aprovação", "Seu pedido de acesso foi registrado. Assim que o gestor aprovar, você poderá preencher o seu currículo.", h("button", { class: "btn", onclick: refresh }, "Verificar de novo"), h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (!S.me) content = centerCard("Acesso não encontrado", "Não encontramos um cadastro ativo para esta conta. Fale com o seu gestor.", h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (S.me.status === "pendente") content = centerCard("Aguardando aprovação", "Seu pedido de acesso foi registrado. Assim que o gestor aprovar, você poderá preencher o seu currículo.", h("button", { class: "btn", onclick: refresh }, "Verificar de novo"), h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
   else if (S.me.status === "recusado" || S.me.arquivado) content = centerCard("Acesso não liberado", "Seu acesso não está ativo. Fale com o seu gestor.", h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (!S.me.aceite_termo_em) content = termoGate();
   else if (S.owner) {
-    if (!["painel", "pessoas", "pessoa", "aprovacoes", "historico"].includes(S.view)) S.view = "painel";
-    content = shell({ painel: viewPainel, pessoas: viewPessoas, pessoa: viewPessoa, aprovacoes: viewAprovacoes, historico: viewHistorico }[S.view]());
-  } else { S.view = "meu"; content = shell(viewMeu()); }
+    if (!["painel", "pessoas", "pessoa", "aprovacoes", "historico", "disc-time"].includes(S.view)) S.view = "painel";
+    content = shell({ painel: viewPainel, pessoas: viewPessoas, pessoa: viewPessoa, aprovacoes: viewAprovacoes, historico: viewHistorico, "disc-time": viewDiscTime }[S.view]());
+  } else {
+    if (S.view === "disc-teste" && !S.discDraft) S.view = "disc";
+    if (!["inicio", "meu", "evolucao", "disc", "disc-teste"].includes(S.view)) S.view = "inicio";
+    content = shell({ inicio: viewInicio, meu: viewMeu, evolucao: viewEvolucao, disc: viewDisc, "disc-teste": viewDiscTeste }[S.view]());
+  }
   app.replaceChildren(...[content].flat().filter(Boolean));
   if (window.Chart) chartJobs.forEach(job => { try { job(); } catch (e) { console.error(e); } });
+  if (S.session && S.me && isActive(S.me) && S.me.aceite_termo_em && !S.loading) talvezNovidades();
+}
+
+
+/* =========================================================
+   VERSÃO 6 — módulos novos
+   ========================================================= */
+const VERSAO = "6.0";
+const NOVIDADES = [
+  "Teste de perfil comportamental DISC completo, com resultado detalhado e histórico.",
+  "Mapa de competências visível para cada pessoa, com autoavaliação comparada à avaliação do gestor.",
+  "Avaliações ficam em rascunho até o gestor liberar. Feedback separado da anotação privada.",
+  "Plano de desenvolvimento (PDI): ações e cursos que se concluem sozinhos quando o certificado é enviado.",
+  "Lembretes de 1:1, prazos, autoavaliação, DISC e validade de certificações.",
+  "Currículo em PDF e relatório do time em PDF.",
+  "Conferência de carga horária, data e curso repetido antes de salvar o certificado, e campo de validade.",
+  "Termo de uso de dados (LGPD) e botão para baixar os seus dados.",
+];
+const RECUPERACAO_SENHA = false; // ligar depois que o SMTP estiver configurado no Supabase
+const TERMO_VERSAO = "1";
+const TERMO = [
+  "Este portal é usado pela LC Sistemas para acompanhar o desenvolvimento profissional do time comercial.",
+  "Dados tratados: nome, e-mail corporativo, cargo, telefone, foto, currículo, certificados de cursos, perfil comportamental DISC, autoavaliações, avaliações do gestor, pontos de melhoria, plano de desenvolvimento e registros de reuniões 1:1.",
+  "Finalidade: apoiar o seu desenvolvimento, organizar treinamentos e conduzir conversas de acompanhamento. O perfil DISC descreve estilo de comportamento e não é usado como critério isolado para promoção, remuneração ou desligamento.",
+  "Quem acessa: você e o gestor do time. Anotações privadas e registros de 1:1 são visíveis apenas ao gestor. Avaliações só ficam visíveis para você depois que o gestor as libera.",
+  "Segurança: os dados ficam em banco protegido por regras de acesso, com registro de todas as alterações. Os arquivos ficam em armazenamento privado.",
+  "Seus direitos: você pode baixar os seus dados a qualquer momento pelo botão “Meus dados” e pedir correção ou exclusão ao gestor. Quando você deixar a empresa, seu acesso é bloqueado e os dados podem ser apagados definitivamente.",
+];
+
+/* ---------- utilidades extras ---------- */
+const latest = (list, key) => [...(list || [])].filter(x => x[key]).sort(byDateDesc(key))[0] || null;
+const daysUntil = v => { const d = daysSince(v); return d == null ? null : -d; };
+const isUuid = v => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(v || ""));
+const isTeste = /teste\.html$/i.test(location.pathname);
+function validadeInfo(c) {
+  if (!c.valido_ate) return null;
+  const d = daysUntil(c.valido_ate);
+  if (d < 0) return { cls: "late", txt: `Venceu em ${fmtDate(c.valido_ate)}` };
+  if (d <= 30) return { cls: "aberto", txt: `Vence em ${plural(d, "dia", "dias")}` };
+  return { cls: "concluido", txt: `Válido até ${fmtDate(c.valido_ate)}` };
+}
+
+/* ---------- DISC ---------- */
+const DISC_CORES = { D: "#C2413B", I: "#D99A00", S: "#2E8B57", C: "#2F6DB5" };
+const DISC_BLOCOS = [
+  [["Decidido","D"],["Comunicativo","I"],["Paciente","S"],["Cuidadoso","C"]],
+  [["Direto","D"],["Entusiasmado","I"],["Calmo","S"],["Preciso","C"]],
+  [["Competitivo","D"],["Sociável","I"],["Leal","S"],["Detalhista","C"]],
+  [["Ousado","D"],["Otimista","I"],["Tolerante","S"],["Organizado","C"]],
+  [["Determinado","D"],["Persuasivo","I"],["Gentil","S"],["Analítico","C"]],
+  [["Firme","D"],["Animado","I"],["Estável","S"],["Criterioso","C"]],
+  [["Exigente","D"],["Expressivo","I"],["Colaborativo","S"],["Disciplinado","C"]],
+  [["Assertivo","D"],["Inspirador","I"],["Prestativo","S"],["Metódico","C"]],
+  [["Independente","D"],["Carismático","I"],["Previsível","S"],["Perfeccionista","C"]],
+  [["Corajoso","D"],["Espontâneo","I"],["Ponderado","S"],["Cauteloso","C"]],
+  [["Objetivo","D"],["Divertido","I"],["Conciliador","S"],["Sistemático","C"]],
+  [["Desafiador","D"],["Falante","I"],["Bom ouvinte","S"],["Exato","C"]],
+  [["Ambicioso","D"],["Popular","I"],["Constante","S"],["Lógico","C"]],
+  [["Enérgico","D"],["Convincente","I"],["Sereno","S"],["Reservado","C"]],
+  [["Pioneiro","D"],["Contagiante","I"],["Confiável","S"],["Rigoroso","C"]],
+  [["Impaciente","D"],["Impulsivo","I"],["Acomodado","S"],["Crítico","C"]],
+  [["Prático","D"],["Afetuoso","I"],["Compreensivo","S"],["Planejado","C"]],
+  [["Arrojado","D"],["Alegre","I"],["Moderado","S"],["Formal","C"]],
+  [["Focado em resultados","D"],["Focado em pessoas","I"],["Focado em harmonia","S"],["Focado em qualidade","C"]],
+  [["Toma a frente","D"],["Anima o grupo","I"],["Apoia o grupo","S"],["Confere os detalhes","C"]],
+  [["Decide rápido","D"],["Faz amizade rápido","I"],["Gosta de rotina","S"],["Gosta de regras claras","C"]],
+  [["Autoconfiante","D"],["Extrovertido","I"],["Modesto","S"],["Discreto","C"]],
+  [["Persistente","D"],["Encantador","I"],["Amável","S"],["Diplomático","C"]],
+  [["Dominante","D"],["Influente","I"],["Sossegado","S"],["Convencional","C"]],
+  [["Insistente","D"],["Brincalhão","I"],["Relaxado","S"],["Desconfiado","C"]],
+  [["Autoritário","D"],["Inquieto","I"],["Hesitante","S"],["Autocrítico","C"]],
+  [["Arrisca","D"],["Improvisa","I"],["Mantém","S"],["Verifica","C"]],
+  [["Vencer desafios","D"],["Ser reconhecido","I"],["Ter segurança","S"],["Fazer o certo","C"]],
+];
+// ordem de exibição variada para a posição não indicar o fator
+const discOrdem = bi => [0, 1, 2, 3].map(k => (k + bi) % 4).sort((a, b) => ((a * 7 + bi * 3) % 4) - ((b * 7 + bi * 3) % 4));
+const DISC_INFO = {
+  D: { nome: "Dominância", estilo: "Executor",
+    resumo: "Direto, rápido e orientado a resultados. Gosta de desafios, decide com agilidade e assume o controle quando algo precisa acontecer.",
+    fortes: ["Toma decisões com rapidez", "Encara desafios e metas difíceis", "Foca em resultado e prazo", "Age com iniciativa e autonomia"],
+    atencao: ["Pode atropelar opiniões e detalhes", "Impaciência com ritmos mais lentos", "Comunicação pode soar ríspida", "Tende a assumir riscos sem medir todos os impactos"],
+    comunicacao: ["Seja direto e objetivo, vá ao ponto", "Apresente opções e deixe a pessoa escolher", "Fale de resultados e próximos passos", "Evite rodeios e excesso de detalhes"],
+    motiva: ["Desafios e metas ambiciosas", "Autonomia para decidir", "Reconhecimento por resultados"],
+    pressao: "Fica mais controlador e impaciente, pode ser exigente demais com os outros.",
+    lideranca: "Dê metas claras e autonomia. Combine limites e critérios de qualidade antes, e cobre por resultado, não por microgestão." },
+  I: { nome: "Influência", estilo: "Comunicador",
+    resumo: "Comunicativo, otimista e persuasivo. Cria relacionamentos com facilidade, entusiasma as pessoas e se destaca em contato com clientes.",
+    fortes: ["Constrói relacionamentos rapidamente", "Persuade e inspira", "Traz energia e otimismo ao time", "Se adapta bem a novas pessoas e situações"],
+    atencao: ["Pode se dispersar e perder prazos", "Tende a prometer mais do que cabe", "Menor atenção a detalhes e registros", "Pode evitar conversas difíceis"],
+    comunicacao: ["Seja caloroso e aberto ao diálogo", "Dê espaço para ideias e conversa", "Registre combinados por escrito depois", "Reconheça publicamente as conquistas"],
+    motiva: ["Reconhecimento e visibilidade", "Interação com pessoas", "Ambiente leve e colaborativo"],
+    pressao: "Fica desorganizado ou emotivo, pode falar demais e agir por impulso.",
+    lideranca: "Combine prazos e registros de forma clara e acompanhe com frequência. Use reconhecimento como motivador e ajude a priorizar." },
+  S: { nome: "Estabilidade", estilo: "Planejador",
+    resumo: "Calmo, paciente e confiável. Valoriza harmonia e constância, apoia o time e é excelente em relacionamentos de longo prazo.",
+    fortes: ["Consistência e confiabilidade", "Escuta ativa e empatia", "Colabora e apoia os colegas", "Mantém a calma em situações tensas"],
+    atencao: ["Resistência a mudanças bruscas", "Dificuldade em dizer não", "Pode evitar conflitos necessários", "Ritmo mais cauteloso para decidir"],
+    comunicacao: ["Seja gentil e paciente", "Explique o motivo das mudanças com antecedência", "Dê segurança e tempo para se adaptar", "Pergunte a opinião: nem sempre ela é oferecida"],
+    motiva: ["Segurança e previsibilidade", "Ambiente harmonioso", "Sentir que está ajudando"],
+    pressao: "Se fecha, concorda sem concordar e acumula tensão em silêncio.",
+    lideranca: "Antecipe mudanças e explique o porquê. Crie espaço seguro para discordar e incentive a pessoa a se posicionar." },
+  C: { nome: "Conformidade", estilo: "Analista",
+    resumo: "Analítico, preciso e organizado. Valoriza qualidade, regras e dados, e garante que as coisas sejam feitas do jeito certo.",
+    fortes: ["Precisão e atenção a detalhes", "Análise e senso crítico", "Organização e método", "Qualidade nas entregas"],
+    atencao: ["Pode demorar para decidir por buscar perfeição", "Crítico consigo e com os outros", "Pode parecer distante", "Desconforto com improviso"],
+    comunicacao: ["Traga dados, fatos e exemplos", "Seja claro sobre critérios e padrões", "Dê tempo para analisar antes de decidir", "Evite pressão emocional ou exagero"],
+    motiva: ["Fazer um trabalho de qualidade", "Regras e critérios claros", "Tempo para fazer bem feito"],
+    pressao: "Fica excessivamente crítico, rígido ou se retrai em análises sem fim.",
+    lideranca: "Defina critérios de qualidade e prazos realistas. Mostre quando o \u201cbom o suficiente\u201d resolve e valorize a precisão." },
+};
+function discScore(resp) {
+  const net = { D: 0, I: 0, S: 0, C: 0 };
+  resp.forEach((r, bi) => { net[DISC_BLOCOS[bi][r.m][1]]++; net[DISC_BLOCOS[bi][r.l][1]]--; });
+  const pct = {};
+  for (const k of "DISC") pct[k] = Math.round((net[k] + DISC_BLOCOS.length) / (2 * DISC_BLOCOS.length) * 100);
+  const ord = Object.entries(pct).sort((a, b) => b[1] - a[1]);
+  const perfil = ord[0][0] + (ord[1][1] >= 50 && ord[0][1] - ord[1][1] <= 20 ? ord[1][0] : "");
+  return { pct, perfil };
+}
+const discTitulo = p => p.length === 2
+  ? `${p[0]}/${p[1]}: ${DISC_INFO[p[0]].estilo} com traços de ${DISC_INFO[p[1]].estilo.toLowerCase()}`
+  : `${p}: ${DISC_INFO[p].estilo}`;
+function discChart(r) {
+  return chartBox("short", () => ({
+    type: "bar",
+    data: { labels: "DISC".split("").map(k => `${k} · ${DISC_INFO[k].nome}`), datasets: [{ data: [r.d, r.i, r.s, r.c], backgroundColor: "DISC".split("").map(k => DISC_CORES[k]), borderRadius: 6 }] },
+    options: { plugins: { legend: { display: false }, tooltip: { callbacks: { label: it => `${it.raw} de 100` } } },
+      scales: { y: { min: 0, max: 100, ticks: { stepSize: 25 } }, x: { grid: { display: false } } } },
+  }));
+}
+const bulletList = items => h("ul", { class: "blist" }, items.map(t => h("li", {}, t)));
+function discResultado(r, paraGestor) {
+  const p1 = DISC_INFO[r.perfil[0]], p2 = r.perfil[1] ? DISC_INFO[r.perfil[1]] : null;
+  return h("div", { class: "stack" },
+    h("div", { class: "grid2" },
+      h("div", { class: "panel" },
+        h("div", { class: "panel-head" }, h("h2", {}, discTitulo(r.perfil)), h("p", {}, `Respondido em ${fmtDate(r.criado_em)}`)),
+        discChart(r)),
+      h("div", { class: "panel" },
+        h("h2", {}, "Resumo do estilo"),
+        h("p", { style: "margin-top:10px" }, p1.resumo),
+        p2 && h("p", { class: "muted", style: "margin-top:8px" }, `Traços de ${p2.nome.toLowerCase()}: ${p2.resumo}`),
+        h("p", { class: "notice small", style: "margin-top:14px" }, "O DISC descreve estilo de comportamento, não competência nem desempenho. Nenhum perfil é melhor que outro: cada um contribui de um jeito."))),
+    h("div", { class: "grid2" },
+      h("div", { class: "panel" }, h("h3", {}, "Pontos fortes"), bulletList([...p1.fortes, ...(p2 ? p2.fortes.slice(0, 2) : [])])),
+      h("div", { class: "panel" }, h("h3", {}, "Pontos de atenção"), bulletList([...p1.atencao, ...(p2 ? p2.atencao.slice(0, 1) : [])]))),
+    h("div", { class: "grid2" },
+      h("div", { class: "panel" }, h("h3", {}, paraGestor ? "Como se comunicar com esta pessoa" : "Como prefere que falem com você"), bulletList(p1.comunicacao)),
+      h("div", { class: "panel" }, h("h3", {}, "O que motiva"), bulletList(p1.motiva),
+        h("h3", { style: "margin-top:14px" }, "Sob pressão"), h("p", {}, p1.pressao))),
+    paraGestor && h("div", { class: "panel" }, h("h3", {}, "Dica de liderança"), h("p", {}, p1.lideranca), p2 && h("p", { class: "muted", style: "margin-top:8px" }, p2.lideranca)));
+}
+function viewDiscTeste() {
+  const st = S.discDraft;
+  const n = DISC_BLOCOS.length, bi = st.i, r = st.resp[bi];
+  const ok = r.m != null && r.l != null;
+  const pick = (kind, idx) => {
+    if (kind === "m") { r.m = idx; if (r.l === idx) r.l = null; } else { r.l = idx; if (r.m === idx) r.m = null; }
+    render();
+  };
+  const done = st.resp.filter(x => x.m != null && x.l != null).length;
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Teste de perfil DISC"),
+      h("p", {}, "Em cada bloco, escolha a palavra que MAIS combina com você no trabalho e a que MENOS combina. Responda pelo que você é, não pelo que gostaria de ser. Não existe resposta certa."))),
+    h("div", { class: "panel disc-test" },
+      h("div", { class: "disc-prog" }, h("span", {}, `Bloco ${bi + 1} de ${n}`), h("div", { class: "bar" }, h("i", { style: `width:${(done / n) * 100}%` }))),
+      h("div", { class: "disc-head" }, h("span", {}, ""), h("span", {}, "Mais"), h("span", {}, "Menos")),
+      discOrdem(bi).map(idx => h("div", { class: "disc-row" + (r.m === idx ? " is-m" : r.l === idx ? " is-l" : "") },
+        h("span", { class: "disc-word" }, DISC_BLOCOS[bi][idx][0]),
+        h("button", { type: "button", class: "disc-pick m", "aria-pressed": r.m === idx, "aria-label": `${DISC_BLOCOS[bi][idx][0]}: mais combina`, onclick: () => pick("m", idx) }, "Mais"),
+        h("button", { type: "button", class: "disc-pick l", "aria-pressed": r.l === idx, "aria-label": `${DISC_BLOCOS[bi][idx][0]}: menos combina`, onclick: () => pick("l", idx) }, "Menos"))),
+      h("div", { class: "row", style: "justify-content:space-between;margin-top:16px" },
+        h("button", { class: "btn ghost", disabled: bi === 0, onclick: () => { st.i--; render(); } }, "Anterior"),
+        h("button", { class: "btn ghost small", onclick: async () => { if (await confirmBox("Sair do teste? As respostas deste teste serão perdidas.", "Sair", true)) { S.discDraft = null; go("disc"); } } }, "Sair do teste"),
+        bi < n - 1
+          ? h("button", { class: "btn", disabled: !ok, onclick: () => { st.i++; render(); window.scrollTo(0, 0); } }, "Próximo")
+          : h("button", { class: "btn", disabled: done < n, onclick: finishDisc }, "Ver meu resultado"))),
+  ];
+}
+async function finishDisc() {
+  const resp = S.discDraft.resp;
+  if (resp.some(x => x.m == null || x.l == null)) { toast("Responda todos os blocos.", true); return; }
+  const { pct, perfil } = discScore(resp);
+  const { error } = await sb.from("evo_disc").insert({ user_id: S.me.user_id, respostas: resp, d: pct.D, i: pct.I, s: pct.S, c: pct.C, perfil });
+  if (error) { toast(sbErr(error), true); return; }
+  S.discDraft = null; await refresh(); go("disc"); toast("Perfil DISC registrado.");
+}
+function startDisc() { S.discDraft = { i: 0, resp: DISC_BLOCOS.map(() => ({ m: null, l: null })) }; S.view = "disc-teste"; render(); window.scrollTo(0, 0); }
+function discHistorico(list) {
+  if (list.length < 2) return null;
+  return h("div", { class: "panel" }, h("h3", {}, "Histórico"),
+    h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+      h("thead", {}, h("tr", {}, ["Data", "Perfil", "D", "I", "S", "C"].map((t, i) => h("th", { class: i > 1 ? "num" : "" }, t)))),
+      h("tbody", {}, list.map(r => h("tr", { style: "cursor:default" }, h("td", {}, fmtDate(r.criado_em)), h("td", {}, r.perfil),
+        h("td", { class: "num" }, r.d), h("td", { class: "num" }, r.i), h("td", { class: "num" }, r.s), h("td", { class: "num" }, r.c)))))));
+}
+function viewDisc() {
+  const list = [...(S.disc.get(S.me.user_id) || [])].sort(byDateDesc("criado_em"));
+  const last = list[0];
+  if (!last) return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Perfil DISC"), h("p", {}, "Descubra o seu estilo de comportamento no trabalho."))),
+    h("div", { class: "panel stack" },
+      h("p", {}, "São 28 blocos com 4 palavras. Em cada um, você escolhe a que mais combina e a que menos combina com você. Leva de 10 a 15 minutos."),
+      h("div", { class: "disc-legend" }, "DISC".split("").map(k => h("div", {}, h("b", { style: `color:${DISC_CORES[k]}` }, `${k} · ${DISC_INFO[k].nome}`), h("span", { class: "muted small" }, DISC_INFO[k].resumo.split(".")[0] + ".")))),
+      h("p", { class: "muted small" }, "O resultado fica visível para você e para o seu gestor. Ele ajuda na comunicação e no seu desenvolvimento; não é avaliação de desempenho."),
+      h("div", {}, h("button", { class: "btn", onclick: startDisc }, "Começar o teste"))),
+  ];
+  const dias = daysSince(last.criado_em);
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Meu perfil DISC"), h("p", {}, "Seu estilo predominante de comportamento no trabalho.")),
+      h("button", { class: "btn ghost small", onclick: async () => { if (dias < 180 && !(await confirmBox(`Você respondeu há ${plural(dias, "dia", "dias")}. O recomendado é refazer a cada 12 meses. Refazer mesmo assim?`, "Refazer"))) return; startDisc(); } }, "Refazer o teste")),
+    discResultado(last, false), discHistorico(list),
+  ];
+}
+function viewDiscTime() {
+  const ids = teamIds(false);
+  const lastOf = id => latest(S.disc.get(id), "criado_em");
+  const com = ids.filter(lastOf), sem = ids.filter(id => !lastOf(id));
+  const cont = { D: 0, I: 0, S: 0, C: 0 }; com.forEach(id => cont[lastOf(id).perfil[0]]++);
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Perfis DISC do time"), h("p", {}, "Use para adaptar a comunicação e montar duplas que se complementam."))),
+    h("div", { class: "stack" },
+      h("div", { class: "kpis" }, "DISC".split("").map(k => h("div", { class: "kpi", style: `border-top:4px solid ${DISC_CORES[k]}` },
+        h("div", { class: "v" }, cont[k]), h("div", { class: "l" }, `${DISC_INFO[k].nome} (${DISC_INFO[k].estilo.toLowerCase()})`)))),
+      com.length ? h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Pessoas"), h("p", {}, "Clique para ver o perfil completo e as dicas de liderança.")),
+        h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+          h("thead", {}, h("tr", {}, ["Pessoa", "Perfil", "D", "I", "S", "C", "Respondido"].map((t, i) => h("th", { class: i > 1 ? "num" : "" }, t)))),
+          h("tbody", {}, com.map(id => { const r = lastOf(id); return h("tr", { tabindex: 0, onclick: () => openPerson(id, "disc"), onkeydown: e => { if (e.key === "Enter") openPerson(id, "disc"); } },
+            h("td", {}, h("div", { class: "person" }, rings(certsOf(id), 36, nameOf(id), id), h("b", {}, nameOf(id)))),
+            h("td", {}, h("span", { class: "disc-tag", style: `background:${DISC_CORES[r.perfil[0]]}` }, r.perfil), " ", DISC_INFO[r.perfil[0]].estilo),
+            ...["d", "i", "s", "c"].map(k => h("td", { class: "num" }, h("span", { class: "mini-meter" }, h("i", { style: `width:${r[k]}%;background:${DISC_CORES[k.toUpperCase()]}` })), " ", r[k])),
+            h("td", { class: "num" }, fmtDate(r.criado_em))); }))))) : null,
+      sem.length > 0 && h("div", { class: "panel" }, h("h3", {}, "Ainda não responderam"), h("p", { class: "muted", style: "margin-top:6px" }, sem.map(nameOf).join(", ")))),
+  ];
+}
+function tabDisc(uid) {
+  const list = [...(S.disc.get(uid) || [])].sort(byDateDesc("criado_em"));
+  if (!list.length) return h("div", { class: "panel" }, h("p", { class: "muted" }, "Esta pessoa ainda não respondeu o teste DISC. Ela encontra o teste no menu Perfil DISC."));
+  return h("div", { class: "stack" }, discResultado(list[0], true), discHistorico(list));
+}
+
+/* ---------- autoavaliação e comparação ---------- */
+function formAutoavaliacao(uid) {
+  const last = latest(S.auto.get(uid), "data") || {};
+  const scale = h("div", { class: "scale" }, COMPETENCIAS.map(([k, l]) =>
+    h("div", { class: "scale-row" }, h("span", {}, l),
+      h("div", { class: "seg", role: "radiogroup", "aria-label": l },
+        [1, 2, 3, 4, 5].map(n => h("label", {}, h("input", { type: "radio", name: "c_" + k, value: n, checked: Number(last.notas?.[k]) === n, "aria-label": `${l}: ${n}` }), h("span", {}, n)))))));
+  openModal({
+    title: "Autoavaliação de competências", submitLabel: "Enviar autoavaliação",
+    body: [
+      h("p", { class: "muted small" }, "Dê uma nota de 1 a 5 para você em cada competência. 1 = preciso desenvolver muito, 5 = sou referência. Seja sincero: a comparação com a avaliação do gestor é o que mais ajuda no seu desenvolvimento."),
+      scale,
+      field("Comentário (opcional)", ta("comentario", "", 3), "O que você acha que evoluiu e onde quer apoio?"),
+    ],
+    onSubmit: form => {
+      const notas = {};
+      for (const [k] of COMPETENCIAS) { const v = form.querySelector(`input[name="c_${k}"]:checked`)?.value; if (v) notas[k] = Number(v); }
+      if (Object.keys(notas).length < COMPETENCIAS.length) { toast("Dê nota para todas as competências.", true); return false; }
+      return run(sb.from("evo_autoavaliacoes").insert({ user_id: uid, data: today(), notas, comentario: nz(val(form, "comentario")) }), "Autoavaliação enviada.");
+    },
+  });
+}
+function comparacao(uid) {
+  const auto = latest(S.auto.get(uid), "data"), av = latest(S.aval.get(uid), "data");
+  if (!auto || !av) return null;
+  const rows = COMPETENCIAS.map(([k, l]) => {
+    const a = Number(auto.notas?.[k]) || null, g = Number(av.notas?.[k]) || null;
+    return { l, a, g, d: a != null && g != null ? a - g : null };
+  });
+  return h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+    h("thead", {}, h("tr", {}, ["Competência", "Autoavaliação", "Gestor", "Diferença"].map((t, i) => h("th", { class: i ? "num" : "" }, t)))),
+    h("tbody", {}, rows.map(r => h("tr", { style: "cursor:default", class: r.d != null && Math.abs(r.d) >= 2 ? "gap" : "" },
+      h("td", {}, r.l), h("td", { class: "num" }, r.a ?? "–"), h("td", { class: "num" }, r.g ?? "–"),
+      h("td", { class: "num" }, r.d == null ? "–" : r.d === 0 ? "alinhado" : h("span", { class: r.d > 0 ? "delta-down" : "delta-up" }, `${r.d > 0 ? "+" : "−"}${Math.abs(r.d)}`))))),
+    h("caption", { class: "muted small", style: "caption-side:bottom;text-align:left;padding-top:8px" },
+      `Autoavaliação de ${fmtDate(auto.data)} comparada à avaliação de ${fmtDate(av.data)}. Diferenças de 2 pontos ou mais estão destacadas: são bons temas para a 1:1.`)));
+}
+
+/* ---------- PDI ---------- */
+const PDI_STATUS = { pendente: "Pendente", andamento: "Em andamento", concluido: "Concluído" };
+const compNome = k => (COMPETENCIAS.find(c => c[0] === k) || [null, null])[1];
+function formPdi(uid, existing, pre) {
+  const p = existing || pre || {};
+  const termo = inp("termo_curso", p.termo_curso, "text", { maxlength: 120, placeholder: "Ex.: negociação" });
+  const termoField = field("Palavra para reconhecer o certificado", termo, "Quando a pessoa enviar um certificado com essa palavra no nome do curso, a ação é concluída automaticamente. Em branco, usa o título.");
+  const tipo = sel("tipo", [["acao", "Ação prática"], ["curso", "Curso"]], p.tipo || "acao");
+  const syncTipo = () => { termoField.hidden = tipo.value !== "curso"; };
+  tipo.addEventListener("change", syncTipo);
+  openModal({
+    title: existing ? "Editar ação do PDI" : "Nova ação do PDI", submitLabel: "Salvar",
+    body: [
+      h("div", { class: "two" }, field("Tipo", tipo), field("Competência relacionada", sel("competencia", [["", "Nenhuma"], ...COMPETENCIAS.map(([k, l]) => [k, l])], p.competencia || ""))),
+      field("O que fazer", inp("titulo", p.titulo, "text", { maxlength: 200, placeholder: "Ex.: Fazer curso de negociação consultiva" })),
+      field("Detalhes", ta("descricao", p.descricao, 3)),
+      termoField,
+      h("div", { class: "two" }, field("Prazo", inp("prazo", p.prazo, "date")), existing ? field("Situação", sel("status", Object.entries(PDI_STATUS), p.status)) : null),
+    ],
+    onReady: () => syncTipo(),
+    onSubmit: form => {
+      const titulo = val(form, "titulo");
+      if (!titulo) { toast("Descreva a ação.", true); return false; }
+      const row = { user_id: uid, tipo: val(form, "tipo"), titulo, descricao: nz(val(form, "descricao")), competencia: nz(val(form, "competencia")),
+        termo_curso: val(form, "tipo") === "curso" ? nz(val(form, "termo_curso")) : null, prazo: nz(val(form, "prazo")) };
+      if (existing) row.status = val(form, "status");
+      return run(existing ? sb.from("evo_pdi").update(row).eq("id", existing.id) : sb.from("evo_pdi").insert(row), "Ação do PDI salva.");
+    },
+  });
+}
+function pdiSugestoes(uid) {
+  const out = [];
+  const av = latest(S.aval.get(uid), "data"), auto = latest(S.auto.get(uid), "data"), disc = latest(S.disc.get(uid), "criado_em");
+  if (av) for (const [k, l] of COMPETENCIAS) { const n = Number(av.notas?.[k]); if (n && n <= 3) out.push({ txt: `${l}: nota ${n} na última avaliação`, pre: { titulo: `Desenvolver ${l.toLowerCase()}`, competencia: k, tipo: "curso" } }); }
+  if (av && auto) for (const [k, l] of COMPETENCIAS) { const a = Number(auto.notas?.[k]), g = Number(av.notas?.[k]); if (a && g && a - g >= 2) out.push({ txt: `${l}: a pessoa se deu ${a} e você deu ${g} (ponto cego)`, pre: { titulo: `Alinhar expectativas sobre ${l.toLowerCase()}`, competencia: k, tipo: "acao" } }); }
+  if (disc) { const info = DISC_INFO[disc.perfil[0]]; out.push({ txt: `Perfil ${disc.perfil}: ${info.atencao[0].toLowerCase()}`, pre: { titulo: `Trabalhar: ${info.atencao[0].toLowerCase()}`, tipo: "acao" } }); }
+  return out;
+}
+function pdiLista(uid, gestor) {
+  const order = { andamento: 0, pendente: 1, concluido: 2 };
+  const list = [...(S.pdi.get(uid) || [])].sort((a, b) => (order[a.status] ?? 1) - (order[b.status] ?? 1) || (a.prazo || "9").localeCompare(b.prazo || "9"));
+  if (!list.length) return h("p", { class: "muted" }, gestor ? "Nenhuma ação no plano ainda." : "Seu gestor ainda não criou ações no seu plano de desenvolvimento.");
+  const t = today();
+  return h("ul", { class: "list" }, list.map(p => {
+    const late = p.status !== "concluido" && p.prazo && p.prazo < t;
+    const cert = p.certificado_id ? certsOf(uid).find(c => c.id === p.certificado_id) : null;
+    return h("li", { class: "item" },
+      h("div", { class: "item-top" }, h("h3", {}, p.titulo),
+        h("span", { class: "row" }, h("span", { class: "pill concluido" }, p.tipo === "curso" ? "Curso" : "Ação"), late && h("span", { class: "pill late" }, "Prazo vencido"),
+          h("span", { class: "pill " + (p.status === "concluido" ? "concluido" : p.status === "andamento" ? "andamento" : "aberto") }, PDI_STATUS[p.status]))),
+      h("p", { class: "meta" }, [p.competencia && compNome(p.competencia), p.prazo && `prazo ${fmtDate(p.prazo)}`, p.concluido_em && `concluído em ${fmtDate(p.concluido_em)}`].filter(Boolean).join(", ")),
+      p.descricao && h("p", { class: "prose" }, p.descricao),
+      cert && h("p", { class: "meta" }, `Concluído com o certificado “${cert.titulo}”.`),
+      p.tipo === "curso" && p.status !== "concluido" && h("p", { class: "meta" }, "Conclui sozinho quando o certificado do curso for enviado."),
+      h("div", { class: "row" },
+        p.status === "pendente" && h("button", { class: "linkish", onclick: () => run(sb.from("evo_pdi").update({ status: "andamento" }).eq("id", p.id), "Em andamento.") }, "Começar"),
+        p.status !== "concluido" && (gestor || p.tipo === "acao") && h("button", { class: "linkish", onclick: () => run(sb.from("evo_pdi").update({ status: "concluido" }).eq("id", p.id), "Ação concluída.") }, "Marcar como concluída"),
+        !gestor && p.tipo === "curso" && p.status !== "concluido" && h("button", { class: "linkish", onclick: () => formCertificado(uid) }, "Enviar certificado"),
+        gestor && h("button", { class: "linkish", onclick: () => formPdi(uid, p) }, "Editar"),
+        gestor && h("button", { class: "linkish red", onclick: () => removeRecord("evo_pdi", p.id, "esta ação do PDI") }, "Apagar")));
+  }));
+}
+function tabPdi(uid) {
+  const sug = pdiSugestoes(uid);
+  return h("div", { class: "stack" },
+    sug.length > 0 && h("div", { class: "panel" },
+      h("div", { class: "panel-head" }, h("h2", {}, "Sugestões para o plano"), h("p", {}, "A partir da última avaliação, da autoavaliação e do perfil DISC.")),
+      h("ul", { class: "list" }, sug.map(s => h("li", { class: "item row", style: "justify-content:space-between" }, h("span", {}, s.txt),
+        h("button", { class: "btn ghost small", onclick: () => formPdi(uid, null, s.pre) }, "Criar ação"))))),
+    h("div", { class: "panel" },
+      h("div", { class: "panel-head" }, h("h2", {}, "Plano de desenvolvimento"), h("button", { class: "btn small", onclick: () => formPdi(uid) }, "Nova ação")),
+      pdiLista(uid, true)));
+}
+
+/* ---------- lembretes ---------- */
+function lembretes() {
+  const out = [], t = today();
+  const add = (nivel, texto, acao) => out.push({ nivel, texto, acao });
+  const prazos = (id, nm, prefixo) => {
+    for (const m of S.melh.get(id) || []) if (m.status !== "concluido" && m.prazo) {
+      const d = daysUntil(m.prazo);
+      if (d < 0) add("alto", `${prefixo}melhoria “${m.titulo}” com prazo vencido`, () => S.owner ? openPerson(id, "melhorias") : go("evolucao"));
+      else if (d <= 7) add("medio", `${prefixo}melhoria “${m.titulo}” vence em ${plural(d, "dia", "dias")}`, () => S.owner ? openPerson(id, "melhorias") : go("evolucao"));
+    }
+    for (const p of S.pdi.get(id) || []) if (p.status !== "concluido" && p.prazo) {
+      const d = daysUntil(p.prazo);
+      if (d < 0) add("alto", `${prefixo}ação do PDI “${p.titulo}” com prazo vencido`, () => S.owner ? openPerson(id, "pdi") : go("evolucao"));
+      else if (d <= 7) add("medio", `${prefixo}ação do PDI “${p.titulo}” vence em ${plural(d, "dia", "dias")}`, () => S.owner ? openPerson(id, "pdi") : go("evolucao"));
+    }
+    for (const c of certsOf(id)) { const v = validadeInfo(c); if (v && v.cls !== "concluido") add(v.cls === "late" ? "medio" : "info", `${prefixo}certificação “${c.titulo}”: ${v.txt.toLowerCase()}`, () => S.owner ? openPerson(id, "curriculo") : go("meu")); }
+  };
+  if (S.owner) {
+    const pend = pending().length;
+    if (pend) add("alto", `${plural(pend, "pedido", "pedidos")} de acesso aguardando aprovação`, () => go("aprovacoes"));
+    for (const id of teamIds(false)) {
+      const nm = nameOf(id).split(" ")[0] + ": ", st = personStats(id);
+      if (st.lastOne == null) add("medio", nm + "nenhuma 1:1 registrada", () => openPerson(id, "oneaone"));
+      else if (st.lastOne > 30) add("alto", nm + `última 1:1 há ${st.lastOne} dias`, () => openPerson(id, "oneaone"));
+      if (st.next) { const d = daysUntil(st.next); if (d >= 0 && d <= 3) add("info", nm + `1:1 marcada para ${fmtDate(st.next)}`, () => openPerson(id, "oneaone")); }
+      const rasc = (S.aval.get(id) || []).filter(a => !a.liberada).length;
+      if (rasc) add("medio", nm + `${plural(rasc, "avaliação", "avaliações")} em rascunho, ainda não liberada para a pessoa`, () => openPerson(id, "avaliacoes"));
+      const lastAuto = latest(S.auto.get(id), "data"), lastAv = latest(S.aval.get(id), "data");
+      if (lastAuto && (!lastAv || lastAuto.data > lastAv.data)) add("medio", nm + "respondeu a autoavaliação e aguarda a sua avaliação", () => openPerson(id, "avaliacoes"));
+      prazos(id, null, nm);
+      if (!S.people.get(id)?.atualizado_em) add("info", nm + "currículo ainda não preenchido", () => openPerson(id, "curriculo"));
+      if (!(S.disc.get(id) || []).length) add("info", nm + "perfil DISC ainda não respondido", () => openPerson(id, "disc"));
+    }
+    const ub = S.config.ultimo_backup, dias = ub ? daysSince(ub) : null;
+    if (dias == null || dias > 30) add("alto", dias == null ? "Nenhum backup baixado ainda" : `Último backup há ${dias} dias`, () => go("historico"));
+  } else {
+    const id = S.me.user_id;
+    if (!S.me.atualizado_em) add("medio", "Complete o seu currículo", () => go("meu"));
+    if (!(S.disc.get(id) || []).length) add("medio", "Responda o seu perfil DISC", () => go("disc"));
+    const lastAuto = latest(S.auto.get(id), "data");
+    if (!lastAuto) add("medio", "Faça a sua autoavaliação de competências", () => formAutoavaliacao(id));
+    else if (daysSince(lastAuto.data) > 90) add("info", "Sua última autoavaliação tem mais de 3 meses", () => formAutoavaliacao(id));
+    const lastLib = latest(S.aval.get(id), "liberada_em");
+    if (lastLib && daysSince(lastLib.liberada_em) <= 14) add("info", `Nova avaliação liberada em ${fmtDate(lastLib.liberada_em)}`, () => go("evolucao"));
+    prazos(id, null, "");
+  }
+  const ord = { alto: 0, medio: 1, info: 2 };
+  return out.sort((a, b) => ord[a.nivel] - ord[b.nivel]);
+}
+function lembretesPanel(max) {
+  const l = lembretes();
+  const shown = l.slice(0, max || 12);
+  return h("div", { class: "panel" },
+    h("div", { class: "panel-head" }, h("h2", {}, "Lembretes"), l.length > shown.length && h("p", {}, `Mostrando ${shown.length} de ${l.length}`)),
+    l.length ? h("ul", { class: "lembretes" }, shown.map(x => h("li", {},
+      h("button", { class: "lembrete " + x.nivel, onclick: x.acao }, h("span", { class: "dot", "aria-hidden": "true" }), h("span", {}, x.texto)))))
+      : h("p", { class: "muted" }, "Nada pendente. Tudo em dia."));
+}
+
+/* ---------- impressão (PDF) ---------- */
+function printDoc(titulo, conteudo) {
+  const box = document.getElementById("print");
+  box.replaceChildren(conteudo);
+  const imgs = [...box.querySelectorAll("img")];
+  Promise.all(imgs.map(i => i.complete ? null : new Promise(r => { i.onload = i.onerror = r; }))).then(() => {
+    const old = document.title;
+    const limpar = () => { document.body.classList.remove("printing"); document.title = old; box.replaceChildren(); };
+    document.title = titulo;
+    document.body.classList.add("printing");
+    window.addEventListener("afterprint", limpar, { once: true });
+    window.print();
+    setTimeout(() => { if (document.body.classList.contains("printing")) limpar(); }, 60000);
+  });
+  toast("Na janela de impressão, escolha “Salvar como PDF”.");
+}
+const prodape = () => h("p", { class: "pr-foot" }, `Gerado pelo portal Evolução do time comercial, LC Sistemas, em ${fmtDate(today())}.`);
+function cvPdf(uid) {
+  const m = S.people.get(uid) || {};
+  const certs = [...certsOf(uid)].sort(byDateDesc("concluido_em"));
+  const exps = Array.isArray(m.experiencias) ? m.experiencias : [], forms = Array.isArray(m.formacao) ? m.formacao : [];
+  const doc = h("article", { class: "pr-cv" },
+    h("header", { class: "pr-head" },
+      S.photos[uid] && h("img", { src: S.photos[uid], alt: "" }),
+      h("div", {}, h("h1", {}, nameOf(uid)), h("p", { class: "pr-role" }, m.cargo || ""),
+        h("p", { class: "pr-contact" }, [m.email, m.telefone, m.admissao && `Na LC Sistemas desde ${fmtDate(m.admissao)}`].filter(Boolean).join("  |  ")))),
+    m.resumo && h("section", {}, h("h2", {}, "Resumo profissional"), h("p", { class: "prose" }, m.resumo)),
+    (m.habilidades || []).length > 0 && h("section", {}, h("h2", {}, "Habilidades"), h("p", {}, m.habilidades.join("  •  "))),
+    exps.length > 0 && h("section", {}, h("h2", {}, "Experiência"), exps.map(e => h("div", { class: "pr-item" },
+      h("b", {}, [e.cargo, e.empresa].filter(Boolean).join(", ")), e.periodo && h("span", {}, e.periodo), e.descricao && h("p", { class: "prose" }, e.descricao)))),
+    forms.length > 0 && h("section", {}, h("h2", {}, "Formação"), forms.map(f => h("div", { class: "pr-item" }, h("b", {}, f.curso || "Curso"), h("span", {}, [f.instituicao, f.ano].filter(Boolean).join(", "))))),
+    certs.length > 0 && h("section", {}, h("h2", {}, `Cursos e certificações (${fmtH(hoursOf(certs))})`),
+      h("table", { class: "pr-tbl" }, h("thead", {}, h("tr", {}, ["Curso", "Instituição", "Carga", "Conclusão"].map(t => h("th", {}, t)))),
+        h("tbody", {}, certs.map(c => h("tr", {}, h("td", {}, c.titulo), h("td", {}, c.instituicao || ""), h("td", {}, num(c.carga_horas) ? fmtH(c.carga_horas) : ""), h("td", {}, fmtDate(c.concluido_em))))))),
+    prodape());
+  printDoc(`Currículo - ${nameOf(uid)}`, doc);
+}
+function relatorioTime() {
+  const ids = teamIds(false), year = String(new Date().getFullYear());
+  const certsAno = ids.flatMap(certsOf).filter(c => dateOnly(c.concluido_em).startsWith(year));
+  const lastAvs = ids.map(id => latest(S.aval.get(id), "data")).filter(Boolean);
+  const mediaComp = COMPETENCIAS.map(([k, l]) => { const v = lastAvs.map(a => Number(a.notas?.[k])).filter(n => n >= 1); return [l, v.length ? v.reduce((a, b) => a + b, 0) / v.length : null]; });
+  const melhOk = ids.flatMap(id => S.melh.get(id) || []).filter(m => m.status === "concluido" && dateOnly(m.concluido_em).startsWith(year)).length;
+  const pdiOk = ids.flatMap(id => S.pdi.get(id) || []).filter(p => p.status === "concluido" && dateOnly(p.concluido_em).startsWith(year)).length;
+  const cont = { D: 0, I: 0, S: 0, C: 0 }; ids.forEach(id => { const r = latest(S.disc.get(id), "criado_em"); if (r) cont[r.perfil[0]]++; });
+  const mediaGeral = (() => { const v = lastAvs.map(avgOf).filter(x => x != null); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; })();
+  const doc = h("article", { class: "pr-cv" },
+    h("header", { class: "pr-head" }, h("div", {}, h("h1", {}, "Relatório do time comercial"), h("p", { class: "pr-role" }, `LC Sistemas, ${fmtDate(today())}`))),
+    h("section", {}, h("h2", {}, `Indicadores de ${year}`),
+      h("div", { class: "pr-kpis" }, [[ids.length, "pessoas ativas"], [certsAno.length, "cursos concluídos"], [fmtH(hoursOf(certsAno)), "de formação"],
+        [fmt1(mediaGeral), "média do time na última avaliação"], [melhOk, "melhorias concluídas"], [pdiOk, "ações de PDI concluídas"]]
+        .map(([v, l]) => h("div", {}, h("b", {}, v), h("span", {}, l))))),
+    h("section", {}, h("h2", {}, "Competências do time (média da última avaliação de cada pessoa)"),
+      h("table", { class: "pr-tbl" }, h("tbody", {}, mediaComp.map(([l, v]) => h("tr", {}, h("td", {}, l),
+        h("td", { style: "width:55%" }, h("div", { class: "pr-bar" }, h("i", { style: `width:${(v || 0) * 20}%` }))), h("td", {}, fmt1(v))))))),
+    h("section", {}, h("h2", {}, "Formação por pessoa"),
+      h("table", { class: "pr-tbl" }, h("thead", {}, h("tr", {}, ["Pessoa", "Cursos no ano", "Horas no ano", "Cursos no total"].map(t => h("th", {}, t)))),
+        h("tbody", {}, ids.map(id => { const ca = certsOf(id).filter(c => dateOnly(c.concluido_em).startsWith(year));
+          return h("tr", {}, h("td", {}, nameOf(id)), h("td", {}, ca.length), h("td", {}, fmtH(hoursOf(ca))), h("td", {}, certsOf(id).length)); })))),
+    h("section", {}, h("h2", {}, "Perfis DISC do time"),
+      h("p", {}, "DISC".split("").map(k => `${DISC_INFO[k].nome}: ${cont[k]}`).join("   |   "))),
+    prodape());
+  printDoc(`Relatório do time - ${fmtDate(today())}`, doc);
+}
+
+/* ---------- LGPD ---------- */
+function termoModal() {
+  openModal({ title: "Termo de uso de dados", body: [TERMO.map(p => h("p", {}, p)), h("p", { class: "muted small" }, `Versão ${TERMO_VERSAO}.`)] });
+}
+function termoGate() {
+  const btn = h("button", { class: "btn", onclick: async () => {
+    btn.disabled = true;
+    const { error } = await sb.from("evo_pessoas").update({ aceite_termo_em: new Date().toISOString(), termo_versao: TERMO_VERSAO }).eq("user_id", S.me.user_id);
+    if (error) { btn.disabled = false; toast(sbErr(error), true); return; }
+    await refresh();
+  } }, "Li e aceito");
+  return h("div", { class: "center" }, h("div", { class: "card", style: "width:min(640px,100%)" },
+    h("h1", {}, "Termo de uso de dados"),
+    h("div", { class: "termo" }, TERMO.map(p => h("p", {}, p))),
+    btn, h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair")));
+}
+async function meusDados(btn) {
+  if (!window.JSZip) { toast("Recarregue a página e tente de novo.", true); return; }
+  const uid = S.me.user_id, old = btn.textContent; btn.disabled = true; btn.textContent = "Preparando…";
+  try {
+    const zip = new JSZip();
+    const dados = { gerado_em: new Date().toISOString(), pessoa: S.me, certificados: certsOf(uid), avaliacoes_liberadas: S.aval.get(uid) || [],
+      pontos_de_melhoria: S.melh.get(uid) || [], autoavaliacoes: S.auto.get(uid) || [], disc: S.disc.get(uid) || [], pdi: S.pdi.get(uid) || [] };
+    if (S.owner) dados.observacao = "Como gestor, os dados do time estão no backup completo, em Segurança e backup.";
+    zip.file("meus-dados.json", JSON.stringify(dados, null, 2));
+    const { data: files } = await sb.storage.from(BUCKET).list(uid, { limit: 1000 });
+    for (const f of files || []) { if (!f.id) continue; const dl = await sb.storage.from(BUCKET).download(`${uid}/${f.name}`); if (!dl.error) zip.file(`arquivos/${f.name}`, dl.data); }
+    const blob = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
+    const url = URL.createObjectURL(blob); const a = h("a", { href: url, download: `meus-dados-${today()}.zip` });
+    document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 10000);
+    toast("Seus dados foram baixados.");
+  } catch (e) { toast("Não foi possível gerar o arquivo: " + sbErr(e), true); }
+  finally { btn.disabled = false; btn.textContent = old; }
+}
+function meusDadosModal() {
+  const b = h("button", { type: "button", class: "btn", onclick: e => meusDados(e.currentTarget) }, "Baixar meus dados (.zip)");
+  openModal({ title: "Meus dados", body: [
+    h("p", {}, "Baixe uma cópia de todos os seus dados guardados no portal, com os arquivos que você enviou."),
+    h("p", { class: "muted small" }, `Você aceitou o termo de uso de dados em ${fmtDate(S.me.aceite_termo_em)}.`),
+    h("div", { class: "row" }, b, h("button", { type: "button", class: "btn ghost", onclick: termoModal }, "Ler o termo")),
+    h("p", { class: "muted small" }, "Para corrigir ou apagar dados, fale com o seu gestor.")] });
+}
+function apagarPessoaModal(uid) {
+  const nm = nameOf(uid);
+  openModal({
+    title: "Apagar dados definitivamente", submitLabel: "Apagar definitivamente",
+    body: [
+      h("p", {}, `Isto apaga para sempre todos os dados de ${nm}: currículo, certificados e arquivos, avaliações, autoavaliações, DISC, PDI, pontos de melhoria, reuniões 1:1 e o histórico de alterações. Não dá para desfazer nem restaurar.`),
+      h("p", { class: "notice small" }, "Baixe um backup completo antes, se quiser guardar uma cópia."),
+      field("Para confirmar, digite APAGAR", inp("confirma", "", "text", { autocomplete: "off" })),
+    ],
+    onSubmit: async form => {
+      if (val(form, "confirma") !== "APAGAR") { toast("Digite APAGAR para confirmar.", true); return false; }
+      const { data: files } = await sb.storage.from(BUCKET).list(uid, { limit: 1000 });
+      const { error } = await sb.rpc("evo_apagar_pessoa", { p_uid: uid });
+      if (error) { toast(sbErr(error), true); return false; }
+      const paths = (files || []).filter(f => f.id).map(f => `${uid}/${f.name}`);
+      if (paths.length) await sb.storage.from(BUCKET).remove(paths);
+      S.view = "pessoas"; await refresh(); toast(`Dados de ${nm} apagados.`);
+      return true;
+    },
+  });
+}
+
+/* ---------- gestores e configurações ---------- */
+async function setGestor(uid, virar) {
+  const p = S.people.get(uid) || S.gestores.find(g => g.user_id === uid) || {};
+  const nm = p.nome || p.email;
+  const msg = virar
+    ? `Tornar ${nm} gestor? A pessoa passa a ver e editar tudo: avaliações, anotações privadas e 1:1 de todo o time, aprovar acessos e baixar backups.`
+    : `Remover ${nm} da função de gestor? A pessoa volta a ver só os próprios dados.`;
+  if (!(await confirmBox(msg, virar ? "Tornar gestor" : "Remover", !virar))) return;
+  run(sb.from("evo_pessoas").update({ papel: virar ? "gestor" : "membro" }).eq("user_id", uid), virar ? "Gestor adicionado." : "Gestor removido.");
+}
+async function salvarDominios(input) {
+  const lista = input.value.split(/[,\s]+/).map(d => d.trim().toLowerCase().replace(/^@/, "")).filter(Boolean);
+  if (lista.some(d => !/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(d))) { toast("Algum domínio está inválido. Exemplo: lcsistemas.com.br", true); return; }
+  if (!lista.length && !(await confirmBox("Sem domínios, qualquer e-mail poderá pedir acesso. Continuar?", "Continuar", true))) return;
+  run(sb.from("evo_config").upsert({ chave: "dominios_permitidos", valor: lista, atualizado_em: new Date().toISOString() }), "Domínios atualizados.");
+}
+function novidadesModal() {
+  openModal({ title: `Novidades da versão ${VERSAO}`, body: [h("ul", { class: "blist" }, NOVIDADES.map(n => h("li", {}, n)))] });
+  try { localStorage.setItem("evo-versao-vista", VERSAO); } catch (e) {}
+}
+function talvezNovidades() {
+  let vista = null; try { vista = localStorage.getItem("evo-versao-vista"); } catch (e) {}
+  if (vista === VERSAO || talvezNovidades.agendado) return;
+  talvezNovidades.agendado = true;
+  setTimeout(() => { if (!document.getElementById("modal").open) novidadesModal(); else talvezNovidades.agendado = false; }, 400);
+}
+
+/* ---------- telas novas do time ---------- */
+function viewInicio() {
+  const uid = S.me.user_id, certs = certsOf(uid);
+  const lastLib = latest(S.aval.get(uid), "data");
+  const pdiPend = (S.pdi.get(uid) || []).filter(p => p.status !== "concluido").length;
+  const disc = latest(S.disc.get(uid), "criado_em");
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, `Olá, ${(S.me.nome || "").split(" ")[0] || "tudo bem"}!`), h("p", {}, "Aqui está um resumo da sua evolução e o que está pendente."))),
+    h("div", { class: "stack" },
+      h("div", { class: "kpis" },
+        kpi(certs.length, "cursos concluídos"), kpi(fmtH(hoursOf(certs)), "de formação"),
+        kpi(fmt1(avgOf(lastLib)), "média da última avaliação"), kpi(pdiPend, "ações abertas no seu PDI"),
+        kpi(disc ? disc.perfil : "–", disc ? DISC_INFO[disc.perfil[0]].estilo : "perfil DISC")),
+      h("div", { class: "grid3" }, lembretesPanel(10),
+        h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Minha trilha de formação")), hoursTrailChart(uid, "short")))),
+  ];
+}
+function viewEvolucao() {
+  const uid = S.me.user_id;
+  const avs = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
+  const ult = avs[0], melh = S.melh.get(uid) || [];
+  const comp = comparacao(uid);
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Minha evolução"), h("p", {}, "Seu mapa de competências, o feedback do gestor e o seu plano de desenvolvimento.")),
+      h("button", { class: "btn", onclick: () => formAutoavaliacao(uid) }, "Fazer autoavaliação")),
+    h("div", { class: "stack" },
+      h("div", { class: "grid2" },
+        h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Mapa de competências"), h("p", {}, "Sua autoavaliação e a avaliação do gestor.")), radarChart(uid)),
+        h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Evolução nas avaliações")), personEvolutionChart(uid))),
+      ult && h("div", { class: "panel" },
+        h("div", { class: "panel-head" }, h("h2", {}, "Feedback da última avaliação"), h("p", {}, `${fmtDate(ult.data)}${ult.periodo ? `, ${ult.periodo}` : ""}`)),
+        ult.fortes && h("div", {}, h("h3", {}, "Pontos fortes"), h("p", { class: "prose", style: "margin:6px 0 12px" }, ult.fortes)),
+        ult.feedback ? h("div", {}, h("h3", {}, "Feedback do gestor"), h("p", { class: "prose", style: "margin-top:6px" }, ult.feedback)) : h("p", { class: "muted" }, "Sem feedback escrito nesta avaliação.")),
+      comp && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Como você se vê e como o gestor vê")), comp),
+      !ult && h("div", { class: "panel" }, h("p", { class: "muted" }, "Nenhuma avaliação liberada ainda. Quando o gestor liberar, o mapa e o feedback aparecem aqui.")),
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Meu plano de desenvolvimento (PDI)")), pdiLista(uid, false)),
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Pontos de melhoria")),
+        melh.length ? h("ul", { class: "list" }, [...melh].sort(byDateDesc("criado_em")).map(m => h("li", { class: "item" },
+          h("div", { class: "item-top" }, h("h3", {}, m.titulo), h("span", { class: "pill " + (STATUS[m.status] ? m.status : "aberto") }, STATUS[m.status] || "Aberto")),
+          h("p", { class: "meta" }, [m.prazo && `prazo ${fmtDate(m.prazo)}`, m.concluido_em && `concluído em ${fmtDate(m.concluido_em)}`].filter(Boolean).join(", ")),
+          m.descricao && h("p", { class: "prose" }, m.descricao)))) : h("p", { class: "muted" }, "Nenhum ponto de melhoria registrado.")),
+      avs.length > 1 && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Avaliações anteriores")),
+        h("ul", { class: "list" }, avs.slice(1).map(a => h("li", { class: "item" },
+          h("div", { class: "item-top" }, h("h3", {}, `${fmtDate(a.data)}${a.periodo ? `, ${a.periodo}` : ""}`), h("span", {}, "Média ", h("b", {}, fmt1(avgOf(a))))),
+          a.feedback && h("p", { class: "prose" }, a.feedback)))))),
+  ];
 }
 
 /* ---------- início ---------- */
 let lastUser = null;
 sb.auth.onAuthStateChange((event, session) => {
   S.session = session; S.ready = true;
+  if (event === "PASSWORD_RECOVERY") { S.recovery = true; render(); }
   const uid = session?.user?.id || null;
-  if (!uid) { lastUser = null; S.me = null; S.owner = false; S.people = new Map(); S.view = "painel"; clearTimeout(idleTimer); render(); return; }
+  if (!uid) { lastUser = null; S.me = null; S.owner = false; S.people = new Map(); S.auto = new Map(); S.disc = new Map(); S.pdi = new Map(); S.privado = new Map(); S.gestores = []; S.config = {}; S.discDraft = null; S.recovery = false; S.view = "painel"; clearTimeout(idleTimer); render(); return; }
   lastBump = 0; bumpIdle();
   if (uid !== lastUser) {
     lastUser = uid; S.loading = true; render();
