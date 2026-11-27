@@ -1,0 +1,2313 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://wrbbmtaxerlqzaqfctqn.supabase.co; connect-src https://wrbbmtaxerlqzaqfctqn.supabase.co wss://wrbbmtaxerlqzaqfctqn.supabase.co https://cdn.jsdelivr.net; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; manifest-src 'none'; worker-src blob: https://cdn.jsdelivr.net">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<title>Evolução do time comercial | LC Sistemas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>:root{
+  --bg:#EEF2EF; --surface:#FFFFFF; --surface-2:#F5F8F5; --ink:#16231C; --muted:#56665D; --line:#D4DCD6;
+  --side:#14261C; --side-ink:#DCE8DF; --side-muted:#8FA597; --side-active:#21402E;
+  --moss:#2F6B45; --moss-soft:#DCEBDF; --on-moss:#FFFFFF;
+  --amber:#9A6209; --amber-soft:#F6E8CF; --rose:#A8423A; --rose-soft:#F6DFDC; --blue:#1E5FA8;
+  --ring-1:#2F6B45; --ring-2:#6FA57C; --ring-3:#B5D3BA; --ring-bg:#E3EAE4; --focus:#1E5FA8;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1511; --surface:#16201A; --surface-2:#1C2822; --ink:#E5EEE8; --muted:#9AAEA2; --line:#2A3830;
+    --side:#0A110D; --side-ink:#DCE8DF; --side-muted:#7F9587; --side-active:#1B3324;
+    --moss:#7CC08F; --moss-soft:#1E3526; --on-moss:#0C1810;
+    --amber:#E3AA4E; --amber-soft:#382C15; --rose:#E88C82; --rose-soft:#3A1F1C; --blue:#80B4F0;
+    --ring-1:#7CC08F; --ring-2:#4E8A5F; --ring-3:#2E5639; --ring-bg:#1F2C24; --focus:#80B4F0;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1511; --surface:#16201A; --surface-2:#1C2822; --ink:#E5EEE8; --muted:#9AAEA2; --line:#2A3830;
+  --side:#0A110D; --side-ink:#DCE8DF; --side-muted:#7F9587; --side-active:#1B3324;
+  --moss:#7CC08F; --moss-soft:#1E3526; --on-moss:#0C1810;
+  --amber:#E3AA4E; --amber-soft:#382C15; --rose:#E88C82; --rose-soft:#3A1F1C; --blue:#80B4F0;
+  --ring-1:#7CC08F; --ring-2:#4E8A5F; --ring-3:#2E5639; --ring-bg:#1F2C24; --focus:#80B4F0;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;font-weight:700;line-height:1.15;margin:0;letter-spacing:-0.01em}
+h1{font-size:clamp(1.6rem,3vw,2.2rem)}
+h2{font-size:1.35rem}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
+.muted{color:var(--muted)} .small{font-size:.9rem}
+
+/* estrutura */
+.shell{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100dvh}
+.side{background:var(--side);color:var(--side-ink);display:flex;flex-direction:column;gap:22px;padding:24px 14px;position:sticky;top:0;height:100dvh;overflow:auto}
+.brand{display:flex;gap:10px;align-items:center;padding:0 8px}
+.brand b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.05rem;line-height:1.15;display:block}
+.brand span{color:var(--side-muted);font-size:.85rem}
+.nav{display:grid;gap:2px}
+.nav button{display:flex;justify-content:space-between;align-items:center;gap:8px;border:0;background:none;color:var(--side-ink);padding:10px 12px;border-radius:10px;text-align:left;cursor:pointer;font-weight:600}
+.nav button:hover{background:var(--side-active)}
+.nav button[aria-current="page"]{background:var(--side-active);box-shadow:inset 3px 0 0 var(--ring-2)}
+.badge{background:var(--amber);color:#1b1306;border-radius:999px;font-size:.78rem;padding:1px 8px;font-weight:700}
+.side-foot{margin-top:auto;display:grid;gap:6px;padding:12px 8px 0;border-top:1px solid var(--side-active)}
+.side-foot .who{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.side-foot button{border:0;background:none;color:var(--side-muted);text-align:left;padding:4px 0;cursor:pointer}
+.side-foot button:hover{color:var(--side-ink)}
+.main{padding:30px clamp(16px,3vw,44px) 90px;max-width:1240px;width:100%}
+.page-head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+.page-head p{color:var(--muted);margin-top:6px;max-width:64ch}
+@media (max-width:899px){
+  .shell{grid-template-columns:1fr}
+  .side{position:static;height:auto;padding:14px;gap:12px}
+  .nav{display:flex;overflow-x:auto;gap:4px}
+  .nav button{white-space:nowrap}
+  .side-foot{flex-direction:row;display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:0;padding-top:10px}
+  .main{padding-top:20px}
+}
+
+/* componentes */
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;background:var(--moss);color:var(--on-moss);padding:9px 16px;border-radius:999px;font-weight:600;cursor:pointer;line-height:1.2;text-decoration:none}
+.btn:hover{filter:brightness(1.07)}
+.btn[disabled]{opacity:.55;cursor:default}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--surface-2)}
+.btn.small{padding:6px 12px;font-size:.9rem}
+.btn.danger{background:transparent;color:var(--rose);border-color:var(--rose)}
+.linkish{border:0;background:none;padding:0;color:var(--moss);font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.linkish.red{color:var(--rose)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.panel-head{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+.panel-head p{color:var(--muted);font-size:.9rem}
+.stack{display:grid;gap:18px}
+.grid2{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.grid3{display:grid;gap:18px;grid-template-columns:2fr 1fr}
+@media (max-width:1050px){.grid3{grid-template-columns:1fr}}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi .v{font-family:"Bricolage Grotesque",sans-serif;font-size:1.7rem;font-weight:700;line-height:1.1}
+.kpi .l{color:var(--muted);font-size:.9rem}
+.kpi.warn{border-color:var(--amber);background:var(--amber-soft)}
+.delta-up{color:var(--moss);font-weight:700}
+.delta-down{color:var(--rose);font-weight:700}
+.chart-box{position:relative;height:290px}
+.chart-box.tall{height:340px}
+.chart-box.short{height:220px}
+.empty-chart{height:100%;display:grid;place-items:center;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;padding:16px}
+
+/* tabela */
+.tbl-wrap{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.95rem}
+.tbl th{text-align:left;font-weight:600;color:var(--muted);font-size:.85rem;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.tbl td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr{cursor:pointer}
+.tbl tbody tr:hover{background:var(--surface-2)}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.person{display:flex;gap:10px;align-items:center;min-width:180px}
+.person b{display:block;font-weight:600}
+.person span{color:var(--muted);font-size:.85rem}
+
+/* cards de pessoa */
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.pcard{display:grid;gap:10px;justify-items:center;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 14px;cursor:pointer}
+.pcard:hover{border-color:var(--moss)}
+.pcard.archived{opacity:.6}
+.pcard .meta{font-size:.88rem}
+
+/* anéis */
+.ring-bg{fill:var(--ring-bg)} .ring{fill:none}
+.ring.r1{stroke:var(--ring-1)} .ring.r2{stroke:var(--ring-2)} .ring.r3{stroke:var(--ring-3)}
+.ring-empty{fill:none;stroke:var(--line);stroke-dasharray:3 4;stroke-width:1.5}
+.core{fill:var(--surface)} .core-t{fill:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:700}
+
+/* pessoa */
+.person-head{display:flex;flex-wrap:wrap;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.person-head .info{flex:1 1 260px}
+.back{border:0;background:none;color:var(--muted);cursor:pointer;padding:0;margin-bottom:10px;font-weight:600}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);margin:4px 0 2px}
+.tab{border:0;background:none;padding:10px 14px;cursor:pointer;color:var(--muted);font-weight:600;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--moss)}
+
+/* listas */
+.list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.item{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--surface-2);display:grid;gap:6px}
+.item-top{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.item h3{font-size:1.02rem}
+.meta{color:var(--muted);font-size:.9rem}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.8rem;font-weight:700}
+.pill.aberto,.pill.pendente{background:var(--amber-soft);color:var(--amber)}
+.pill.andamento,.pill.ativo{background:var(--moss-soft);color:var(--moss)}
+.pill.concluido{background:var(--surface);color:var(--muted);border:1px solid var(--line)}
+.pill.late,.pill.recusado{background:var(--rose-soft);color:var(--rose)}
+.prose{white-space:pre-wrap}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--moss-soft);padding:3px 12px;border-radius:999px;font-size:.92rem}
+.cert{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.doc-ico{width:56px;height:56px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;background:var(--surface);color:var(--muted);font-weight:700;font-size:.8rem;text-align:center}
+.cv{display:grid;gap:20px}
+.cv section{display:grid;gap:10px;padding-top:16px;border-top:1px solid var(--line)}
+.exp{display:grid;gap:2px}
+
+/* linha do tempo */
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:84px 16px 1fr;gap:10px;padding-bottom:14px;position:relative}
+.tl .d{color:var(--muted);font-size:.86rem;text-align:right;padding-top:1px}
+.tl .k{width:12px;height:12px;border-radius:50%;margin-top:6px;background:var(--moss);position:relative;z-index:1}
+.tl li::before{content:"";position:absolute;left:99px;top:12px;bottom:0;width:2px;background:var(--line)}
+.tl li:last-child::before{display:none}
+.tl .k.aval{background:var(--blue)} .tl .k.one{background:var(--ring-2)} .tl .k.melh{background:var(--amber)} .tl .k.ok{background:var(--surface);border:2px solid var(--moss)}
+
+/* avisos e telas cheias */
+.notice{padding:12px 16px;border-radius:12px;background:var(--amber-soft);border:1px solid var(--line)}
+.center{min-height:calc(100dvh - 60px);display:grid;place-items:center;padding:20px}
+.card{width:min(440px,100%);background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;display:grid;gap:14px}
+.card h1{font-size:1.6rem;text-align:center}
+.card > p{text-align:center}
+.card svg{justify-self:center}
+.seg-tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg-tabs button{border:0;background:none;padding:8px;border-radius:999px;font-weight:600;color:var(--muted);cursor:pointer}
+.seg-tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.form-err{color:var(--rose);font-size:.93rem;min-height:1.2em;text-align:center}
+.steps{margin:0;padding-left:20px;display:grid;gap:6px}
+
+/* diálogo e formulário */
+dialog{border:0;border-radius:18px;padding:0;width:min(660px,calc(100vw - 24px));max-height:calc(100dvh - 32px);background:var(--surface);color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(8,18,12,.5)}
+.dlg{display:grid;grid-template-rows:auto 1fr auto;max-height:calc(100dvh - 32px)}
+.dlg-head{padding:20px 22px 8px}
+.dlg-body{padding:8px 22px 16px;overflow:auto;display:grid;gap:14px}
+.dlg-foot{padding:14px 22px 18px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--line)}
+.field{display:grid;gap:5px}
+.field .lbl{font-weight:600;font-size:.93rem}
+.field .hint{color:var(--muted);font-size:.85rem}
+input[type=text],input[type=email],input[type=password],input[type=date],input[type=number],input[type=tel],select,textarea{width:100%;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:9px 11px}
+textarea{resize:vertical;min-height:64px}
+input[type=file]{width:100%;font-size:.95rem}
+.two{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.rep{display:grid;gap:10px}
+.rep-row{border:1px dashed var(--line);border-radius:12px;padding:12px;display:grid;gap:10px}
+.scale{display:grid;gap:6px}
+.scale-row{display:grid;grid-template-columns:minmax(140px,1fr) auto;gap:10px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.seg span{display:block;padding:5px 12px;font-weight:600;color:var(--muted)}
+.seg input:checked+span{background:var(--moss);color:var(--on-moss)}
+.seg input:focus-visible+span{outline:2px solid var(--focus);outline-offset:-2px}
+.toast{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;pointer-events:none;padding:0 16px calc(18px + env(safe-area-inset-bottom,0px));z-index:50}
+.toast div{background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;max-width:520px;box-shadow:0 8px 24px rgba(0,0,0,.2);pointer-events:auto}
+.toast div.err{background:var(--rose);color:#fff}
+@media (max-width:560px){
+  .panel{padding:16px}
+  .tl li{grid-template-columns:70px 16px 1fr}
+  .tl li::before{left:85px}
+  .chart-box{height:250px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.avatar{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid var(--ring-2);flex:0 0 auto}
+.avatar-prev{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
+.avatar-prev[hidden]{display:none}
+.auto{border-color:var(--moss)!important;background:var(--moss-soft)!important}
+.auto-status{padding:10px 12px;border-radius:10px;background:var(--moss-soft);font-size:.92rem;margin:0}
+.auto-status.warn{background:var(--amber-soft)}
+.auto-status[hidden],.ocr-text[hidden]{display:none}
+.ocr-text summary{cursor:pointer;color:var(--muted);font-size:.9rem}
+.ocr-text pre{white-space:pre-wrap;font-size:.82rem;max-height:200px;overflow:auto;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0 0}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.swatch{display:grid;gap:8px;justify-items:start;border:2px solid var(--line);background:var(--surface-2);border-radius:14px;padding:12px;cursor:pointer;text-align:left}
+.swatch:hover{border-color:var(--muted)}
+.swatch[aria-pressed="true"]{border-color:var(--moss);box-shadow:0 0 0 3px var(--moss-soft)}
+.sw-row{display:flex}
+.sw-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--surface);margin-right:-6px}
+.sw-name{font-weight:600;font-size:.92rem}
+.seg-tabs.three{grid-template-columns:repeat(3,1fr)}
+.side,.btn,.kpi,.panel,.swatch,.nav button{transition:background-color .2s,border-color .2s,color .2s}
+
+/* ===== v6 ===== */
+.lembretes{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.lembrete{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:9px 12px;cursor:pointer;color:var(--ink)}
+.lembrete:hover{border-color:var(--moss)}
+.lembrete .dot{width:10px;height:10px;border-radius:50%;margin-top:6px;flex:0 0 auto;background:var(--blue)}
+.lembrete.alto .dot{background:var(--rose)} .lembrete.medio .dot{background:var(--amber)}
+.blist{margin:8px 0 0;padding-left:20px;display:grid;gap:4px}
+.privado{background:var(--amber-soft);border-radius:8px;padding:6px 10px}
+.tbl tr.gap td{background:var(--amber-soft)}
+.notice.teste{background:var(--rose-soft);border-color:var(--rose);font-weight:700;margin-bottom:16px}
+.filtros select,.filtros input{width:auto}
+.filtros{gap:10px}
+.termo{display:grid;gap:10px;max-height:46vh;overflow:auto;padding-right:6px;text-align:left}
+.termo-check{align-items:flex-start;gap:8px}
+.termo-check input{margin-top:4px}
+.card > p.muted{text-align:center}
+/* DISC */
+.disc-test{max-width:640px}
+.disc-prog{display:grid;gap:6px;margin-bottom:16px;color:var(--muted);font-size:.9rem}
+.disc-prog .bar{height:8px;background:var(--ring-bg);border-radius:999px;overflow:hidden}
+.disc-prog .bar i{display:block;height:100%;background:var(--moss)}
+.disc-head,.disc-row{display:grid;grid-template-columns:1fr 92px 92px;gap:8px;align-items:center}
+.disc-head{color:var(--muted);font-size:.85rem;font-weight:600;text-align:center;padding:0 0 6px}
+.disc-row{padding:8px 10px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--surface-2)}
+.disc-row.is-m{border-color:var(--moss);background:var(--moss-soft)}
+.disc-row.is-l{border-color:var(--rose);background:var(--rose-soft)}
+.disc-word{font-weight:600;font-size:1.05rem}
+.disc-pick{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 0;font-weight:600;cursor:pointer;color:var(--muted)}
+.disc-pick.m[aria-pressed="true"]{background:var(--moss);border-color:var(--moss);color:var(--on-moss)}
+.disc-pick.l[aria-pressed="true"]{background:var(--rose);border-color:var(--rose);color:#fff}
+.disc-legend{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.disc-legend div{display:grid;gap:2px}
+.disc-tag{display:inline-block;color:#fff;font-weight:700;border-radius:6px;padding:1px 8px;font-size:.85rem}
+.mini-meter{display:inline-block;width:44px;height:6px;background:var(--ring-bg);border-radius:999px;overflow:hidden;vertical-align:middle}
+.mini-meter i{display:block;height:100%}
+@media (max-width:560px){.disc-head,.disc-row{grid-template-columns:1fr 74px 74px}}
+/* impressão */
+#print{display:none}
+@media print{
+  @page{size:A4;margin:14mm}
+  body.printing{background:#fff!important;color:#111!important}
+  body.printing #app,body.printing dialog,body.printing .toast{display:none!important}
+  body.printing #print{display:block}
+  .pr-cv{font:11pt/1.45 "Source Sans 3","Segoe UI",Arial,sans-serif;color:#111}
+  .pr-cv h1{font-size:22pt;margin:0;color:#111}
+  .pr-cv h2{font-size:12pt;margin:16px 0 6px;padding-bottom:3px;border-bottom:2px solid #2F6B45;color:#2F6B45;break-after:avoid}
+  .pr-head{display:flex;gap:16px;align-items:center;margin-bottom:6px}
+  .pr-head img{width:84px;height:84px;border-radius:50%;object-fit:cover}
+  .pr-role{font-size:13pt;color:#333;margin:2px 0}
+  .pr-contact{color:#555;font-size:10pt}
+  .pr-item{display:grid;gap:1px;margin-bottom:8px;break-inside:avoid}
+  .pr-item span{color:#555;font-size:10pt}
+  .pr-tbl{width:100%;border-collapse:collapse;font-size:10pt}
+  .pr-tbl th,.pr-tbl td{text-align:left;padding:4px 6px;border-bottom:1px solid #ddd;vertical-align:top}
+  .pr-tbl tr{break-inside:avoid}
+  .pr-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .pr-kpis div{border:1px solid #ccc;border-radius:6px;padding:8px}
+  .pr-kpis b{display:block;font-size:16pt}
+  .pr-kpis span{font-size:9.5pt;color:#555}
+  .pr-bar{height:8px;background:#e6e6e6;border-radius:4px;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pr-bar i{display:block;height:100%;background:#2F6B45}
+  .pr-foot{margin-top:22px;color:#777;font-size:9pt;border-top:1px solid #ddd;padding-top:6px}
+  .prose{white-space:pre-wrap}
+}
+</style>
+</head>
+<body>
+<div id="app"><p style="padding:24px">Carregando…</p></div>
+<dialog id="modal"></dialog>
+<dialog id="confirm"></dialog>
+<div class="toast" role="status" aria-live="polite"></div>
+<div id="print"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" integrity="sha384-0w2KAL2YHP6wKOkUDzkCDGgVvfmHnj02DHeQ6XcHOgTfFsGyonKOpShMH1x6nk9o" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js" integrity="sha384-dug+JxfBvklEQdJ4AYuBBAIScUz0bVN73xpy273gcAwHjb3qI0fXmuYNaNfdyYJG" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
+<script>
+if (top !== self) { document.body.textContent = "Esta página não pode ser aberta dentro de outro site."; throw new Error("frame"); }
+"use strict";
+/* =========================================================
+   CONFIGURAÇÃO
+   ========================================================= */
+const SUPABASE_URL = "https://wrbbmtaxerlqzaqfctqn.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyYmJtdGF4ZXJscXphcWZjdHFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTU2OTU1ODEsImV4cCI6MjExMTI3MTU4MX0.OwyQ-iqqvZEaAxF67DmqECR7J7fSUo9QtSxzXQ4D138";
+const BUCKET = "evo-certificados";
+const INATIVIDADE_MIN = 30; // encerra a sessão após 30 minutos sem uso
+
+const COMPETENCIAS = [
+  ["sistema", "Conhecimento do sistema", "Sistema"],
+  ["comunicacao", "Comunicação", "Comunicação"],
+  ["atendimento", "Atendimento ao cliente", "Atendimento"],
+  ["organizacao", "Organização e uso do CRM", "CRM"],
+  ["proatividade", "Proatividade", "Proatividade"],
+  ["equipe", "Trabalho em equipe", "Equipe"],
+  ["resultados", "Resultados e metas", "Resultados"],
+];
+const CATEGORIAS = ["Vendas e negociação", "Produto e sistema", "Atendimento ao cliente", "Gestão e liderança", "Tecnologia", "Outro"];
+const STATUS = { aberto: "Aberto", andamento: "Em andamento", concluido: "Concluído" };
+const ACESSO = { pendente: "Aguardando aprovação", ativo: "Ativo", recusado: "Recusado" };
+const PALETA = ["#2F6B45", "#1E5FA8", "#C27C0E", "#8A3FA0", "#B8473D", "#2A8C8C", "#6E7A1F", "#5B5BD6"];
+const TABELAS = { evo_pessoas: "Pessoa", evo_certificados: "Certificado", evo_avaliacoes: "Avaliação", evo_melhorias: "Ponto de melhoria", evo_oneaone: "Reunião 1:1",
+  evo_avaliacao_privada: "Anotação privada", evo_autoavaliacoes: "Autoavaliação", evo_disc: "Perfil DISC", evo_pdi: "Ação do PDI", evo_config: "Configuração" };
+const RESTAURAVEIS = ["evo_certificados", "evo_avaliacoes", "evo_melhorias", "evo_oneaone", "evo_avaliacao_privada", "evo_autoavaliacoes", "evo_pdi"];
+
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: { storageKey: "evo-time-auth", persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
+});
+
+/* ---------- estado ---------- */
+const S = {
+  session: null, me: null, owner: false, ready: false, loading: false, error: null,
+  people: new Map(), certs: new Map(), aval: new Map(), melh: new Map(), ones: new Map(),
+  audit: null, photos: {}, auto: new Map(), disc: new Map(), pdi: new Map(), privado: new Map(), config: {}, gestores: [], discDraft: null, recovery: false, auditFilter: { uid: "", de: "", ate: "" }, view: "painel", selected: null, tab: "geral", showArchived: false, authMode: "entrar",
+};
+
+/* ---------- DOM ---------- */
+const NS = "http://www.w3.org/2000/svg";
+function build(el, props, kids) {
+  let pendingValue;
+  if (props) for (const [k, v] of Object.entries(props)) {
+    if (k.startsWith("aria-") && typeof v === "boolean") { el.setAttribute(k, String(v)); continue; }
+    if (v == null || v === false) continue;
+    if (k.startsWith("on") && typeof v === "function") el.addEventListener(k.slice(2), v);
+    else if (k === "value" && el.namespaceURI !== NS) pendingValue = v;
+    else if (k === "checked") el.checked = !!v;
+    else el.setAttribute(k, v === true ? "" : String(v));
+  }
+  for (const c of kids.flat(Infinity)) {
+    if (c == null || c === false) continue;
+    el.append(c instanceof Node ? c : document.createTextNode(String(c)));
+  }
+  if (pendingValue !== undefined) el.value = pendingValue;
+  return el;
+}
+const h = (tag, props, ...kids) => build(document.createElement(tag), props, kids);
+const s = (tag, props, ...kids) => build(document.createElementNS(NS, tag), props, kids);
+
+/* ---------- utilitários ---------- */
+const pad = n => String(n).padStart(2, "0");
+function today() { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
+const dateOnly = v => (typeof v === "string" ? v.slice(0, 10) : "");
+function fmtDate(v) { const d = dateOnly(v); if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return "sem data"; const [y, m, dd] = d.split("-"); return `${dd}/${m}/${y}`; }
+function fmtDateTime(v) { const d = new Date(v); return isNaN(d) ? "" : d.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }); }
+function toTime(v) { const d = dateOnly(v); if (!d) return null; const [y, m, dd] = d.split("-").map(Number); return new Date(y, m - 1, dd).getTime(); }
+function daysSince(v) { const t = toTime(v); return t == null ? null : Math.floor((Date.now() - t) / 86400000); }
+const byDateAsc = k => (a, b) => (dateOnly(a[k]) || "").localeCompare(dateOnly(b[k]) || "");
+const byDateDesc = k => (a, b) => (dateOnly(b[k]) || "").localeCompare(dateOnly(a[k]) || "");
+const num = v => { const n = Number(v); return isFinite(n) ? n : 0; };
+const nz = v => (v === "" || v == null ? null : v);
+function avgOf(a) { const v = Object.values(a?.notas || {}).map(Number).filter(n => n >= 1 && n <= 5); return v.length ? v.reduce((x, y) => x + y, 0) / v.length : null; }
+const fmt1 = n => n == null ? "sem nota" : n.toFixed(1).replace(".", ",");
+const fmtH = n => `${num(n).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} h`;
+function initials(name) { const p = String(name || "?").trim().split(/\s+/).filter(Boolean); return ((p[0]?.[0] || "?") + (p.length > 1 ? p[p.length - 1][0] : "")).toUpperCase(); }
+const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+const nameOf = uid => S.people.get(uid)?.nome || S.people.get(uid)?.email || (uid === S.me?.user_id ? S.me?.nome : null) || "Pessoa sem nome";
+const certsOf = uid => S.certs.get(uid) || [];
+const hoursOf = list => list.reduce((t, c) => t + num(c.carga_horas), 0);
+function groupBy(rows) { const m = new Map(); for (const r of rows || []) { if (!m.has(r.user_id)) m.set(r.user_id, []); m.get(r.user_id).push(r); } return m; }
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function colorOf(uid) { const ids = [...S.people.keys()].sort(); return PALETA[Math.max(0, ids.indexOf(uid)) % PALETA.length]; }
+const isActive = p => p && p.status === "ativo" && !p.arquivado;
+
+
+/* ---------- aparência: paletas e modo claro/escuro ---------- */
+const NEUTROS = {
+  claro:  { surface: "#FFFFFF", ink: "#16231C", muted: "#56665D", "side-ink": "#E4ECE7", "side-muted": "#9DB0A4",
+            amber: "#9A6209", "amber-soft": "#F6E8CF", rose: "#A8423A", "rose-soft": "#F6DFDC", blue: "#1E5FA8", focus: "#1E5FA8", scheme: "light" },
+  escuro: { surface: null, ink: "#E7EEEA", muted: "#9DAEA5", "side-ink": "#DCE6E0", "side-muted": "#7F9187",
+            amber: "#E3AA4E", "amber-soft": "#382C15", rose: "#E88C82", "rose-soft": "#3A1F1C", blue: "#80B4F0", focus: "#80B4F0", scheme: "dark" },
+};
+const PALETAS = {
+  verde: { nome: "Verde LC",
+    claro:  { moss: "#2F6B45", "moss-soft": "#DCEBDF", "on-moss": "#FFFFFF", "ring-1": "#2F6B45", "ring-2": "#6FA57C", "ring-3": "#B5D3BA", "ring-bg": "#E3EAE4", side: "#14261C", "side-active": "#21402E", bg: "#EEF2EF", "surface-2": "#F5F8F5", line: "#D4DCD6" },
+    escuro: { moss: "#7CC08F", "moss-soft": "#1E3526", "on-moss": "#0C1810", "ring-1": "#7CC08F", "ring-2": "#4E8A5F", "ring-3": "#2E5639", "ring-bg": "#1F2C24", side: "#0A110D", "side-active": "#1B3324", bg: "#0E1511", surface: "#16201A", "surface-2": "#1C2822", line: "#2A3830" } },
+  azul: { nome: "Azul corporativo",
+    claro:  { moss: "#1F5FAE", "moss-soft": "#DCE8F7", "on-moss": "#FFFFFF", "ring-1": "#1F5FAE", "ring-2": "#5D93D6", "ring-3": "#AECBEF", "ring-bg": "#E2E9F2", side: "#12233D", "side-active": "#1D3860", bg: "#EEF2F7", "surface-2": "#F5F8FC", line: "#D3DCE8" },
+    escuro: { moss: "#7DB2F2", "moss-soft": "#1A2E4A", "on-moss": "#0A1526", "ring-1": "#7DB2F2", "ring-2": "#3F73B5", "ring-3": "#24456F", "ring-bg": "#1C2738", side: "#0A1220", "side-active": "#18294A", bg: "#0D131D", surface: "#151D2A", "surface-2": "#1B2534", line: "#29364A" } },
+  petroleo: { nome: "Petróleo",
+    claro:  { moss: "#126E73", "moss-soft": "#D6ECEC", "on-moss": "#FFFFFF", "ring-1": "#126E73", "ring-2": "#4FA3A6", "ring-3": "#A6D3D4", "ring-bg": "#E0EAEA", side: "#0F2526", "side-active": "#1A3D3F", bg: "#EDF3F3", "surface-2": "#F4F9F9", line: "#D1DFDF" },
+    escuro: { moss: "#6CCBCF", "moss-soft": "#163536", "on-moss": "#062021", "ring-1": "#6CCBCF", "ring-2": "#2F8E92", "ring-3": "#1E5658", "ring-bg": "#1B2B2C", side: "#081314", "side-active": "#143132", bg: "#0C1516", surface: "#142021", "surface-2": "#1A2829", line: "#283B3C" } },
+  ametista: { nome: "Ametista",
+    claro:  { moss: "#5B3FA8", "moss-soft": "#E7E0F6", "on-moss": "#FFFFFF", "ring-1": "#5B3FA8", "ring-2": "#8F76CF", "ring-3": "#CBBEEB", "ring-bg": "#E8E4F0", side: "#1F1838", "side-active": "#33285A", bg: "#F1EFF6", "surface-2": "#F7F5FB", line: "#DAD5E6" },
+    escuro: { moss: "#B39DF2", "moss-soft": "#2A2245", "on-moss": "#140E26", "ring-1": "#B39DF2", "ring-2": "#7559C2", "ring-3": "#44357A", "ring-bg": "#242033", side: "#100C1D", "side-active": "#2A2148", bg: "#110F18", surface: "#1A1724", "surface-2": "#211D2D", line: "#332D45" } },
+  terracota: { nome: "Terracota",
+    claro:  { moss: "#A9481F", "moss-soft": "#F6E2D8", "on-moss": "#FFFFFF", "ring-1": "#A9481F", "ring-2": "#D9845F", "ring-3": "#EFC3AE", "ring-bg": "#EFE6E1", side: "#2B1A12", "side-active": "#4A2C1E", bg: "#F5F0EC", "surface-2": "#FAF6F3", line: "#E3D8D1" },
+    escuro: { moss: "#F0A07A", "moss-soft": "#3D2418", "on-moss": "#241208", "ring-1": "#F0A07A", "ring-2": "#B86440", "ring-3": "#6E3B25", "ring-bg": "#2B211C", side: "#150D09", "side-active": "#3A2418", bg: "#16110E", surface: "#201814", "surface-2": "#281F1A", line: "#3D3029" } },
+  vinho: { nome: "Vinho",
+    claro:  { moss: "#8E2C48", "moss-soft": "#F3DDE3", "on-moss": "#FFFFFF", "ring-1": "#8E2C48", "ring-2": "#C06480", "ring-3": "#E5B5C3", "ring-bg": "#EFE3E7", side: "#2A1119", "side-active": "#47202C", bg: "#F5EEF0", "surface-2": "#FAF5F7", line: "#E3D5DA" },
+    escuro: { moss: "#EC8FA9", "moss-soft": "#3B1A25", "on-moss": "#22080F", "ring-1": "#EC8FA9", "ring-2": "#A84A66", "ring-3": "#632A3B", "ring-bg": "#2A1D22", side: "#14080C", "side-active": "#36161F", bg: "#150E11", surface: "#1F161A", "surface-2": "#271C21", line: "#3C2C33" } },
+  grafite: { nome: "Grafite",
+    claro:  { moss: "#3A4350", "moss-soft": "#E2E5EA", "on-moss": "#FFFFFF", "ring-1": "#3A4350", "ring-2": "#7A8494", "ring-3": "#C3C9D2", "ring-bg": "#E6E8EC", side: "#191D23", "side-active": "#2B313B", bg: "#F0F1F3", "surface-2": "#F7F8F9", line: "#D8DBE0" },
+    escuro: { moss: "#C3CBD8", "moss-soft": "#2A303A", "on-moss": "#111418", "ring-1": "#C3CBD8", "ring-2": "#7B8596", "ring-3": "#454D5A", "ring-bg": "#22262D", side: "#0C0E11", "side-active": "#262B33", bg: "#111317", surface: "#191C21", "surface-2": "#1F2329", line: "#30353E" } },
+};
+const MODOS = { auto: "Automático", claro: "Claro", escuro: "Escuro" };
+const darkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+function parseTema(v) { const [p, m] = String(v || "").split(":"); return { paleta: PALETAS[p] ? p : "verde", modo: MODOS[m] ? m : "auto" }; }
+function localTema() { try { return localStorage.getItem("evo-tema"); } catch (e) { return null; } }
+let TEMA = parseTema(localTema());
+function applyTheme(t) {
+  const modo = t.modo === "auto" ? (darkMQ.matches ? "escuro" : "claro") : t.modo;
+  const pal = PALETAS[t.paleta][modo], neu = NEUTROS[modo], root = document.documentElement;
+  for (const [k, v] of Object.entries({ ...neu, ...pal })) { if (k !== "scheme" && v) root.style.setProperty("--" + k, v); }
+  root.style.setProperty("color-scheme", neu.scheme);
+  root.setAttribute("data-theme", neu.scheme);
+}
+function setTema(t, save) {
+  TEMA = t; applyTheme(t);
+  if (save) { try { localStorage.setItem("evo-tema", `${t.paleta}:${t.modo}`); } catch (e) {} }
+}
+applyTheme(TEMA);
+darkMQ.addEventListener("change", () => { if (TEMA.modo === "auto") { applyTheme(TEMA); if (S.session) render(); } });
+function swatch(key, selected, onPick) {
+  const p = PALETAS[key];
+  const dot = c => h("span", { class: "sw-dot", style: `background:${c}` });
+  return h("button", { type: "button", class: "swatch", "aria-pressed": selected, onclick: () => onPick(key) },
+    h("span", { class: "sw-row" }, dot(p.claro.side), dot(p.claro.moss), dot(p.claro["ring-2"]), dot(p.claro["ring-3"])),
+    h("span", { class: "sw-name" }, p.nome));
+}
+function themeModal() {
+  const original = { ...TEMA };
+  let draft = { ...TEMA }, saved = false;
+  const grid = h("div", { class: "swatches" });
+  const modes = h("div", { class: "seg-tabs three", role: "radiogroup", "aria-label": "Modo" });
+  const draw = () => {
+    grid.replaceChildren(...Object.keys(PALETAS).map(k => swatch(k, draft.paleta === k, key => { draft.paleta = key; setTema(draft, false); render(); draw(); })));
+    modes.replaceChildren(...Object.entries(MODOS).map(([k, l]) => h("button", { type: "button", role: "radio", "aria-selected": draft.modo === k, "aria-checked": draft.modo === k,
+      onclick: () => { draft.modo = k; setTema(draft, false); render(); draw(); } }, l)));
+  };
+  draw();
+  openModal({
+    title: "Aparência", submitLabel: "Salvar aparência",
+    body: [
+      h("p", { class: "muted small" }, "A mudança aparece na hora, para você conferir. Fica salva na sua conta e vale em qualquer computador ou celular."),
+      h("div", { class: "field" }, h("span", { class: "lbl" }, "Modo"), modes, h("span", { class: "hint" }, "Automático segue o modo claro ou escuro do seu aparelho.")),
+      h("div", { class: "field" }, h("span", { class: "lbl" }, "Paleta de cores"), grid),
+    ],
+    onReady: () => { document.getElementById("modal").addEventListener("close", () => { if (!saved) { setTema(original, false); render(); } }, { once: true }); },
+    onSubmit: async () => {
+      saved = true; setTema(draft, true);
+      if (S.me && isActive(S.me)) {
+        const { error } = await sb.from("evo_pessoas").update({ tema: `${draft.paleta}:${draft.modo}` }).eq("user_id", S.me.user_id);
+        if (error) { toast("Aparência salva só neste aparelho: " + sbErr(error), true); render(); return true; }
+        S.me.tema = `${draft.paleta}:${draft.modo}`;
+      }
+      render(); toast("Aparência salva."); return true;
+    },
+  });
+}
+
+/* ---------- avisos ---------- */
+let toastTimer;
+function toast(msg, err) {
+  const box = document.querySelector(".toast");
+  box.replaceChildren(h("div", { class: err ? "err" : "" }, msg));
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => box.replaceChildren(), err ? 6000 : 3200);
+}
+function sbErr(e) {
+  const msg = String(e?.message || "");
+  if (/row-level security|permission denied/i.test(msg)) return "Sem permissão para essa ação.";
+  if (/violates check constraint/i.test(msg)) return "Algum campo passou do tamanho permitido.";
+  if (/JWT|session/i.test(msg)) return "Sua sessão expirou. Entre de novo.";
+  if (/Failed to fetch|NetworkError|Load failed/i.test(msg)) return "Sem conexão. Verifique a internet e tente de novo.";
+  if (/maximum allowed size|Payload too large/i.test(msg)) return "O arquivo passa de 20 MB.";
+  if (/mime type/i.test(msg)) return "Formato não aceito. Envie PDF, PNG, JPG ou WEBP.";
+  if (/already registered|already been registered/i.test(msg)) return "Esse e-mail já tem cadastro. Use Entrar.";
+  if (/Password should|password.*characters/i.test(msg)) return "A senha não atende aos requisitos mínimos.";
+  if (/rate limit|too many/i.test(msg)) return "Muitas tentativas. Aguarde alguns minutos.";
+  return msg || "Não foi possível concluir. Tente de novo.";
+}
+async function run(query, okMsg) {
+  const { error } = await query;
+  if (error) { toast(sbErr(error), true); return false; }
+  await refresh();
+  if (okMsg) toast(okMsg);
+  return true;
+}
+
+/* ---------- dados ---------- */
+async function load() {
+  const uid = S.session.user.id;
+  const { data: me, error } = await sb.from("evo_pessoas").select("*").eq("user_id", uid).maybeSingle();
+  if (error) throw error;
+  S.me = me;
+  S.owner = !!me && me.papel === "gestor" && isActive(me);
+  if (me?.tema && me.tema !== `${TEMA.paleta}:${TEMA.modo}`) setTema(parseTema(me.tema), true);
+  if (!isActive(me)) return;
+  const all = q => q.then(r => { if (r.error) throw r.error; return r.data || []; });
+  if (S.owner) {
+    const [p, c, a, m, o, au, di, pd, pv, cf] = await Promise.all([
+      all(sb.from("evo_pessoas").select("*")), all(sb.from("evo_certificados").select("*")),
+      all(sb.from("evo_avaliacoes").select("*")), all(sb.from("evo_melhorias").select("*")),
+      all(sb.from("evo_oneaone").select("*")), all(sb.from("evo_autoavaliacoes").select("*")),
+      all(sb.from("evo_disc").select("*")), all(sb.from("evo_pdi").select("*")),
+      all(sb.from("evo_avaliacao_privada").select("*")), all(sb.from("evo_config").select("*")),
+    ]);
+    S.people = new Map(p.filter(r => r.papel === "membro").map(r => [r.user_id, r]));
+    S.gestores = p.filter(r => r.papel === "gestor");
+    S.certs = groupBy(c); S.aval = groupBy(a); S.melh = groupBy(m); S.ones = groupBy(o);
+    S.auto = groupBy(au); S.disc = groupBy(di); S.pdi = groupBy(pd);
+    S.privado = new Map(pv.map(r => [r.avaliacao_id, r.anotacao]));
+    S.config = Object.fromEntries(cf.map(r => [r.chave, r.valor]));
+    if (S.view === "historico") await loadAudit();
+  } else {
+    const [c, a, m, au, di, pd] = await Promise.all([
+      all(sb.from("evo_certificados").select("*").eq("user_id", uid)), all(sb.from("evo_avaliacoes").select("*").eq("user_id", uid)),
+      all(sb.from("evo_melhorias").select("*").eq("user_id", uid)), all(sb.from("evo_autoavaliacoes").select("*").eq("user_id", uid)),
+      all(sb.from("evo_disc").select("*").eq("user_id", uid)), all(sb.from("evo_pdi").select("*").eq("user_id", uid)),
+    ]);
+    S.people = new Map([[uid, me]]);
+    S.certs = groupBy(c); S.aval = groupBy(a); S.melh = groupBy(m); S.auto = groupBy(au); S.disc = groupBy(di); S.pdi = groupBy(pd);
+  }
+  await loadPhotos();
+}
+async function loadPhotos() {
+  const entries = [...S.people.values()].filter(p => p.foto_path).map(p => [p.user_id, p.foto_path]);
+  S.photos = {};
+  if (!entries.length) return;
+  const { data, error } = await sb.storage.from(BUCKET).createSignedUrls(entries.map(e => e[1]), 21600);
+  if (error || !data) return;
+  data.forEach((d, i) => { if (d.signedUrl) S.photos[entries[i][0]] = d.signedUrl; });
+}
+async function squareJpeg(file, max) {
+  if (file.size > 15 * 1024 * 1024) throw new Error("grande");
+  const bmp = await createImageBitmap(file);
+  const side = Math.min(bmp.width, bmp.height), out = Math.min(max, side);
+  const cv = document.createElement("canvas"); cv.width = cv.height = out;
+  cv.getContext("2d").drawImage(bmp, (bmp.width - side) / 2, (bmp.height - side) / 2, side, side, 0, 0, out, out);
+  return await new Promise((res, rej) => cv.toBlob(b => b ? res(b) : rej(new Error("blob")), "image/jpeg", 0.86));
+}
+async function loadAudit() {
+  const f = S.auditFilter;
+  let q = sb.from("evo_auditoria").select("*").order("id", { ascending: false }).limit(300);
+  if (isUuid(f.uid)) q = q.or(`registro_id.eq.${f.uid},antes->>user_id.eq.${f.uid},depois->>user_id.eq.${f.uid}`);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(f.de)) q = q.gte("quando", f.de + "T00:00:00");
+  if (/^\d{4}-\d{2}-\d{2}$/.test(f.ate)) q = q.lte("quando", f.ate + "T23:59:59");
+  const { data, error } = await q;
+  if (error) throw error;
+  S.audit = data;
+}
+async function refresh() {
+  try { S.error = null; await load(); }
+  catch (e) { S.error = sbErr(e); }
+  render();
+}
+function teamIds(includeArchived) {
+  return [...S.people.values()].filter(p => p.status === "ativo" && (includeArchived || !p.arquivado))
+    .map(p => p.user_id).sort((a, b) => nameOf(a).localeCompare(nameOf(b), "pt-BR"));
+}
+const pending = () => [...S.people.values()].filter(p => p.status === "pendente");
+
+/* ---------- inatividade ---------- */
+let idleTimer, lastBump = 0;
+function bumpIdle() {
+  const now = Date.now();
+  if (now - lastBump < 15000) return;
+  lastBump = now;
+  clearTimeout(idleTimer);
+  if (!S.session) return;
+  idleTimer = setTimeout(async () => {
+    await sb.auth.signOut();
+    toast("Sessão encerrada por inatividade. Entre de novo.");
+  }, INATIVIDADE_MIN * 60000);
+}
+["click", "keydown", "pointermove", "scroll", "touchstart"].forEach(ev => window.addEventListener(ev, bumpIdle, { passive: true }));
+
+/* ---------- gráficos ---------- */
+let charts = [], chartJobs = [];
+function chartBox(cls, build) {
+  const canvas = h("canvas", { role: "img", "aria-label": "Gráfico" });
+  const box = h("div", { class: "chart-box " + (cls || "") }, canvas);
+  chartJobs.push(() => { const cfg = build(); if (cfg) charts.push(new Chart(canvas, cfg)); });
+  return box;
+}
+const emptyChart = (msg, cls) => h("div", { class: "chart-box " + (cls || "") }, h("div", { class: "empty-chart" }, msg));
+function chartDefaults() {
+  if (!window.Chart) return;
+  Chart.defaults.color = cssVar("--muted");
+  Chart.defaults.borderColor = cssVar("--line");
+  Chart.defaults.font.family = '"Source Sans 3", "Segoe UI", system-ui, sans-serif';
+  Chart.defaults.font.size = 12;
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.boxWidth = 8;
+  Chart.defaults.maintainAspectRatio = false;
+  Chart.defaults.animation = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? false : { duration: 500 };
+}
+const monthKey = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}`;
+const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+function lastMonths(n) { const out = []; const d = new Date(); d.setDate(1); for (let i = n - 1; i >= 0; i--) { const x = new Date(d.getFullYear(), d.getMonth() - i, 1); out.push({ key: monthKey(x), label: `${MESES[x.getMonth()]}/${String(x.getFullYear()).slice(2)}` }); } return out; }
+const dateTick = v => { const d = new Date(v); return `${MESES[d.getMonth()]}/${String(d.getFullYear()).slice(2)}`; };
+
+function teamEvolutionChart(ids) {
+  const hasData = ids.some(id => (S.aval.get(id) || []).some(a => avgOf(a) != null));
+  if (!hasData) return emptyChart("A evolução aparece quando houver avaliações registradas.", "tall");
+  return chartBox("tall", () => ({
+    type: "line",
+    data: { datasets: ids.map(id => ({
+      label: nameOf(id).split(" ")[0], borderColor: colorOf(id), backgroundColor: colorOf(id),
+      tension: .3, pointRadius: 4, pointHoverRadius: 6, borderWidth: 2.5,
+      data: [...(S.aval.get(id) || [])].sort(byDateAsc("data")).map(a => ({ x: toTime(a.data), y: avgOf(a), d: a.data })).filter(p => p.y != null && p.x != null),
+    })).filter(d => d.data.length) },
+    options: {
+      parsing: false, interaction: { mode: "nearest", intersect: false },
+      scales: {
+        x: { type: "linear", ticks: { callback: dateTick, maxTicksLimit: 8 }, grid: { display: false } },
+        y: { min: 1, max: 5, ticks: { stepSize: 1 }, title: { display: true, text: "Média da avaliação" } },
+      },
+      plugins: { tooltip: { callbacks: { title: it => fmtDate(it[0].raw.d), label: it => `${it.dataset.label}: ${fmt1(it.raw.y)}` } } },
+    },
+  }));
+}
+function teamHoursChart(ids) {
+  const months = lastMonths(12);
+  const any = ids.some(id => certsOf(id).length);
+  if (!any) return emptyChart("As horas de formação aparecem quando o time registrar cursos.");
+  return chartBox("", () => ({
+    type: "bar",
+    data: { labels: months.map(m => m.label), datasets: ids.map(id => {
+      const per = Object.fromEntries(months.map(m => [m.key, 0]));
+      for (const c of certsOf(id)) { const k = dateOnly(c.concluido_em).slice(0, 7); if (k in per) per[k] += num(c.carga_horas); }
+      return { label: nameOf(id).split(" ")[0], backgroundColor: colorOf(id), borderRadius: 4, data: months.map(m => per[m.key]) };
+    }) },
+    options: {
+      scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true, title: { display: true, text: "Horas" } } },
+      plugins: { tooltip: { callbacks: { label: it => `${it.dataset.label}: ${fmtH(it.raw)}` } } },
+    },
+  }));
+}
+function radarChart(uid) {
+  const av = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
+  const auto = latest(S.auto.get(uid), "data");
+  if (!av.length && !auto) return emptyChart(S.owner ? "Registre a primeira avaliação para ver o mapa de competências." : "Faça a sua autoavaliação para começar o seu mapa de competências.");
+  const ds = (a, label, color, dash, fill) => ({
+    label, data: COMPETENCIAS.map(([k]) => Number(a.notas?.[k]) || null), borderColor: color,
+    backgroundColor: fill ? color + "33" : "transparent", pointBackgroundColor: color, borderWidth: 2, borderDash: dash || [], spanGaps: true,
+  });
+  return chartBox("", () => ({
+    type: "radar",
+    data: { labels: COMPETENCIAS.map(c => c[2]), datasets: [
+      av[0] && ds(av[0], `Gestor (${fmtDate(av[0].data)})${S.owner && !av[0].liberada ? ", rascunho" : ""}`, cssVar("--moss"), null, true),
+      av[1] && S.owner && ds(av[1], `Gestor anterior (${fmtDate(av[1].data)})`, cssVar("--muted"), [5, 4]),
+      auto && ds(auto, `Autoavaliação (${fmtDate(auto.data)})`, "#D08A1E", [2, 3]),
+    ].filter(Boolean) },
+    options: { scales: { r: { min: 0, max: 5, ticks: { stepSize: 1, backdropColor: "transparent" }, pointLabels: { font: { size: 12, weight: "600" } } } } },
+  }));
+}
+function personEvolutionChart(uid) {
+  const av = [...(S.aval.get(uid) || [])].sort(byDateAsc("data"));
+  if (av.length < 2) return emptyChart(av.length ? "A linha de evolução aparece a partir da segunda avaliação." : "Nenhuma avaliação registrada ainda.");
+  return chartBox("", () => ({
+    type: "line",
+    data: { labels: av.map(a => fmtDate(a.data)), datasets: [
+      { label: "Média geral", data: av.map(avgOf), borderColor: cssVar("--moss"), backgroundColor: cssVar("--moss"), borderWidth: 3, tension: .3, pointRadius: 5 },
+      ...COMPETENCIAS.map(([k, , short], i) => ({ label: short, data: av.map(a => Number(a.notas?.[k]) || null), borderColor: PALETA[(i + 1) % PALETA.length], backgroundColor: PALETA[(i + 1) % PALETA.length], borderWidth: 1.5, tension: .3, pointRadius: 3, hidden: true, spanGaps: true })),
+    ] },
+    options: { scales: { y: { min: 1, max: 5, ticks: { stepSize: 1 } }, x: { grid: { display: false } } },
+      plugins: { tooltip: { callbacks: { label: it => `${it.dataset.label}: ${fmt1(it.raw)}` } } } },
+  }));
+}
+function hoursTrailChart(uid, cls) {
+  const list = [...certsOf(uid)].filter(c => toTime(c.concluido_em) != null).sort(byDateAsc("concluido_em"));
+  if (!list.length) return emptyChart("Cada curso registrado aparece aqui como um degrau na trilha de formação.", cls);
+  let acc = 0;
+  const pts = list.map(c => ({ x: toTime(c.concluido_em), y: (acc += num(c.carga_horas)), t: c.titulo, d: c.concluido_em }));
+  return chartBox(cls, () => ({
+    type: "line",
+    data: { datasets: [{ label: "Horas acumuladas", data: pts, stepped: true, fill: true, borderColor: cssVar("--moss"), backgroundColor: cssVar("--moss") + "22", pointRadius: 4, borderWidth: 2.5 }] },
+    options: { parsing: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: it => fmtDate(it[0].raw.d), label: it => `${it.raw.t}: ${fmtH(it.raw.y)} no total` } } },
+      scales: { x: { type: "linear", ticks: { callback: dateTick, maxTicksLimit: 6 }, grid: { display: false } }, y: { beginAtZero: true, title: { display: true, text: "Horas" } } } },
+  }));
+}
+
+/* ---------- anéis ---------- */
+let clipSeq = 0;
+function rings(list, size, name, uid) {
+  const url = uid ? S.photos[uid] : null;
+  const shown = [...list].sort(byDateAsc("concluido_em")).slice(-12);
+  const c = size / 2, rMin = size * (url ? 0.3 : 0.2), rMax = size * 0.47;
+  const svg = s("svg", { viewBox: `0 0 ${size} ${size}`, width: size, height: size, role: "img", "aria-label": `${name}: ${plural(list.length, "curso concluído", "cursos concluídos")}` });
+  svg.append(s("circle", { cx: c, cy: c, r: rMax, class: "ring-bg" }));
+  if (!shown.length) svg.append(s("circle", { cx: c, cy: c, r: (rMin + rMax) / 2 + 1, class: "ring-empty" }));
+  const step = (rMax - rMin) / Math.max(shown.length, 1);
+  shown.forEach((cert, i) => {
+    const idx = Math.max(0, CATEGORIAS.indexOf(cert.categoria));
+    const sw = Math.max(1.2, Math.min(step * 0.78, 1.2 + num(cert.carga_horas) / 8));
+    svg.append(s("circle", { cx: c, cy: c, r: rMin + step * (i + 0.5), class: "ring r" + (idx % 3 + 1), "stroke-width": sw }, s("title", {}, cert.titulo || "Curso")));
+  });
+  svg.append(s("circle", { cx: c, cy: c, r: rMin * 0.92, class: "core" }));
+  if (url) {
+    const id = "foto" + (++clipSeq), r = rMin * 0.92;
+    svg.append(s("defs", {}, s("clipPath", { id }, s("circle", { cx: c, cy: c, r }))));
+    svg.append(s("image", { href: url, x: c - r, y: c - r, width: 2 * r, height: 2 * r, "clip-path": `url(#${id})`, preserveAspectRatio: "xMidYMid slice" }));
+  } else {
+    svg.append(s("text", { x: c, y: c, "text-anchor": "middle", "dominant-baseline": "central", class: "core-t", "font-size": size * 0.15 }, initials(name)));
+  }
+  return svg;
+}
+
+/* ---------- diálogos e formulários ---------- */
+const field = (label, input, hint) => h("label", { class: "field" }, h("span", { class: "lbl" }, label), input, hint && h("span", { class: "hint" }, hint));
+const inp = (name, val, type = "text", extra = {}) => h("input", { name, type, value: val ?? "", ...extra });
+const ta = (name, val, rows = 3) => h("textarea", { name, rows, value: val ?? "" });
+const sel = (name, opts, val) => h("select", { name, value: val }, opts.map(([v, l]) => h("option", { value: v }, l)));
+const val = (form, n) => (form.elements.namedItem(n)?.value || "").trim();
+
+function openModal({ title, body, submitLabel, onSubmit, onReady }) {
+  const dlg = document.getElementById("modal");
+  const btn = submitLabel ? h("button", { type: "submit", class: "btn" }, submitLabel) : null;
+  const form = h("form", { class: "dlg", novalidate: true },
+    h("div", { class: "dlg-head" }, h("h2", {}, title)),
+    h("div", { class: "dlg-body" }, body),
+    h("div", { class: "dlg-foot" }, h("button", { type: "button", class: "btn ghost", onclick: () => dlg.close() }, submitLabel ? "Cancelar" : "Fechar"), btn));
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!onSubmit) return;
+    btn.disabled = true; const old = btn.textContent; btn.textContent = "Salvando…";
+    let ok = false;
+    try { ok = await onSubmit(form); } finally { btn.disabled = false; btn.textContent = old; }
+    if (ok) dlg.close();
+  });
+  dlg.replaceChildren(form);
+  if (onReady) onReady(form);
+  dlg.showModal();
+}
+function confirmBox(message, label, danger) {
+  return new Promise(resolve => {
+    const dlg = document.getElementById("confirm");
+    const done = v => { dlg.close(); resolve(v); };
+    dlg.replaceChildren(h("div", { class: "dlg" },
+      h("div", { class: "dlg-head" }, h("h2", {}, "Confirmar")),
+      h("div", { class: "dlg-body" }, h("p", {}, message)),
+      h("div", { class: "dlg-foot" },
+        h("button", { type: "button", class: "btn ghost", onclick: () => done(false) }, "Cancelar"),
+        h("button", { type: "button", class: danger ? "btn danger" : "btn", onclick: () => done(true) }, label))));
+    dlg.addEventListener("cancel", () => resolve(false), { once: true });
+    dlg.showModal();
+  });
+}
+function repeater(name, items, fields, addLabel) {
+  const list = h("div", { class: "rep" });
+  const addRow = (it = {}) => {
+    const row = h("div", { class: "rep-row", "data-rep": name },
+      h("div", { class: "two" }, fields.filter(f => f[2] !== "textarea").map(([k, l]) => field(l, inp(`${name}_${k}`, it[k], "text", { maxlength: 160 })))),
+      fields.filter(f => f[2] === "textarea").map(([k, l]) => field(l, ta(`${name}_${k}`, it[k], 2))),
+      h("div", {}, h("button", { type: "button", class: "btn ghost small", onclick: () => row.remove() }, "Remover")));
+    list.append(row);
+  };
+  (Array.isArray(items) ? items : []).forEach(addRow);
+  return h("div", { class: "rep" }, list, h("div", {}, h("button", { type: "button", class: "btn ghost small", onclick: () => addRow() }, addLabel)));
+}
+function readRep(form, name, keys) {
+  return [...form.querySelectorAll(`[data-rep="${name}"]`)].map(r =>
+    Object.fromEntries(keys.map(k => [k, (r.querySelector(`[name="${name}_${k}"]`)?.value || "").trim()])))
+    .filter(o => keys.some(k => o[k])).slice(0, 30);
+}
+
+function formCurriculo(uid) {
+  const m = S.people.get(uid) || {};
+  const prevUrl = S.photos[uid] || null;
+  const preview = h("img", { class: "avatar-prev", src: prevUrl, alt: "", hidden: !prevUrl });
+  const fileIn = h("input", { type: "file", name: "foto", accept: "image/png,image/jpeg,image/webp" });
+  fileIn.addEventListener("change", () => { const f = fileIn.files[0]; if (f) { preview.src = URL.createObjectURL(f); preview.hidden = false; } });
+  openModal({
+    title: "Editar currículo", submitLabel: "Salvar currículo",
+    body: [
+      field("Foto de perfil", h("div", { class: "row" }, preview, fileIn), "JPG, PNG ou WEBP. A foto é recortada em quadrado e reduzida automaticamente."),
+      m.foto_path && h("label", { class: "row small" }, h("input", { type: "checkbox", name: "remover_foto" }), "Remover a foto atual"),
+      h("div", { class: "two" }, field("Nome completo", inp("nome", m.nome, "text", { maxlength: 120 })), field("Cargo", inp("cargo", m.cargo, "text", { maxlength: 80, placeholder: "Ex.: SDR" }))),
+      h("div", { class: "two" }, field("Na LC Sistemas desde", inp("admissao", m.admissao, "date")), field("Telefone", inp("telefone", m.telefone, "tel", { maxlength: 40 }))),
+      field("Resumo profissional", ta("resumo", m.resumo, 4)),
+      field("Habilidades", inp("habilidades", (m.habilidades || []).join(", ")), "Separe por vírgula."),
+      h("h3", {}, "Experiência"),
+      repeater("exp", m.experiencias, [["cargo", "Cargo"], ["empresa", "Empresa"], ["periodo", "Período"], ["descricao", "O que fazia", "textarea"]], "Adicionar experiência"),
+      h("h3", {}, "Formação"),
+      repeater("form", m.formacao, [["curso", "Curso"], ["instituicao", "Instituição"], ["ano", "Conclusão"]], "Adicionar formação"),
+    ],
+    onSubmit: async form => {
+      let foto_path = m.foto_path || null;
+      if (form.elements.namedItem("remover_foto")?.checked) foto_path = null;
+      const f = form.elements.namedItem("foto")?.files?.[0];
+      if (f) {
+        let blob;
+        try { blob = await squareJpeg(f, 480); } catch (e) { toast("Não foi possível ler a imagem. Use JPG ou PNG de até 15 MB.", true); return false; }
+        const path = `${uid}/perfil-${crypto.randomUUID()}.jpg`;
+        const up = await sb.storage.from(BUCKET).upload(path, blob, { contentType: "image/jpeg", upsert: false });
+        if (up.error) { toast(sbErr(up.error), true); return false; }
+        foto_path = path;
+      }
+      return run(sb.from("evo_pessoas").update({
+      foto_path,
+      nome: nz(val(form, "nome")), cargo: nz(val(form, "cargo")), admissao: nz(val(form, "admissao")),
+      telefone: nz(val(form, "telefone")), resumo: nz(val(form, "resumo")),
+      habilidades: val(form, "habilidades").split(",").map(x => x.trim().slice(0, 60)).filter(Boolean).slice(0, 40),
+      experiencias: readRep(form, "exp", ["cargo", "empresa", "periodo", "descricao"]),
+      formacao: readRep(form, "form", ["curso", "instituicao", "ano"]),
+    }).eq("user_id", uid), "Currículo salvo.");
+    },
+  });
+}
+function guessType(file) {
+  const ok = ["application/pdf", "image/png", "image/jpeg", "image/webp"];
+  if (ok.includes(file.type)) return file.type;
+  const ext = (file.name.split(".").pop() || "").toLowerCase();
+  return { pdf: "application/pdf", png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", webp: "image/webp" }[ext] || null;
+}
+function formCertificado(uid, existing) {
+  const c = existing || {};
+  const status = h("p", { class: "auto-status", hidden: true, role: "status" });
+  const pre = h("pre", {});
+  const lido = h("details", { class: "ocr-text", hidden: true }, h("summary", {}, "Ver o texto lido do certificado"), pre);
+  const fileIn = h("input", { type: "file", name: "arquivo", accept: ".pdf,.png,.jpg,.jpeg,.webp" });
+  fileIn.addEventListener("change", async () => {
+    const f = fileIn.files[0], form = fileIn.form;
+    if (!f || !form) return;
+    if (!guessType(f)) { toast("Formato não aceito. Envie PDF, PNG, JPG ou WEBP.", true); return; }
+    const btn = form.querySelector('button[type="submit"]');
+    status.hidden = false; status.className = "auto-status"; btn.disabled = true;
+    try {
+      const raw = await extractText(f, msg => { status.textContent = msg; });
+      const r = parseCert(raw);
+      let n = 0;
+      for (const [k, v] of Object.entries(r)) {
+        const el = form.elements.namedItem(k);
+        if (!el || v == null || v === "") continue;
+        if (el.value && !el.dataset.auto) continue;
+        el.value = String(v); el.dataset.auto = "1"; el.classList.add("auto"); n++;
+      }
+      status.textContent = n
+        ? `Preenchemos ${plural(n, "campo", "campos")} a partir do certificado (destacados em verde). Confira antes de salvar.`
+        : "Não conseguimos identificar os dados neste arquivo. Preencha os campos manualmente.";
+      if (!n) status.className = "auto-status warn";
+      pre.textContent = raw.trim().slice(0, 4000) || "(nenhum texto encontrado)";
+      lido.hidden = false;
+    } catch (e) {
+      console.error(e);
+      status.className = "auto-status warn";
+      status.textContent = "Não foi possível ler o arquivo automaticamente. Preencha os campos manualmente; o arquivo será anexado normalmente.";
+    } finally { btn.disabled = false; }
+  });
+  const markUser = e => { if (e.target.dataset) { delete e.target.dataset.auto; e.target.classList.remove("auto"); } };
+  openModal({
+    title: existing ? "Editar certificado" : "Adicionar certificado", submitLabel: existing ? "Salvar alterações" : "Adicionar ao currículo",
+    onReady: form => {
+      form.addEventListener("input", markUser);
+      if (!existing) { for (const k of ["concluido_em", "categoria"]) { const el = form.elements.namedItem(k); if (el) el.dataset.auto = "1"; } }
+    },
+    body: [
+      field("Nome do curso", inp("titulo", c.titulo, "text", { maxlength: 200 })),
+      h("div", { class: "two" }, field("Instituição", inp("instituicao", c.instituicao, "text", { maxlength: 160 })), field("Área", sel("categoria", CATEGORIAS.map(x => [x, x]), c.categoria || CATEGORIAS[0]))),
+      h("div", { class: "two" },
+        field("Carga horária (horas)", inp("carga_horas", c.carga_horas ?? "", "number", { min: 0, max: 5000, step: "0.5", inputmode: "decimal" })),
+        field("Concluído em", inp("concluido_em", c.concluido_em || today(), "date"))),
+      field("Válido até (opcional)", inp("valido_ate", c.valido_ate, "date"), "Para certificações que expiram. Você recebe um lembrete 30 dias antes."),
+      field(c.arquivo_path ? "Trocar arquivo do certificado" : "Arquivo do certificado", fileIn,
+        existing ? "PDF ou imagem, até 20 MB." : "Escolha o arquivo primeiro: os campos acima são preenchidos automaticamente. PDF ou imagem, até 20 MB."),
+      status, lido,
+    ],
+    onSubmit: async form => {
+      const titulo = val(form, "titulo");
+      if (!titulo) { toast("Informe o nome do curso.", true); return false; }
+      const row = { user_id: uid, titulo, instituicao: nz(val(form, "instituicao")), categoria: val(form, "categoria"),
+        carga_horas: Math.min(5000, Math.max(0, Number(val(form, "carga_horas").replace(",", ".")) || 0)), concluido_em: val(form, "concluido_em") || today(),
+        valido_ate: nz(val(form, "valido_ate")) };
+      const avisos = [];
+      if (row.carga_horas > 120) avisos.push(`A carga horária de ${row.carga_horas} h é bem acima do comum. Confira se não é um ano ou um código.`);
+      if (!row.carga_horas) avisos.push("A carga horária está vazia ou zerada.");
+      if (row.concluido_em > today()) avisos.push("A data de conclusão está no futuro.");
+      if (row.valido_ate && row.valido_ate < row.concluido_em) avisos.push("A validade termina antes da data de conclusão.");
+      if (certsOf(uid).some(x => x.id !== c.id && String(x.titulo || "").trim().toLowerCase() === titulo.toLowerCase())) avisos.push("Já existe um curso com esse nome no currículo.");
+      if (avisos.length && !(await confirmBox("Confira antes de salvar: " + avisos.join(" "), "Salvar mesmo assim"))) return false;
+      const file = form.elements.namedItem("arquivo")?.files?.[0];
+      if (file) {
+        const type = guessType(file);
+        if (!type) { toast("Formato não aceito. Envie PDF, PNG, JPG ou WEBP.", true); return false; }
+        if (file.size > 20 * 1024 * 1024) { toast("O arquivo passa de 20 MB.", true); return false; }
+        const ext = { "application/pdf": "pdf", "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp" }[type];
+        const path = `${uid}/${crypto.randomUUID()}.${ext}`;
+        const up = await sb.storage.from(BUCKET).upload(path, file, { contentType: type, upsert: false });
+        if (up.error) { toast(sbErr(up.error), true); return false; }
+        Object.assign(row, { arquivo_path: path, arquivo_nome: file.name.slice(0, 160), arquivo_tipo: type });
+      }
+      return run(existing ? sb.from("evo_certificados").update(row).eq("id", existing.id) : sb.from("evo_certificados").insert(row),
+        existing ? "Certificado atualizado." : "Certificado adicionado ao currículo.");
+    },
+  });
+}
+async function openCert(c) {
+  const win = window.open("", "_blank");
+  const { data, error } = await sb.storage.from(BUCKET).createSignedUrl(c.arquivo_path, 300);
+  if (error || !data?.signedUrl) { if (win) win.close(); toast("Não foi possível abrir o arquivo.", true); return; }
+  if (win) { win.opener = null; win.location.href = data.signedUrl; } else window.location.href = data.signedUrl;
+}
+async function removeCert(c) {
+  if (!(await confirmBox(`Remover “${c.titulo || "este curso"}” do currículo?`, "Remover", true))) return;
+  run(sb.from("evo_certificados").delete().eq("id", c.id), "Certificado removido.");
+}
+function formAvaliacao(uid, existing) {
+  const a = existing || {};
+  const scale = h("div", { class: "scale" }, COMPETENCIAS.map(([k, l]) =>
+    h("div", { class: "scale-row" }, h("span", {}, l),
+      h("div", { class: "seg", role: "radiogroup", "aria-label": l },
+        [1, 2, 3, 4, 5].map(n => h("label", {}, h("input", { type: "radio", name: "c_" + k, value: n, checked: Number(a.notas?.[k]) === n, "aria-label": `${l}: ${n}` }), h("span", {}, n)))))));
+  const auto = latest(S.auto.get(uid), "data");
+  openModal({
+    title: existing ? "Editar avaliação" : "Nova avaliação", submitLabel: existing?.liberada ? "Salvar" : "Salvar rascunho",
+    body: [
+      h("div", { class: "two" }, field("Data", inp("data", a.data || today(), "date")), field("Período avaliado", inp("periodo", a.periodo, "text", { maxlength: 80, placeholder: "Ex.: 4º trimestre de 2026" }))),
+      auto && h("p", { class: "notice small" }, `Autoavaliação de ${fmtDate(auto.data)}: ` + COMPETENCIAS.map(([k, , sh]) => `${sh} ${auto.notas?.[k] ?? "–"}`).join(", ")),
+      h("p", { class: "muted small" }, "1 = precisa de muita atenção, 5 = referência para o time."),
+      scale,
+      field("Pontos fortes", ta("fortes", a.fortes, 3), "A pessoa vê quando a avaliação for liberada."),
+      field("Feedback para a pessoa", ta("feedback", a.feedback, 4), "A pessoa vê quando a avaliação for liberada."),
+      field("Anotação privada", ta("anotacao", existing ? (S.privado.get(a.id) || "") : "", 4), "Só gestores veem. Nunca é mostrada para a pessoa."),
+      !a.liberada && h("label", { class: "row small" }, h("input", { type: "checkbox", name: "liberar" }), "Liberar para a pessoa ao salvar"),
+    ],
+    onSubmit: async form => {
+      const notas = {};
+      for (const [k] of COMPETENCIAS) { const v = form.querySelector(`input[name="c_${k}"]:checked`)?.value; if (v) notas[k] = Number(v); }
+      if (!Object.keys(notas).length) { toast("Dê nota a pelo menos uma competência.", true); return false; }
+      const row = { user_id: uid, data: val(form, "data") || today(), periodo: nz(val(form, "periodo")), notas, fortes: nz(val(form, "fortes")), feedback: nz(val(form, "feedback")) };
+      if (form.elements.namedItem("liberar")?.checked) row.liberada = true;
+      let id = existing?.id;
+      if (existing) { const { error } = await sb.from("evo_avaliacoes").update(row).eq("id", id); if (error) { toast(sbErr(error), true); return false; } }
+      else { const { data, error } = await sb.from("evo_avaliacoes").insert(row).select("id").single(); if (error) { toast(sbErr(error), true); return false; } id = data.id; }
+      const anot = nz(val(form, "anotacao"));
+      if (anot || S.privado.has(id)) {
+        const { error } = await sb.from("evo_avaliacao_privada").upsert({ avaliacao_id: id, anotacao: anot, atualizado_em: new Date().toISOString() });
+        if (error) toast("A avaliação foi salva, mas a anotação privada não: " + sbErr(error), true);
+      }
+      await refresh();
+      toast(row.liberada || existing?.liberada ? "Avaliação salva. A pessoa já pode ver." : "Avaliação salva como rascunho. A pessoa ainda não vê.");
+      return true;
+    },
+  });
+}
+async function liberarAvaliacao(a, liberar) {
+  const msg = liberar ? `Liberar a avaliação de ${fmtDate(a.data)}? A pessoa passa a ver as notas, os pontos fortes e o feedback. A anotação privada continua só com você.`
+                      : "Recolher esta avaliação? A pessoa deixa de vê-la até você liberar de novo.";
+  if (!(await confirmBox(msg, liberar ? "Liberar" : "Recolher", !liberar))) return;
+  run(sb.from("evo_avaliacoes").update({ liberada: liberar }).eq("id", a.id), liberar ? "Avaliação liberada para a pessoa." : "Avaliação recolhida.");
+}
+function formMelhoria(uid, existing) {
+  const m = existing || {};
+  openModal({
+    title: existing ? "Editar ponto de melhoria" : "Novo ponto de melhoria", submitLabel: "Salvar",
+    body: [
+      field("O que precisa melhorar", inp("titulo", m.titulo, "text", { maxlength: 200, placeholder: "Ex.: Registrar todas as interações no CRM" })),
+      field("Detalhes e como vamos trabalhar", ta("descricao", m.descricao, 4)),
+      h("div", { class: "two" }, field("Prazo", inp("prazo", m.prazo, "date")), field("Situação", sel("status", Object.entries(STATUS), m.status || "aberto"))),
+    ],
+    onSubmit: form => {
+      const titulo = val(form, "titulo");
+      if (!titulo) { toast("Descreva o ponto de melhoria.", true); return false; }
+      const status = val(form, "status");
+      const row = { user_id: uid, titulo, descricao: nz(val(form, "descricao")), prazo: nz(val(form, "prazo")), status, concluido_em: status === "concluido" ? (m.concluido_em || today()) : null };
+      return run(existing ? sb.from("evo_melhorias").update(row).eq("id", existing.id) : sb.from("evo_melhorias").insert(row), "Ponto de melhoria salvo.");
+    },
+  });
+}
+function formOne(uid, existing) {
+  const o = existing || {};
+  openModal({
+    title: existing ? "Editar reunião 1:1" : "Registrar reunião 1:1", submitLabel: "Salvar reunião",
+    body: [
+      h("div", { class: "two" }, field("Data", inp("data", o.data || today(), "date")), field("Próxima 1:1", inp("proxima", o.proxima, "date"))),
+      field("Pauta", ta("pauta", o.pauta, 3)),
+      field("Anotações da conversa", ta("anotacoes", o.anotacoes, 6)),
+      field("Combinados e próximos passos", ta("combinados", o.combinados, 4)),
+    ],
+    onSubmit: form => {
+      const row = { user_id: uid, data: val(form, "data") || today(), proxima: nz(val(form, "proxima")), pauta: nz(val(form, "pauta")), anotacoes: nz(val(form, "anotacoes")), combinados: nz(val(form, "combinados")) };
+      if (!row.pauta && !row.anotacoes && !row.combinados) { toast("Preencha a pauta, as anotações ou os combinados.", true); return false; }
+      return run(existing ? sb.from("evo_oneaone").update(row).eq("id", existing.id) : sb.from("evo_oneaone").insert(row), "Reunião registrada.");
+    },
+  });
+}
+async function removeRecord(table, id, what) {
+  if (!(await confirmBox(`Apagar ${what}? Fica registrado no histórico e pode ser restaurado.`, "Apagar", true))) return;
+  run(sb.from(table).delete().eq("id", id), "Registro apagado. Dá para restaurar em Segurança e backup.");
+}
+async function setAccess(uid, status) {
+  const p = S.people.get(uid);
+  if (status === "recusado" && !(await confirmBox(`Recusar o acesso de ${p?.nome || p?.email}? A pessoa não verá nada.`, "Recusar", true))) return;
+  run(sb.from("evo_pessoas").update({ status }).eq("user_id", uid), status === "ativo" ? "Acesso aprovado." : "Acesso recusado.");
+}
+async function toggleArchive(uid) {
+  const p = S.people.get(uid) || {};
+  const arch = !p.arquivado;
+  if (arch && !(await confirmBox(`Arquivar ${nameOf(uid)}? O acesso é bloqueado e o histórico fica guardado.`, "Arquivar"))) return;
+  run(sb.from("evo_pessoas").update({ arquivado: arch }).eq("user_id", uid), arch ? "Pessoa arquivada." : "Pessoa reativada.");
+}
+function passwordModal() {
+  openModal({
+    title: "Alterar minha senha", submitLabel: "Salvar senha",
+    body: [
+      field("Nova senha", inp("s1", "", "password", { autocomplete: "new-password" }), "Pelo menos 10 caracteres, com letras e números."),
+      field("Repita a nova senha", inp("s2", "", "password", { autocomplete: "new-password" })),
+    ],
+    onSubmit: async form => {
+      const a = form.elements.namedItem("s1").value, b = form.elements.namedItem("s2").value;
+      if (!strongEnough(a)) { toast("Use pelo menos 10 caracteres, com letras e números.", true); return false; }
+      if (a !== b) { toast("As senhas não conferem.", true); return false; }
+      const { error } = await sb.auth.updateUser({ password: a });
+      if (error) { toast(sbErr(error), true); return false; }
+      toast("Senha alterada."); return true;
+    },
+  });
+}
+const strongEnough = p => p.length >= 10 && /[A-Za-z]/.test(p) && /\d/.test(p);
+
+/* ---------- backup ---------- */
+async function fetchAll(t) {
+  let out = [], from = 0;
+  for (;;) {
+    const { data, error } = await sb.from(t).select("*").range(from, from + 999);
+    if (error) throw error;
+    out = out.concat(data);
+    if (data.length < 1000) return out;
+    from += 1000;
+  }
+}
+async function downloadBackup(btn) {
+  if (!window.JSZip) { toast("Não foi possível carregar o gerador de backup. Recarregue a página.", true); return; }
+  btn.disabled = true; const old = btn.textContent;
+  try {
+    const zip = new JSZip();
+    const dados = { gerado_em: new Date().toISOString(), projeto: SUPABASE_URL };
+    for (const t of ["evo_pessoas", "evo_certificados", "evo_avaliacoes", "evo_melhorias", "evo_oneaone", "evo_auditoria"]) {
+      btn.textContent = `Copiando ${TABELAS[t] || "histórico"}…`;
+      dados[t] = await fetchAll(t);
+    }
+    zip.file("dados.json", JSON.stringify(dados, null, 2));
+    let n = 0;
+    for (const p of dados.evo_pessoas) {
+      const { data: files, error } = await sb.storage.from(BUCKET).list(p.user_id, { limit: 1000 });
+      if (error) throw error;
+      for (const f of files || []) {
+        if (!f.id) continue;
+        btn.textContent = `Copiando arquivos (${++n})…`;
+        const dl = await sb.storage.from(BUCKET).download(`${p.user_id}/${f.name}`);
+        if (dl.error) throw dl.error;
+        zip.file(`certificados/${p.user_id}/${f.name}`, dl.data);
+      }
+    }
+    btn.textContent = "Compactando…";
+    const blob = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
+    const url = URL.createObjectURL(blob);
+    const a = h("a", { href: url, download: `backup-evolucao-time-${today()}.zip` });
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+    await sb.from("evo_config").upsert({ chave: "ultimo_backup", valor: new Date().toISOString(), atualizado_em: new Date().toISOString() });
+    S.config.ultimo_backup = new Date().toISOString();
+    toast(`Backup gerado com ${plural(n, "arquivo", "arquivos")} de certificado.`);
+  } catch (e) { toast("O backup falhou: " + sbErr(e), true); }
+  finally { btn.disabled = false; btn.textContent = old; }
+}
+
+
+/* ---------- leitura automática do certificado (no navegador, gratuita) ---------- */
+const LIBS = {
+  pdf:  { src: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js", sri: "sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" },
+  pdfw: { src: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js", sri: "sha384-SnzOobpRMLXZ52iJvZm/C0fYw0OQemTXzTjIsdsfMcrCtCEe9qgzxTd3RSklO5x2" },
+  tess: { src: "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js", sri: "sha384-GJqSu7vueQ9qN0E9yLPb3Wtpd7OrgK8KmYzC8T1IysG1bcvxvIO4qtYR/D3A991F" },
+};
+const TESS_OPTS = {
+  workerPath: "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/worker.min.js",
+  corePath: "https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1",
+  langPath: "https://cdn.jsdelivr.net/npm/@tesseract.js-data/por@1.0.0/4.0.0_best_int",
+};
+const libLoads = {};
+function loadLib(k) {
+  return libLoads[k] || (libLoads[k] = new Promise((res, rej) => {
+    const el = document.createElement("script");
+    el.src = LIBS[k].src; el.integrity = LIBS[k].sri; el.crossOrigin = "anonymous";
+    el.onload = res; el.onerror = () => { delete libLoads[k]; rej(new Error("Falha ao carregar " + k)); };
+    document.head.append(el);
+  }));
+}
+let tessWorker = null, ocrStatus = () => {};
+async function ocr(canvas, onStatus) {
+  ocrStatus = onStatus;
+  onStatus("Preparando a leitura da imagem. Na primeira vez demora um pouco mais…");
+  await loadLib("tess");
+  if (!tessWorker) tessWorker = await Tesseract.createWorker("por", 1, { ...TESS_OPTS,
+    logger: m => { if (m.status === "recognizing text") ocrStatus(`Lendo a imagem… ${Math.round(m.progress * 100)}%`); } });
+  const { data } = await tessWorker.recognize(canvas);
+  return data.text || "";
+}
+function toCanvas(src, w, h, max) {
+  const k = Math.min(1, max / Math.max(w, h));
+  const cv = document.createElement("canvas"); cv.width = Math.round(w * k); cv.height = Math.round(h * k);
+  const ctx = cv.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.drawImage(src, 0, 0, cv.width, cv.height);
+  return cv;
+}
+async function extractText(file, onStatus) {
+  if (guessType(file) === "application/pdf") {
+    onStatus("Lendo o PDF…");
+    await loadLib("pdf"); await loadLib("pdfw");
+    const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer(), isEvalSupported: false, disableFontFace: true }).promise;
+    let text = "";
+    for (let i = 1; i <= Math.min(pdf.numPages, 2); i++) {
+      const tc = await (await pdf.getPage(i)).getTextContent();
+      text += tc.items.map(it => it.str + (it.hasEOL ? "\n" : " ")).join("") + "\n";
+    }
+    if (text.replace(/\s/g, "").length >= 40) return text;
+    const pg = await pdf.getPage(1), vp = pg.getViewport({ scale: 2 });
+    const cv = document.createElement("canvas"); cv.width = vp.width; cv.height = vp.height;
+    await pg.render({ canvasContext: cv.getContext("2d"), viewport: vp }).promise;
+    return ocr(toCanvas(cv, cv.width, cv.height, 2400), onStatus);
+  }
+  const bmp = await createImageBitmap(file);
+  return ocr(toCanvas(bmp, bmp.width, bmp.height, 2400), onStatus);
+}
+const MESES_EXT = { janeiro: 1, fevereiro: 2, "março": 3, marco: 3, abril: 4, maio: 5, junho: 6, julho: 7, agosto: 8, setembro: 9, outubro: 10, novembro: 11, dezembro: 12 };
+const INSTITUICOES = ["Fundação Bradesco", "Escola Virtual", "HubSpot Academy", "LinkedIn Learning", "Rock Content", "RD Station", "Escola Conquer", "Google", "Microsoft", "Salesforce", "Trailhead", "Udemy", "Alura", "Coursera", "SEBRAE", "SENAC", "SENAI", "SESC", "FGV", "ENAP", "Conquer", "Hotmart", "Descomplica", "Insper", "Meetime", "HubSpot", "LC Sistemas", "Amazon Web Services", "AWS", "IBM", "Cisco", "Domestika", "Udacity", "edX", "FIAP", "Estácio", "Anhanguera", "Unopar", "Cruzeiro do Sul", "Mackenzie", "USP", "PUC", "Unicamp", "Harvard", "Exame"];
+function smartCase(t) {
+  if (t !== t.toUpperCase() || !/[A-ZÁÉÍÓÚÂÊÔÃÕÇ]/.test(t)) return t;
+  const small = ["de", "da", "do", "das", "dos", "e", "em", "para", "com", "a", "o", "na", "no"];
+  return t.toLowerCase().split(" ").map((w, i) => (i && small.includes(w)) ? w : w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+}
+const STOP = /\s+(?:com\s+carga|carga\s+hor|no\s+per[íi]odo|realizad[oa]|promovid[oa]|oferecid[oa]|ministrad[oa]|emitid[oa]|na\s+modalidade|nos\s+dias|no\s+dia|em\s+\d|de\s+\d{1,2}\s+de|totalizando|com\s+dura)|\s*[,;.](?:\s|$)|\s+[-–]\s+/i;
+const cleanPart = t => t.split(STOP)[0].replace(/^[\s:–\-"“”«»]+|[\s:–\-"“”«»]+$/g, "").replace(/\s{2,}/g, " ").trim();
+function parseCert(raw) {
+  const text = raw.replace(/\r/g, "").replace(/[ \t]+/g, " ").replace(/\n{2,}/g, "\n").trim();
+  const flat = text.replace(/\n/g, " ");
+  const out = {};
+  let m = flat.match(/carga\s*hor[áa]ria\s*(?:total\s*)?(?:de|:)?\s*(\d{1,4}(?:[.,]\d{1,2})?)/i)
+       || flat.match(/(\d{1,4}(?:[.,]\d{1,2})?)\s*(?:horas|hrs?\b|hs\b|h\b)(?!\w)/i);
+  if (m) { const v = Number(m[1].replace(",", ".")); if (v > 0 && v <= 2000) out.carga_horas = v; }
+  const dates = [];
+  for (const d of flat.matchAll(/\b(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{2,4})\b/g)) { let y = +d[3]; if (y < 100) y += 2000; dates.push([y, +d[2], +d[1]]); }
+  for (const d of flat.matchAll(/\b(\d{1,2})(?:º|°)?\s+de\s+([a-zà-ú]+)\s+de\s+(\d{4})/gi)) { const mo = MESES_EXT[d[2].toLowerCase()]; if (mo) dates.push([+d[3], mo, +d[1]]); }
+  for (const d of flat.matchAll(/\b([a-zà-ú]+)\s+(?:de\s+)?(\d{4})\b/gi)) { const mo = MESES_EXT[d[1].toLowerCase()]; if (mo) dates.push([+d[2], mo, 1]); }
+  const hoje = today();
+  const valid = dates.filter(([y, mo, d]) => y >= 1990 && mo >= 1 && mo <= 12 && d >= 1 && d <= 31)
+    .map(([y, mo, d]) => `${y}-${pad(mo)}-${pad(d)}`).filter(x => x <= hoje).sort();
+  if (valid.length) out.concluido_em = valid[valid.length - 1];
+  const pats = [
+    /(?:conclu[íi]u|participou|realizou|completou|cursou|finalizou|aprovad[oa])\s+(?:com\s+(?:[êe]xito|sucesso|aproveitamento)\s+)?(?:(?:d?[oa]s?|n[oa]s?)\s+)?(?:curso|treinamento|capacita[çc][ãa]o|workshop|programa|trilha|forma[çc][ãa]o|palestra|webinar|evento|m[óo]dulo|imers[ãa]o|certifica[çc][ãa]o)?\s*(?:livre\s+|online\s+|on-line\s+)?(?:de|em|:|-)?\s*(.{4,160})/i,
+    /[“"«]([^”"»]{4,140})[”"»]/,
+    /(?:curso|treinamento|capacita[çc][ãa]o|workshop|trilha|forma[çc][ãa]o)\s+(?:de|em|:|-)\s*(.{4,160})/i,
+  ];
+  for (const p of pats) {
+    const r = flat.match(p);
+    if (!r) continue;
+    const t = cleanPart(r[1]);
+    if (t.length >= 4 && t.split(" ").length <= 18 && !/^(o|a|de|em|curso)$/i.test(t)) { out.titulo = smartCase(t).slice(0, 200); break; }
+  }
+  const low = flat.toLowerCase();
+  const known = INSTITUICOES.find(n => new RegExp(`(^|[^a-zà-ú])${n.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}([^a-zà-ú]|$)`).test(low));
+  if (known) out.instituicao = known;
+  else {
+    const r = flat.match(/(?:promovid[oa]|oferecid[oa]|realizad[oa]|ministrad[oa]|emitid[oa])\s+(?:pel[oa]s?|por)\s+(.{3,90})/i)
+           || flat.match(/\b((?:Universidade|Faculdade|Instituto|Escola|Centro Universit[áa]rio|Funda[çc][ãa]o|Academia)\s+[^\n,.;]{3,60})/i);
+    if (r) { const t = cleanPart(r[1]); if (t.length >= 3) out.instituicao = smartCase(t).slice(0, 160); }
+  }
+  const base = ((out.titulo || "") + " " + flat).toLowerCase();
+  const cats = [
+    ["Vendas e negociação", /vend|sales|negocia|prospec|comercial|closer|\bsdr\b|funil|obje[çc]/],
+    ["Atendimento ao cliente", /atendimento|cliente|customer|sucesso do cliente|\bcx\b|suporte|p[óo]s-venda/],
+    ["Gestão e liderança", /lideran|gest[ãa]o|gerenc|coordena|feedback|equipe/],
+    ["Tecnologia", /excel|power bi|dados|programa[çc]|tecnologia|intelig[êe]ncia artificial|\bia\b|planilha|python|sql|digital/],
+    ["Produto e sistema", /sistema|\berp\b|produto|software|implanta/],
+  ];
+  const tt = (out.titulo || "").toLowerCase();
+  const cat = cats.find(([, re]) => re.test(tt)) || cats.find(([, re]) => re.test(base));
+  if (cat) out.categoria = cat[0];
+  return out;
+}
+
+/* ---------- blocos ---------- */
+const kpi = (v, l, warn) => h("div", { class: "kpi" + (warn ? " warn" : "") }, h("div", { class: "v" }, v), h("div", { class: "l" }, l));
+function curriculum(uid, canEdit) {
+  const m = S.people.get(uid) || {};
+  const certs = [...certsOf(uid)].sort(byDateDesc("concluido_em"));
+  const facts = [m.cargo, m.admissao && `na LC Sistemas desde ${fmtDate(m.admissao)}`, m.telefone].filter(Boolean);
+  const exps = Array.isArray(m.experiencias) ? m.experiencias : [];
+  const forms = Array.isArray(m.formacao) ? m.formacao : [];
+  return h("article", { class: "cv panel" },
+    h("div", { class: "panel-head" },
+      h("div", { class: "row", style: "gap:14px;flex-wrap:nowrap" },
+        S.photos[uid] && h("img", { class: "avatar", src: S.photos[uid], alt: `Foto de ${nameOf(uid)}` }),
+        h("div", {}, h("h2", {}, nameOf(uid)), h("p", { class: "muted" }, facts.length ? facts.join(", ") : "Cargo ainda não informado."))),
+      canEdit && h("div", { class: "row" },
+        h("button", { class: "btn ghost small", onclick: () => cvPdf(uid) }, "Baixar currículo (PDF)"),
+        h("button", { class: "btn ghost small", onclick: () => formCurriculo(uid) }, "Editar currículo"),
+        h("button", { class: "btn small", onclick: () => formCertificado(uid) }, "Adicionar certificado"))),
+    h("section", {}, h("h3", {}, "Resumo"), m.resumo ? h("p", { class: "prose" }, m.resumo) : h("p", { class: "muted" }, "Sem resumo ainda.")),
+    h("section", {}, h("h3", {}, "Habilidades"),
+      (m.habilidades || []).length ? h("div", { class: "chips" }, m.habilidades.map(x => h("span", { class: "chip" }, x))) : h("p", { class: "muted" }, "Nenhuma habilidade listada.")),
+    h("section", {},
+      h("div", { class: "panel-head" }, h("h3", {}, `Cursos e certificações (${certs.length})`), certs.length > 0 && h("p", {}, `${fmtH(hoursOf(certs))} de formação`)),
+      certs.length ? h("ul", { class: "list" }, certs.map(c => certItem(c, canEdit))) : h("p", { class: "muted" }, "Nenhum curso registrado ainda.")),
+    h("section", {}, h("h3", {}, "Experiência"),
+      exps.length ? h("div", { class: "list" }, exps.map(e => h("div", { class: "exp" }, h("b", {}, [e.cargo, e.empresa].filter(Boolean).join(", ")), e.periodo && h("span", { class: "meta" }, e.periodo), e.descricao && h("p", { class: "prose" }, e.descricao))))
+        : h("p", { class: "muted" }, "Nenhuma experiência listada.")),
+    h("section", {}, h("h3", {}, "Formação"),
+      forms.length ? h("div", { class: "list" }, forms.map(f => h("div", { class: "exp" }, h("b", {}, f.curso || "Curso"), h("span", { class: "meta" }, [f.instituicao, f.ano].filter(Boolean).join(", ")))))
+        : h("p", { class: "muted" }, "Nenhuma formação listada.")));
+}
+function certItem(c, canEdit) {
+  const has = !!c.arquivo_path;
+  const kind = !has ? "sem anexo" : String(c.arquivo_tipo || "").startsWith("image/") ? "IMG" : "PDF";
+  return h("li", { class: "item cert" },
+    h("div", { class: "doc-ico", "aria-hidden": "true" }, kind),
+    h("div", { style: "display:grid;gap:4px;min-width:0" },
+      h("div", { class: "item-top" }, h("h3", {}, c.titulo || "Curso"), h("span", { class: "meta" }, fmtDate(c.concluido_em))),
+      h("p", { class: "meta" }, [c.instituicao, c.categoria, num(c.carga_horas) ? fmtH(c.carga_horas) : null].filter(Boolean).join(", ")),
+      validadeInfo(c) && h("p", {}, h("span", { class: "pill " + validadeInfo(c).cls }, validadeInfo(c).txt)),
+      h("div", { class: "row" },
+        has && h("button", { class: "linkish", onclick: () => openCert(c) }, "Ver certificado"),
+        canEdit && h("button", { class: "linkish", onclick: () => formCertificado(c.user_id, c) }, has ? "Editar" : "Editar ou anexar"),
+        canEdit && h("button", { class: "linkish red", onclick: () => removeCert(c) }, "Remover"))));
+}
+function timeline(uid) {
+  const ev = [];
+  for (const c of certsOf(uid)) ev.push({ d: c.concluido_em, k: "cert", t: `Concluiu ${c.titulo || "um curso"}`, s: [c.instituicao, num(c.carga_horas) ? fmtH(c.carga_horas) : ""].filter(Boolean).join(", ") });
+  for (const a of S.aval.get(uid) || []) ev.push({ d: a.data, k: "aval", t: `Avaliação${a.periodo ? ` de ${a.periodo}` : ""}`, s: `Média ${fmt1(avgOf(a))}` });
+  for (const o of S.ones.get(uid) || []) ev.push({ d: o.data, k: "one", t: "Reunião 1:1", s: (o.pauta || o.anotacoes || "").split("\n")[0].slice(0, 110) });
+  for (const m of S.melh.get(uid) || []) {
+    ev.push({ d: m.criado_em, k: "melh", t: `Novo ponto de melhoria: ${m.titulo}`, s: "" });
+    if (m.status === "concluido" && m.concluido_em) ev.push({ d: m.concluido_em, k: "ok", t: `Melhoria concluída: ${m.titulo}`, s: "" });
+  }
+  ev.sort(byDateDesc("d"));
+  if (!ev.length) return h("p", { class: "muted" }, "Nada registrado ainda.");
+  return h("ol", { class: "tl" }, ev.slice(0, 15).map(e => h("li", {},
+    h("span", { class: "d" }, fmtDate(e.d)), h("span", { class: "k " + e.k, "aria-hidden": "true" }),
+    h("div", {}, h("div", {}, e.t), e.s && h("div", { class: "meta" }, e.s)))));
+}
+function personStats(uid) {
+  const avals = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
+  const last = avgOf(avals[0]), prev = avgOf(avals[1]);
+  const ones = [...(S.ones.get(uid) || [])].sort(byDateDesc("data"));
+  return {
+    certs: certsOf(uid).length, hours: hoursOf(certsOf(uid)), last, delta: last != null && prev != null ? last - prev : null,
+    open: (S.melh.get(uid) || []).filter(m => m.status !== "concluido").length,
+    late: (S.melh.get(uid) || []).filter(m => m.status !== "concluido" && m.prazo && m.prazo < today()).length,
+    lastOne: ones[0] ? daysSince(ones[0].data) : null, next: ones.find(o => o.proxima)?.proxima,
+  };
+}
+const deltaEl = d => d ? h("span", { class: d > 0 ? "delta-up" : "delta-down" }, ` ${d > 0 ? "+" : "−"}${fmt1(Math.abs(d))}`) : null;
+const oneLabel = d => d == null ? "nunca" : d <= 0 ? "hoje" : `há ${plural(d, "dia", "dias")}`;
+
+/* ---------- telas do gestor ---------- */
+function viewPainel() {
+  const ids = teamIds(false);
+  const year = String(new Date().getFullYear());
+  const certsYear = ids.flatMap(certsOf).filter(c => dateOnly(c.concluido_em).startsWith(year));
+  const ones30 = ids.flatMap(id => S.ones.get(id) || []).filter(o => { const d = daysSince(o.data); return d != null && d >= 0 && d <= 30; }).length;
+  const openM = ids.flatMap(id => S.melh.get(id) || []).filter(m => m.status !== "concluido").length;
+  const late1on1 = ids.filter(id => { const d = personStats(id).lastOne; return d == null || d > 30; }).length;
+  const pend = pending().length;
+  return [
+    h("div", { class: "page-head" },
+      h("div", {}, h("h1", {}, "Painel do time"), h("p", {}, "Como o time está evoluindo em avaliação, formação e acompanhamento.")),
+      ids.length > 0 && h("button", { class: "btn ghost", onclick: relatorioTime }, "Relatório do time (PDF)")),
+    h("div", { class: "stack" },
+      lembretesPanel(8),
+      h("div", { class: "kpis" },
+        kpi(ids.length, ids.length === 1 ? "pessoa ativa" : "pessoas ativas"),
+        kpi(certsYear.length, `cursos concluídos em ${year}`),
+        kpi(fmtH(hoursOf(certsYear)), `de formação em ${year}`),
+        kpi(ones30, "reuniões 1:1 nos últimos 30 dias"),
+        kpi(late1on1, late1on1 === 1 ? "pessoa sem 1:1 há mais de 30 dias" : "pessoas sem 1:1 há mais de 30 dias", late1on1 > 0),
+        kpi(openM, openM === 1 ? "ponto de melhoria em aberto" : "pontos de melhoria em aberto")),
+      ids.length ? [
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Evolução das avaliações"), h("p", {}, "Média de cada avaliação, por pessoa. Clique no nome na legenda para esconder ou mostrar.")),
+          teamEvolutionChart(ids)),
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Horas de formação por mês"), h("p", {}, "Últimos 12 meses, pela data de conclusão dos cursos.")),
+          teamHoursChart(ids)),
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Time"), h("p", {}, "Clique em uma pessoa para abrir o acompanhamento.")),
+          teamTable(ids)),
+      ] : h("div", { class: "panel" }, h("h2", {}, "Nenhuma pessoa ativa ainda"),
+        h("ol", { class: "steps", style: "margin-top:10px" },
+          h("li", {}, "Mande o link desta página para o time."),
+          h("li", {}, "Cada pessoa clica em Solicitar acesso e cria a própria senha."),
+          h("li", {}, "Você aprova em Aprovações e a pessoa já pode preencher o currículo.")))),
+  ];
+}
+function teamTable(ids) {
+  return h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+    h("thead", {}, h("tr", {}, ["Pessoa", "Cursos", "Formação", "Última avaliação", "Melhorias abertas", "Última 1:1"].map((t, i) => h("th", { class: i ? "num" : "" }, t)))),
+    h("tbody", {}, ids.map(id => {
+      const st = personStats(id);
+      return h("tr", { tabindex: 0, onclick: () => openPerson(id), onkeydown: e => { if (e.key === "Enter") openPerson(id); } },
+        h("td", {}, h("div", { class: "person" }, rings(certsOf(id), 40, nameOf(id), id), h("div", {}, h("b", {}, nameOf(id)), h("span", {}, S.people.get(id)?.cargo || "Cargo não informado")))),
+        h("td", { class: "num" }, st.certs),
+        h("td", { class: "num" }, fmtH(st.hours)),
+        h("td", { class: "num" }, fmt1(st.last), deltaEl(st.delta)),
+        h("td", { class: "num" }, st.open, st.late ? h("span", { class: "delta-down" }, ` (${st.late} vencido${st.late > 1 ? "s" : ""})`) : null),
+        h("td", { class: "num" }, h("span", { class: st.lastOne == null || st.lastOne > 30 ? "delta-down" : "" }, oneLabel(st.lastOne))));
+    }))));
+}
+function viewPessoas() {
+  const ids = teamIds(S.showArchived);
+  const hasArch = [...S.people.values()].some(p => p.status === "ativo" && p.arquivado);
+  return [
+    h("div", { class: "page-head" },
+      h("div", {}, h("h1", {}, "Pessoas"), h("p", {}, "Cada anel é um curso concluído, do mais antigo no centro ao mais recente na borda.")),
+      hasArch && h("button", { class: "btn ghost small", onclick: () => { S.showArchived = !S.showArchived; render(); } }, S.showArchived ? "Esconder arquivados" : "Mostrar arquivados")),
+    ids.length ? h("div", { class: "cards" }, ids.map(id => {
+      const st = personStats(id), p = S.people.get(id);
+      return h("div", { class: "pcard" + (p.arquivado ? " archived" : ""), tabindex: 0, role: "button", onclick: () => openPerson(id), onkeydown: e => { if (e.key === "Enter") openPerson(id); } },
+        rings(certsOf(id), 96, nameOf(id), id),
+        h("div", {}, h("h3", {}, nameOf(id)), h("p", { class: "meta" }, p.arquivado ? "Arquivado" : (p.cargo || "Cargo não informado"))),
+        h("p", { class: "meta" }, `${plural(st.certs, "curso", "cursos")}, ${fmtH(st.hours)}, média ${fmt1(st.last)}`));
+    })) : h("div", { class: "panel" }, h("p", { class: "muted" }, "Nenhuma pessoa ativa ainda.")),
+  ];
+}
+const TABS = [["geral", "Visão geral"], ["curriculo", "Currículo"], ["avaliacoes", "Avaliações"], ["melhorias", "Pontos de melhoria"], ["pdi", "PDI"], ["disc", "DISC"], ["oneaone", "Reuniões 1:1"]];
+function viewPessoa() {
+  const uid = S.selected, p = S.people.get(uid);
+  if (!p) { S.view = "painel"; return viewPainel(); }
+  const st = personStats(uid);
+  if (!TABS.some(t => t[0] === S.tab)) S.tab = "geral";
+  const panel = { geral: tabGeral, curriculo: u => curriculum(u, true), avaliacoes: tabAval, melhorias: tabMelh, pdi: tabPdi, disc: tabDisc, oneaone: tabOne }[S.tab] || tabGeral;
+  return [
+    h("button", { class: "back", onclick: () => go("painel") }, "Voltar ao painel"),
+    h("div", { class: "stack" },
+      h("div", { class: "person-head" },
+        rings(certsOf(uid), 96, nameOf(uid), uid),
+        h("div", { class: "info" }, h("h1", {}, nameOf(uid)),
+          h("p", { class: "muted" }, [p.cargo || "Cargo não informado", p.admissao && `na LC Sistemas desde ${fmtDate(p.admissao)}`, p.email].filter(Boolean).join(", ")),
+          h("p", { class: "muted small" }, p.atualizado_em ? `Currículo atualizado em ${fmtDate(p.atualizado_em)}` : "Currículo ainda não preenchido")),
+        h("div", { class: "row" },
+          h("button", { class: "btn ghost small", onclick: () => cvPdf(uid) }, "Currículo (PDF)"),
+          h("button", { class: "btn ghost small", onclick: () => toggleArchive(uid) }, p.arquivado ? "Reativar" : "Arquivar"),
+          p.arquivado && h("button", { class: "btn danger small", onclick: () => apagarPessoaModal(uid) }, "Apagar dados"))),
+      p.arquivado && h("p", { class: "notice" }, `Arquivado${p.arquivado_em ? ` em ${fmtDate(p.arquivado_em)}` : ""}. O acesso está bloqueado. Pela LGPD, apague os dados quando não houver mais motivo para guardá-los (sugestão: até 6 meses após a saída).`),
+      h("div", { class: "kpis" },
+        kpi(st.certs, "cursos concluídos"), kpi(fmtH(st.hours), "de formação"),
+        kpi(h("span", {}, fmt1(st.last), deltaEl(st.delta)), "média da última avaliação"),
+        kpi(st.open, st.late ? `melhorias abertas, ${st.late} com prazo vencido` : "melhorias abertas", st.late > 0),
+        kpi(oneLabel(st.lastOne), st.next ? `última 1:1, próxima em ${fmtDate(st.next)}` : "última 1:1", st.lastOne == null || st.lastOne > 30)),
+      h("div", { class: "tabs", role: "tablist" }, TABS.map(([k, l]) => h("button", { class: "tab", role: "tab", "aria-selected": S.tab === k, onclick: () => { S.tab = k; render(); } }, l))),
+      h("div", { role: "tabpanel" }, panel(uid))),
+  ];
+}
+function tabGeral(uid) {
+  return h("div", { class: "stack" },
+    h("div", { class: "grid2" },
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Mapa de competências"), h("p", {}, "Última avaliação comparada à anterior.")), radarChart(uid)),
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Evolução nas avaliações"), h("p", {}, "Clique nas competências da legenda para mostrar cada uma.")), personEvolutionChart(uid))),
+    h("div", { class: "grid3" },
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Trilha de formação"), h("p", {}, "Horas acumuladas a cada curso concluído.")), hoursTrailChart(uid)),
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Linha do tempo")), timeline(uid))));
+}
+function tabAval(uid) {
+  const list = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
+  const comp = comparacao(uid);
+  const autos = [...(S.auto.get(uid) || [])].sort(byDateDesc("data"));
+  return h("div", { class: "stack" },
+    comp && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Autoavaliação x sua avaliação")), comp),
+    !comp && autos.length > 0 && h("p", { class: "notice" }, `A pessoa respondeu a autoavaliação em ${fmtDate(autos[0].data)}. Registre a sua avaliação para comparar.`),
+    h("div", { class: "panel" },
+      h("div", { class: "panel-head" }, h("h2", {}, "Avaliações"), h("button", { class: "btn small", onclick: () => formAvaliacao(uid) }, "Nova avaliação")),
+      list.length ? h("ul", { class: "list" }, list.map(a => h("li", { class: "item" },
+        h("div", { class: "item-top" }, h("h3", {}, `${fmtDate(a.data)}${a.periodo ? `, ${a.periodo}` : ""}`),
+          h("span", { class: "row" }, h("span", { class: "pill " + (a.liberada ? "ativo" : "pendente") }, a.liberada ? `Liberada em ${fmtDate(a.liberada_em)}` : "Rascunho"), h("span", {}, "Média ", h("b", {}, fmt1(avgOf(a)))))),
+        h("p", { class: "meta" }, COMPETENCIAS.filter(([k]) => a.notas?.[k]).map(([k, l]) => `${l} ${a.notas[k]}`).join(", ")),
+        a.fortes && h("p", { class: "prose" }, h("b", {}, "Pontos fortes: "), a.fortes),
+        a.feedback && h("p", { class: "prose" }, h("b", {}, "Feedback: "), a.feedback),
+        S.privado.get(a.id) && h("p", { class: "prose privado" }, h("b", {}, "Anotação privada (só gestores): "), S.privado.get(a.id)),
+        a.comentario && h("p", { class: "prose privado" }, h("b", {}, "Comentário antigo: "), a.comentario),
+        h("div", { class: "row" },
+          a.liberada ? h("button", { class: "linkish", onclick: () => liberarAvaliacao(a, false) }, "Recolher")
+                     : h("button", { class: "btn small", onclick: () => liberarAvaliacao(a, true) }, "Liberar para a pessoa"),
+          h("button", { class: "linkish", onclick: () => formAvaliacao(uid, a) }, "Editar"),
+          h("button", { class: "linkish red", onclick: () => removeRecord("evo_avaliacoes", a.id, "esta avaliação") }, "Apagar")))))
+        : h("p", { class: "muted" }, "Nenhuma avaliação ainda. A primeira vira a linha de base da evolução.")),
+    autos.length > 0 && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Autoavaliações da pessoa")),
+      h("ul", { class: "list" }, autos.map(x => h("li", { class: "item" },
+        h("div", { class: "item-top" }, h("h3", {}, fmtDate(x.data)), h("span", {}, "Média ", h("b", {}, fmt1(avgOf(x))))),
+        h("p", { class: "meta" }, COMPETENCIAS.filter(([k]) => x.notas?.[k]).map(([k, l]) => `${l} ${x.notas[k]}`).join(", ")),
+        x.comentario && h("p", { class: "prose" }, x.comentario))))));
+}
+function tabMelh(uid) {
+  const order = { andamento: 0, aberto: 1, concluido: 2 };
+  const list = [...(S.melh.get(uid) || [])].sort((a, b) => (order[a.status] ?? 1) - (order[b.status] ?? 1) || (a.prazo || "9").localeCompare(b.prazo || "9"));
+  const t = today();
+  return h("div", { class: "panel" },
+    h("div", { class: "panel-head" }, h("h2", {}, "Pontos de melhoria"), h("button", { class: "btn small", onclick: () => formMelhoria(uid) }, "Novo ponto de melhoria")),
+    list.length ? h("ul", { class: "list" }, list.map(m => {
+      const late = m.status !== "concluido" && m.prazo && m.prazo < t;
+      return h("li", { class: "item" },
+        h("div", { class: "item-top" }, h("h3", {}, m.titulo),
+          h("span", { class: "row" }, late && h("span", { class: "pill late" }, "Prazo vencido"), h("span", { class: "pill " + (STATUS[m.status] ? m.status : "aberto") }, STATUS[m.status] || "Aberto"))),
+        h("p", { class: "meta" }, [`Aberto em ${fmtDate(m.criado_em)}`, m.prazo && `prazo ${fmtDate(m.prazo)}`, m.concluido_em && `concluído em ${fmtDate(m.concluido_em)}`].filter(Boolean).join(", ")),
+        m.descricao && h("p", { class: "prose" }, m.descricao),
+        h("div", { class: "row" },
+          m.status !== "concluido" && h("button", { class: "linkish", onclick: () => run(sb.from("evo_melhorias").update({ status: "concluido", concluido_em: today() }).eq("id", m.id), "Marcado como concluído.") }, "Marcar como concluído"),
+          m.status === "aberto" && h("button", { class: "linkish", onclick: () => run(sb.from("evo_melhorias").update({ status: "andamento" }).eq("id", m.id), "Em andamento.") }, "Começar"),
+          h("button", { class: "linkish", onclick: () => formMelhoria(uid, m) }, "Editar"),
+          h("button", { class: "linkish red", onclick: () => removeRecord("evo_melhorias", m.id, "este ponto de melhoria") }, "Apagar")));
+    })) : h("p", { class: "muted" }, "Nenhum ponto de melhoria registrado."));
+}
+function tabOne(uid) {
+  const list = [...(S.ones.get(uid) || [])].sort(byDateDesc("data"));
+  return h("div", { class: "panel" },
+    h("div", { class: "panel-head" }, h("h2", {}, "Reuniões 1:1"), h("button", { class: "btn small", onclick: () => formOne(uid) }, "Registrar 1:1")),
+    list.length ? h("ul", { class: "list" }, list.map(o => h("li", { class: "item" },
+      h("div", { class: "item-top" }, h("h3", {}, fmtDate(o.data)), o.proxima && h("span", { class: "meta" }, `Próxima: ${fmtDate(o.proxima)}`)),
+      o.pauta && h("div", {}, h("b", {}, "Pauta"), h("p", { class: "prose" }, o.pauta)),
+      o.anotacoes && h("div", {}, h("b", {}, "Anotações"), h("p", { class: "prose" }, o.anotacoes)),
+      o.combinados && h("div", {}, h("b", {}, "Combinados"), h("p", { class: "prose" }, o.combinados)),
+      h("div", { class: "row" },
+        h("button", { class: "linkish", onclick: () => formOne(uid, o) }, "Editar"),
+        h("button", { class: "linkish red", onclick: () => removeRecord("evo_oneaone", o.id, "esta reunião") }, "Apagar")))))
+      : h("p", { class: "muted" }, "Nenhuma 1:1 registrada ainda."));
+}
+function viewAprovacoes() {
+  const pend = pending().sort(byDateAsc("criado_em"));
+  const rec = [...S.people.values()].filter(p => p.status === "recusado");
+  const row = (p, actions) => h("li", { class: "item" },
+    h("div", { class: "item-top" }, h("h3", {}, p.nome || "Sem nome"), h("span", { class: "pill " + p.status }, ACESSO[p.status])),
+    h("p", { class: "meta" }, [p.email, p.cargo, `pedido em ${fmtDateTime(p.criado_em)}`].filter(Boolean).join(", ")),
+    h("div", { class: "row" }, actions));
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Aprovações"),
+      h("p", {}, "Quem solicitou acesso só vê alguma coisa depois da sua aprovação. Confira se o e-mail é mesmo da pessoa antes de aprovar."))),
+    h("div", { class: "stack" },
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, `Aguardando aprovação (${pend.length})`)),
+        pend.length ? h("ul", { class: "list" }, pend.map(p => row(p, [
+          h("button", { class: "btn small", onclick: () => setAccess(p.user_id, "ativo") }, "Aprovar"),
+          h("button", { class: "btn danger small", onclick: () => setAccess(p.user_id, "recusado") }, "Recusar")]))) : h("p", { class: "muted" }, "Nenhum pedido pendente.")),
+      rec.length > 0 && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, `Recusados (${rec.length})`)),
+        h("ul", { class: "list" }, rec.map(p => row(p, [h("button", { class: "btn ghost small", onclick: () => setAccess(p.user_id, "ativo") }, "Aprovar mesmo assim")]))))),
+  ];
+}
+function auditSummary(a) {
+  const r = a.depois || a.antes || {};
+  const who = r.user_id && S.people.get(r.user_id) ? ` de ${nameOf(r.user_id)}` : "";
+  return `${r.titulo || r.nome || (r.data ? fmtDate(r.data) : "") || ""}${who}`.trim();
+}
+function viewHistorico() {
+  const OPS = { INSERT: "incluiu", UPDATE: "alterou", DELETE: "apagou" };
+  const btn = h("button", { class: "btn", onclick: e => downloadBackup(e.currentTarget) }, "Baixar backup completo");
+  const ub = S.config.ultimo_backup;
+  const dom = h("input", { type: "text", value: (Array.isArray(S.config.dominios_permitidos) ? S.config.dominios_permitidos : []).join(", "), "aria-label": "Domínios permitidos" });
+  const ativos = teamIds(false);
+  const promover = sel("promover", [["", "Escolha uma pessoa"], ...ativos.map(id => [id, nameOf(id)])], "");
+  const f = S.auditFilter;
+  const fPessoa = sel("f_pessoa", [["", "Todas as pessoas"], ...[...S.people.keys()].sort((a, b) => nameOf(a).localeCompare(nameOf(b), "pt-BR")).map(id => [id, nameOf(id)]), ...S.gestores.map(g => [g.user_id, (g.nome || g.email) + " (gestor)"])], f.uid);
+  const fDe = inp("f_de", f.de, "date"), fAte = inp("f_ate", f.ate, "date");
+  const filtrar = async () => { S.auditFilter = { uid: fPessoa.value, de: fDe.value, ate: fAte.value }; S.audit = null; render(); try { await loadAudit(); } catch (e) { S.error = sbErr(e); } render(); };
+  const quem = id => !id ? "Sistema" : id === S.me.user_id ? (S.me.nome || "Você") : (S.gestores.find(g => g.user_id === id)?.nome || nameOf(id));
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Segurança e backup"),
+      h("p", {}, "Toda inclusão, alteração e exclusão fica registrada. O que for apagado pode ser restaurado."))),
+    h("div", { class: "stack" },
+      h("div", { class: "panel" },
+        h("div", { class: "panel-head" }, h("h2", {}, "Backup"), btn),
+        h("p", { class: "muted" }, "Gera um arquivo .zip com todos os dados (dados.json) e todos os arquivos enviados. Guarde em um lugar seguro, fora deste computador, pelo menos uma vez por mês."),
+        h("p", { style: "margin-top:8px" }, ub ? `Último backup baixado em ${fmtDateTime(ub)}.` : h("span", { class: "delta-down" }, "Nenhum backup baixado ainda."))),
+      h("div", { class: "grid2" },
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Gestores"), h("p", {}, "Tenha um substituto para não perder o acesso à gestão.")),
+          h("ul", { class: "list" }, S.gestores.map(g => h("li", { class: "item row", style: "justify-content:space-between" },
+            h("span", {}, h("b", {}, g.nome || g.email), g.user_id === S.me.user_id ? " (você)" : "", h("br"), h("span", { class: "meta" }, g.email || "")),
+            g.user_id !== S.me.user_id && h("button", { class: "linkish red", onclick: () => setGestor(g.user_id, false) }, "Remover")))),
+          ativos.length > 0 && h("div", { class: "row", style: "margin-top:12px" }, promover,
+            h("button", { class: "btn ghost small", onclick: () => { if (promover.value) setGestor(promover.value, true); else toast("Escolha uma pessoa.", true); } }, "Tornar gestor"))),
+        h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Cadastro"), h("p", {}, "Só e-mails destes domínios podem pedir acesso.")),
+          field("Domínios permitidos (separe por vírgula)", dom, "Ex.: lcsistemas.com.br"),
+          h("div", { style: "margin-top:10px" }, h("button", { class: "btn ghost small", onclick: () => salvarDominios(dom) }, "Salvar domínios")))),
+      h("div", { class: "panel" },
+        h("div", { class: "panel-head" }, h("h2", {}, "Histórico de alterações"), h("p", {}, "Até 300 registros por consulta.")),
+        h("div", { class: "row filtros" }, fPessoa, h("label", { class: "row small" }, "De", fDe), h("label", { class: "row small" }, "até", fAte),
+          h("button", { class: "btn ghost small", onclick: filtrar }, "Filtrar"),
+          (f.uid || f.de || f.ate) && h("button", { class: "linkish", onclick: () => { fPessoa.value = ""; fDe.value = ""; fAte.value = ""; filtrar(); } }, "Limpar")),
+        S.audit == null ? h("p", { class: "muted" }, "Carregando…") :
+        S.audit.length ? h("div", { class: "tbl-wrap", style: "margin-top:12px" }, h("table", { class: "tbl" },
+          h("thead", {}, h("tr", {}, ["Quando", "Quem", "O que", "Registro", ""].map(t => h("th", {}, t)))),
+          h("tbody", {}, S.audit.map(a => h("tr", { style: "cursor:default" },
+            h("td", { style: "white-space:nowrap" }, fmtDateTime(a.quando)),
+            h("td", {}, quem(a.usuario)),
+            h("td", {}, `${OPS[a.operacao] || a.operacao} ${(TABELAS[a.tabela] || a.tabela.replace("evo_", "")).toLowerCase()}`),
+            h("td", {}, auditSummary(a)),
+            h("td", {}, a.operacao === "DELETE" && RESTAURAVEIS.includes(a.tabela) && h("button", { class: "linkish", onclick: async () => {
+              if (!(await confirmBox("Restaurar este registro?", "Restaurar"))) return;
+              const { error } = await sb.rpc("evo_restaurar", { p_id: a.id });
+              if (error) toast(sbErr(error), true); else { await refresh(); toast("Registro restaurado."); }
+            } }, "Restaurar"))))))) : h("p", { class: "muted", style: "margin-top:12px" }, "Nenhuma alteração encontrada."))),
+  ];
+}
+
+/* ---------- telas do time ---------- */
+function viewMeu() {
+  const uid = S.me.user_id, certs = certsOf(uid);
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Meu currículo"),
+      h("p", {}, "Cada curso que você registrar entra no seu currículo e na sua trilha de evolução."))),
+    h("div", { class: "stack" },
+      !S.me.atualizado_em && h("p", { class: "notice" }, "Comece clicando em Editar currículo e preencha cargo, experiência e formação."),
+      h("div", { class: "person-head" }, rings(certs, 96, nameOf(uid), uid),
+        h("div", { class: "info" }, h("h2", {}, plural(certs.length, "curso concluído", "cursos concluídos")), h("p", { class: "muted" }, `${fmtH(hoursOf(certs))} de formação. Cada anel é um curso.`))),
+      curriculum(uid, true)),
+  ];
+}
+
+/* ---------- navegação e casca ---------- */
+function go(view) { document.getElementById("modal").open && document.getElementById("modal").close(); S.view = view; if (view === "historico") { S.audit = null; loadAudit().then(render, e => { S.error = sbErr(e); render(); }); } render(); window.scrollTo(0, 0); }
+function openPerson(uid, tab) { S.selected = uid; S.tab = tab || "geral"; S.view = "pessoa"; render(); window.scrollTo(0, 0); }
+function shell(content) {
+  const nav = S.owner ? [
+    ["painel", "Painel do time"], ["pessoas", "Pessoas"], ["aprovacoes", "Aprovações", pending().length], ["disc-time", "Perfis DISC"], ["historico", "Segurança e backup"],
+  ] : [["inicio", "Início", lembretes().filter(l => l.nivel !== "info").length], ["meu", "Meu currículo"], ["evolucao", "Minha evolução"], ["disc", "Perfil DISC"]];
+  const current = S.view === "pessoa" ? "pessoas" : S.view === "disc-teste" ? "disc" : S.view;
+  return h("div", { class: "shell" },
+    h("aside", { class: "side" },
+      h("div", { class: "brand" }, rings([{ concluido_em: "1" }, { concluido_em: "2", categoria: CATEGORIAS[1] }, { concluido_em: "3", categoria: CATEGORIAS[2] }], 38, "LC"),
+        h("div", {}, h("b", {}, "Evolução do time"), h("span", {}, "LC Sistemas comercial"))),
+      h("nav", { class: "nav", "aria-label": "Menu" }, nav.map(([k, l, n]) =>
+        h("button", { "aria-current": current === k ? "page" : null, onclick: () => go(k) }, h("span", {}, l), n ? h("span", { class: "badge" }, n) : null))),
+      h("div", { class: "side-foot" },
+        h("span", { class: "who" }, S.me?.nome || S.session?.user?.email || ""),
+        h("button", { onclick: themeModal }, "Aparência"),
+        h("button", { onclick: meusDadosModal }, "Meus dados"),
+        h("button", { onclick: passwordModal }, "Alterar senha"),
+        h("button", { onclick: novidadesModal }, `Versão ${VERSAO}`),
+        h("button", { onclick: () => sb.auth.signOut() }, "Sair"))),
+    h("main", { class: "main" },
+      isTeste && h("p", { class: "notice teste" }, "AMBIENTE DE TESTE. Esta página usa os dados reais: o que você salvar aqui vale para todos."),
+      S.error && h("p", { class: "notice", style: "margin-bottom:16px" }, S.error), content));
+}
+let dominiosCache = null;
+async function dominiosPermitidos() {
+  if (dominiosCache) return dominiosCache;
+  const { data } = await sb.rpc("evo_dominios");
+  dominiosCache = Array.isArray(data) ? data : [];
+  return dominiosCache;
+}
+function authView() {
+  const err = h("p", { class: "form-err", role: "alert" });
+  const isUp = S.authMode === "solicitar", isRec = S.authMode === "recuperar";
+  const btn = h("button", { type: "submit", class: "btn", style: "justify-content:center" }, isRec ? "Enviar link" : isUp ? "Solicitar acesso" : "Entrar");
+  const form = h("form", { class: "card", novalidate: true },
+    rings([{ concluido_em: "1" }, { concluido_em: "2", categoria: CATEGORIAS[1] }, { concluido_em: "3", categoria: CATEGORIAS[2] }, { concluido_em: "4" }], 84, "LC"),
+    h("h1", {}, "Evolução do time comercial"),
+    !isRec && h("div", { class: "seg-tabs", role: "tablist" },
+      h("button", { type: "button", role: "tab", "aria-selected": !isUp, onclick: () => { S.authMode = "entrar"; render(); } }, "Entrar"),
+      h("button", { type: "button", role: "tab", "aria-selected": isUp, onclick: () => { S.authMode = "solicitar"; render(); } }, "Solicitar acesso")),
+    isRec && h("p", { class: "muted small" }, "Informe o seu e-mail. Você vai receber um link para criar uma nova senha."),
+    isUp && h("p", { class: "muted small" }, "Use o seu e-mail corporativo e crie sua senha. O acesso é liberado depois que o gestor aprovar."),
+    isUp && field("Nome completo", inp("nome", "", "text", { autocomplete: "name", maxlength: 120 })),
+    isUp && field("Cargo", inp("cargo", "", "text", { maxlength: 80, placeholder: "Ex.: SDR" })),
+    field("E-mail", inp("email", "", "email", { autocomplete: "username" })),
+    !isRec && field("Senha", inp("senha", "", "password", { autocomplete: isUp ? "new-password" : "current-password" }), isUp ? "Pelo menos 10 caracteres, com letras e números." : null),
+    isUp && field("Repita a senha", inp("senha2", "", "password", { autocomplete: "new-password" })),
+    isUp && h("label", { class: "row small termo-check" }, h("input", { type: "checkbox", name: "aceite" }),
+      h("span", {}, "Li e aceito o ", h("button", { type: "button", class: "linkish", onclick: termoModal }, "termo de uso de dados"), ".")),
+    err, btn,
+    !isUp && !isRec && (RECUPERACAO_SENHA
+      ? h("button", { type: "button", class: "linkish", style: "justify-self:center", onclick: () => { S.authMode = "recuperar"; render(); } }, "Esqueci minha senha")
+      : h("p", { class: "muted small" }, "Esqueceu a senha? Fale com o seu gestor.")),
+    isRec && h("button", { type: "button", class: "linkish", style: "justify-self:center", onclick: () => { S.authMode = "entrar"; render(); } }, "Voltar para Entrar"));
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    err.textContent = "";
+    const email = val(form, "email");
+    if (isRec) {
+      if (!email) { err.textContent = "Informe o e-mail."; return; }
+      btn.disabled = true;
+      const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
+      btn.disabled = false;
+      if (error) { err.textContent = sbErr(error); return; }
+      S.authMode = "enviado"; render(); return;
+    }
+    const senha = form.elements.namedItem("senha").value;
+    if (!email || !senha) { err.textContent = "Informe e-mail e senha."; return; }
+    btn.disabled = true;
+    if (isUp) {
+      const nome = val(form, "nome"), cargo = val(form, "cargo");
+      const fail = m => { err.textContent = m; btn.disabled = false; };
+      if (!nome) return fail("Informe seu nome.");
+      const doms = await dominiosPermitidos();
+      if (doms.length && !doms.some(d => email.toLowerCase().endsWith("@" + d))) return fail(`Use o seu e-mail corporativo (${doms.map(d => "@" + d).join(" ou ")}).`);
+      if (!strongEnough(senha)) return fail("Use pelo menos 10 caracteres, com letras e números.");
+      if (senha !== form.elements.namedItem("senha2").value) return fail("As senhas não conferem.");
+      if (!form.elements.namedItem("aceite").checked) return fail("Para continuar, aceite o termo de uso de dados.");
+      const { data, error } = await sb.auth.signUp({ email, password: senha, options: { data: { nome, cargo, aceite_termo: "true", termo_versao: TERMO_VERSAO }, emailRedirectTo: location.origin + location.pathname } });
+      btn.disabled = false;
+      if (error) { err.textContent = /database error|EVO_DOMINIO/i.test(error.message) ? "Use o seu e-mail corporativo." : sbErr(error); return; }
+      if (!data.session) { S.authMode = "confirmar"; render(); }
+    } else {
+      const { error } = await sb.auth.signInWithPassword({ email, password: senha });
+      btn.disabled = false;
+      if (error) err.textContent = /invalid/i.test(error.message) ? "E-mail ou senha incorretos." : /confirm/i.test(error.message) ? "Confirme seu e-mail antes de entrar." : sbErr(error);
+    }
+  });
+  return h("div", { class: "center" }, form);
+}
+function novaSenhaView() {
+  const err = h("p", { class: "form-err", role: "alert" });
+  const form = h("form", { class: "card", novalidate: true },
+    h("h1", {}, "Criar nova senha"),
+    field("Nova senha", inp("s1", "", "password", { autocomplete: "new-password" }), "Pelo menos 10 caracteres, com letras e números."),
+    field("Repita a nova senha", inp("s2", "", "password", { autocomplete: "new-password" })),
+    err, h("button", { type: "submit", class: "btn", style: "justify-content:center" }, "Salvar nova senha"));
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const a = form.elements.namedItem("s1").value, b = form.elements.namedItem("s2").value;
+    if (!strongEnough(a)) { err.textContent = "Use pelo menos 10 caracteres, com letras e números."; return; }
+    if (a !== b) { err.textContent = "As senhas não conferem."; return; }
+    const { error } = await sb.auth.updateUser({ password: a });
+    if (error) { err.textContent = sbErr(error); return; }
+    S.recovery = false; toast("Senha alterada."); history.replaceState(null, "", location.pathname); render();
+  });
+  return h("div", { class: "center" }, form);
+}
+const centerCard = (title, text, ...extra) => h("div", { class: "center" }, h("div", { class: "card" }, h("h1", {}, title), h("p", { class: "muted" }, text), ...extra));
+function render() {
+  charts.forEach(c => c.destroy()); charts = []; chartJobs = [];
+  chartDefaults();
+  const app = document.getElementById("app");
+  let content;
+  if (!S.ready) content = centerCard("Carregando…", "");
+  else if (S.recovery && S.session) content = novaSenhaView();
+  else if (!S.session && S.authMode === "confirmar") content = centerCard("Confirme seu e-mail", "Enviamos um link de confirmação. Depois de confirmar, o gestor precisa aprovar o seu acesso.", h("button", { class: "btn ghost", onclick: () => { S.authMode = "entrar"; render(); } }, "Voltar para Entrar"));
+  else if (!S.session && S.authMode === "enviado") content = centerCard("Verifique o seu e-mail", "Se o e-mail estiver cadastrado, você vai receber um link para criar uma nova senha.", h("button", { class: "btn ghost", onclick: () => { S.authMode = "entrar"; render(); } }, "Voltar para Entrar"));
+  else if (!S.session) content = authView();
+  else if (S.loading) content = centerCard("Carregando dados…", "");
+  else if (S.error && !S.me) content = centerCard("Não foi possível carregar", S.error, h("button", { class: "btn", onclick: refresh }, "Tentar de novo"), h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (!S.me) content = centerCard("Acesso não encontrado", "Não encontramos um cadastro ativo para esta conta. Fale com o seu gestor.", h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (S.me.status === "pendente") content = centerCard("Aguardando aprovação", "Seu pedido de acesso foi registrado. Assim que o gestor aprovar, você poderá preencher o seu currículo.", h("button", { class: "btn", onclick: refresh }, "Verificar de novo"), h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (S.me.status === "recusado" || S.me.arquivado) content = centerCard("Acesso não liberado", "Seu acesso não está ativo. Fale com o seu gestor.", h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair"));
+  else if (!S.me.aceite_termo_em) content = termoGate();
+  else if (S.owner) {
+    if (!["painel", "pessoas", "pessoa", "aprovacoes", "historico", "disc-time"].includes(S.view)) S.view = "painel";
+    content = shell({ painel: viewPainel, pessoas: viewPessoas, pessoa: viewPessoa, aprovacoes: viewAprovacoes, historico: viewHistorico, "disc-time": viewDiscTime }[S.view]());
+  } else {
+    if (S.view === "disc-teste" && !S.discDraft) S.view = "disc";
+    if (!["inicio", "meu", "evolucao", "disc", "disc-teste"].includes(S.view)) S.view = "inicio";
+    content = shell({ inicio: viewInicio, meu: viewMeu, evolucao: viewEvolucao, disc: viewDisc, "disc-teste": viewDiscTeste }[S.view]());
+  }
+  app.replaceChildren(...[content].flat().filter(Boolean));
+  if (window.Chart) chartJobs.forEach(job => { try { job(); } catch (e) { console.error(e); } });
+  if (S.session && S.me && isActive(S.me) && S.me.aceite_termo_em && !S.loading) talvezNovidades();
+}
+
+
+/* =========================================================
+   VERSÃO 6 — módulos novos
+   ========================================================= */
+const VERSAO = "6.0";
+const NOVIDADES = [
+  "Teste de perfil comportamental DISC completo, com resultado detalhado e histórico.",
+  "Mapa de competências visível para cada pessoa, com autoavaliação comparada à avaliação do gestor.",
+  "Avaliações ficam em rascunho até o gestor liberar. Feedback separado da anotação privada.",
+  "Plano de desenvolvimento (PDI): ações e cursos que se concluem sozinhos quando o certificado é enviado.",
+  "Lembretes de 1:1, prazos, autoavaliação, DISC e validade de certificações.",
+  "Currículo em PDF e relatório do time em PDF.",
+  "Conferência de carga horária, data e curso repetido antes de salvar o certificado, e campo de validade.",
+  "Termo de uso de dados (LGPD) e botão para baixar os seus dados.",
+];
+const RECUPERACAO_SENHA = false; // ligar depois que o SMTP estiver configurado no Supabase
+const TERMO_VERSAO = "1";
+const TERMO = [
+  "Este portal é usado pela LC Sistemas para acompanhar o desenvolvimento profissional do time comercial.",
+  "Dados tratados: nome, e-mail corporativo, cargo, telefone, foto, currículo, certificados de cursos, perfil comportamental DISC, autoavaliações, avaliações do gestor, pontos de melhoria, plano de desenvolvimento e registros de reuniões 1:1.",
+  "Finalidade: apoiar o seu desenvolvimento, organizar treinamentos e conduzir conversas de acompanhamento. O perfil DISC descreve estilo de comportamento e não é usado como critério isolado para promoção, remuneração ou desligamento.",
+  "Quem acessa: você e o gestor do time. Anotações privadas e registros de 1:1 são visíveis apenas ao gestor. Avaliações só ficam visíveis para você depois que o gestor as libera.",
+  "Segurança: os dados ficam em banco protegido por regras de acesso, com registro de todas as alterações. Os arquivos ficam em armazenamento privado.",
+  "Seus direitos: você pode baixar os seus dados a qualquer momento pelo botão “Meus dados” e pedir correção ou exclusão ao gestor. Quando você deixar a empresa, seu acesso é bloqueado e os dados podem ser apagados definitivamente.",
+];
+
+/* ---------- utilidades extras ---------- */
+const latest = (list, key) => [...(list || [])].filter(x => x[key]).sort(byDateDesc(key))[0] || null;
+const daysUntil = v => { const d = daysSince(v); return d == null ? null : -d; };
+const isUuid = v => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(v || ""));
+const isTeste = /teste\.html$/i.test(location.pathname);
+function validadeInfo(c) {
+  if (!c.valido_ate) return null;
+  const d = daysUntil(c.valido_ate);
+  if (d < 0) return { cls: "late", txt: `Venceu em ${fmtDate(c.valido_ate)}` };
+  if (d <= 30) return { cls: "aberto", txt: `Vence em ${plural(d, "dia", "dias")}` };
+  return { cls: "concluido", txt: `Válido até ${fmtDate(c.valido_ate)}` };
+}
+
+/* ---------- DISC ---------- */
+const DISC_CORES = { D: "#C2413B", I: "#D99A00", S: "#2E8B57", C: "#2F6DB5" };
+const DISC_BLOCOS = [
+  [["Decidido","D"],["Comunicativo","I"],["Paciente","S"],["Cuidadoso","C"]],
+  [["Direto","D"],["Entusiasmado","I"],["Calmo","S"],["Preciso","C"]],
+  [["Competitivo","D"],["Sociável","I"],["Leal","S"],["Detalhista","C"]],
+  [["Ousado","D"],["Otimista","I"],["Tolerante","S"],["Organizado","C"]],
+  [["Determinado","D"],["Persuasivo","I"],["Gentil","S"],["Analítico","C"]],
+  [["Firme","D"],["Animado","I"],["Estável","S"],["Criterioso","C"]],
+  [["Exigente","D"],["Expressivo","I"],["Colaborativo","S"],["Disciplinado","C"]],
+  [["Assertivo","D"],["Inspirador","I"],["Prestativo","S"],["Metódico","C"]],
+  [["Independente","D"],["Carismático","I"],["Previsível","S"],["Perfeccionista","C"]],
+  [["Corajoso","D"],["Espontâneo","I"],["Ponderado","S"],["Cauteloso","C"]],
+  [["Objetivo","D"],["Divertido","I"],["Conciliador","S"],["Sistemático","C"]],
+  [["Desafiador","D"],["Falante","I"],["Bom ouvinte","S"],["Exato","C"]],
+  [["Ambicioso","D"],["Popular","I"],["Constante","S"],["Lógico","C"]],
+  [["Enérgico","D"],["Convincente","I"],["Sereno","S"],["Reservado","C"]],
+  [["Pioneiro","D"],["Contagiante","I"],["Confiável","S"],["Rigoroso","C"]],
+  [["Impaciente","D"],["Impulsivo","I"],["Acomodado","S"],["Crítico","C"]],
+  [["Prático","D"],["Afetuoso","I"],["Compreensivo","S"],["Planejado","C"]],
+  [["Arrojado","D"],["Alegre","I"],["Moderado","S"],["Formal","C"]],
+  [["Focado em resultados","D"],["Focado em pessoas","I"],["Focado em harmonia","S"],["Focado em qualidade","C"]],
+  [["Toma a frente","D"],["Anima o grupo","I"],["Apoia o grupo","S"],["Confere os detalhes","C"]],
+  [["Decide rápido","D"],["Faz amizade rápido","I"],["Gosta de rotina","S"],["Gosta de regras claras","C"]],
+  [["Autoconfiante","D"],["Extrovertido","I"],["Modesto","S"],["Discreto","C"]],
+  [["Persistente","D"],["Encantador","I"],["Amável","S"],["Diplomático","C"]],
+  [["Dominante","D"],["Influente","I"],["Sossegado","S"],["Convencional","C"]],
+  [["Insistente","D"],["Brincalhão","I"],["Relaxado","S"],["Desconfiado","C"]],
+  [["Autoritário","D"],["Inquieto","I"],["Hesitante","S"],["Autocrítico","C"]],
+  [["Arrisca","D"],["Improvisa","I"],["Mantém","S"],["Verifica","C"]],
+  [["Vencer desafios","D"],["Ser reconhecido","I"],["Ter segurança","S"],["Fazer o certo","C"]],
+];
+// ordem de exibição variada para a posição não indicar o fator
+const discOrdem = bi => [0, 1, 2, 3].map(k => (k + bi) % 4).sort((a, b) => ((a * 7 + bi * 3) % 4) - ((b * 7 + bi * 3) % 4));
+const DISC_INFO = {
+  D: { nome: "Dominância", estilo: "Executor",
+    resumo: "Direto, rápido e orientado a resultados. Gosta de desafios, decide com agilidade e assume o controle quando algo precisa acontecer.",
+    fortes: ["Toma decisões com rapidez", "Encara desafios e metas difíceis", "Foca em resultado e prazo", "Age com iniciativa e autonomia"],
+    atencao: ["Pode atropelar opiniões e detalhes", "Impaciência com ritmos mais lentos", "Comunicação pode soar ríspida", "Tende a assumir riscos sem medir todos os impactos"],
+    comunicacao: ["Seja direto e objetivo, vá ao ponto", "Apresente opções e deixe a pessoa escolher", "Fale de resultados e próximos passos", "Evite rodeios e excesso de detalhes"],
+    motiva: ["Desafios e metas ambiciosas", "Autonomia para decidir", "Reconhecimento por resultados"],
+    pressao: "Fica mais controlador e impaciente, pode ser exigente demais com os outros.",
+    lideranca: "Dê metas claras e autonomia. Combine limites e critérios de qualidade antes, e cobre por resultado, não por microgestão." },
+  I: { nome: "Influência", estilo: "Comunicador",
+    resumo: "Comunicativo, otimista e persuasivo. Cria relacionamentos com facilidade, entusiasma as pessoas e se destaca em contato com clientes.",
+    fortes: ["Constrói relacionamentos rapidamente", "Persuade e inspira", "Traz energia e otimismo ao time", "Se adapta bem a novas pessoas e situações"],
+    atencao: ["Pode se dispersar e perder prazos", "Tende a prometer mais do que cabe", "Menor atenção a detalhes e registros", "Pode evitar conversas difíceis"],
+    comunicacao: ["Seja caloroso e aberto ao diálogo", "Dê espaço para ideias e conversa", "Registre combinados por escrito depois", "Reconheça publicamente as conquistas"],
+    motiva: ["Reconhecimento e visibilidade", "Interação com pessoas", "Ambiente leve e colaborativo"],
+    pressao: "Fica desorganizado ou emotivo, pode falar demais e agir por impulso.",
+    lideranca: "Combine prazos e registros de forma clara e acompanhe com frequência. Use reconhecimento como motivador e ajude a priorizar." },
+  S: { nome: "Estabilidade", estilo: "Planejador",
+    resumo: "Calmo, paciente e confiável. Valoriza harmonia e constância, apoia o time e é excelente em relacionamentos de longo prazo.",
+    fortes: ["Consistência e confiabilidade", "Escuta ativa e empatia", "Colabora e apoia os colegas", "Mantém a calma em situações tensas"],
+    atencao: ["Resistência a mudanças bruscas", "Dificuldade em dizer não", "Pode evitar conflitos necessários", "Ritmo mais cauteloso para decidir"],
+    comunicacao: ["Seja gentil e paciente", "Explique o motivo das mudanças com antecedência", "Dê segurança e tempo para se adaptar", "Pergunte a opinião: nem sempre ela é oferecida"],
+    motiva: ["Segurança e previsibilidade", "Ambiente harmonioso", "Sentir que está ajudando"],
+    pressao: "Se fecha, concorda sem concordar e acumula tensão em silêncio.",
+    lideranca: "Antecipe mudanças e explique o porquê. Crie espaço seguro para discordar e incentive a pessoa a se posicionar." },
+  C: { nome: "Conformidade", estilo: "Analista",
+    resumo: "Analítico, preciso e organizado. Valoriza qualidade, regras e dados, e garante que as coisas sejam feitas do jeito certo.",
+    fortes: ["Precisão e atenção a detalhes", "Análise e senso crítico", "Organização e método", "Qualidade nas entregas"],
+    atencao: ["Pode demorar para decidir por buscar perfeição", "Crítico consigo e com os outros", "Pode parecer distante", "Desconforto com improviso"],
+    comunicacao: ["Traga dados, fatos e exemplos", "Seja claro sobre critérios e padrões", "Dê tempo para analisar antes de decidir", "Evite pressão emocional ou exagero"],
+    motiva: ["Fazer um trabalho de qualidade", "Regras e critérios claros", "Tempo para fazer bem feito"],
+    pressao: "Fica excessivamente crítico, rígido ou se retrai em análises sem fim.",
+    lideranca: "Defina critérios de qualidade e prazos realistas. Mostre quando o \u201cbom o suficiente\u201d resolve e valorize a precisão." },
+};
+function discScore(resp) {
+  const net = { D: 0, I: 0, S: 0, C: 0 };
+  resp.forEach((r, bi) => { net[DISC_BLOCOS[bi][r.m][1]]++; net[DISC_BLOCOS[bi][r.l][1]]--; });
+  const pct = {};
+  for (const k of "DISC") pct[k] = Math.round((net[k] + DISC_BLOCOS.length) / (2 * DISC_BLOCOS.length) * 100);
+  const ord = Object.entries(pct).sort((a, b) => b[1] - a[1]);
+  const perfil = ord[0][0] + (ord[1][1] >= 50 && ord[0][1] - ord[1][1] <= 20 ? ord[1][0] : "");
+  return { pct, perfil };
+}
+const discTitulo = p => p.length === 2
+  ? `${p[0]}/${p[1]}: ${DISC_INFO[p[0]].estilo} com traços de ${DISC_INFO[p[1]].estilo.toLowerCase()}`
+  : `${p}: ${DISC_INFO[p].estilo}`;
+function discChart(r) {
+  return chartBox("short", () => ({
+    type: "bar",
+    data: { labels: "DISC".split("").map(k => `${k} · ${DISC_INFO[k].nome}`), datasets: [{ data: [r.d, r.i, r.s, r.c], backgroundColor: "DISC".split("").map(k => DISC_CORES[k]), borderRadius: 6 }] },
+    options: { plugins: { legend: { display: false }, tooltip: { callbacks: { label: it => `${it.raw} de 100` } } },
+      scales: { y: { min: 0, max: 100, ticks: { stepSize: 25 } }, x: { grid: { display: false } } } },
+  }));
+}
+const bulletList = items => h("ul", { class: "blist" }, items.map(t => h("li", {}, t)));
+function discResultado(r, paraGestor) {
+  const p1 = DISC_INFO[r.perfil[0]], p2 = r.perfil[1] ? DISC_INFO[r.perfil[1]] : null;
+  return h("div", { class: "stack" },
+    h("div", { class: "grid2" },
+      h("div", { class: "panel" },
+        h("div", { class: "panel-head" }, h("h2", {}, discTitulo(r.perfil)), h("p", {}, `Respondido em ${fmtDate(r.criado_em)}`)),
+        discChart(r)),
+      h("div", { class: "panel" },
+        h("h2", {}, "Resumo do estilo"),
+        h("p", { style: "margin-top:10px" }, p1.resumo),
+        p2 && h("p", { class: "muted", style: "margin-top:8px" }, `Traços de ${p2.nome.toLowerCase()}: ${p2.resumo}`),
+        h("p", { class: "notice small", style: "margin-top:14px" }, "O DISC descreve estilo de comportamento, não competência nem desempenho. Nenhum perfil é melhor que outro: cada um contribui de um jeito."))),
+    h("div", { class: "grid2" },
+      h("div", { class: "panel" }, h("h3", {}, "Pontos fortes"), bulletList([...p1.fortes, ...(p2 ? p2.fortes.slice(0, 2) : [])])),
+      h("div", { class: "panel" }, h("h3", {}, "Pontos de atenção"), bulletList([...p1.atencao, ...(p2 ? p2.atencao.slice(0, 1) : [])]))),
+    h("div", { class: "grid2" },
+      h("div", { class: "panel" }, h("h3", {}, paraGestor ? "Como se comunicar com esta pessoa" : "Como prefere que falem com você"), bulletList(p1.comunicacao)),
+      h("div", { class: "panel" }, h("h3", {}, "O que motiva"), bulletList(p1.motiva),
+        h("h3", { style: "margin-top:14px" }, "Sob pressão"), h("p", {}, p1.pressao))),
+    paraGestor && h("div", { class: "panel" }, h("h3", {}, "Dica de liderança"), h("p", {}, p1.lideranca), p2 && h("p", { class: "muted", style: "margin-top:8px" }, p2.lideranca)));
+}
+function viewDiscTeste() {
+  const st = S.discDraft;
+  const n = DISC_BLOCOS.length, bi = st.i, r = st.resp[bi];
+  const ok = r.m != null && r.l != null;
+  const pick = (kind, idx) => {
+    if (kind === "m") { r.m = idx; if (r.l === idx) r.l = null; } else { r.l = idx; if (r.m === idx) r.m = null; }
+    render();
+  };
+  const done = st.resp.filter(x => x.m != null && x.l != null).length;
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Teste de perfil DISC"),
+      h("p", {}, "Em cada bloco, escolha a palavra que MAIS combina com você no trabalho e a que MENOS combina. Responda pelo que você é, não pelo que gostaria de ser. Não existe resposta certa."))),
+    h("div", { class: "panel disc-test" },
+      h("div", { class: "disc-prog" }, h("span", {}, `Bloco ${bi + 1} de ${n}`), h("div", { class: "bar" }, h("i", { style: `width:${(done / n) * 100}%` }))),
+      h("div", { class: "disc-head" }, h("span", {}, ""), h("span", {}, "Mais"), h("span", {}, "Menos")),
+      discOrdem(bi).map(idx => h("div", { class: "disc-row" + (r.m === idx ? " is-m" : r.l === idx ? " is-l" : "") },
+        h("span", { class: "disc-word" }, DISC_BLOCOS[bi][idx][0]),
+        h("button", { type: "button", class: "disc-pick m", "aria-pressed": r.m === idx, "aria-label": `${DISC_BLOCOS[bi][idx][0]}: mais combina`, onclick: () => pick("m", idx) }, "Mais"),
+        h("button", { type: "button", class: "disc-pick l", "aria-pressed": r.l === idx, "aria-label": `${DISC_BLOCOS[bi][idx][0]}: menos combina`, onclick: () => pick("l", idx) }, "Menos"))),
+      h("div", { class: "row", style: "justify-content:space-between;margin-top:16px" },
+        h("button", { class: "btn ghost", disabled: bi === 0, onclick: () => { st.i--; render(); } }, "Anterior"),
+        h("button", { class: "btn ghost small", onclick: async () => { if (await confirmBox("Sair do teste? As respostas deste teste serão perdidas.", "Sair", true)) { S.discDraft = null; go("disc"); } } }, "Sair do teste"),
+        bi < n - 1
+          ? h("button", { class: "btn", disabled: !ok, onclick: () => { st.i++; render(); window.scrollTo(0, 0); } }, "Próximo")
+          : h("button", { class: "btn", disabled: done < n, onclick: finishDisc }, "Ver meu resultado"))),
+  ];
+}
+async function finishDisc() {
+  const resp = S.discDraft.resp;
+  if (resp.some(x => x.m == null || x.l == null)) { toast("Responda todos os blocos.", true); return; }
+  const { pct, perfil } = discScore(resp);
+  const { error } = await sb.from("evo_disc").insert({ user_id: S.me.user_id, respostas: resp, d: pct.D, i: pct.I, s: pct.S, c: pct.C, perfil });
+  if (error) { toast(sbErr(error), true); return; }
+  S.discDraft = null; await refresh(); go("disc"); toast("Perfil DISC registrado.");
+}
+function startDisc() { S.discDraft = { i: 0, resp: DISC_BLOCOS.map(() => ({ m: null, l: null })) }; S.view = "disc-teste"; render(); window.scrollTo(0, 0); }
+function discHistorico(list) {
+  if (list.length < 2) return null;
+  return h("div", { class: "panel" }, h("h3", {}, "Histórico"),
+    h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+      h("thead", {}, h("tr", {}, ["Data", "Perfil", "D", "I", "S", "C"].map((t, i) => h("th", { class: i > 1 ? "num" : "" }, t)))),
+      h("tbody", {}, list.map(r => h("tr", { style: "cursor:default" }, h("td", {}, fmtDate(r.criado_em)), h("td", {}, r.perfil),
+        h("td", { class: "num" }, r.d), h("td", { class: "num" }, r.i), h("td", { class: "num" }, r.s), h("td", { class: "num" }, r.c)))))));
+}
+function viewDisc() {
+  const list = [...(S.disc.get(S.me.user_id) || [])].sort(byDateDesc("criado_em"));
+  const last = list[0];
+  if (!last) return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Perfil DISC"), h("p", {}, "Descubra o seu estilo de comportamento no trabalho."))),
+    h("div", { class: "panel stack" },
+      h("p", {}, "São 28 blocos com 4 palavras. Em cada um, você escolhe a que mais combina e a que menos combina com você. Leva de 10 a 15 minutos."),
+      h("div", { class: "disc-legend" }, "DISC".split("").map(k => h("div", {}, h("b", { style: `color:${DISC_CORES[k]}` }, `${k} · ${DISC_INFO[k].nome}`), h("span", { class: "muted small" }, DISC_INFO[k].resumo.split(".")[0] + ".")))),
+      h("p", { class: "muted small" }, "O resultado fica visível para você e para o seu gestor. Ele ajuda na comunicação e no seu desenvolvimento; não é avaliação de desempenho."),
+      h("div", {}, h("button", { class: "btn", onclick: startDisc }, "Começar o teste"))),
+  ];
+  const dias = daysSince(last.criado_em);
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Meu perfil DISC"), h("p", {}, "Seu estilo predominante de comportamento no trabalho.")),
+      h("button", { class: "btn ghost small", onclick: async () => { if (dias < 180 && !(await confirmBox(`Você respondeu há ${plural(dias, "dia", "dias")}. O recomendado é refazer a cada 12 meses. Refazer mesmo assim?`, "Refazer"))) return; startDisc(); } }, "Refazer o teste")),
+    discResultado(last, false), discHistorico(list),
+  ];
+}
+function viewDiscTime() {
+  const ids = teamIds(false);
+  const lastOf = id => latest(S.disc.get(id), "criado_em");
+  const com = ids.filter(lastOf), sem = ids.filter(id => !lastOf(id));
+  const cont = { D: 0, I: 0, S: 0, C: 0 }; com.forEach(id => cont[lastOf(id).perfil[0]]++);
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Perfis DISC do time"), h("p", {}, "Use para adaptar a comunicação e montar duplas que se complementam."))),
+    h("div", { class: "stack" },
+      h("div", { class: "kpis" }, "DISC".split("").map(k => h("div", { class: "kpi", style: `border-top:4px solid ${DISC_CORES[k]}` },
+        h("div", { class: "v" }, cont[k]), h("div", { class: "l" }, `${DISC_INFO[k].nome} (${DISC_INFO[k].estilo.toLowerCase()})`)))),
+      com.length ? h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Pessoas"), h("p", {}, "Clique para ver o perfil completo e as dicas de liderança.")),
+        h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+          h("thead", {}, h("tr", {}, ["Pessoa", "Perfil", "D", "I", "S", "C", "Respondido"].map((t, i) => h("th", { class: i > 1 ? "num" : "" }, t)))),
+          h("tbody", {}, com.map(id => { const r = lastOf(id); return h("tr", { tabindex: 0, onclick: () => openPerson(id, "disc"), onkeydown: e => { if (e.key === "Enter") openPerson(id, "disc"); } },
+            h("td", {}, h("div", { class: "person" }, rings(certsOf(id), 36, nameOf(id), id), h("b", {}, nameOf(id)))),
+            h("td", {}, h("span", { class: "disc-tag", style: `background:${DISC_CORES[r.perfil[0]]}` }, r.perfil), " ", DISC_INFO[r.perfil[0]].estilo),
+            ...["d", "i", "s", "c"].map(k => h("td", { class: "num" }, h("span", { class: "mini-meter" }, h("i", { style: `width:${r[k]}%;background:${DISC_CORES[k.toUpperCase()]}` })), " ", r[k])),
+            h("td", { class: "num" }, fmtDate(r.criado_em))); }))))) : null,
+      sem.length > 0 && h("div", { class: "panel" }, h("h3", {}, "Ainda não responderam"), h("p", { class: "muted", style: "margin-top:6px" }, sem.map(nameOf).join(", ")))),
+  ];
+}
+function tabDisc(uid) {
+  const list = [...(S.disc.get(uid) || [])].sort(byDateDesc("criado_em"));
+  if (!list.length) return h("div", { class: "panel" }, h("p", { class: "muted" }, "Esta pessoa ainda não respondeu o teste DISC. Ela encontra o teste no menu Perfil DISC."));
+  return h("div", { class: "stack" }, discResultado(list[0], true), discHistorico(list));
+}
+
+/* ---------- autoavaliação e comparação ---------- */
+function formAutoavaliacao(uid) {
+  const last = latest(S.auto.get(uid), "data") || {};
+  const scale = h("div", { class: "scale" }, COMPETENCIAS.map(([k, l]) =>
+    h("div", { class: "scale-row" }, h("span", {}, l),
+      h("div", { class: "seg", role: "radiogroup", "aria-label": l },
+        [1, 2, 3, 4, 5].map(n => h("label", {}, h("input", { type: "radio", name: "c_" + k, value: n, checked: Number(last.notas?.[k]) === n, "aria-label": `${l}: ${n}` }), h("span", {}, n)))))));
+  openModal({
+    title: "Autoavaliação de competências", submitLabel: "Enviar autoavaliação",
+    body: [
+      h("p", { class: "muted small" }, "Dê uma nota de 1 a 5 para você em cada competência. 1 = preciso desenvolver muito, 5 = sou referência. Seja sincero: a comparação com a avaliação do gestor é o que mais ajuda no seu desenvolvimento."),
+      scale,
+      field("Comentário (opcional)", ta("comentario", "", 3), "O que você acha que evoluiu e onde quer apoio?"),
+    ],
+    onSubmit: form => {
+      const notas = {};
+      for (const [k] of COMPETENCIAS) { const v = form.querySelector(`input[name="c_${k}"]:checked`)?.value; if (v) notas[k] = Number(v); }
+      if (Object.keys(notas).length < COMPETENCIAS.length) { toast("Dê nota para todas as competências.", true); return false; }
+      return run(sb.from("evo_autoavaliacoes").insert({ user_id: uid, data: today(), notas, comentario: nz(val(form, "comentario")) }), "Autoavaliação enviada.");
+    },
+  });
+}
+function comparacao(uid) {
+  const auto = latest(S.auto.get(uid), "data"), av = latest(S.aval.get(uid), "data");
+  if (!auto || !av) return null;
+  const rows = COMPETENCIAS.map(([k, l]) => {
+    const a = Number(auto.notas?.[k]) || null, g = Number(av.notas?.[k]) || null;
+    return { l, a, g, d: a != null && g != null ? a - g : null };
+  });
+  return h("div", { class: "tbl-wrap" }, h("table", { class: "tbl" },
+    h("thead", {}, h("tr", {}, ["Competência", "Autoavaliação", "Gestor", "Diferença"].map((t, i) => h("th", { class: i ? "num" : "" }, t)))),
+    h("tbody", {}, rows.map(r => h("tr", { style: "cursor:default", class: r.d != null && Math.abs(r.d) >= 2 ? "gap" : "" },
+      h("td", {}, r.l), h("td", { class: "num" }, r.a ?? "–"), h("td", { class: "num" }, r.g ?? "–"),
+      h("td", { class: "num" }, r.d == null ? "–" : r.d === 0 ? "alinhado" : h("span", { class: r.d > 0 ? "delta-down" : "delta-up" }, `${r.d > 0 ? "+" : "−"}${Math.abs(r.d)}`))))),
+    h("caption", { class: "muted small", style: "caption-side:bottom;text-align:left;padding-top:8px" },
+      `Autoavaliação de ${fmtDate(auto.data)} comparada à avaliação de ${fmtDate(av.data)}. Diferenças de 2 pontos ou mais estão destacadas: são bons temas para a 1:1.`)));
+}
+
+/* ---------- PDI ---------- */
+const PDI_STATUS = { pendente: "Pendente", andamento: "Em andamento", concluido: "Concluído" };
+const compNome = k => (COMPETENCIAS.find(c => c[0] === k) || [null, null])[1];
+function formPdi(uid, existing, pre) {
+  const p = existing || pre || {};
+  const termo = inp("termo_curso", p.termo_curso, "text", { maxlength: 120, placeholder: "Ex.: negociação" });
+  const termoField = field("Palavra para reconhecer o certificado", termo, "Quando a pessoa enviar um certificado com essa palavra no nome do curso, a ação é concluída automaticamente. Em branco, usa o título.");
+  const tipo = sel("tipo", [["acao", "Ação prática"], ["curso", "Curso"]], p.tipo || "acao");
+  const syncTipo = () => { termoField.hidden = tipo.value !== "curso"; };
+  tipo.addEventListener("change", syncTipo);
+  openModal({
+    title: existing ? "Editar ação do PDI" : "Nova ação do PDI", submitLabel: "Salvar",
+    body: [
+      h("div", { class: "two" }, field("Tipo", tipo), field("Competência relacionada", sel("competencia", [["", "Nenhuma"], ...COMPETENCIAS.map(([k, l]) => [k, l])], p.competencia || ""))),
+      field("O que fazer", inp("titulo", p.titulo, "text", { maxlength: 200, placeholder: "Ex.: Fazer curso de negociação consultiva" })),
+      field("Detalhes", ta("descricao", p.descricao, 3)),
+      termoField,
+      h("div", { class: "two" }, field("Prazo", inp("prazo", p.prazo, "date")), existing ? field("Situação", sel("status", Object.entries(PDI_STATUS), p.status)) : null),
+    ],
+    onReady: () => syncTipo(),
+    onSubmit: form => {
+      const titulo = val(form, "titulo");
+      if (!titulo) { toast("Descreva a ação.", true); return false; }
+      const row = { user_id: uid, tipo: val(form, "tipo"), titulo, descricao: nz(val(form, "descricao")), competencia: nz(val(form, "competencia")),
+        termo_curso: val(form, "tipo") === "curso" ? nz(val(form, "termo_curso")) : null, prazo: nz(val(form, "prazo")) };
+      if (existing) row.status = val(form, "status");
+      return run(existing ? sb.from("evo_pdi").update(row).eq("id", existing.id) : sb.from("evo_pdi").insert(row), "Ação do PDI salva.");
+    },
+  });
+}
+function pdiSugestoes(uid) {
+  const out = [];
+  const av = latest(S.aval.get(uid), "data"), auto = latest(S.auto.get(uid), "data"), disc = latest(S.disc.get(uid), "criado_em");
+  if (av) for (const [k, l] of COMPETENCIAS) { const n = Number(av.notas?.[k]); if (n && n <= 3) out.push({ txt: `${l}: nota ${n} na última avaliação`, pre: { titulo: `Desenvolver ${l.toLowerCase()}`, competencia: k, tipo: "curso" } }); }
+  if (av && auto) for (const [k, l] of COMPETENCIAS) { const a = Number(auto.notas?.[k]), g = Number(av.notas?.[k]); if (a && g && a - g >= 2) out.push({ txt: `${l}: a pessoa se deu ${a} e você deu ${g} (ponto cego)`, pre: { titulo: `Alinhar expectativas sobre ${l.toLowerCase()}`, competencia: k, tipo: "acao" } }); }
+  if (disc) { const info = DISC_INFO[disc.perfil[0]]; out.push({ txt: `Perfil ${disc.perfil}: ${info.atencao[0].toLowerCase()}`, pre: { titulo: `Trabalhar: ${info.atencao[0].toLowerCase()}`, tipo: "acao" } }); }
+  return out;
+}
+function pdiLista(uid, gestor) {
+  const order = { andamento: 0, pendente: 1, concluido: 2 };
+  const list = [...(S.pdi.get(uid) || [])].sort((a, b) => (order[a.status] ?? 1) - (order[b.status] ?? 1) || (a.prazo || "9").localeCompare(b.prazo || "9"));
+  if (!list.length) return h("p", { class: "muted" }, gestor ? "Nenhuma ação no plano ainda." : "Seu gestor ainda não criou ações no seu plano de desenvolvimento.");
+  const t = today();
+  return h("ul", { class: "list" }, list.map(p => {
+    const late = p.status !== "concluido" && p.prazo && p.prazo < t;
+    const cert = p.certificado_id ? certsOf(uid).find(c => c.id === p.certificado_id) : null;
+    return h("li", { class: "item" },
+      h("div", { class: "item-top" }, h("h3", {}, p.titulo),
+        h("span", { class: "row" }, h("span", { class: "pill concluido" }, p.tipo === "curso" ? "Curso" : "Ação"), late && h("span", { class: "pill late" }, "Prazo vencido"),
+          h("span", { class: "pill " + (p.status === "concluido" ? "concluido" : p.status === "andamento" ? "andamento" : "aberto") }, PDI_STATUS[p.status]))),
+      h("p", { class: "meta" }, [p.competencia && compNome(p.competencia), p.prazo && `prazo ${fmtDate(p.prazo)}`, p.concluido_em && `concluído em ${fmtDate(p.concluido_em)}`].filter(Boolean).join(", ")),
+      p.descricao && h("p", { class: "prose" }, p.descricao),
+      cert && h("p", { class: "meta" }, `Concluído com o certificado “${cert.titulo}”.`),
+      p.tipo === "curso" && p.status !== "concluido" && h("p", { class: "meta" }, "Conclui sozinho quando o certificado do curso for enviado."),
+      h("div", { class: "row" },
+        p.status === "pendente" && h("button", { class: "linkish", onclick: () => run(sb.from("evo_pdi").update({ status: "andamento" }).eq("id", p.id), "Em andamento.") }, "Começar"),
+        p.status !== "concluido" && (gestor || p.tipo === "acao") && h("button", { class: "linkish", onclick: () => run(sb.from("evo_pdi").update({ status: "concluido" }).eq("id", p.id), "Ação concluída.") }, "Marcar como concluída"),
+        !gestor && p.tipo === "curso" && p.status !== "concluido" && h("button", { class: "linkish", onclick: () => formCertificado(uid) }, "Enviar certificado"),
+        gestor && h("button", { class: "linkish", onclick: () => formPdi(uid, p) }, "Editar"),
+        gestor && h("button", { class: "linkish red", onclick: () => removeRecord("evo_pdi", p.id, "esta ação do PDI") }, "Apagar")));
+  }));
+}
+function tabPdi(uid) {
+  const sug = pdiSugestoes(uid);
+  return h("div", { class: "stack" },
+    sug.length > 0 && h("div", { class: "panel" },
+      h("div", { class: "panel-head" }, h("h2", {}, "Sugestões para o plano"), h("p", {}, "A partir da última avaliação, da autoavaliação e do perfil DISC.")),
+      h("ul", { class: "list" }, sug.map(s => h("li", { class: "item row", style: "justify-content:space-between" }, h("span", {}, s.txt),
+        h("button", { class: "btn ghost small", onclick: () => formPdi(uid, null, s.pre) }, "Criar ação"))))),
+    h("div", { class: "panel" },
+      h("div", { class: "panel-head" }, h("h2", {}, "Plano de desenvolvimento"), h("button", { class: "btn small", onclick: () => formPdi(uid) }, "Nova ação")),
+      pdiLista(uid, true)));
+}
+
+/* ---------- lembretes ---------- */
+function lembretes() {
+  const out = [], t = today();
+  const add = (nivel, texto, acao) => out.push({ nivel, texto, acao });
+  const prazos = (id, nm, prefixo) => {
+    for (const m of S.melh.get(id) || []) if (m.status !== "concluido" && m.prazo) {
+      const d = daysUntil(m.prazo);
+      if (d < 0) add("alto", `${prefixo}melhoria “${m.titulo}” com prazo vencido`, () => S.owner ? openPerson(id, "melhorias") : go("evolucao"));
+      else if (d <= 7) add("medio", `${prefixo}melhoria “${m.titulo}” vence em ${plural(d, "dia", "dias")}`, () => S.owner ? openPerson(id, "melhorias") : go("evolucao"));
+    }
+    for (const p of S.pdi.get(id) || []) if (p.status !== "concluido" && p.prazo) {
+      const d = daysUntil(p.prazo);
+      if (d < 0) add("alto", `${prefixo}ação do PDI “${p.titulo}” com prazo vencido`, () => S.owner ? openPerson(id, "pdi") : go("evolucao"));
+      else if (d <= 7) add("medio", `${prefixo}ação do PDI “${p.titulo}” vence em ${plural(d, "dia", "dias")}`, () => S.owner ? openPerson(id, "pdi") : go("evolucao"));
+    }
+    for (const c of certsOf(id)) { const v = validadeInfo(c); if (v && v.cls !== "concluido") add(v.cls === "late" ? "medio" : "info", `${prefixo}certificação “${c.titulo}”: ${v.txt.toLowerCase()}`, () => S.owner ? openPerson(id, "curriculo") : go("meu")); }
+  };
+  if (S.owner) {
+    const pend = pending().length;
+    if (pend) add("alto", `${plural(pend, "pedido", "pedidos")} de acesso aguardando aprovação`, () => go("aprovacoes"));
+    for (const id of teamIds(false)) {
+      const nm = nameOf(id).split(" ")[0] + ": ", st = personStats(id);
+      if (st.lastOne == null) add("medio", nm + "nenhuma 1:1 registrada", () => openPerson(id, "oneaone"));
+      else if (st.lastOne > 30) add("alto", nm + `última 1:1 há ${st.lastOne} dias`, () => openPerson(id, "oneaone"));
+      if (st.next) { const d = daysUntil(st.next); if (d >= 0 && d <= 3) add("info", nm + `1:1 marcada para ${fmtDate(st.next)}`, () => openPerson(id, "oneaone")); }
+      const rasc = (S.aval.get(id) || []).filter(a => !a.liberada).length;
+      if (rasc) add("medio", nm + `${plural(rasc, "avaliação", "avaliações")} em rascunho, ainda não liberada para a pessoa`, () => openPerson(id, "avaliacoes"));
+      const lastAuto = latest(S.auto.get(id), "data"), lastAv = latest(S.aval.get(id), "data");
+      if (lastAuto && (!lastAv || lastAuto.data > lastAv.data)) add("medio", nm + "respondeu a autoavaliação e aguarda a sua avaliação", () => openPerson(id, "avaliacoes"));
+      prazos(id, null, nm);
+      if (!S.people.get(id)?.atualizado_em) add("info", nm + "currículo ainda não preenchido", () => openPerson(id, "curriculo"));
+      if (!(S.disc.get(id) || []).length) add("info", nm + "perfil DISC ainda não respondido", () => openPerson(id, "disc"));
+    }
+    const ub = S.config.ultimo_backup, dias = ub ? daysSince(ub) : null;
+    if (dias == null || dias > 30) add("alto", dias == null ? "Nenhum backup baixado ainda" : `Último backup há ${dias} dias`, () => go("historico"));
+  } else {
+    const id = S.me.user_id;
+    if (!S.me.atualizado_em) add("medio", "Complete o seu currículo", () => go("meu"));
+    if (!(S.disc.get(id) || []).length) add("medio", "Responda o seu perfil DISC", () => go("disc"));
+    const lastAuto = latest(S.auto.get(id), "data");
+    if (!lastAuto) add("medio", "Faça a sua autoavaliação de competências", () => formAutoavaliacao(id));
+    else if (daysSince(lastAuto.data) > 90) add("info", "Sua última autoavaliação tem mais de 3 meses", () => formAutoavaliacao(id));
+    const lastLib = latest(S.aval.get(id), "liberada_em");
+    if (lastLib && daysSince(lastLib.liberada_em) <= 14) add("info", `Nova avaliação liberada em ${fmtDate(lastLib.liberada_em)}`, () => go("evolucao"));
+    prazos(id, null, "");
+  }
+  const ord = { alto: 0, medio: 1, info: 2 };
+  return out.sort((a, b) => ord[a.nivel] - ord[b.nivel]);
+}
+function lembretesPanel(max) {
+  const l = lembretes();
+  const shown = l.slice(0, max || 12);
+  return h("div", { class: "panel" },
+    h("div", { class: "panel-head" }, h("h2", {}, "Lembretes"), l.length > shown.length && h("p", {}, `Mostrando ${shown.length} de ${l.length}`)),
+    l.length ? h("ul", { class: "lembretes" }, shown.map(x => h("li", {},
+      h("button", { class: "lembrete " + x.nivel, onclick: x.acao }, h("span", { class: "dot", "aria-hidden": "true" }), h("span", {}, x.texto)))))
+      : h("p", { class: "muted" }, "Nada pendente. Tudo em dia."));
+}
+
+/* ---------- impressão (PDF) ---------- */
+function printDoc(titulo, conteudo) {
+  const box = document.getElementById("print");
+  box.replaceChildren(conteudo);
+  const imgs = [...box.querySelectorAll("img")];
+  Promise.all(imgs.map(i => i.complete ? null : new Promise(r => { i.onload = i.onerror = r; }))).then(() => {
+    const old = document.title;
+    const limpar = () => { document.body.classList.remove("printing"); document.title = old; box.replaceChildren(); };
+    document.title = titulo;
+    document.body.classList.add("printing");
+    window.addEventListener("afterprint", limpar, { once: true });
+    window.print();
+    setTimeout(() => { if (document.body.classList.contains("printing")) limpar(); }, 60000);
+  });
+  toast("Na janela de impressão, escolha “Salvar como PDF”.");
+}
+const prodape = () => h("p", { class: "pr-foot" }, `Gerado pelo portal Evolução do time comercial, LC Sistemas, em ${fmtDate(today())}.`);
+function cvPdf(uid) {
+  const m = S.people.get(uid) || {};
+  const certs = [...certsOf(uid)].sort(byDateDesc("concluido_em"));
+  const exps = Array.isArray(m.experiencias) ? m.experiencias : [], forms = Array.isArray(m.formacao) ? m.formacao : [];
+  const doc = h("article", { class: "pr-cv" },
+    h("header", { class: "pr-head" },
+      S.photos[uid] && h("img", { src: S.photos[uid], alt: "" }),
+      h("div", {}, h("h1", {}, nameOf(uid)), h("p", { class: "pr-role" }, m.cargo || ""),
+        h("p", { class: "pr-contact" }, [m.email, m.telefone, m.admissao && `Na LC Sistemas desde ${fmtDate(m.admissao)}`].filter(Boolean).join("  |  ")))),
+    m.resumo && h("section", {}, h("h2", {}, "Resumo profissional"), h("p", { class: "prose" }, m.resumo)),
+    (m.habilidades || []).length > 0 && h("section", {}, h("h2", {}, "Habilidades"), h("p", {}, m.habilidades.join("  •  "))),
+    exps.length > 0 && h("section", {}, h("h2", {}, "Experiência"), exps.map(e => h("div", { class: "pr-item" },
+      h("b", {}, [e.cargo, e.empresa].filter(Boolean).join(", ")), e.periodo && h("span", {}, e.periodo), e.descricao && h("p", { class: "prose" }, e.descricao)))),
+    forms.length > 0 && h("section", {}, h("h2", {}, "Formação"), forms.map(f => h("div", { class: "pr-item" }, h("b", {}, f.curso || "Curso"), h("span", {}, [f.instituicao, f.ano].filter(Boolean).join(", "))))),
+    certs.length > 0 && h("section", {}, h("h2", {}, `Cursos e certificações (${fmtH(hoursOf(certs))})`),
+      h("table", { class: "pr-tbl" }, h("thead", {}, h("tr", {}, ["Curso", "Instituição", "Carga", "Conclusão"].map(t => h("th", {}, t)))),
+        h("tbody", {}, certs.map(c => h("tr", {}, h("td", {}, c.titulo), h("td", {}, c.instituicao || ""), h("td", {}, num(c.carga_horas) ? fmtH(c.carga_horas) : ""), h("td", {}, fmtDate(c.concluido_em))))))),
+    prodape());
+  printDoc(`Currículo - ${nameOf(uid)}`, doc);
+}
+function relatorioTime() {
+  const ids = teamIds(false), year = String(new Date().getFullYear());
+  const certsAno = ids.flatMap(certsOf).filter(c => dateOnly(c.concluido_em).startsWith(year));
+  const lastAvs = ids.map(id => latest(S.aval.get(id), "data")).filter(Boolean);
+  const mediaComp = COMPETENCIAS.map(([k, l]) => { const v = lastAvs.map(a => Number(a.notas?.[k])).filter(n => n >= 1); return [l, v.length ? v.reduce((a, b) => a + b, 0) / v.length : null]; });
+  const melhOk = ids.flatMap(id => S.melh.get(id) || []).filter(m => m.status === "concluido" && dateOnly(m.concluido_em).startsWith(year)).length;
+  const pdiOk = ids.flatMap(id => S.pdi.get(id) || []).filter(p => p.status === "concluido" && dateOnly(p.concluido_em).startsWith(year)).length;
+  const cont = { D: 0, I: 0, S: 0, C: 0 }; ids.forEach(id => { const r = latest(S.disc.get(id), "criado_em"); if (r) cont[r.perfil[0]]++; });
+  const mediaGeral = (() => { const v = lastAvs.map(avgOf).filter(x => x != null); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; })();
+  const doc = h("article", { class: "pr-cv" },
+    h("header", { class: "pr-head" }, h("div", {}, h("h1", {}, "Relatório do time comercial"), h("p", { class: "pr-role" }, `LC Sistemas, ${fmtDate(today())}`))),
+    h("section", {}, h("h2", {}, `Indicadores de ${year}`),
+      h("div", { class: "pr-kpis" }, [[ids.length, "pessoas ativas"], [certsAno.length, "cursos concluídos"], [fmtH(hoursOf(certsAno)), "de formação"],
+        [fmt1(mediaGeral), "média do time na última avaliação"], [melhOk, "melhorias concluídas"], [pdiOk, "ações de PDI concluídas"]]
+        .map(([v, l]) => h("div", {}, h("b", {}, v), h("span", {}, l))))),
+    h("section", {}, h("h2", {}, "Competências do time (média da última avaliação de cada pessoa)"),
+      h("table", { class: "pr-tbl" }, h("tbody", {}, mediaComp.map(([l, v]) => h("tr", {}, h("td", {}, l),
+        h("td", { style: "width:55%" }, h("div", { class: "pr-bar" }, h("i", { style: `width:${(v || 0) * 20}%` }))), h("td", {}, fmt1(v))))))),
+    h("section", {}, h("h2", {}, "Formação por pessoa"),
+      h("table", { class: "pr-tbl" }, h("thead", {}, h("tr", {}, ["Pessoa", "Cursos no ano", "Horas no ano", "Cursos no total"].map(t => h("th", {}, t)))),
+        h("tbody", {}, ids.map(id => { const ca = certsOf(id).filter(c => dateOnly(c.concluido_em).startsWith(year));
+          return h("tr", {}, h("td", {}, nameOf(id)), h("td", {}, ca.length), h("td", {}, fmtH(hoursOf(ca))), h("td", {}, certsOf(id).length)); })))),
+    h("section", {}, h("h2", {}, "Perfis DISC do time"),
+      h("p", {}, "DISC".split("").map(k => `${DISC_INFO[k].nome}: ${cont[k]}`).join("   |   "))),
+    prodape());
+  printDoc(`Relatório do time - ${fmtDate(today())}`, doc);
+}
+
+/* ---------- LGPD ---------- */
+function termoModal() {
+  openModal({ title: "Termo de uso de dados", body: [TERMO.map(p => h("p", {}, p)), h("p", { class: "muted small" }, `Versão ${TERMO_VERSAO}.`)] });
+}
+function termoGate() {
+  const btn = h("button", { class: "btn", onclick: async () => {
+    btn.disabled = true;
+    const { error } = await sb.from("evo_pessoas").update({ aceite_termo_em: new Date().toISOString(), termo_versao: TERMO_VERSAO }).eq("user_id", S.me.user_id);
+    if (error) { btn.disabled = false; toast(sbErr(error), true); return; }
+    await refresh();
+  } }, "Li e aceito");
+  return h("div", { class: "center" }, h("div", { class: "card", style: "width:min(640px,100%)" },
+    h("h1", {}, "Termo de uso de dados"),
+    h("div", { class: "termo" }, TERMO.map(p => h("p", {}, p))),
+    btn, h("button", { class: "btn ghost", onclick: () => sb.auth.signOut() }, "Sair")));
+}
+async function meusDados(btn) {
+  if (!window.JSZip) { toast("Recarregue a página e tente de novo.", true); return; }
+  const uid = S.me.user_id, old = btn.textContent; btn.disabled = true; btn.textContent = "Preparando…";
+  try {
+    const zip = new JSZip();
+    const dados = { gerado_em: new Date().toISOString(), pessoa: S.me, certificados: certsOf(uid), avaliacoes_liberadas: S.aval.get(uid) || [],
+      pontos_de_melhoria: S.melh.get(uid) || [], autoavaliacoes: S.auto.get(uid) || [], disc: S.disc.get(uid) || [], pdi: S.pdi.get(uid) || [] };
+    if (S.owner) dados.observacao = "Como gestor, os dados do time estão no backup completo, em Segurança e backup.";
+    zip.file("meus-dados.json", JSON.stringify(dados, null, 2));
+    const { data: files } = await sb.storage.from(BUCKET).list(uid, { limit: 1000 });
+    for (const f of files || []) { if (!f.id) continue; const dl = await sb.storage.from(BUCKET).download(`${uid}/${f.name}`); if (!dl.error) zip.file(`arquivos/${f.name}`, dl.data); }
+    const blob = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
+    const url = URL.createObjectURL(blob); const a = h("a", { href: url, download: `meus-dados-${today()}.zip` });
+    document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 10000);
+    toast("Seus dados foram baixados.");
+  } catch (e) { toast("Não foi possível gerar o arquivo: " + sbErr(e), true); }
+  finally { btn.disabled = false; btn.textContent = old; }
+}
+function meusDadosModal() {
+  const b = h("button", { type: "button", class: "btn", onclick: e => meusDados(e.currentTarget) }, "Baixar meus dados (.zip)");
+  openModal({ title: "Meus dados", body: [
+    h("p", {}, "Baixe uma cópia de todos os seus dados guardados no portal, com os arquivos que você enviou."),
+    h("p", { class: "muted small" }, `Você aceitou o termo de uso de dados em ${fmtDate(S.me.aceite_termo_em)}.`),
+    h("div", { class: "row" }, b, h("button", { type: "button", class: "btn ghost", onclick: termoModal }, "Ler o termo")),
+    h("p", { class: "muted small" }, "Para corrigir ou apagar dados, fale com o seu gestor.")] });
+}
+function apagarPessoaModal(uid) {
+  const nm = nameOf(uid);
+  openModal({
+    title: "Apagar dados definitivamente", submitLabel: "Apagar definitivamente",
+    body: [
+      h("p", {}, `Isto apaga para sempre todos os dados de ${nm}: currículo, certificados e arquivos, avaliações, autoavaliações, DISC, PDI, pontos de melhoria, reuniões 1:1 e o histórico de alterações. Não dá para desfazer nem restaurar.`),
+      h("p", { class: "notice small" }, "Baixe um backup completo antes, se quiser guardar uma cópia."),
+      field("Para confirmar, digite APAGAR", inp("confirma", "", "text", { autocomplete: "off" })),
+    ],
+    onSubmit: async form => {
+      if (val(form, "confirma") !== "APAGAR") { toast("Digite APAGAR para confirmar.", true); return false; }
+      const { data: files } = await sb.storage.from(BUCKET).list(uid, { limit: 1000 });
+      const { error } = await sb.rpc("evo_apagar_pessoa", { p_uid: uid });
+      if (error) { toast(sbErr(error), true); return false; }
+      const paths = (files || []).filter(f => f.id).map(f => `${uid}/${f.name}`);
+      if (paths.length) await sb.storage.from(BUCKET).remove(paths);
+      S.view = "pessoas"; await refresh(); toast(`Dados de ${nm} apagados.`);
+      return true;
+    },
+  });
+}
+
+/* ---------- gestores e configurações ---------- */
+async function setGestor(uid, virar) {
+  const p = S.people.get(uid) || S.gestores.find(g => g.user_id === uid) || {};
+  const nm = p.nome || p.email;
+  const msg = virar
+    ? `Tornar ${nm} gestor? A pessoa passa a ver e editar tudo: avaliações, anotações privadas e 1:1 de todo o time, aprovar acessos e baixar backups.`
+    : `Remover ${nm} da função de gestor? A pessoa volta a ver só os próprios dados.`;
+  if (!(await confirmBox(msg, virar ? "Tornar gestor" : "Remover", !virar))) return;
+  run(sb.from("evo_pessoas").update({ papel: virar ? "gestor" : "membro" }).eq("user_id", uid), virar ? "Gestor adicionado." : "Gestor removido.");
+}
+async function salvarDominios(input) {
+  const lista = input.value.split(/[,\s]+/).map(d => d.trim().toLowerCase().replace(/^@/, "")).filter(Boolean);
+  if (lista.some(d => !/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(d))) { toast("Algum domínio está inválido. Exemplo: lcsistemas.com.br", true); return; }
+  if (!lista.length && !(await confirmBox("Sem domínios, qualquer e-mail poderá pedir acesso. Continuar?", "Continuar", true))) return;
+  run(sb.from("evo_config").upsert({ chave: "dominios_permitidos", valor: lista, atualizado_em: new Date().toISOString() }), "Domínios atualizados.");
+}
+function novidadesModal() {
+  openModal({ title: `Novidades da versão ${VERSAO}`, body: [h("ul", { class: "blist" }, NOVIDADES.map(n => h("li", {}, n)))] });
+  try { localStorage.setItem("evo-versao-vista", VERSAO); } catch (e) {}
+}
+function talvezNovidades() {
+  let vista = null; try { vista = localStorage.getItem("evo-versao-vista"); } catch (e) {}
+  if (vista === VERSAO || talvezNovidades.agendado) return;
+  talvezNovidades.agendado = true;
+  setTimeout(() => { if (!document.getElementById("modal").open) novidadesModal(); else talvezNovidades.agendado = false; }, 400);
+}
+
+/* ---------- telas novas do time ---------- */
+function viewInicio() {
+  const uid = S.me.user_id, certs = certsOf(uid);
+  const lastLib = latest(S.aval.get(uid), "data");
+  const pdiPend = (S.pdi.get(uid) || []).filter(p => p.status !== "concluido").length;
+  const disc = latest(S.disc.get(uid), "criado_em");
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, `Olá, ${(S.me.nome || "").split(" ")[0] || "tudo bem"}!`), h("p", {}, "Aqui está um resumo da sua evolução e o que está pendente."))),
+    h("div", { class: "stack" },
+      h("div", { class: "kpis" },
+        kpi(certs.length, "cursos concluídos"), kpi(fmtH(hoursOf(certs)), "de formação"),
+        kpi(fmt1(avgOf(lastLib)), "média da última avaliação"), kpi(pdiPend, "ações abertas no seu PDI"),
+        kpi(disc ? disc.perfil : "–", disc ? DISC_INFO[disc.perfil[0]].estilo : "perfil DISC")),
+      h("div", { class: "grid3" }, lembretesPanel(10),
+        h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Minha trilha de formação")), hoursTrailChart(uid, "short")))),
+  ];
+}
+function viewEvolucao() {
+  const uid = S.me.user_id;
+  const avs = [...(S.aval.get(uid) || [])].sort(byDateDesc("data"));
+  const ult = avs[0], melh = S.melh.get(uid) || [];
+  const comp = comparacao(uid);
+  return [
+    h("div", { class: "page-head" }, h("div", {}, h("h1", {}, "Minha evolução"), h("p", {}, "Seu mapa de competências, o feedback do gestor e o seu plano de desenvolvimento.")),
+      h("button", { class: "btn", onclick: () => formAutoavaliacao(uid) }, "Fazer autoavaliação")),
+    h("div", { class: "stack" },
+      h("div", { class: "grid2" },
+        h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Mapa de competências"), h("p", {}, "Sua autoavaliação e a avaliação do gestor.")), radarChart(uid)),
+        h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Evolução nas avaliações")), personEvolutionChart(uid))),
+      ult && h("div", { class: "panel" },
+        h("div", { class: "panel-head" }, h("h2", {}, "Feedback da última avaliação"), h("p", {}, `${fmtDate(ult.data)}${ult.periodo ? `, ${ult.periodo}` : ""}`)),
+        ult.fortes && h("div", {}, h("h3", {}, "Pontos fortes"), h("p", { class: "prose", style: "margin:6px 0 12px" }, ult.fortes)),
+        ult.feedback ? h("div", {}, h("h3", {}, "Feedback do gestor"), h("p", { class: "prose", style: "margin-top:6px" }, ult.feedback)) : h("p", { class: "muted" }, "Sem feedback escrito nesta avaliação.")),
+      comp && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Como você se vê e como o gestor vê")), comp),
+      !ult && h("div", { class: "panel" }, h("p", { class: "muted" }, "Nenhuma avaliação liberada ainda. Quando o gestor liberar, o mapa e o feedback aparecem aqui.")),
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Meu plano de desenvolvimento (PDI)")), pdiLista(uid, false)),
+      h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Pontos de melhoria")),
+        melh.length ? h("ul", { class: "list" }, [...melh].sort(byDateDesc("criado_em")).map(m => h("li", { class: "item" },
+          h("div", { class: "item-top" }, h("h3", {}, m.titulo), h("span", { class: "pill " + (STATUS[m.status] ? m.status : "aberto") }, STATUS[m.status] || "Aberto")),
+          h("p", { class: "meta" }, [m.prazo && `prazo ${fmtDate(m.prazo)}`, m.concluido_em && `concluído em ${fmtDate(m.concluido_em)}`].filter(Boolean).join(", ")),
+          m.descricao && h("p", { class: "prose" }, m.descricao)))) : h("p", { class: "muted" }, "Nenhum ponto de melhoria registrado.")),
+      avs.length > 1 && h("div", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Avaliações anteriores")),
+        h("ul", { class: "list" }, avs.slice(1).map(a => h("li", { class: "item" },
+          h("div", { class: "item-top" }, h("h3", {}, `${fmtDate(a.data)}${a.periodo ? `, ${a.periodo}` : ""}`), h("span", {}, "Média ", h("b", {}, fmt1(avgOf(a))))),
+          a.feedback && h("p", { class: "prose" }, a.feedback)))))),
+  ];
+}
+
+/* ---------- início ---------- */
+let lastUser = null;
+sb.auth.onAuthStateChange((event, session) => {
+  S.session = session; S.ready = true;
+  if (event === "PASSWORD_RECOVERY") { S.recovery = true; render(); }
+  const uid = session?.user?.id || null;
+  if (!uid) { lastUser = null; S.me = null; S.owner = false; S.people = new Map(); S.auto = new Map(); S.disc = new Map(); S.pdi = new Map(); S.privado = new Map(); S.gestores = []; S.config = {}; S.discDraft = null; S.recovery = false; S.view = "painel"; clearTimeout(idleTimer); render(); return; }
+  lastBump = 0; bumpIdle();
+  if (uid !== lastUser) {
+    lastUser = uid; S.loading = true; render();
+    setTimeout(async () => { await refresh(); S.loading = false; render(); }, 0);
+  }
+});
+</script>
+</body>
+</html>
+
